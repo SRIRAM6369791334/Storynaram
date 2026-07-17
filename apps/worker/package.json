@@ -1,0 +1,37 @@
+{
+  "name": "@storynaram/worker",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/bullmq": "^11.0.0",
+    "bullmq": "^5.34.0",
+    "ioredis": "^5.4.0",
+    "nestjs-pino": "^4.1.0",
+    "pino": "^9.5.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "zod": "^3.24.0",
+    "@storynaram/common": "workspace:^",
+    "@storynaram/config": "workspace:^",
+    "@storynaram/logger": "workspace:^",
+    "@storynaram/events": "workspace:^",
+    "@storynaram/core": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0",
+    "rimraf": "^6.0.0"
+  }
+}

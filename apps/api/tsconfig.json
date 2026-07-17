@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "composite": true,
+    "incremental": true
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../packages/common" },
+    { "path": "../../packages/config" },
+    { "path": "../../packages/logger" },
+    { "path": "../../packages/events" },
+    { "path": "../../packages/telemetry" },
+    { "path": "../../packages/core" }
+  ]
+}

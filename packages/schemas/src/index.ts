@@ -1,0 +1,12 @@
+export { SchemaModule, type AjvConfig } from './schema.module';
+export { SchemaRegistryService } from './schema-registry.service';
+export { SchemaCompilerService } from './schema-compiler.service';
+export { SchemaIndexService } from './schema-index.service';
+export { SchemaCacheService } from './schema-cache.service';
+export { SchemaDiscoveryService } from './schema-discovery.service';
+export { SchemaLoaderService } from './schema-loader.service';
+export { SchemaMetadataService } from './schema-metadata.service';
+export { SchemaResolverService } from './schema-resolver.service';
+export { SchemaDependencyGraphService } from './schema-dependency-graph.service';
+export type { SchemaMeta, SchemaId, SchemaCategory, RegistryConfig, RegistryStats, SchemaIndexEntry, SchemaSearchQuery, DiscoveryResult, CompilationResult, ReferenceInfo } from './types';
+export { SchemaRegistryError, SchemaNotFoundError, DuplicateSchemaError, InvalidSchemaError, ReferenceResolutionError, CompilationError, CircularDependencyError } from './errors';

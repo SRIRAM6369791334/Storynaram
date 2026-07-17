@@ -1,0 +1,45 @@
+{
+  "name": "@storynaram/api",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nest start --watch",
+    "build": "nest build",
+    "start": "node dist/main",
+    "start:prod": "node dist/main",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "vitest run --config ./vitest.e2e.config.ts",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^11.0.0",
+    "@nestjs/config": "^4.0.0",
+    "nestjs-pino": "^4.1.0",
+    "pino": "^9.5.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "zod": "^3.24.0",
+    "@storynaram/common": "workspace:^",
+    "@storynaram/config": "workspace:^",
+    "@storynaram/logger": "workspace:^",
+    "@storynaram/events": "workspace:^",
+    "@storynaram/telemetry": "workspace:^",
+    "@storynaram/core": "workspace:^"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "vitest": "^2.1.0",
+    "rimraf": "^6.0.0",
+    "supertest": "^7.0.0",
+    "@types/supertest": "^6.0.0"
+  }
+}
