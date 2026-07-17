@@ -1,0 +1,80 @@
+{
+  "template": "AIReference",
+  "version": "1.0.0",
+  "description": "AI cross-reference block — entity, relationship, memory, canon, and source references with confidence scoring",
+  "type": "object",
+  "properties": {
+    "entityRefs": {
+      "type": "array",
+      "description": "References to known entities",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entityId": { "type": "string" },
+          "entityType": { "type": "string" },
+          "label": { "type": "string" },
+          "mentionCount": { "type": "integer" }
+        }
+      }
+    },
+    "relationshipRefs": {
+      "type": "array",
+      "description": "References to relationships between entities",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationshipId": { "type": "string" },
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "type": { "type": "string" },
+          "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "memoryRefs": {
+      "type": "array",
+      "description": "References to stored memories",
+      "items": {
+        "type": "object",
+        "properties": {
+          "memoryId": { "type": "string" },
+          "type": { "type": "string", "enum": ["shortTerm", "longTerm", "working", "archived"] },
+          "summary": { "type": "string" },
+          "accessCount": { "type": "integer" }
+        }
+      }
+    },
+    "canonRefs": {
+      "type": "array",
+      "description": "References to canon-confirmed facts",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canonId": { "type": "string" },
+          "statement": { "type": "string" },
+          "category": { "type": "string" },
+          "verifiedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "description": "Source provenance tracking",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceId": { "type": "string" },
+          "sourceType": { "type": "string", "enum": ["book", "chapter", "scene", "userInput", "generated", "external"] },
+          "location": { "type": "string" },
+          "reliability": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Aggregate confidence score for all references",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

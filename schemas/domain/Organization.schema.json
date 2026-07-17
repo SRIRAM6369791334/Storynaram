@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Organization.schema.json",
+  "title": "Organization",
+  "description": "Organization domain schema — inherits BaseEntity via allOf, adds organization-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Organization-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["guild", "order", "faction", "government", "military", "religious", "academic", "trade", "secret-society", "political", "mercenary", "criminal", "cultural", "other"] },
+        "worldId": { "type": "string" },
+        "headquarters": { "type": "string" },
+        "leader": { "type": "string" },
+        "hierarchy": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "membershipCount": { "type": "integer", "minimum": 0 },
+        "founded": { "type": "string" },
+        "fell": { "type": "string" },
+        "purpose": { "type": "string" },
+        "beliefs": { "type": "array", "items": { "type": "string" } },
+        "goals": { "type": "array", "items": { "type": "string" } },
+        "allies": { "type": "array", "items": { "type": "string" } },
+        "enemies": { "type": "array", "items": { "type": "string" } },
+        "ranks": { "type": "array", "items": { "type": "string" } },
+        "locations": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

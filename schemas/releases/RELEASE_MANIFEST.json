@@ -1,0 +1,22 @@
+{
+  "releaseId": "storynaram-schemas-1.0.0",
+  "name": "Storynaram Schema Foundation v1.0.0",
+  "date": "2026-07-17",
+  "version": "1.0.0",
+  "schemaCount": 118,
+  "categories": {
+    "core": { "version": "1.0.0", "schemas": 23 },
+    "domain": { "version": "1.0.0", "schemas": 35 },
+    "ai": { "version": "1.0.0", "schemas": 20 },
+    "workflow": { "version": "1.0.0", "schemas": 20 },
+    "validation": { "version": "1.0.0", "schemas": 20 }
+  },
+  "dependencies": {},
+  "compatibility": "All categories compatible at v1.0.0",
+  "releaseChannel": "general",
+  "stability": "stable",
+  "deprecations": [],
+  "breakingChanges": [],
+  "migrationRequired": false,
+  "releaseNotes": "Initial schema foundation release. All 118 schemas at v1.0.0 stable."
+}

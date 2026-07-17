@@ -1,0 +1,111 @@
+{
+  "template": "BaseAI",
+  "version": "1.0.0",
+  "description": "AI metadata and retrieval configuration — visibility, embeddings, context priority, retrieval weight, canonical importance, search keywords",
+  "type": "object",
+  "properties": {
+    "visibility": {
+      "type": "string",
+      "enum": ["visible", "hidden", "summary-only", "embedding-only"],
+      "description": "AI-level visibility for retrieval and context building"
+    },
+    "embedding": {
+      "type": "object",
+      "description": "Embedding generation configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "model": { "type": "string", "description": "Embedding model identifier" },
+        "dimensions": { "type": "integer" },
+        "fields": {
+          "type": "array",
+          "description": "Fields to include in embedding generation",
+          "items": { "type": "string" }
+        },
+        "lastIndexed": { "type": "string", "format": "date-time" },
+        "vector": {
+          "type": "array",
+          "description": "Cached embedding vector (not stored in source; populated at runtime)",
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "description": "Retrieval-augmented generation (RAG) configuration",
+      "properties": {
+        "contextPriority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Priority in context window (100=always included)"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Retrieval weight for similarity scoring"
+        },
+        "maxContextLength": {
+          "type": "integer",
+          "description": "Maximum tokens for this entity in AI context"
+        },
+        "truncationStrategy": {
+          "type": "string",
+          "enum": ["head", "tail", "summary", "semantic"]
+        }
+      }
+    },
+    "canon": {
+      "type": "object",
+      "description": "Canonical importance and status for AI narrative consistency",
+      "properties": {
+        "importance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Canonical importance score"
+        },
+        "locked": { "type": "boolean", "default": false, "description": "Prevents AI from modifying this entity" },
+        "source": { "type": "string", "description": "Source of canonical truth" },
+        "lastVerified": { "type": "string", "format": "date-time" }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "AI-optimized search keywords",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "description": "AI-generated or AI-annotated notes about this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ai": { "type": "string", "description": "AI model identifier" },
+          "note": { "type": "string" },
+          "generatedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "promptOverrides": {
+      "type": "object",
+      "description": "AI prompt customizations for this entity",
+      "properties": {
+        "systemPrompt": { "type": "string" },
+        "userPrompt": { "type": "string" },
+        "contextRules": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["embedding", "retrieval", "keywords", "notes", "promptOverrides"],
+    "final": ["visibility", "canon.importance", "canon.locked"]
+  }
+}

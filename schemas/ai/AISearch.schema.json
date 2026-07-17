@@ -1,0 +1,189 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AISearch.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AISearch",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "query": {
+      "$ref": "#/$defs/Query"
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Filter"
+      }
+    },
+    "ranking": {
+      "$ref": "#/$defs/RankingConfig"
+    },
+    "pagination": {
+      "$ref": "#/$defs/Pagination"
+    },
+    "scoring": {
+      "$ref": "#/$defs/ScoringConfig"
+    },
+    "aggregations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Aggregation"
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SearchResult"
+      }
+    }
+  },
+  "$defs": {
+    "Query": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["keyword", "semantic", "hybrid", "graph"]
+        },
+        "language": {
+          "type": "string"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string",
+          "enum": ["eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "contains", "exists"]
+        },
+        "value": {}
+      }
+    },
+    "RankingConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "primaryField": {
+          "type": "string"
+        },
+        "secondaryField": {
+          "type": "string"
+        },
+        "boostFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decayFunction": {
+          "type": "string",
+          "enum": ["linear", "exponential", "gaussian", "step"]
+        }
+      }
+    },
+    "Pagination": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pageSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "maxPages": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        }
+      }
+    },
+    "ScoringConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "relevanceWeight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recencyWeight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "authorityWeight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "customWeights": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "minScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "Aggregation": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["term", "range", "date_histogram", "nested", "avg", "sum", "min", "max", "count", "top_hits"]
+        },
+        "size": {
+          "type": "integer"
+        }
+      }
+    },
+    "SearchResult": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "snippet": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

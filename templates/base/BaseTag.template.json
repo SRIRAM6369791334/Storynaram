@@ -1,0 +1,58 @@
+{
+  "template": "BaseTag",
+  "version": "1.0.0",
+  "description": "Tag and label system — flat and hierarchical tags, colored labels, and tag classifications",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "array",
+      "description": "Flat tags for simple categorization",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "namespace": { "type": "string", "description": "Tag namespace (e.g. genre, mood, theme)" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "description": "Hierarchical category assignments",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Slash-delimited path (e.g. fiction/fantasy/high-fantasy)" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "labels": {
+      "type": "array",
+      "description": "Visual labels with color hints",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+          "group": { "type": "string" }
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "description": "Taxonomy metadata for hierarchical classification",
+      "properties": {
+        "vocabulary": { "type": "string" },
+        "term": { "type": "string" },
+        "broader": { "type": "string" },
+        "narrower": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["tags", "categories", "labels", "taxonomy"],
+    "final": []
+  }
+}

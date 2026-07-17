@@ -1,0 +1,65 @@
+{
+  "template": "BaseIndex",
+  "version": "1.0.0",
+  "description": "Database index definitions — indexes for PostgreSQL, Neo4j, vector database, and search engine",
+  "type": "object",
+  "properties": {
+    "indexes": {
+      "type": "array",
+      "description": "Index definitions for this entity type",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["btree", "hash", "gin", "gist", "brin", "vector", "fulltext", "edge", "label"]
+          },
+          "fields": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "unique": { "type": "boolean", "default": false },
+          "where": { "type": "string", "description": "Partial index condition" },
+          "tablespace": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "graphIndexes": {
+      "type": "object",
+      "description": "Neo4j-specific index configuration",
+      "properties": {
+        "nodeLabels": { "type": "array", "items": { "type": "string" } },
+        "edgeTypes": { "type": "array", "items": { "type": "string" } },
+        "indexedProperties": { "type": "array", "items": { "type": "string" } },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "vectorIndexes": {
+      "type": "object",
+      "description": "Vector database index configuration",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "indexType": { "type": "string", "enum": ["hnsw", "ivfflat"] },
+        "distance": { "type": "string", "enum": ["cosine", "l2", "inner_product"] },
+        "dimensions": { "type": "integer" },
+        "indexParams": { "type": "object" }
+      }
+    },
+    "searchIndexes": {
+      "type": "object",
+      "description": "Search engine index configuration",
+      "properties": {
+        "analyzer": { "type": "string" },
+        "mappings": { "type": "object" },
+        "settings": { "type": "object" }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["indexes", "graphIndexes", "vectorIndexes", "searchIndexes"],
+    "final": []
+  }
+}

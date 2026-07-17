@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Mission.schema.json",
+  "title": "Mission",
+  "description": "Mission domain schema — inherits BaseEntity via allOf, adds mission-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Mission-specific fields",
+      "required": ["questId"],
+      "properties": {
+        "questId": { "type": "string" },
+        "type": { "type": "string", "enum": ["investigation", "combat", "diplomacy", "stealth", "rescue", "retrieval", "escort", "assassination", "reconnaissance", "delivery", "other"] },
+        "assignedBy": { "type": "string" },
+        "assignedTo": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "string" },
+        "objectives": { "type": "array", "items": { "type": "string" } },
+        "successCriteria": { "type": "array", "items": { "type": "string" } },
+        "failConditions": { "type": "array", "items": { "type": "string" } },
+        "consequences": { "type": "object", "properties": { "success": { "type": "string" }, "failure": { "type": "string" } } },
+        "rewards": { "type": "array", "items": { "type": "string" } },
+        "difficulty": { "type": "string", "enum": ["trivial", "easy", "medium", "hard", "deadly"] },
+        "timeLimit": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

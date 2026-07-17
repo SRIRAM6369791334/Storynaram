@@ -1,0 +1,27 @@
+{
+  "template": "WorkflowRetry",
+  "version": "1.0.0",
+  "description": "Retry policy — exponential backoff with configurable max retries, retryable errors, and final failure handling",
+  "type": "object",
+  "properties": {
+    "enabled": { "type": "boolean", "default": false },
+    "maxRetries": { "type": "integer", "minimum": 0, "default": 3 },
+    "retryDelay": { "type": "integer", "description": "Initial delay in seconds", "default": 1 },
+    "backoffMultiplier": { "type": "number", "minimum": 1.0, "default": 2.0 },
+    "maxDelay": { "type": "integer", "description": "Maximum delay in seconds" },
+    "retryableErrors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "onFinalFailure": {
+      "type": "string",
+      "enum": ["abort", "skip", "notify"]
+    }
+  }
+}

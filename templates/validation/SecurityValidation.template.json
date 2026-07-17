@@ -1,0 +1,14 @@
+{
+  "template": "SecurityValidation",
+  "version": "1.0.0",
+  "description": "Security validation — validates classification, encryption, redaction, access control, audit logging, and compliance requirements",
+  "type": "object",
+  "properties": {
+    "classificationCheck": { "type": "object", "description": "Data classification validation configuration" },
+    "encryptionCheck": { "type": "object", "description": "Encryption requirement check configuration" },
+    "redactionCheck": { "type": "object", "description": "Redaction rule check configuration" },
+    "accessControlCheck": { "type": "object", "description": "Access control validation configuration" },
+    "auditLogCheck": { "type": "object", "description": "Audit trail completeness check configuration" },
+    "complianceCheck": { "type": "array", "items": { "type": "object" }, "description": "Compliance standard checks (GDPR, HIPAA, etc.)" }
+  }
+}

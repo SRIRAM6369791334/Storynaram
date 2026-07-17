@@ -1,0 +1,23 @@
+{
+  "registry": "entity-registry",
+  "version": "1.0.0",
+  "description": "Registry of all entity types, their prefixes, and their template mappings",
+  "entities": [],
+  "index": {
+    "byPrefix": {},
+    "byTemplate": {},
+    "byCategory": {}
+  },
+  "categories": {
+    "narrative": [],
+    "world": [],
+    "character": [],
+    "item": [],
+    "system": []
+  },
+  "statistics": {
+    "totalEntityTypes": 0,
+    "totalPrefixes": 0,
+    "totalCategories": 0
+  }
+}

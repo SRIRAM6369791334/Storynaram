@@ -1,0 +1,23 @@
+{
+  "template": "IntegrationProfile",
+  "version": "1.0.0",
+  "description": "Integration profile — defines validation integration between layers with points, rules, mappings, and compatibility checks",
+  "type": "object",
+  "properties": {
+    "profileId": { "type": "string" },
+    "name": { "type": "string" },
+    "sourceLayer": {
+      "type": "string",
+      "enum": ["base", "domain", "ai", "workflow", "validation", "registry", "composition", "schema", "storage", "plugin"]
+    },
+    "targetLayer": {
+      "type": "string",
+      "enum": ["base", "domain", "ai", "workflow", "validation", "registry", "composition", "schema", "storage", "plugin"]
+    },
+    "integrationPoints": { "type": "array", "items": { "type": "object" }, "description": "Integration point definitions between layers" },
+    "validationRules": { "type": "array", "items": { "type": "string" }, "description": "Rule references for cross-layer validation" },
+    "mappings": { "type": "array", "items": { "type": "object" }, "description": "Field and type mappings between layers" },
+    "compatibility": { "type": "object", "description": "Cross-layer compatibility configuration" },
+    "enabled": { "type": "boolean", "default": true }
+  }
+}

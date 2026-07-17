@@ -1,0 +1,69 @@
+{
+  "template": "WorkflowAssignment",
+  "version": "1.0.0",
+  "description": "Task and user assignment definition — assignee, assigner, role, priority, routing rules, and dependency management",
+  "type": "object",
+  "properties": {
+    "assignee": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["user", "group", "role", "ai"] },
+        "name": { "type": "string" }
+      }
+    },
+    "assigner": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["user", "system", "ai", "rule"] },
+        "name": { "type": "string" }
+      }
+    },
+    "role": { "type": "string" },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "backlog"]
+    },
+    "deadline": {
+      "type": "object",
+      "properties": {
+        "due": { "type": "string", "format": "date-time" },
+        "reminderBefore": { "type": "integer", "description": "Reminder before deadline (seconds)" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "assigned", "in-progress", "completed", "blocked", "deferred", "cancelled"]
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assignmentId": { "type": "string" },
+          "type": { "type": "string", "enum": ["blocks", "blocked-by", "related-to"] }
+        }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["round-robin", "load-balanced", "role-based", "manual", "ai-optimized"] },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": { "type": "string" },
+              "operator": { "type": "string" },
+              "value": {},
+              "target": { "type": "string" }
+            }
+          }
+        },
+        "allowReassignment": { "type": "boolean", "default": true }
+      }
+    }
+  }
+}

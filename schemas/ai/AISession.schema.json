@@ -1,0 +1,43 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AISession.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AISession",
+  "description": "AI session management — lifecycle tracking, model assignments, token usage, context accumulation, and persistence configuration.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "tokenUsage": {
+      "type": "object",
+      "properties": {
+        "totalInput": { "type": "integer" },
+        "totalOutput": { "type": "integer" },
+        "totalCached": { "type": "integer" },
+        "budgetExceeded": { "type": "boolean" },
+        "lastReset": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    },
+    "accumulatedContext": {
+      "type": "object",
+      "properties": {
+        "conversationBuffer": { "type": "array", "items": { "type": "string" } },
+        "memoryIds": { "type": "array", "items": { "type": "string" } },
+        "contextSize": { "type": "integer" },
+        "compressionCount": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "sessionId": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["initializing", "active", "idle", "paused", "expiring", "expired", "terminated", "error"]
+    },
+    "model": { "type": "string" },
+    "tokenUsage": { "$ref": "#/$defs/tokenUsage" },
+    "accumulatedContext": { "$ref": "#/$defs/accumulatedContext" },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" }
+  }
+}

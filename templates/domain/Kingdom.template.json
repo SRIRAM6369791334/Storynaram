@@ -1,0 +1,33 @@
+{
+  "template": "Kingdom",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "kingdom",
+  "description": "Reusable kingdom domain template. Defines a monarchy, realm, or sovereign territory.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Kingdom-specific fields",
+      "required": ["worldId"],
+      "properties": {
+        "worldId": { "type": "string" },
+        "countryId": { "type": "string" },
+        "capital": { "type": "string" },
+        "monarch": { "type": "string" },
+        "government": { "type": "string" },
+        "succession": { "type": "string", "enum": ["primogeniture", "elective", "merit", "conquest", "appointed", "other"] },
+        "royalHouse": { "type": "string" },
+        "cities": { "type": "array", "items": { "type": "string" } },
+        "territories": { "type": "array", "items": { "type": "string" } },
+        "population": { "type": "integer", "minimum": 0 },
+        "founded": { "type": "string" },
+        "fell": { "type": "string" },
+        "motto": { "type": "string" },
+        "sigil": { "type": "string" },
+        "colors": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

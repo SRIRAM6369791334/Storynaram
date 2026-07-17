@@ -1,0 +1,39 @@
+{
+  "template": "ValidationRule",
+  "version": "1.0.0",
+  "description": "Single validation rule definition — field-level, entity-level, or cross-entity constraints with severity and error messaging",
+  "type": "object",
+  "properties": {
+    "ruleId": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "scope": {
+      "type": "string",
+      "enum": ["field", "entity", "cross-entity", "workflow", "ai", "security", "canon", "reference", "relationship", "plugin", "version", "migration"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"],
+      "default": "medium"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["required", "format", "enum", "length", "range", "pattern", "reference", "unique", "business", "integrity", "custom"]
+    },
+    "field": { "type": "string", "description": "JSON path to the validated field" },
+    "condition": { "type": "string", "description": "Validation condition expression" },
+    "params": {
+      "type": "object",
+      "description": "Rule parameters (pattern, min, max, allowedValues, etc.)"
+    },
+    "message": { "type": "string", "description": "User-facing error message" },
+    "errorCode": { "type": "string" },
+    "recovery": {
+      "type": "string",
+      "enum": ["auto-fix", "manual-fix", "skip", "abort", "flag"],
+      "description": "Recommended recovery strategy"
+    },
+    "enabled": { "type": "boolean", "default": true },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

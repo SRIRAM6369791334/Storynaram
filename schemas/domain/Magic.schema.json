@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Magic.schema.json",
+  "title": "Magic",
+  "description": "Magic domain schema — inherits BaseEntity via allOf, adds magic-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Magic-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["arcane", "divine", "nature", "ritual", "inherent", "techno", "blood", "chaos", "elemental", "other"] },
+        "worldId": { "type": "string" },
+        "source": { "type": "string" },
+        "rules": { "type": "string" },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "cost": { "type": "string" },
+        "spells": { "type": "array", "items": { "type": "string" } },
+        "practitioners": { "type": "array", "items": { "type": "string" } },
+        "schools": { "type": "array", "items": { "type": "string" } },
+        "elements": { "type": "array", "items": { "type": "string" } },
+        "hierarchy": { "type": "string" },
+        "history": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

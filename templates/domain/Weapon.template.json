@@ -1,0 +1,32 @@
+{
+  "template": "Weapon",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "weapon",
+  "description": "Reusable weapon domain template. Defines any weapon or armament.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Weapon-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["sword", "axe", "bow", "dagger", "spear", "staff", "mace", "hammer", "polearm", "whip", "flail", "throwing", "firearm", "explosive", "siege", "energy", "magical", "other"] },
+        "material": { "type": "string" },
+        "damage": { "type": "string" },
+        "damageType": { "type": "string", "enum": ["slashing", "piercing", "bludgeoning", "fire", "ice", "lightning", "magical", "psychic", "poison", "necrotic", "radiant", "force"] },
+        "range": { "type": "string" },
+        "weight": { "type": "string" },
+        "speed": { "type": "string" },
+        "durability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "magical": { "type": "boolean", "default": false },
+        "enchantments": { "type": "array", "items": { "type": "string" } },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "attunement": { "type": "boolean", "default": false },
+        "owner": { "type": "string" },
+        "historicalSignificance": { "type": "string" }
+      }
+    }
+  }
+}

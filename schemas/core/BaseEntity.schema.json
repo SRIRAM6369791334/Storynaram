@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseEntity.schema.json",
+  "title": "BaseEntity",
+  "description": "Universal entity schema — composes all base schemas",
+  "type": "object",
+  "allOf": [
+    { "$ref": "BaseIdentifier.schema.json" },
+    { "$ref": "BaseMetadata.schema.json" },
+    { "$ref": "BaseAudit.schema.json" }
+  ],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "version": { "$ref": "BaseVersion.schema.json" },
+    "status": { "$ref": "BaseStatus.schema.json" },
+    "lifecycle": { "$ref": "BaseLifecycle.schema.json" },
+    "ownership": { "$ref": "BaseOwnership.schema.json" },
+    "references": { "$ref": "BaseReference.schema.json" },
+    "relationships": { "$ref": "BaseRelationship.schema.json" },
+    "tags": { "$ref": "BaseTag.schema.json" },
+    "visibility": { "$ref": "BaseVisibility.schema.json" },
+    "permissions": { "$ref": "BasePermission.schema.json" },
+    "localization": { "$ref": "BaseLocalization.schema.json" },
+    "attachments": { "$ref": "BaseAttachment.schema.json" },
+    "comments": { "$ref": "BaseComment.schema.json" },
+    "history": { "$ref": "BaseHistory.schema.json" },
+    "validation": { "$ref": "BaseValidation.schema.json" },
+    "ai": { "$ref": "BaseAI.schema.json" },
+    "search": { "$ref": "BaseSearch.schema.json" },
+    "security": { "$ref": "BaseSecurity.schema.json" },
+    "workflow": { "$ref": "BaseWorkflow.schema.json" },
+    "extension": { "$ref": "BaseExtension.schema.json" },
+    "customProperties": { "type": "object", "additionalProperties": true }
+  }
+}

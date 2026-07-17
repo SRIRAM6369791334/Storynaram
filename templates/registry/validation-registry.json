@@ -1,0 +1,22 @@
+{
+  "registry": "validation-registry",
+  "version": "1.0.0",
+  "description": "Validation rule registry — aggregates all validation rules per template type",
+  "rules": {},
+  "businessRules": {},
+  "customValidators": {},
+  "index": {
+    "byTemplate": {},
+    "byField": {},
+    "bySeverity": {},
+    "byType": {}
+  },
+  "statistics": {
+    "totalRules": 0,
+    "totalBusinessRules": 0,
+    "totalCustomValidators": 0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

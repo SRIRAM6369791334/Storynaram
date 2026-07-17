@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseComment.schema.json",
+  "title": "BaseComment",
+  "description": "Comment and annotation system — threaded comments, inline annotations, review notes",
+  "type": "object",
+  "properties": {
+    "comments": {
+      "type": "array",
+      "description": "Threaded comments on this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "parentId": { "type": "string", "description": "Parent comment ID for threading" },
+          "author": { "type": "string" },
+          "body": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "resolved": { "type": "boolean", "default": false },
+          "resolvedBy": { "type": "string" },
+          "resolvedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "description": "Inline annotations on specific fields/content",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string", "description": "Path to the annotated field" },
+          "start": { "type": "integer", "description": "Character offset start" },
+          "end": { "type": "integer", "description": "Character offset end" },
+          "author": { "type": "string" },
+          "note": { "type": "string" },
+          "type": { "type": "string", "enum": ["suggestion", "question", "issue", "note"] }
+        }
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "description": "Formal review records",
+      "items": {
+        "type": "object",
+        "properties": {
+          "reviewer": { "type": "string" },
+          "decision": { "type": "string", "enum": ["approved", "rejected", "changes-requested", "pending"] },
+          "comments": { "type": "string" },
+          "reviewedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "template": "AICanon",
+  "version": "1.0.0",
+  "description": "Canon verification block — ensures AI responses respect canonical truth, with importance scoring and conflict detection",
+  "type": "object",
+  "properties": {
+    "verificationMode": {
+      "type": "string",
+      "enum": ["strict", "lenient", "suggestive"],
+      "default": "strict"
+    },
+    "canonRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canonId": { "type": "string" },
+          "statement": { "type": "string" },
+          "importance": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "category": { "type": "string", "enum": ["fact", "relationship", "timeline", "rule", "character", "world"] }
+        }
+      }
+    },
+    "conflictDetection": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "threshold": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.8 }
+      }
+    },
+    "lastVerified": { "type": "string", "format": "date-time" },
+    "verificationResult": {
+      "type": "object",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "violations": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

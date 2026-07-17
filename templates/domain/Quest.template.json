@@ -1,0 +1,39 @@
+{
+  "template": "Quest",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseLifecycle", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "quest",
+  "description": "Reusable quest domain template. Defines a quest, journey, or overarching mission.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Quest-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["main", "side", "personal", "faction", "world", "character-arc", "episodic"] },
+        "bookId": { "type": "string" },
+        "giver": { "type": "string" },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "completed": { "type": "boolean", "default": false },
+              "order": { "type": "integer" }
+            }
+          }
+        },
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "rewards": { "type": "array", "items": { "type": "string" } },
+        "difficulty": { "type": "string", "enum": ["trivial", "easy", "medium", "hard", "deadly", "impossible"] },
+        "stages": { "type": "array", "items": { "type": "string" } },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "failConditions": { "type": "array", "items": { "type": "string" } },
+        "relatedQuests": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

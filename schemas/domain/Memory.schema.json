@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Memory.schema.json",
+  "title": "Memory",
+  "description": "Memory domain schema — inherits BaseEntity via allOf, adds memory-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Memory-specific fields",
+      "required": ["type", "ownerId"],
+      "properties": {
+        "type": { "type": "string", "enum": ["character", "ai", "story", "system", "canon"] },
+        "ownerId": { "type": "string" },
+        "ownerType": { "type": "string", "enum": ["character", "ai", "system", "story"] },
+        "memory": { "type": "string" },
+        "embedding": { "type": "array", "items": { "type": "number" } },
+        "importance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "recency": { "type": "string", "format": "date-time" },
+        "frequency": { "type": "integer", "minimum": 0 },
+        "associations": { "type": "array", "items": { "type": "string" } },
+        "emotions": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string" },
+        "accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "decay": { "type": "number", "minimum": 0, "maximum": 1 },
+        "consolidated": { "type": "boolean", "default": false },
+        "lastRecalled": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,140 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIConfiguration.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIConfiguration",
+  "description": "Central AI runtime configuration covering default model, inference parameters, feature toggles, rate limits, logging, and model registry.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "defaultModel": {
+      "type": "string"
+    },
+    "parameters": {
+      "$ref": "#/$defs/InferenceParameters"
+    },
+    "features": {
+      "$ref": "#/$defs/Features"
+    },
+    "limits": {
+      "$ref": "#/$defs/Limits"
+    },
+    "logging": {
+      "$ref": "#/$defs/Logging"
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ModelEntry"
+      }
+    },
+    "runtime": {
+      "$ref": "#/$defs/Runtime"
+    }
+  },
+  "$defs": {
+    "InferenceParameters": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "topP": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "topK": { "type": "integer" },
+        "maxTokens": { "type": "integer" },
+        "stopSequences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "frequencyPenalty": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2
+        },
+        "presencePenalty": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2
+        }
+      }
+    },
+    "Features": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "streaming": { "type": "boolean" },
+        "caching": { "type": "boolean" },
+        "toolUse": { "type": "boolean" },
+        "structuredOutput": { "type": "boolean" },
+        "parallelToolCalls": { "type": "boolean" },
+        "vision": { "type": "boolean" },
+        "functionCalling": { "type": "boolean" }
+      }
+    },
+    "Limits": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "requestsPerMinute": { "type": "integer" },
+        "requestsPerHour": { "type": "integer" },
+        "tokensPerMinute": { "type": "integer" },
+        "tokensPerDay": { "type": "integer" },
+        "maxConcurrency": { "type": "integer" },
+        "maxContextWindow": { "type": "integer" },
+        "maxOutputTokens": { "type": "integer" }
+      }
+    },
+    "Logging": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error", "none"]
+        },
+        "logPrompts": { "type": "boolean" },
+        "logResponses": { "type": "boolean" },
+        "logTokenUsage": { "type": "boolean" },
+        "logLatency": { "type": "boolean" },
+        "destination": { "type": "string" }
+      }
+    },
+    "ModelEntry": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "modelId": { "type": "string" },
+        "provider": { "type": "string" },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "costPerToken": { "type": "number" },
+        "priority": { "type": "integer" }
+      }
+    },
+    "Runtime": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        },
+        "cacheEnabled": { "type": "boolean" },
+        "cacheTtl": { "type": "integer" },
+        "persistenceEnabled": { "type": "boolean" },
+        "healthCheckInterval": { "type": "integer" }
+      }
+    }
+  }
+}

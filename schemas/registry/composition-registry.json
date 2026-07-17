@@ -1,0 +1,6 @@
+{
+  "registryName": "Composition Registry",
+  "version": "1.0.0",
+  "compositions": [],
+  "description": "Tracks template composition chains — populated at runtime"
+}

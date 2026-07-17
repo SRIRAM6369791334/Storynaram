@@ -1,0 +1,63 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AISummary.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AISummary",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["extractive", "abstractive", "hybrid"],
+      "default": "abstractive"
+    },
+    "maxLength": {
+      "type": "integer",
+      "minimum": 50,
+      "maximum": 4096
+    },
+    "targetFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "regenerateOnUpdate": {
+      "type": "boolean",
+      "default": true
+    },
+    "summaries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SummaryEntry"
+      }
+    }
+  },
+  "$defs": {
+    "SummaryEntry": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tokens": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

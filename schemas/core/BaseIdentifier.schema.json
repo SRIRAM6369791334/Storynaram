@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseIdentifier.schema.json",
+  "title": "BaseIdentifier",
+  "description": "Universal identifier schema — every entity must have exactly one identifier block",
+  "type": "object",
+  "required": ["id", "prefix", "sequence", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+_[0-9]{6,}$",
+      "description": "Globally unique identifier: {prefix}_{sequence}"
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Entity type prefix from id_rules.json"
+    },
+    "sequence": {
+      "type": "string",
+      "pattern": "^[0-9]{6,}$",
+      "description": "Zero-padded numeric sequence (minimum 6 digits)"
+    },
+    "type": {
+      "type": "string",
+      "description": "Canonical entity type name"
+    },
+    "displayId": {
+      "type": "string",
+      "description": "Human-readable alternate identifier"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Namespace qualifier for multi-project setups"
+    },
+    "legacyIds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": { "type": "string" },
+          "value": { "type": "string" },
+          "migratedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["system", "value"]
+      }
+    }
+  }
+}

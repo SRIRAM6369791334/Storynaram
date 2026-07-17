@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowTransition.schema.json",
+  "title": "WorkflowTransition",
+  "description": "Transition definitions and history for a workflow",
+  "type": "object",
+  "$defs": {
+    "TransitionDefinition": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["manual", "automatic", "ai-driven", "time-based", "event-based", "rule-based"]
+        },
+        "label": { "type": "string" },
+        "guard": { "type": "string" },
+        "action": { "type": "string" },
+        "trigger": { "type": "string" },
+        "condition": { "type": "string" },
+        "autoTransition": { "type": "boolean", "default": false },
+        "autoTransitionDelay": { "type": "integer" }
+      },
+      "required": ["from", "to"]
+    },
+    "TransitionRecord": {
+      "type": "object",
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "trigger": { "type": "string" },
+        "actor": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "reason": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "transitions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/TransitionDefinition" }
+    },
+    "transitionHistory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/TransitionRecord" }
+    }
+  },
+  "unevaluatedProperties": false
+}

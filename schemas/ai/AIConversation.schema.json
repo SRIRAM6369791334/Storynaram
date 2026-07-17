@@ -1,0 +1,87 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIConversation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIConversation",
+  "description": "Conversation tracking — turn management, participant profiles, topic tracking, sentiment analysis, and summarization state.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "turn": {
+      "type": "object",
+      "properties": {
+        "turnNumber": { "type": "integer" },
+        "participantId": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "tokens": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "participant": {
+      "type": "object",
+      "properties": {
+        "participantId": { "type": "string" },
+        "type": { "type": "string", "enum": ["user", "ai", "character", "system"] },
+        "name": { "type": "string" },
+        "turnCount": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "topic": {
+      "type": "object",
+      "properties": {
+        "topicId": { "type": "string" },
+        "label": { "type": "string" },
+        "startTurn": { "type": "integer" },
+        "endTurn": { "type": "integer" },
+        "mentions": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "sentiment": {
+      "type": "object",
+      "properties": {
+        "overallSentiment": { "type": "number", "minimum": -1, "maximum": 1 },
+        "perParticipant": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": -1, "maximum": 1 }
+        },
+        "sentimentTrend": {
+          "type": "array",
+          "items": { "type": "number", "minimum": -1, "maximum": 1 }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "lastSummaryTurn": { "type": "integer" },
+        "summaryText": { "type": "string" },
+        "summaryTokens": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "conversationId": { "type": "string" },
+    "turns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/turn" }
+    },
+    "participants": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/participant" }
+    },
+    "topics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/topic" }
+    },
+    "sentiment": { "$ref": "#/$defs/sentiment" },
+    "summary": { "$ref": "#/$defs/summary" },
+    "state": {
+      "type": "string",
+      "enum": ["active", "paused", "archived", "completed", "expired"]
+    }
+  }
+}

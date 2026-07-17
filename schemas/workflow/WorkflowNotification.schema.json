@@ -1,0 +1,102 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowNotification.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "EmailTemplate": {
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string" },
+        "body": { "type": "string" }
+      }
+    },
+    "SlackTemplate": {
+      "type": "object",
+      "properties": {
+        "message": { "type": "string" },
+        "channel": { "type": "string" }
+      }
+    },
+    "InAppTemplate": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "icon": { "type": "string" }
+      }
+    },
+    "WebhookTemplate": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "method": { "type": "string", "default": "POST" },
+        "headers": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "NotificationTemplates": {
+      "type": "object",
+      "properties": {
+        "email": { "$ref": "#/$defs/EmailTemplate" },
+        "slack": { "$ref": "#/$defs/SlackTemplate" },
+        "in-app": { "$ref": "#/$defs/InAppTemplate" },
+        "webhook": { "$ref": "#/$defs/WebhookTemplate" }
+      }
+    },
+    "Recipient": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["user", "group", "role", "external"]
+        },
+        "channel": { "type": "string" }
+      }
+    },
+    "NotificationTrigger": {
+      "type": "object",
+      "properties": {
+        "event": { "type": "string" },
+        "channel": { "type": "string" },
+        "template": { "type": "string" },
+        "conditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ThrottlingConfig": {
+      "type": "object",
+      "properties": {
+        "maxPerMinute": { "type": "integer" },
+        "maxPerHour": { "type": "integer" },
+        "cooldownPeriod": { "type": "integer" },
+        "aggregation": { "type": "boolean", "default": false }
+      }
+    }
+  },
+  "properties": {
+    "enabled": { "type": "boolean", "default": true },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["email", "slack", "in-app", "webhook"]
+      }
+    },
+    "templates": { "$ref": "#/$defs/NotificationTemplates" },
+    "recipients": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Recipient" }
+    },
+    "triggers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/NotificationTrigger" }
+    },
+    "throttling": { "$ref": "#/$defs/ThrottlingConfig" }
+  }
+}

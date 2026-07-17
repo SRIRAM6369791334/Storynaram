@@ -1,0 +1,117 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIPlanner.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIPlanner",
+  "description": "Describes a goal-driven AI plan with decomposition, resource estimation, dependency mapping, and adaptive strategies.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "goal": {
+      "type": "string"
+    },
+    "decomposition": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SubGoal"
+      }
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PlanStep"
+      }
+    },
+    "resources": {
+      "$ref": "#/$defs/Resources"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Dependency"
+      }
+    },
+    "adaptation": {
+      "$ref": "#/$defs/Adaptation"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "approved", "inProgress", "completed", "failed", "adapted", "cancelled"]
+    }
+  },
+  "$defs": {
+    "SubGoal": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "subGoalId": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "parentId": { "type": "string" },
+        "completionCriteria": { "type": "string" }
+      }
+    },
+    "PlanStep": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "stepId": { "type": "string" },
+        "subGoalId": { "type": "string" },
+        "action": { "type": "string" },
+        "expectedDuration": { "type": "number" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "inProgress", "completed", "skipped", "failed"]
+        }
+      }
+    },
+    "Resources": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "estimatedTokens": { "type": "integer" },
+        "estimatedCalls": { "type": "integer" },
+        "estimatedTime": { "type": "number" },
+        "requiredModels": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "budget": { "type": "number" }
+      }
+    },
+    "Dependency": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "fromStepId": { "type": "string" },
+        "toStepId": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["blocks", "requires", "triggers", "optional"]
+        }
+      }
+    },
+    "Adaptation": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["replan", "repair", "continue", "abort"]
+        },
+        "triggerConditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "maxRevisions": { "type": "integer" },
+        "adaptiveSteps": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

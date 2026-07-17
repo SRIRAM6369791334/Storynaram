@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Technology.schema.json",
+  "title": "Technology",
+  "description": "Technology domain schema — inherits BaseEntity via allOf, adds technology-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Technology-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["mechanical", "electrical", "chemical", "biological", "industrial", "military", "communication", "transportation", "energy", "computing", "medical", "agricultural", "other"] },
+        "era": { "type": "string" },
+        "tier": { "type": "integer", "minimum": 0 },
+        "inventor": { "type": "string" },
+        "inventionDate": { "type": "string" },
+        "principles": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "string" } },
+        "applications": { "type": "array", "items": { "type": "string" } },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "resourceCost": { "type": "string" },
+        "prevalence": { "type": "string", "enum": ["widespread", "common", "uncommon", "rare", "experimental", "lost"] },
+        "relatedTechnologies": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

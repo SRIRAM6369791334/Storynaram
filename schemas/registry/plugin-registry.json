@@ -1,0 +1,6 @@
+{
+  "registryName": "Plugin Schema Registry",
+  "version": "1.0.0",
+  "plugins": [],
+  "description": "Registry for third-party plugin schemas"
+}

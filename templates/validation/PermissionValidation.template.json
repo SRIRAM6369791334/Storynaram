@@ -1,0 +1,15 @@
+{
+  "template": "PermissionValidation",
+  "version": "1.0.0",
+  "description": "Permission validation — validates permissions, roles, ownership, group access, inheritance, and restrictions for entity types",
+  "type": "object",
+  "properties": {
+    "entityType": { "type": "string" },
+    "requiredPermissions": { "type": "array", "items": { "type": "string" }, "description": "Permissions required for this entity type" },
+    "roleCheck": { "type": "object", "description": "Role-based access validation configuration" },
+    "ownerCheck": { "type": "object", "description": "Ownership validation configuration" },
+    "groupCheck": { "type": "object", "description": "Group-based access validation configuration" },
+    "inheritanceCheck": { "type": "object", "description": "Permission inheritance validation configuration" },
+    "restrictionCheck": { "type": "object", "description": "Restriction policy validation configuration" }
+  }
+}

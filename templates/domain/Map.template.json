@@ -1,0 +1,27 @@
+{
+  "template": "Map",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "map",
+  "description": "Reusable map domain template. Defines a map, chart, or spatial representation.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Map-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["world", "continent", "region", "city", "dungeon", "star", "political", "topographic", "climate", "trade", "military", "treasure", "other"] },
+        "scale": { "type": "string" },
+        "projection": { "type": "string" },
+        "coordinates": { "type": "object" },
+        "markers": { "type": "array", "items": { "type": "object", "properties": { "label": { "type": "string" }, "locationId": { "type": "string" }, "x": { "type": "number" }, "y": { "type": "number" } } } },
+        "regions": { "type": "array", "items": { "type": "string" } },
+        "annotations": { "type": "array", "items": { "type": "string" } },
+        "imageUrl": { "type": "string" },
+        "grid": { "type": "object", "properties": { "rows": { "type": "integer" }, "columns": { "type": "integer" } } }
+      }
+    }
+  }
+}

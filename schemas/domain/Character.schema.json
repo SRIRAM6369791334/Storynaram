@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Character.schema.json",
+  "title": "Character",
+  "description": "Character domain schema — inherits BaseEntity via allOf, adds character-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Character-specific fields",
+      "required": ["appearance", "biography", "personality"],
+      "properties": {
+        "appearance": {
+          "type": "object",
+          "properties": {
+            "age": { "type": "integer", "minimum": 0 },
+            "ageCategory": { "type": "string", "enum": ["child", "teen", "young-adult", "adult", "middle-aged", "elder", "immortal", "unknown"] },
+            "gender": { "type": "string" },
+            "species": { "type": "string" },
+            "race": { "type": "string" },
+            "height": { "type": "string" },
+            "build": { "type": "string" },
+            "hair": { "type": "string" },
+            "eyes": { "type": "string" },
+            "distinguishingFeatures": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "biography": {
+          "type": "object",
+          "properties": {
+            "birthPlace": { "type": "string" },
+            "birthDate": { "type": "string" },
+            "deathPlace": { "type": "string" },
+            "deathDate": { "type": "string" },
+            "occupation": { "type": "array", "items": { "type": "string" } },
+            "titles": { "type": "array", "items": { "type": "string" } },
+            "affiliations": { "type": "array", "items": { "type": "string" } },
+            "backstory": { "type": "string" }
+          }
+        },
+        "personality": {
+          "type": "object",
+          "properties": {
+            "traits": { "type": "array", "items": { "type": "string" } },
+            "strengths": { "type": "array", "items": { "type": "string" } },
+            "weaknesses": { "type": "array", "items": { "type": "string" } },
+            "fears": { "type": "array", "items": { "type": "string" } },
+            "motivations": { "type": "array", "items": { "type": "string" } },
+            "goals": { "type": "array", "items": { "type": "string" } },
+            "arc": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "abilities": { "type": "array", "items": { "type": "string" } },
+        "inventory": { "type": "array", "items": { "type": "string" } },
+        "currentLocation": { "type": "string" },
+        "books": { "type": "array", "items": { "type": "string" } },
+        "scenes": { "type": "array", "items": { "type": "string" } },
+        "timelineEvents": { "type": "array", "items": { "type": "string" } },
+        "narrativeRole": { "type": "string", "enum": ["protagonist", "antagonist", "deuteragonist", "tritagonist", "supporting", "minor", "foil", "love-interest", "mentor", "sidekick", "antagonist-ally", "background"] }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

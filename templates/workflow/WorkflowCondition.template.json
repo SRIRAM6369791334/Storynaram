@@ -1,0 +1,35 @@
+{
+  "template": "WorkflowCondition",
+  "version": "1.0.0",
+  "description": "Condition expression block — guard conditions, pre-conditions, post-conditions, and invariant rules for workflow transitions",
+  "type": "object",
+  "properties": {
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["field", "status", "relationship", "time", "permission", "ai", "custom"]
+          },
+          "expression": { "type": "string", "description": "Condition expression in the conditions DSL" },
+          "field": { "type": "string", "description": "Field path for field-type conditions" },
+          "operator": {
+            "type": "string",
+            "enum": ["equals", "not-equals", "greater-than", "less-than", "in", "not-in", "exists", "not-exists", "matches", "custom"]
+          },
+          "value": {},
+          "failMessage": { "type": "string" },
+          "severity": { "type": "string", "enum": ["error", "warning", "info"] }
+        }
+      }
+    },
+    "evaluationMode": {
+      "type": "string",
+      "enum": ["all", "any", "sequence"],
+      "default": "all"
+    }
+  }
+}

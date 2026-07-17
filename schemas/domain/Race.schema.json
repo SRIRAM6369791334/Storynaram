@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Race.schema.json",
+  "title": "Race",
+  "description": "Race domain schema — inherits BaseEntity via allOf, adds race-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Race-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "speciesId": { "type": "string" },
+        "type": { "type": "string", "enum": ["ethnic", "subspecies", "clan", "tribe", "bloodline", "other"] },
+        "distinguishingFeatures": { "type": "array", "items": { "type": "string" } },
+        "abilities": { "type": "array", "items": { "type": "string" } },
+        "homeland": { "type": "string" },
+        "population": { "type": "integer", "minimum": 0 },
+        "culture": { "type": "string" },
+        "language": { "type": "string" },
+        "notableFigures": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

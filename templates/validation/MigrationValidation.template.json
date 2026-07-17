@@ -1,0 +1,16 @@
+{
+  "template": "MigrationValidation",
+  "version": "1.0.0",
+  "description": "Migration validation — validates data migration between versions including field mappings, transforms, data loss, and rollback readiness",
+  "type": "object",
+  "properties": {
+    "fromVersion": { "type": "string" },
+    "toVersion": { "type": "string" },
+    "entityType": { "type": "string" },
+    "documentCount": { "type": "integer", "description": "Number of documents to migrate" },
+    "fieldMappings": { "type": "array", "items": { "type": "object" }, "description": "Field-to-field mappings between versions" },
+    "requiredTransforms": { "type": "array", "items": { "type": "object" }, "description": "Required data transformations" },
+    "dataLossCheck": { "type": "object", "description": "Data loss detection configuration" },
+    "rollbackValidation": { "type": "object", "description": "Rollback readiness validation configuration" }
+  }
+}

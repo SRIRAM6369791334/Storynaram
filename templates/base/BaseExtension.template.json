@@ -1,0 +1,67 @@
+{
+  "template": "BaseExtension",
+  "version": "1.0.0",
+  "description": "Extension and customization point — plugin registration, custom fields, custom metadata, and custom components",
+  "type": "object",
+  "properties": {
+    "pluginRegistration": {
+      "type": "array",
+      "description": "Plugin identifiers that extend this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pluginId": { "type": "string" },
+          "version": { "type": "string" },
+          "enabled": { "type": "boolean", "default": true },
+          "config": { "type": "object" }
+        }
+      }
+    },
+    "customFields": {
+      "type": "object",
+      "description": "Arbitrary custom field values (key-value with schema)",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "value": {},
+          "type": { "type": "string" },
+          "schema": { "type": "string", "description": "Reference to field schema definition" },
+          "validated": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "customMetadata": {
+      "type": "object",
+      "description": "Arbitrary custom metadata (any valid JSON)",
+      "additionalProperties": true
+    },
+    "customComponents": {
+      "type": "array",
+      "description": "References to custom UI or processing components",
+      "items": {
+        "type": "object",
+        "properties": {
+          "componentId": { "type": "string" },
+          "type": { "type": "string", "enum": ["ui", "processor", "renderer", "hook", "middleware"] },
+          "config": { "type": "object" }
+        }
+      }
+    },
+    "schemaExtensions": {
+      "type": "array",
+      "description": "JSON Schema extensions (additional properties or constraints)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scope": { "type": "string" },
+          "definition": { "type": "object" }
+        }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["pluginRegistration", "customFields", "customMetadata", "customComponents", "schemaExtensions"],
+    "final": []
+  }
+}

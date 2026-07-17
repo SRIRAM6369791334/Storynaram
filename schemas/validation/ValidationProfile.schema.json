@@ -1,0 +1,36 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationProfile.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "profileId": { "type": "string" },
+    "name": { "type": "string" },
+    "entityTypes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "References to ValidationRule IDs"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["strict", "lenient", "custom"],
+      "default": "strict"
+    },
+    "overrides": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Per-rule overrides keyed by ruleId"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "priority": {
+      "type": "integer"
+    }
+  }
+}

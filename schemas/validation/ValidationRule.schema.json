@@ -1,0 +1,52 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationRule.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "ruleId": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "field", "entity", "cross-entity", "workflow", "ai",
+        "security", "canon", "reference", "relationship",
+        "plugin", "version", "migration"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"],
+      "default": "medium"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "required", "format", "enum", "length", "range",
+        "pattern", "reference", "unique", "business",
+        "integrity", "custom"
+      ]
+    },
+    "field": { "type": "string" },
+    "condition": { "type": "string" },
+    "params": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "message": { "type": "string" },
+    "errorCode": { "type": "string" },
+    "recovery": {
+      "type": "string",
+      "enum": ["auto-fix", "manual-fix", "skip", "abort", "flag"]
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

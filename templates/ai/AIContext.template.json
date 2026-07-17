@@ -1,0 +1,82 @@
+{
+  "template": "AIContext",
+  "version": "1.0.0",
+  "description": "Context assembly block — gathers all available context for an AI request",
+  "type": "object",
+  "properties": {
+    "entityContext": {
+      "type": "object",
+      "description": "Primary entity being processed",
+      "properties": {
+        "entityId": { "type": "string" },
+        "entityType": { "type": "string" },
+        "templateVersion": { "type": "string" }
+      }
+    },
+    "storyContext": {
+      "type": "object",
+      "description": "Current story/book context",
+      "properties": {
+        "bookId": { "type": "string" },
+        "chapterId": { "type": "string" },
+        "sceneId": { "type": "string" }
+      }
+    },
+    "worldContext": {
+      "type": "object",
+      "properties": {
+        "worldId": { "type": "string" },
+        "timelinePosition": { "type": "string" },
+        "activeRules": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "timelineContext": {
+      "type": "object",
+      "properties": {
+        "currentDate": { "type": "string" },
+        "relevantEvents": { "type": "array", "items": { "type": "string" } },
+        "era": { "type": "string" }
+      }
+    },
+    "sceneContext": {
+      "type": "object",
+      "properties": {
+        "activeCharacters": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "string" },
+        "mood": { "type": "string" },
+        "conflict": { "type": "string" }
+      }
+    },
+    "conversationContext": {
+      "type": "array",
+      "description": "Recent conversation/message history",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "content": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "memoryContext": {
+      "type": "array",
+      "description": "Relevant memory snapshots",
+      "items": { "type": "string" }
+    },
+    "sessionContext": {
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "userId": { "type": "string" },
+        "modelId": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "pluginContext": {
+      "type": "object",
+      "description": "Context contributed by active plugins",
+      "additionalProperties": true
+    }
+  }
+}

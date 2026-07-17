@@ -1,0 +1,87 @@
+{
+  "template": "AISearch",
+  "version": "1.0.0",
+  "description": "AI search configuration — query processing, multi-strategy search, filtering, ranking, pagination, and result aggregation",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "object",
+      "description": "Search query definition",
+      "properties": {
+        "text": { "type": "string" },
+        "strategy": { "type": "string", "enum": ["keyword", "semantic", "hybrid", "graph"] },
+        "language": { "type": "string" },
+        "embedding": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Filter criteria applied to search results",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "operator": { "type": "string", "enum": ["eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "contains", "exists"] },
+          "value": {}
+        }
+      }
+    },
+    "ranking": {
+      "type": "object",
+      "description": "Ranking configuration for search results",
+      "properties": {
+        "primaryField": { "type": "string" },
+        "secondaryField": { "type": "string" },
+        "boostFields": { "type": "array", "items": { "type": "string" } },
+        "decayFunction": { "type": "string", "enum": ["linear", "exponential", "gaussian", "step"] }
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "description": "Pagination controls",
+      "properties": {
+        "page": { "type": "integer", "minimum": 1 },
+        "pageSize": { "type": "integer", "minimum": 1, "maximum": 1000 },
+        "maxPages": { "type": "integer" },
+        "cursor": { "type": "string" }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "description": "Result scoring configuration",
+      "properties": {
+        "relevanceWeight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "recencyWeight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "authorityWeight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "customWeights": { "type": "object", "additionalProperties": { "type": "number" } },
+        "minScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "aggregations": {
+      "type": "array",
+      "description": "Aggregation definitions for faceted search",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "field": { "type": "string" },
+          "type": { "type": "string", "enum": ["term", "range", "date_histogram", "nested", "avg", "sum", "min", "max", "count", "top_hits"] },
+          "size": { "type": "integer" }
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "description": "Search result items with metadata",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "score": { "type": "number" },
+          "rank": { "type": "integer" },
+          "snippet": { "type": "string" }
+        }
+      }
+    }
+  }
+}

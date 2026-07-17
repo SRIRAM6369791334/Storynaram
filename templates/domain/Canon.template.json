@@ -1,0 +1,28 @@
+{
+  "template": "Canon",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseLifecycle", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "canon",
+  "description": "Reusable canon domain template. Defines a canonical truth, timeline branch, or narrative authority.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Canon-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["primary", "alternate", "retconned", "deleted", "side", "expanded", "fan", "draft"] },
+        "status": { "type": "string", "enum": ["active", "superseded", "retconned", "archived"] },
+        "authority": { "type": "string" },
+        "source": { "type": "string" },
+        "decisions": { "type": "array", "items": { "type": "object", "properties": { "decision": { "type": "string" }, "rationale": { "type": "string" }, "date": { "type": "string" }, "decisionMaker": { "type": "string" } } } },
+        "inconsistencies": { "type": "array", "items": { "type": "string" } },
+        "resolvedInconsistencies": { "type": "array", "items": { "type": "string" } },
+        "entities": { "type": "array", "items": { "type": "string" } },
+        "events": { "type": "array", "items": { "type": "string" } },
+        "relatedCanons": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

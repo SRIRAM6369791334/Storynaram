@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Location.schema.json",
+  "title": "Location",
+  "description": "Location domain schema — inherits BaseEntity via allOf, adds location-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Location-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["planet", "continent", "country", "kingdom", "city", "town", "village", "region", "landmark", "building", "room", "natural", "ruin", "dungeon", "other"] },
+        "worldId": { "type": "string" },
+        "parentLocation": { "type": "string" },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" },
+            "elevation": { "type": "number" },
+            "mapReference": { "type": "string" }
+          }
+        },
+        "climate": { "type": "string" },
+        "terrain": { "type": "string" },
+        "population": { "type": "integer", "minimum": 0 },
+        "notableFeatures": { "type": "array", "items": { "type": "string" } },
+        "controlledBy": { "type": "string" },
+        "inhabitants": { "type": "array", "items": { "type": "string" } },
+        "landmarks": { "type": "array", "items": { "type": "string" } },
+        "connections": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

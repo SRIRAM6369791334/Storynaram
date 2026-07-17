@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Ability.schema.json",
+  "title": "Ability",
+  "description": "Ability domain schema — inherits BaseEntity via allOf, adds ability-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Ability-specific fields",
+      "properties": {
+        "type": { "type": "string", "enum": ["skill", "talent", "power", "technique", "knowledge", "innate", "learned", "supernatural"] },
+        "category": { "type": "string" },
+        "source": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "progression": { "type": "string" },
+        "maxLevel": { "type": "integer", "minimum": 1 },
+        "cooldown": { "type": "string" },
+        "cost": { "type": "string" },
+        "effects": { "type": "array", "items": { "type": "string" } },
+        "restrictions": { "type": "array", "items": { "type": "string" } },
+        "learnedBy": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,28 @@
+{
+  "template": "Armor",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "armor",
+  "description": "Reusable armor domain template. Defines any protective gear or equipment.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Armor-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["light", "medium", "heavy", "shield", "helmet", "gloves", "boots", "cloak", "full-plate", "chainmail", "leather", "robe", "magical", "other"] },
+        "material": { "type": "string" },
+        "defense": { "type": "integer", "minimum": 0 },
+        "weight": { "type": "string" },
+        "durability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "magical": { "type": "boolean", "default": false },
+        "enchantments": { "type": "array", "items": { "type": "string" } },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "attunement": { "type": "boolean", "default": false },
+        "owner": { "type": "string" }
+      }
+    }
+  }
+}

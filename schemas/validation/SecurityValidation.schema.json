@@ -1,0 +1,46 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/SecurityValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "ComplianceCheck": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "standard": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "config": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "properties": {
+    "classificationCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "encryptionCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "redactionCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "accessControlCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "auditLogCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "complianceCheck": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ComplianceCheck" }
+    }
+  }
+}

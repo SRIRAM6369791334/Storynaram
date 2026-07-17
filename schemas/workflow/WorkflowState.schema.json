@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowState.schema.json",
+  "title": "WorkflowState",
+  "description": "State definitions for a workflow",
+  "type": "object",
+  "$defs": {
+    "StateDefinition": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["initial", "intermediate", "final", "error", "terminal"]
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "isEditable": { "type": "boolean" },
+            "isPublishable": { "type": "boolean" },
+            "isDeletable": { "type": "boolean" },
+            "requiresReview": { "type": "boolean" },
+            "requiresApproval": { "type": "boolean" }
+          }
+        },
+        "entryActions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "exitActions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "timeout": { "type": "integer" }
+      },
+      "required": ["name"]
+    }
+  },
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/StateDefinition" }
+    },
+    "initialState": { "type": "string" },
+    "terminalStates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "errorStates": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "unevaluatedProperties": false
+}

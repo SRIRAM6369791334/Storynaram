@@ -1,0 +1,76 @@
+{
+  "template": "AIWorkflow",
+  "version": "1.0.0",
+  "description": "AI workflow orchestration — multi-stage pipeline, step definitions, model routing, fallback policies, and parallel execution control",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique workflow identifier"
+    },
+    "stages": {
+      "type": "array",
+      "description": "Ordered workflow stages",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stageId": { "type": "string" },
+          "name": { "type": "string" },
+          "order": { "type": "integer" },
+          "type": { "type": "string", "enum": ["sequential", "parallel", "conditional", "loop"] },
+          "condition": { "type": "string" }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Individual step definitions within stages",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stepId": { "type": "string" },
+          "stageId": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["generate", "analyze", "transform", "validate", "retrieve", "score", "route"] },
+          "inputMapping": { "type": "object", "additionalProperties": { "type": "string" } },
+          "outputMapping": { "type": "object", "additionalProperties": { "type": "string" } }
+        }
+      }
+    },
+    "modelRouting": {
+      "type": "object",
+      "description": "Model assignment per step or stage",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["fixed", "roundRobin", "leastLoaded", "capability", "costOptimized"] },
+        "assignments": { "type": "object", "additionalProperties": { "type": "string" } },
+        "defaultModel": { "type": "string" }
+      }
+    },
+    "fallback": {
+      "type": "object",
+      "description": "Fallback policies for step failures",
+      "properties": {
+        "maxRetries": { "type": "integer" },
+        "retryDelay": { "type": "integer" },
+        "fallbackModel": { "type": "string" },
+        "degradedMode": { "type": "boolean" },
+        "onFailure": { "type": "string", "enum": ["retry", "skip", "abort", "fallbackModel", "useCache"] }
+      }
+    },
+    "parallel": {
+      "type": "object",
+      "description": "Parallel execution configuration",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "maxConcurrency": { "type": "integer" },
+        "mergeStrategy": { "type": "string", "enum": ["serial", "weighted", "vote", "concat", "first"] },
+        "timeoutPerBranch": { "type": "integer" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Workflow execution status",
+      "enum": ["pending", "running", "paused", "completed", "failed", "cancelled"]
+    }
+  }
+}

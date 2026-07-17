@@ -1,0 +1,58 @@
+{
+  "template": "BaseRelationship",
+  "version": "1.0.0",
+  "description": "Relationship block with full cardinality and type support — one-to-one, one-to-many, many-to-many, composition, aggregation, association, dependency, inheritance",
+  "type": "object",
+  "properties": {
+    "relationships": {
+      "type": "array",
+      "description": "All typed relationships from this entity to others",
+      "items": {
+        "type": "object",
+        "properties": {
+          "targetId": { "type": "string" },
+          "targetType": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["oneToOne", "oneToMany", "manyToMany", "composition", "aggregation", "association", "dependency", "inheritance"]
+          },
+          "role": { "type": "string", "description": "Semantic role label (e.g. livesIn, owns, created)" },
+          "inverseRole": { "type": "string", "description": "Inverse role on the target side" },
+          "cardinality": {
+            "type": "object",
+            "properties": {
+              "min": { "type": "integer", "minimum": 0, "default": 0 },
+              "max": { "type": "integer", "minimum": 1, "default": 1 }
+            }
+          },
+          "strength": { "type": "number", "minimum": 0, "maximum": 1 },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "description": { "type": "string" },
+              "startDate": { "type": "string", "format": "date-time" },
+              "endDate": { "type": "string", "format": "date-time" },
+              "active": { "type": "boolean", "default": true }
+            }
+          }
+        }
+      }
+    },
+    "graphMappings": {
+      "type": "object",
+      "description": "Mappings for graph database (Neo4j) edge generation",
+      "properties": {
+        "edgeLabels": { "type": "array", "items": { "type": "string" } },
+        "nodeLabels": { "type": "array", "items": { "type": "string" } },
+        "properties": { "type": "object" }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["relationships", "graphMappings"],
+    "final": []
+  }
+}

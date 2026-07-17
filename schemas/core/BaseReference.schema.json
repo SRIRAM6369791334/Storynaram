@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseReference.schema.json",
+  "title": "BaseReference",
+  "description": "Cross-referencing block — internal, external, cross, graph, parent, child, and related references",
+  "type": "object",
+  "properties": {
+    "internal": {
+      "type": "array",
+      "description": "References to other entities within this Storynaram project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z]+_[0-9]{6,}$" },
+          "type": { "type": "string", "description": "Target entity type" },
+          "role": { "type": "string", "description": "Role of the relationship" },
+          "name": { "type": "string", "description": "Display name of the target (denormalized)" }
+        }
+      }
+    },
+    "external": {
+      "type": "array",
+      "description": "References to external resources outside Storynaram",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "label": { "type": "string" },
+          "type": { "type": "string", "enum": ["web", "file", "api", "reference", "source"] }
+        }
+      }
+    },
+    "cross": {
+      "type": "array",
+      "description": "Cross-project or cross-universe references",
+      "items": {
+        "type": "object",
+        "properties": {
+          "project": { "type": "string" },
+          "entityId": { "type": "string" },
+          "relation": { "type": "string" }
+        }
+      }
+    },
+    "graph": {
+      "type": "object",
+      "description": "Knowledge graph node metadata",
+      "properties": {
+        "nodeType": { "type": "string" },
+        "edgeTypes": { "type": "array", "items": { "type": "string" } },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "description": "Single parent reference (composition hierarchy)",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "path": { "type": "string", "description": "Full hierarchy path" }
+      }
+    },
+    "children": {
+      "type": "array",
+      "description": "Child entity references",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "count": { "type": "integer", "description": "Total child count (denormalized)" }
+        }
+      }
+    },
+    "related": {
+      "type": "array",
+      "description": "Generic related entity references",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "relation": { "type": "string" },
+          "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

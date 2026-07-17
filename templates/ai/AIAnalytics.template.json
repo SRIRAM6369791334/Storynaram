@@ -1,0 +1,82 @@
+{
+  "template": "AIAnalytics",
+  "version": "1.0.0",
+  "description": "AI analytics and telemetry — token usage tracking, latency metrics, model performance, error tracking, and cost estimation",
+  "type": "object",
+  "properties": {
+    "tokenUsage": {
+      "type": "object",
+      "description": "Token consumption metrics",
+      "properties": {
+        "totalPromptTokens": { "type": "integer" },
+        "totalCompletionTokens": { "type": "integer" },
+        "totalCachedTokens": { "type": "integer" },
+        "averagePerRequest": { "type": "number" },
+        "peakTokens": { "type": "integer" },
+        "byModel": { "type": "object", "additionalProperties": { "type": "integer" } }
+      }
+    },
+    "latency": {
+      "type": "object",
+      "description": "Latency and timing metrics",
+      "properties": {
+        "averageMs": { "type": "number" },
+        "p50Ms": { "type": "number" },
+        "p95Ms": { "type": "number" },
+        "p99Ms": { "type": "number" },
+        "maxMs": { "type": "number" },
+        "timeouts": { "type": "integer" },
+        "byModel": { "type": "object", "additionalProperties": { "type": "number" } }
+      }
+    },
+    "modelPerformance": {
+      "type": "object",
+      "description": "Per-model performance metrics",
+      "properties": {
+        "modelId": { "type": "string" },
+        "successRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "averageTokensPerSecond": { "type": "number" },
+        "totalRequests": { "type": "integer" },
+        "totalErrors": { "type": "integer" }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Error tracking log",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "errorType": { "type": "string" },
+          "model": { "type": "string" },
+          "taskType": { "type": "string" },
+          "retryAttempted": { "type": "boolean" },
+          "resolved": { "type": "boolean" }
+        }
+      }
+    },
+    "costs": {
+      "type": "object",
+      "description": "Cost estimation and tracking",
+      "properties": {
+        "estimatedTotalCost": { "type": "number" },
+        "costPerModel": { "type": "object", "additionalProperties": { "type": "number" } },
+        "costPerTaskType": { "type": "object", "additionalProperties": { "type": "number" } },
+        "currency": { "type": "string" },
+        "budgetRemaining": { "type": "number" }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Custom and aggregate analytics metrics",
+      "properties": {
+        "totalRequests": { "type": "integer" },
+        "successfulRequests": { "type": "integer" },
+        "failedRequests": { "type": "integer" },
+        "cacheHitRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "averageOutputTokens": { "type": "number" },
+        "averageInputTokens": { "type": "number" }
+      }
+    }
+  }
+}

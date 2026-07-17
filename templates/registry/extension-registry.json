@@ -1,0 +1,19 @@
+{
+  "registry": "extension-registry",
+  "version": "1.0.0",
+  "description": "Extension point registry — maps every extension point to available extensions and plugins",
+  "extensionPoints": {
+    "customFields": {},
+    "customMetadata": {},
+    "customComponents": {},
+    "schemaExtensions": {},
+    "pluginRegistrations": {}
+  },
+  "activeExtensions": {},
+  "extensionHooks": {},
+  "statistics": {
+    "totalExtensionPoints": 0,
+    "totalActiveExtensions": 0,
+    "totalPlugins": 0
+  }
+}

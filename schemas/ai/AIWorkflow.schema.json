@@ -1,0 +1,117 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIWorkflow.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIWorkflow",
+  "description": "Defines a multi-stage AI workflow with model routing, fallback, and parallel execution support.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "workflowId": {
+      "type": "string"
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Stage"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Step"
+      }
+    },
+    "modelRouting": {
+      "$ref": "#/$defs/ModelRouting"
+    },
+    "fallback": {
+      "$ref": "#/$defs/Fallback"
+    },
+    "parallel": {
+      "$ref": "#/$defs/ParallelConfig"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "paused", "completed", "failed", "cancelled"]
+    }
+  },
+  "$defs": {
+    "Stage": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "stageId": { "type": "string" },
+        "name": { "type": "string" },
+        "order": { "type": "integer" },
+        "type": {
+          "type": "string",
+          "enum": ["sequential", "parallel", "conditional", "loop"]
+        },
+        "condition": { "type": "string" }
+      }
+    },
+    "Step": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "stepId": { "type": "string" },
+        "stageId": { "type": "string" },
+        "name": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["generate", "analyze", "transform", "validate", "retrieve", "score", "route"]
+        },
+        "inputMapping": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "outputMapping": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "ModelRouting": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["fixed", "roundRobin", "leastLoaded", "capability", "costOptimized"]
+        },
+        "assignments": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "defaultModel": { "type": "string" }
+      }
+    },
+    "Fallback": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "maxRetries": { "type": "integer" },
+        "retryDelay": { "type": "integer" },
+        "fallbackModel": { "type": "string" },
+        "degradedMode": { "type": "boolean" },
+        "onFailure": {
+          "type": "string",
+          "enum": ["retry", "skip", "abort", "fallbackModel", "useCache"]
+        }
+      }
+    },
+    "ParallelConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "maxConcurrency": { "type": "integer" },
+        "mergeStrategy": {
+          "type": "string",
+          "enum": ["serial", "weighted", "vote", "concat", "first"]
+        },
+        "timeoutPerBranch": { "type": "integer" }
+      }
+    }
+  }
+}

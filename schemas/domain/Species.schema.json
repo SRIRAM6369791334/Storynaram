@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Species.schema.json",
+  "title": "Species",
+  "description": "Species domain schema — inherits BaseEntity via allOf, adds species-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Species-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["humanoid", "beast", "avian", "aquatic", "reptilian", "insectoid", "plant", "elemental", "celestial", "infernal", "undead", "construct", "other"] },
+        "classification": { "type": "string", "enum": ["sentient", "semi-sentient", "non-sentient", "magical", "divine"] },
+        "lifespan": { "type": "string" },
+        "averageHeight": { "type": "string" },
+        "averageWeight": { "type": "string" },
+        "distinguishingFeatures": { "type": "array", "items": { "type": "string" } },
+        "abilities": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "habitat": { "type": "string" },
+        "diet": { "type": "string" },
+        "reproduction": { "type": "string" },
+        "society": { "type": "string" },
+        "language": { "type": "string" },
+        "homeland": { "type": "string" },
+        "subspecies": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

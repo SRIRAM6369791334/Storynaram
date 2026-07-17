@@ -1,0 +1,16 @@
+{
+  "registry": "version-registry",
+  "version": "1.0.0",
+  "description": "Version registry — tracks schema versions, template versions, compatibility ranges, and migrations",
+  "templates": {},
+  "schemas": {},
+  "compatibilityMatrix": {},
+  "migrations": {},
+  "deprecatedTemplates": {},
+  "statistics": {
+    "totalVersions": 0,
+    "activeTemplates": 0,
+    "deprecatedTemplates": 0,
+    "pendingMigrations": 0
+  }
+}

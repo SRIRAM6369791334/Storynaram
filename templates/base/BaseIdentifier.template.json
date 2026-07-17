@@ -1,0 +1,64 @@
+{
+  "template": "BaseIdentifier",
+  "version": "1.0.0",
+  "description": "Universal identifier model — every entity must have exactly one identifier block",
+  "type": "object",
+  "required": ["id", "prefix", "sequence", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+_[0-9]{6,}$",
+      "description": "Globally unique identifier: {prefix}_{sequence} (e.g. char_000001)",
+      "examples": ["char_000001", "world_000042", "scene_000927"]
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Entity type prefix from id_rules.json (must match registered prefix)",
+      "$ref": "#/definitions/prefixRegistry"
+    },
+    "sequence": {
+      "type": "string",
+      "pattern": "^[0-9]{6,}$",
+      "description": "Zero-padded numeric sequence (minimum 6 digits)",
+      "examples": ["000001", "000042", "000927"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Canonical entity type name",
+      "examples": ["character", "world", "scene", "book", "item"]
+    },
+    "displayId": {
+      "type": "string",
+      "description": "Human-readable identifier (optional, auto-derived from id if absent)",
+      "examples": ["CHAR-000001", "WORLD-042"]
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Namespace qualifier for multi-project/tenant setups",
+      "examples": ["storynaram", "project-alpha", "default"]
+    },
+    "legacyIds": {
+      "type": "array",
+      "description": "Map of legacy identifiers for migration tracking",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": { "type": "string" },
+          "value": { "type": "string" },
+          "migratedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "prefixRegistry": {
+      "type": "string",
+      "description": "Must reference a valid prefix from config/id_rules.json"
+    }
+  },
+  "inheritanceRules": {
+    "extensible": false,
+    "overrideable": ["displayId", "namespace", "legacyIds"],
+    "final": ["id", "prefix", "sequence", "type"]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "template": "RelationshipIntegrity",
+  "version": "1.0.0",
+  "description": "Relationship integrity — validates relationships between entity types including cardinality, bidirectionality, symmetry, and strength",
+  "type": "object",
+  "properties": {
+    "sourceType": { "type": "string" },
+    "targetType": { "type": "string" },
+    "relationshipType": { "type": "string", "description": "Type of relationship (one-to-one, one-to-many, many-to-many, etc.)" },
+    "cardinalityCheck": { "type": "object", "description": "Cardinality rule configuration" },
+    "bidirectionalCheck": { "type": "object", "description": "Bidirectional consistency check configuration" },
+    "symmetryCheck": { "type": "object", "description": "Symmetry validation configuration" },
+    "strengthRange": { "type": "object", "description": "Allowed range for relationship strength values" }
+  }
+}

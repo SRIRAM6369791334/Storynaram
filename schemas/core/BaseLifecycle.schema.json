@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseLifecycle.schema.json",
+  "title": "BaseLifecycle",
+  "description": "Entity lifecycle state machine — defines states, allowed transitions, and lifecycle event hooks",
+  "type": "object",
+  "required": ["currentState", "states", "transitions"],
+  "properties": {
+    "currentState": {
+      "type": "string",
+      "description": "Currently active lifecycle state"
+    },
+    "states": {
+      "type": "array",
+      "description": "All possible states for this entity type",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "entryActions": { "type": "array", "items": { "type": "string" } },
+          "exitActions": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "description": "Allowed state transitions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "guard": { "type": "string", "description": "Condition that must be true" },
+          "action": { "type": "string", "description": "Action invoked on transition" }
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "Full lifecycle event history",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "actor": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "template": "Dialogue",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseHistory", "BaseExtension"],
+  "entityType": "dialogue",
+  "description": "Reusable dialogue domain template. Defines structure for any dialogue exchange.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Dialogue-specific fields",
+      "required": ["speakers", "lines"],
+      "properties": {
+        "sceneId": { "type": "string" },
+        "speakers": { "type": "array", "items": { "type": "string" } },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "speaker": { "type": "string" },
+              "text": { "type": "string" },
+              "emotion": { "type": "string" },
+              "action": { "type": "string" },
+              "tone": { "type": "string" }
+            }
+          }
+        },
+        "language": { "type": "string" },
+        "context": { "type": "string" },
+        "subtext": { "type": "string" },
+        "purpose": { "type": "string" },
+        "isMonologue": { "type": "boolean", "default": false },
+        "isInternalThought": { "type": "boolean", "default": false }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIRetrieval.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIRetrieval",
+  "description": "Configuration for how the AI retrieves context and memory when generating responses.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "keywordConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "maxResults": { "type": "integer", "default": 10 }
+      },
+      "unevaluatedProperties": false
+    },
+    "semanticConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "model": { "type": "string" },
+        "minScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "maxResults": { "type": "integer", "default": 5 }
+      },
+      "unevaluatedProperties": false
+    },
+    "hybridConfig": {
+      "type": "object",
+      "properties": {
+        "fullTextWeight": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.4 },
+        "semanticWeight": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.6 }
+      },
+      "unevaluatedProperties": false
+    },
+    "graphConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "traversalDepth": { "type": "integer", "default": 2 },
+        "edgeTypes": { "type": "array", "items": { "type": "string" } }
+      },
+      "unevaluatedProperties": false
+    },
+    "timelineConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "rangeStart": { "type": "string" },
+        "rangeEnd": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    },
+    "relationshipConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "maxHops": { "type": "integer", "default": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "canonConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "strictMode": { "type": "boolean", "default": false }
+      },
+      "unevaluatedProperties": false
+    },
+    "memoryConfig": {
+      "type": "object",
+      "properties": {
+        "shortTerm": { "type": "boolean", "default": true },
+        "longTerm": { "type": "boolean", "default": true },
+        "maxMemoryItems": { "type": "integer", "default": 20 }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "keyword": { "$ref": "#/$defs/keywordConfig" },
+    "semantic": { "$ref": "#/$defs/semanticConfig" },
+    "hybrid": { "$ref": "#/$defs/hybridConfig" },
+    "graph": { "$ref": "#/$defs/graphConfig" },
+    "timeline": { "$ref": "#/$defs/timelineConfig" },
+    "relationship": { "$ref": "#/$defs/relationshipConfig" },
+    "canon": { "$ref": "#/$defs/canonConfig" },
+    "memory": { "$ref": "#/$defs/memoryConfig" }
+  }
+}

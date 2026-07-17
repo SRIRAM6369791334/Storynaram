@@ -1,0 +1,53 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIEmbedding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIEmbedding",
+  "description": "Configuration and metadata for vector embedding generation and indexing.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "chunkConfig": {
+      "type": "object",
+      "properties": {
+        "maxTokens": { "type": "integer", "default": 512 },
+        "overlapTokens": { "type": "integer", "default": 64 },
+        "chunkField": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "vectorId": { "type": "string" },
+    "embeddingVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "modelName": { "type": "string" },
+    "modelVersion": { "type": "string" },
+    "dimensions": {
+      "type": "integer",
+      "minimum": 64,
+      "maximum": 8192
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["document", "chunk", "field", "sentence", "hybrid"]
+    },
+    "chunkConfig": { "$ref": "#/$defs/chunkConfig" },
+    "fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "refreshPolicy": {
+      "type": "string",
+      "enum": ["on-write", "scheduled", "manual", "never"],
+      "default": "on-write"
+    },
+    "lastIndexed": { "type": "string", "format": "date-time" },
+    "indexStatus": {
+      "type": "string",
+      "enum": ["pending", "indexed", "failed", "stale"],
+      "default": "pending"
+    }
+  }
+}

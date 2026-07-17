@@ -1,0 +1,23 @@
+{
+  "template": "AIValidationProfile",
+  "version": "1.0.0",
+  "description": "AI validation profile — configures AI-specific checks such as hallucination detection, canon compliance, factual accuracy, format adherence, and constraint satisfaction",
+  "type": "object",
+  "properties": {
+    "profileId": { "type": "string" },
+    "name": { "type": "string" },
+    "modelId": { "type": "string", "description": "Reference to the AI model being validated" },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "hallucination": { "type": "object", "description": "Hallucination detection configuration" },
+        "canonCompliance": { "type": "object", "description": "Canon compliance check configuration" },
+        "factualAccuracy": { "type": "object", "description": "Factual accuracy validation configuration" },
+        "formatAdherence": { "type": "object", "description": "Format adherence check configuration" },
+        "constraintSatisfaction": { "type": "object", "description": "Constraint satisfaction check configuration" }
+      }
+    },
+    "thresholds": { "type": "object", "description": "Score and confidence thresholds per check type" },
+    "actions": { "type": "object", "description": "Actions to take when checks fail (reject, flag, retry, etc.)" }
+  }
+}

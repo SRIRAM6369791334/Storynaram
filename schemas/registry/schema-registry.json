@@ -1,0 +1,20 @@
+{
+  "registryName": "Storynaram Schema Registry",
+  "version": "1.0.0",
+  "lastUpdated": "2026-07-17T15:48:00Z",
+  "schemaCount": 118,
+  "categories": {
+    "core": { "count": 23, "path": "schemas/core/" },
+    "domain": { "count": 35, "path": "schemas/domain/" },
+    "ai": { "count": 20, "path": "schemas/ai/" },
+    "workflow": { "count": 20, "path": "schemas/workflow/" },
+    "validation": { "count": 20, "path": "schemas/validation/" }
+  },
+  "registries": {
+    "core": { "$ref": "core-registry.json" },
+    "domain": { "$ref": "domain-registry.json" },
+    "ai": { "$ref": "ai-registry.json" },
+    "workflow": { "$ref": "workflow-registry.json" },
+    "validation": { "$ref": "validation-registry.json" }
+  }
+}

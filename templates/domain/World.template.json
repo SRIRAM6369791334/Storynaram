@@ -1,0 +1,60 @@
+{
+  "template": "World",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseLifecycle", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "world",
+  "description": "Reusable world domain template. Defines structure for a fictional universe or setting.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "World-specific fields",
+      "properties": {
+        "type": { "type": "string", "enum": ["primary", "alternate", "parallel", "pocket", "dream", "afterlife", "celestial"] },
+        "cosmology": {
+          "type": "object",
+          "properties": {
+            "universe": { "type": "string" },
+            "plane": { "type": "string" },
+            "dimension": { "type": "string" },
+            "celestialBodies": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "geography": {
+          "type": "object",
+          "properties": {
+            "continents": { "type": "array", "items": { "type": "string" } },
+            "regions": { "type": "array", "items": { "type": "string" } },
+            "landscapes": { "type": "array", "items": { "type": "string" } },
+            "climate": { "type": "string" },
+            "terrain": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "era": { "type": "string" },
+              "summary": { "type": "string" },
+              "startYear": { "type": "string" },
+              "endYear": { "type": "string" }
+            }
+          }
+        },
+        "magicSystem": { "type": "string" },
+        "technology": { "type": "array", "items": { "type": "string" } },
+        "lawsOfPhysics": { "type": "string" },
+        "majorLocations": { "type": "array", "items": { "type": "string" } },
+        "countries": { "type": "array", "items": { "type": "string" } },
+        "kingdoms": { "type": "array", "items": { "type": "string" } },
+        "cities": { "type": "array", "items": { "type": "string" } },
+        "organizations": { "type": "array", "items": { "type": "string" } },
+        "cultures": { "type": "array", "items": { "type": "string" } },
+        "religions": { "type": "array", "items": { "type": "string" } },
+        "languages": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

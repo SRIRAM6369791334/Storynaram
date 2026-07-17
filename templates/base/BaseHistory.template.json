@@ -1,0 +1,61 @@
+{
+  "template": "BaseHistory",
+  "version": "1.0.0",
+  "description": "Change history and event log — every mutation to the entity recorded as time-ordered events",
+  "type": "object",
+  "properties": {
+    "events": {
+      "type": "array",
+      "description": "Time-ordered sequence of events (newest first)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["created", "updated", "deleted", "restored", "archived", "published", "unpublished", "merged", "forked", "imported", "exported", "approved", "rejected", "reviewed", "locked", "unlocked", "transferred", "custom"]
+          },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "actor": { "type": "string" },
+          "summary": { "type": "string" },
+          "details": { "type": "string" },
+          "changes": {
+            "type": "array",
+            "description": "Specific field changes",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": { "type": "string" },
+                "oldValue": {},
+                "newValue": {},
+                "diffType": { "type": "string", "enum": ["added", "removed", "modified"] }
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Arbitrary event metadata"
+          }
+        }
+      }
+    },
+    "eventCount": {
+      "type": "integer",
+      "description": "Denormalized total event count for quick display"
+    },
+    "lastEvent": {
+      "type": "object",
+      "description": "Denormalized most recent event summary",
+      "properties": {
+        "type": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "actor": { "type": "string" }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["events", "eventCount", "lastEvent"],
+    "final": []
+  }
+}

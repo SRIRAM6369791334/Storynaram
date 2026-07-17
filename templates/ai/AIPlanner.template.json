@@ -1,0 +1,78 @@
+{
+  "template": "AIPlanner",
+  "version": "1.0.0",
+  "description": "AI planning block — goal decomposition, step-by-step plan, resource estimation, dependency ordering, and plan adaptation",
+  "type": "object",
+  "properties": {
+    "goal": {
+      "type": "string",
+      "description": "High-level goal description"
+    },
+    "decomposition": {
+      "type": "array",
+      "description": "Hierarchical goal decomposition into sub-goals",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subGoalId": { "type": "string" },
+          "description": { "type": "string" },
+          "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "parentId": { "type": "string" },
+          "completionCriteria": { "type": "string" }
+        }
+      }
+    },
+    "plan": {
+      "type": "array",
+      "description": "Ordered plan steps to achieve the goal",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stepId": { "type": "string" },
+          "subGoalId": { "type": "string" },
+          "action": { "type": "string" },
+          "expectedDuration": { "type": "number" },
+          "status": { "type": "string", "enum": ["pending", "inProgress", "completed", "skipped", "failed"] }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "description": "Estimated resource requirements",
+      "properties": {
+        "estimatedTokens": { "type": "integer" },
+        "estimatedCalls": { "type": "integer" },
+        "estimatedTime": { "type": "number" },
+        "requiredModels": { "type": "array", "items": { "type": "string" } },
+        "budget": { "type": "number" }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Dependency ordering constraints between steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fromStepId": { "type": "string" },
+          "toStepId": { "type": "string" },
+          "type": { "type": "string", "enum": ["blocks", "requires", "triggers", "optional"] }
+        }
+      }
+    },
+    "adaptation": {
+      "type": "object",
+      "description": "Plan adaptation rules for dynamic adjustment",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["replan", "repair", "continue", "abort"] },
+        "triggerConditions": { "type": "array", "items": { "type": "string" } },
+        "maxRevisions": { "type": "integer" },
+        "adaptiveSteps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Current plan execution status",
+      "enum": ["draft", "approved", "inProgress", "completed", "failed", "adapted", "cancelled"]
+    }
+  }
+}

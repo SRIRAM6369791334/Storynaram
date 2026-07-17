@@ -1,0 +1,20 @@
+{
+  "registry": "dependency-registry",
+  "version": "1.0.0",
+  "description": "Dependency graph — maps which templates and blocks depend on which other templates",
+  "dependencies": {},
+  "dependencyGraph": {
+    "nodes": [],
+    "edges": []
+  },
+  "loadOrder": [],
+  "circularDependencies": [],
+  "missingDependencies": [],
+  "optionalDependencies": {},
+  "statistics": {
+    "totalDependencies": 0,
+    "totalOptional": 0,
+    "totalRequired": 0,
+    "circularDependencyCount": 0
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIReasoning.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIReasoning",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": ["direct", "chain-of-thought", "tree-of-thought", "reAct", "reflexion", "plan-and-execute"],
+      "default": "chain-of-thought"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReasoningStep"
+      }
+    },
+    "verification": {
+      "$ref": "#/$defs/VerificationConfig"
+    },
+    "consistencyCheck": {
+      "$ref": "#/$defs/ConsistencyCheckConfig"
+    },
+    "conflictDetection": {
+      "$ref": "#/$defs/ConflictDetectionConfig"
+    }
+  },
+  "$defs": {
+    "ReasoningStep": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "step": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["plan", "reason", "verify", "search", "recall", "conclude"]
+        },
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "tokens": {
+          "type": "integer"
+        }
+      }
+    },
+    "VerificationConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["self-verify", "cross-verify", "external"]
+        },
+        "maxRetries": {
+          "type": "integer",
+          "default": 2
+        }
+      }
+    },
+    "ConsistencyCheckConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "checkAgainst": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ConflictDetectionConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "resolution": {
+          "type": "string",
+          "enum": ["auto-resolve", "flag", "reject"]
+        }
+      }
+    }
+  }
+}

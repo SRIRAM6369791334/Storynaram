@@ -1,0 +1,109 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AITask.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AITask",
+  "description": "Represents a single AI task with typed input/output, model constraints, timeout, retry logic, and metadata.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "taskId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["generation", "analysis", "classification", "extraction", "transformation", "validation", "search", "summarization", "reasoning", "embedding"]
+    },
+    "input": {
+      "$ref": "#/$defs/IOConfig"
+    },
+    "output": {
+      "$ref": "#/$defs/IOConfig"
+    },
+    "model": {
+      "$ref": "#/$defs/ModelConstraint"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 1000
+    },
+    "retry": {
+      "$ref": "#/$defs/RetryConfig"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    }
+  },
+  "$defs": {
+    "IOConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["text", "json", "markdown", "structured", "binary"]
+        },
+        "schema": {
+          "type": "object"
+        },
+        "maxInputTokens": { "type": "integer" },
+        "source": { "type": "string" }
+      }
+    },
+    "ModelConstraint": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "modelId": { "type": "string" },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "minTokens": { "type": "integer" },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "RetryConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "maxRetries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "backoffStrategy": {
+          "type": "string",
+          "enum": ["fixed", "exponential", "linear", "jitter"]
+        },
+        "backoffMs": { "type": "integer" },
+        "retryableErrors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Metadata": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sessionId": { "type": "string" },
+        "workflowId": { "type": "string" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

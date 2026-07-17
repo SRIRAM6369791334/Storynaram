@@ -1,0 +1,27 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/RelationshipIntegrity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "sourceType": { "type": "string" },
+    "targetType": { "type": "string" },
+    "relationshipType": { "type": "string" },
+    "cardinalityCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "bidirectionalCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "symmetryCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "strengthRange": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

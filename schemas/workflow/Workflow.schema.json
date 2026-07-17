@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/workflow/Workflow.schema.json",
+  "title": "Workflow",
+  "description": "Root workflow definition — orchestrates states, transitions, triggers, conditions, actions, and lifecycle for any entity process",
+  "type": "object",
+  "properties": {
+    "workflowId": { "type": "string", "description": "Unique workflow identifier" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["lifecycle", "approval", "review", "publishing", "ai-generation", "ai-review", "import", "export", "translation", "version-control", "archive", "deletion", "recovery", "plugin", "custom"]
+    },
+    "entityType": { "type": "string", "description": "Entity type this workflow applies to" },
+    "states": { "$ref": "WorkflowState.schema.json" },
+    "transitions": { "$ref": "WorkflowTransition.schema.json" },
+    "triggers": { "$ref": "WorkflowTrigger.schema.json" },
+    "conditions": { "$ref": "WorkflowCondition.schema.json" },
+    "actions": { "$ref": "WorkflowAction.schema.json" },
+    "approval": { "$ref": "WorkflowApproval.schema.json" },
+    "review": { "$ref": "WorkflowReview.schema.json" },
+    "assignment": { "$ref": "WorkflowAssignment.schema.json" },
+    "notification": { "$ref": "WorkflowNotification.schema.json" },
+    "events": { "$ref": "WorkflowEvent.schema.json" },
+    "checkpoints": { "$ref": "WorkflowCheckpoint.schema.json" },
+    "rollback": { "$ref": "WorkflowRollback.schema.json" },
+    "retry": { "$ref": "WorkflowRetry.schema.json" },
+    "schedule": { "$ref": "WorkflowSchedule.schema.json" },
+    "timer": { "$ref": "WorkflowTimer.schema.json" },
+    "queue": { "$ref": "WorkflowQueue.schema.json" },
+    "audit": { "$ref": "WorkflowAudit.schema.json" },
+    "metrics": { "$ref": "WorkflowMetrics.schema.json" },
+    "configuration": { "$ref": "WorkflowConfiguration.schema.json" },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "completed", "failed", "cancelled"]
+    },
+    "currentState": { "type": "string", "description": "Currently active workflow state" }
+  },
+  "unevaluatedProperties": false
+}

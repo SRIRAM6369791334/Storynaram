@@ -1,0 +1,82 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ExtensionValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtensionValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "CustomField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "type": {}
+        },
+        "validation": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "SchemaExtension": {
+      "type": "object",
+      "properties": {
+        "point": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "mergeStrategy": {
+          "type": "string",
+          "enum": [
+            "merge",
+            "override",
+            "append"
+          ]
+        }
+      }
+    }
+  },
+  "properties": {
+    "extensionId": {
+      "type": "string"
+    },
+    "baseTemplate": {
+      "type": "string"
+    },
+    "customFields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CustomField"
+      }
+    },
+    "schemaExtensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SchemaExtension"
+      }
+    },
+    "overrideValidation": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "conflictDetection": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "pluginCompatibility": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

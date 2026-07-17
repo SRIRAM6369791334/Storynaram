@@ -1,0 +1,72 @@
+{
+  "template": "BaseImport",
+  "version": "1.0.0",
+  "description": "Import configuration block — sources, parsers, validators, conflict resolution, and mapping",
+  "type": "object",
+  "properties": {
+    "importable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this entity type supports import"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Supported import source types",
+      "items": {
+        "type": "string",
+        "enum": ["json", "yaml", "xml", "csv", "markdown", "scrivener", "notion", "custom"]
+      }
+    },
+    "parsers": {
+      "type": "array",
+      "description": "Parser pipeline for import processing",
+      "items": {
+        "type": "object",
+        "properties": {
+          "plugin": { "type": "string" },
+          "config": { "type": "object" },
+          "order": { "type": "integer" }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Import-time validation settings",
+      "properties": {
+        "strict": { "type": "boolean", "default": false },
+        "skipOnError": { "type": "boolean", "default": false },
+        "maxErrors": { "type": "integer", "default": 10 }
+      }
+    },
+    "conflictResolution": {
+      "type": "string",
+      "enum": ["skip", "overwrite", "merge", "rename", "manual"],
+      "description": "Strategy for handling ID conflicts on import"
+    },
+    "mapping": {
+      "type": "object",
+      "description": "Field mapping from source schema to target schema",
+      "additionalProperties": { "type": "string" }
+    },
+    "defaults": {
+      "type": "object",
+      "description": "Default values for fields not present in source"
+    },
+    "postProcess": {
+      "type": "array",
+      "description": "Post-import processing hooks",
+      "items": {
+        "type": "object",
+        "properties": {
+          "plugin": { "type": "string" },
+          "config": { "type": "object" }
+        }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["sources", "parsers", "validation", "mapping", "defaults", "postProcess"],
+    "final": ["importable", "conflictResolution"]
+  }
+}

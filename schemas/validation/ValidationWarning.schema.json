@@ -1,0 +1,29 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationWarning.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "warningId": { "type": "string" },
+    "ruleId": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "info"]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "required", "format", "enum", "length", "range",
+        "pattern", "reference", "unique", "business",
+        "integrity", "custom"
+      ]
+    },
+    "field": { "type": "string" },
+    "value": {},
+    "expected": {},
+    "message": { "type": "string" },
+    "code": { "type": "string" },
+    "suggestion": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}

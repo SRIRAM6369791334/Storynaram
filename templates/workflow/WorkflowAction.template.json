@@ -1,0 +1,27 @@
+{
+  "template": "WorkflowAction",
+  "version": "1.0.0",
+  "description": "Action definition block — actions invoked on state entry, exit, and transitions",
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["system", "notification", "ai", "validation", "export", "import", "transform", "webhook", "plugin", "custom"]
+          },
+          "name": { "type": "string" },
+          "config": { "type": "object" },
+          "order": { "type": "integer" },
+          "async": { "type": "boolean", "default": false },
+          "timeout": { "type": "integer", "description": "Action timeout (seconds)" },
+          "onFailure": { "type": "string", "enum": ["abort", "skip", "retry", "continue"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "template": "BaseStatus",
+  "version": "1.0.0",
+  "description": "Lifecycle state machine template — defines valid statuses, transitions, and state metadata",
+  "type": "object",
+  "required": ["status", "state"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle status — must be a valid status from core/enums/STATUS.md",
+      "$ref": "#/definitions/statusRegistry"
+    },
+    "state": {
+      "type": "string",
+      "description": "Operational state of the entity (e.g. active, archived, locked, pending)",
+      "examples": ["active", "draft", "published", "archived"]
+    },
+    "previousStatus": {
+      "type": "string",
+      "description": "Status immediately before the current one (for rollback support)"
+    },
+    "statusHistory": {
+      "type": "array",
+      "description": "Full status transition log",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "by": { "type": "string" },
+          "at": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "statusFlags": {
+      "type": "array",
+      "description": "Zero or more boolean flags decorating the current status",
+      "items": {
+        "type": "string",
+        "examples": ["isEditable", "isPublishable", "isDeletable", "isArchivable"]
+      }
+    }
+  },
+  "definitions": {
+    "statusRegistry": {
+      "type": "string",
+      "description": "Valid statuses defined in core/enums/STATUS.md as single source of truth"
+    }
+  },
+  "inheritanceRules": {
+    "extensible": false,
+    "overrideable": ["statusHistory", "statusFlags", "previousStatus"],
+    "final": ["status", "state"]
+  }
+}

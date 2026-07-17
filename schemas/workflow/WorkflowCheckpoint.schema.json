@@ -1,0 +1,58 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowCheckpoint.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Checkpoint": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "state": { "type": "string" },
+        "snapshot": {
+          "type": "object",
+          "description": "Full state snapshot data"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": { "type": "string" },
+        "canRollbackTo": {
+          "type": "boolean",
+          "default": true
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "CheckpointConfig": {
+      "type": "object",
+      "properties": {
+        "autoCheckpoint": {
+          "type": "boolean",
+          "default": true
+        },
+        "interval": { "type": "integer" },
+        "maxCheckpoints": { "type": "integer" },
+        "onTransition": {
+          "type": "boolean",
+          "default": true
+        },
+        "storage": {
+          "type": "string",
+          "enum": ["memory", "file", "database", "object-store"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "checkpoints": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Checkpoint" }
+    },
+    "checkpointConfig": { "$ref": "#/$defs/CheckpointConfig" }
+  }
+}

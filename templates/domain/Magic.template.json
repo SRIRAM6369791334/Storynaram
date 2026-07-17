@@ -1,0 +1,30 @@
+{
+  "template": "Magic",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "magic",
+  "description": "Reusable magic system domain template. Defines a magical system or tradition.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Magic-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["arcane", "divine", "nature", "ritual", "inherent", "techno", "blood", "chaos", "elemental", "other"] },
+        "worldId": { "type": "string" },
+        "source": { "type": "string" },
+        "rules": { "type": "string" },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "cost": { "type": "string" },
+        "spells": { "type": "array", "items": { "type": "string" } },
+        "practitioners": { "type": "array", "items": { "type": "string" } },
+        "schools": { "type": "array", "items": { "type": "string" } },
+        "elements": { "type": "array", "items": { "type": "string" } },
+        "hierarchy": { "type": "string" },
+        "history": { "type": "string" }
+      }
+    }
+  }
+}

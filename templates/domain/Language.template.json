@@ -1,0 +1,29 @@
+{
+  "template": "Language",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseExtension"],
+  "entityType": "language",
+  "description": "Reusable language domain template. Defines a constructed or natural language.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Language-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["constructed", "natural", "ancient", "dead", "trade", "ritual", "sign"] },
+        "script": { "type": "string" },
+        "alphabet": { "type": "string" },
+        "phonology": { "type": "string" },
+        "grammar": { "type": "string" },
+        "vocabulary": { "type": "string" },
+        "dialects": { "type": "array", "items": { "type": "string" } },
+        "speakers": { "type": "string" },
+        "origin": { "type": "string" },
+        "relatedLanguages": { "type": "array", "items": { "type": "string" } },
+        "commonPhrases": { "type": "array", "items": { "type": "object", "properties": { "phrase": { "type": "string" }, "translation": { "type": "string" } } } }
+      }
+    }
+  }
+}

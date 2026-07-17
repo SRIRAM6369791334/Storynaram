@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Spell.schema.json",
+  "title": "Spell",
+  "description": "Spell domain schema — inherits BaseEntity via allOf, adds spell-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Spell-specific fields",
+      "required": ["magicId"],
+      "properties": {
+        "magicId": { "type": "string" },
+        "school": { "type": "string" },
+        "element": { "type": "string" },
+        "tier": { "type": "integer", "minimum": 0 },
+        "incantation": { "type": "string" },
+        "gesture": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "string" } },
+        "effect": { "type": "string" },
+        "duration": { "type": "string" },
+        "range": { "type": "string" },
+        "area": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "sideEffects": { "type": "array", "items": { "type": "string" } },
+        "cooldown": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

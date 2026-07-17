@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Chapter.schema.json",
+  "title": "Chapter",
+  "description": "Chapter domain schema — inherits BaseEntity via allOf, adds chapter-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Chapter-specific fields",
+      "required": ["bookId", "number"],
+      "properties": {
+        "bookId": { "type": "string" },
+        "number": { "type": "integer", "minimum": 1 },
+        "partId": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "scenes": { "type": "array", "items": { "type": "string" } },
+        "wordCount": { "type": "integer", "minimum": 0 },
+        "pointOfView": { "type": "string" },
+        "timelineStart": { "type": "string" },
+        "timelineEnd": { "type": "string" },
+        "locations": { "type": "array", "items": { "type": "string" } },
+        "summary": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

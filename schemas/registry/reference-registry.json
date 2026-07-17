@@ -1,0 +1,8 @@
+{
+  "registryName": "Reference Registry",
+  "version": "1.0.0",
+  "references": [
+    { "from": "domain/*", "ref": "core/BaseEntity", "via": "allOf" },
+    { "from": "workflow/Workflow", "ref": "workflow/*", "via": "$ref" }
+  ]
+}

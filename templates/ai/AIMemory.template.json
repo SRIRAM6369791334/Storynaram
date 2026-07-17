@@ -1,0 +1,99 @@
+{
+  "template": "AIMemory",
+  "version": "1.0.0",
+  "description": "Memory block — short-term, long-term, canonic, character, world, conversation, working, and archived memory types",
+  "type": "object",
+  "properties": {
+    "shortTerm": {
+      "type": "array",
+      "description": "Recent memory items (automatically consolidated to long-term)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "content": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "importance": { "type": "integer", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "longTerm": {
+      "type": "array",
+      "description": "Consolidated persistent memories",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "content": { "type": "string" },
+          "consolidatedAt": { "type": "string", "format": "date-time" },
+          "accessCount": { "type": "integer" },
+          "lastAccessed": { "type": "string", "format": "date-time" },
+          "importance": { "type": "integer", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "canonMemory": {
+      "type": "array",
+      "description": "Canon-confirmed memories (AI cannot modify)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canonId": { "type": "string" },
+          "statement": { "type": "string" },
+          "verifiedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "characterMemory": {
+      "type": "object",
+      "description": "Character-specific memory partitioned by character",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "memoryId": { "type": "string" },
+            "content": { "type": "string" },
+            "emotionalWeight": { "type": "integer", "minimum": 0, "maximum": 100 }
+          }
+        }
+      }
+    },
+    "worldMemory": {
+      "type": "array",
+      "description": "World-level persistent facts",
+      "items": { "type": "object" }
+    },
+    "conversationMemory": {
+      "type": "array",
+      "description": "Recent conversation turns",
+      "items": {
+        "type": "object",
+        "properties": {
+          "turn": { "type": "integer" },
+          "speaker": { "type": "string" },
+          "message": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "workingMemory": {
+      "type": "object",
+      "description": "Ephemeral in-process memory for current reasoning task",
+      "additionalProperties": true
+    },
+    "archivedMemory": {
+      "type": "array",
+      "description": "Compressed or archived old memories",
+      "items": {
+        "type": "object",
+        "properties": {
+          "archiveId": { "type": "string" },
+          "summary": { "type": "string" },
+          "originalCount": { "type": "integer" },
+          "archivedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}

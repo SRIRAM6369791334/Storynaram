@@ -1,0 +1,40 @@
+{
+  "template": "Workflow",
+  "version": "1.0.0",
+  "description": "Root workflow definition — orchestrates states, transitions, triggers, conditions, actions, and lifecycle for any entity process",
+  "type": "object",
+  "properties": {
+    "workflowId": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["lifecycle", "approval", "review", "publishing", "ai-generation", "ai-review", "import", "export", "translation", "version-control", "archive", "deletion", "recovery", "plugin", "custom"]
+    },
+    "entityType": { "type": "string", "description": "Entity type this workflow applies to" },
+    "states": { "$ref": "WorkflowState.template.json" },
+    "transitions": { "$ref": "WorkflowTransition.template.json" },
+    "triggers": { "$ref": "WorkflowTrigger.template.json" },
+    "conditions": { "$ref": "WorkflowCondition.template.json" },
+    "actions": { "$ref": "WorkflowAction.template.json" },
+    "approval": { "$ref": "WorkflowApproval.template.json" },
+    "review": { "$ref": "WorkflowReview.template.json" },
+    "assignment": { "$ref": "WorkflowAssignment.template.json" },
+    "notification": { "$ref": "WorkflowNotification.template.json" },
+    "events": { "$ref": "WorkflowEvent.template.json" },
+    "checkpoints": { "$ref": "WorkflowCheckpoint.template.json" },
+    "rollback": { "$ref": "WorkflowRollback.template.json" },
+    "retry": { "$ref": "WorkflowRetry.template.json" },
+    "schedule": { "$ref": "WorkflowSchedule.template.json" },
+    "timer": { "$ref": "WorkflowTimer.template.json" },
+    "queue": { "$ref": "WorkflowQueue.template.json" },
+    "audit": { "$ref": "WorkflowAudit.template.json" },
+    "metrics": { "$ref": "WorkflowMetrics.template.json" },
+    "configuration": { "$ref": "WorkflowConfiguration.template.json" },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "completed", "failed", "cancelled"]
+    },
+    "currentState": { "type": "string", "description": "Currently active workflow state" }
+  }
+}

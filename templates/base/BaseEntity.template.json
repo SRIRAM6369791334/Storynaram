@@ -1,0 +1,159 @@
+{
+  "template": "BaseEntity",
+  "version": "1.0.0",
+  "description": "Universal entity model — every entity in Storynaram inherits from this base. Composes all other base templates.",
+  "type": "object",
+  "required": [
+    "$schema",
+    "identifier",
+    "metadata",
+    "audit"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON schema reference for this entity type",
+      "examples": [
+        "https://storynaram.dev/schemas/character.v1.json",
+        "https://storynaram.dev/schemas/world.v1.json"
+      ]
+    },
+    "identifier": {
+      "$ref": "BaseIdentifier.template.json",
+      "description": "Unique identity block"
+    },
+    "metadata": {
+      "$ref": "BaseMetadata.template.json",
+      "description": "Descriptive metadata block"
+    },
+    "audit": {
+      "$ref": "BaseAudit.template.json",
+      "description": "Provenance and accountability block"
+    },
+    "version": {
+      "$ref": "BaseVersion.template.json",
+      "description": "System versioning block"
+    },
+    "status": {
+      "$ref": "BaseStatus.template.json",
+      "description": "Lifecycle state machine block"
+    },
+    "lifecycle": {
+      "$ref": "BaseLifecycle.template.json",
+      "description": "Entity lifecycle block"
+    },
+    "ownership": {
+      "$ref": "BaseOwnership.template.json",
+      "description": "Ownership and container block"
+    },
+    "references": {
+      "$ref": "BaseReference.template.json",
+      "description": "Cross-reference block"
+    },
+    "relationships": {
+      "$ref": "BaseRelationship.template.json",
+      "description": "Relationship block"
+    },
+    "tags": {
+      "$ref": "BaseTag.template.json",
+      "description": "Tag and label block"
+    },
+    "visibility": {
+      "$ref": "BaseVisibility.template.json",
+      "description": "Visibility and publication block"
+    },
+    "permissions": {
+      "$ref": "BasePermission.template.json",
+      "description": "Access control block"
+    },
+    "localization": {
+      "$ref": "BaseLocalization.template.json",
+      "description": "Multi-language block"
+    },
+    "attachments": {
+      "$ref": "BaseAttachment.template.json",
+      "description": "File/asset attachment block"
+    },
+    "comments": {
+      "$ref": "BaseComment.template.json",
+      "description": "Comment and annotation block"
+    },
+    "history": {
+      "$ref": "BaseHistory.template.json",
+      "description": "Change history block"
+    },
+    "validation": {
+      "$ref": "BaseValidation.template.json",
+      "description": "Validation rules block"
+    },
+    "ai": {
+      "$ref": "BaseAI.template.json",
+      "description": "AI metadata and retrieval block"
+    },
+    "search": {
+      "$ref": "BaseSearch.template.json",
+      "description": "Search configuration block"
+    },
+    "index": {
+      "$ref": "BaseIndex.template.json",
+      "description": "Database index block"
+    },
+    "security": {
+      "$ref": "BaseSecurity.template.json",
+      "description": "Security configuration block"
+    },
+    "export": {
+      "$ref": "BaseExport.template.json",
+      "description": "Export configuration block"
+    },
+    "import": {
+      "$ref": "BaseImport.template.json",
+      "description": "Import configuration block"
+    },
+    "workflow": {
+      "$ref": "BaseWorkflow.template.json",
+      "description": "Workflow configuration block"
+    },
+    "extension": {
+      "$ref": "BaseExtension.template.json",
+      "description": "Extension and customization block"
+    },
+    "customProperties": {
+      "type": "object",
+      "description": "Forward-compatible escape hatch for any unmodeled data",
+      "additionalProperties": true
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "composes": [
+      "BaseIdentifier",
+      "BaseMetadata",
+      "BaseAudit",
+      "BaseVersion",
+      "BaseStatus",
+      "BaseLifecycle",
+      "BaseOwnership",
+      "BaseReference",
+      "BaseRelationship",
+      "BaseTag",
+      "BaseVisibility",
+      "BasePermission",
+      "BaseLocalization",
+      "BaseAttachment",
+      "BaseComment",
+      "BaseHistory",
+      "BaseValidation",
+      "BaseAI",
+      "BaseSearch",
+      "BaseIndex",
+      "BaseSecurity",
+      "BaseExport",
+      "BaseImport",
+      "BaseWorkflow",
+      "BaseExtension"
+    ],
+    "overrideable": ["customProperties"],
+    "final": ["$schema", "identifier.id", "identifier.prefix", "identifier.sequence", "metadata.title"]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIAnalytics.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIAnalytics",
+  "description": "Captures usage, latency, error, cost, and performance metrics across AI model invocations.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "tokenUsage": {
+      "$ref": "#/$defs/TokenUsage"
+    },
+    "latency": {
+      "$ref": "#/$defs/Latency"
+    },
+    "modelPerformance": {
+      "$ref": "#/$defs/ModelPerformance"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ErrorRecord"
+      }
+    },
+    "costs": {
+      "$ref": "#/$defs/Costs"
+    },
+    "metrics": {
+      "$ref": "#/$defs/Metrics"
+    }
+  },
+  "$defs": {
+    "TokenUsage": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "totalPromptTokens": { "type": "integer" },
+        "totalCompletionTokens": { "type": "integer" },
+        "totalCachedTokens": { "type": "integer" },
+        "averagePerRequest": { "type": "number" },
+        "peakTokens": { "type": "integer" },
+        "byModel": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        }
+      }
+    },
+    "Latency": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "averageMs": { "type": "number" },
+        "p50Ms": { "type": "number" },
+        "p95Ms": { "type": "number" },
+        "p99Ms": { "type": "number" },
+        "maxMs": { "type": "number" },
+        "timeouts": { "type": "integer" },
+        "byModel": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "ModelPerformance": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "modelId": { "type": "string" },
+        "successRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "averageTokensPerSecond": { "type": "number" },
+        "totalRequests": { "type": "integer" },
+        "totalErrors": { "type": "integer" }
+      }
+    },
+    "ErrorRecord": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "errorType": { "type": "string" },
+        "model": { "type": "string" },
+        "taskType": { "type": "string" },
+        "retryAttempted": { "type": "boolean" },
+        "resolved": { "type": "boolean" }
+      }
+    },
+    "Costs": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "estimatedTotalCost": { "type": "number" },
+        "costPerModel": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "costPerTaskType": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "currency": { "type": "string" },
+        "budgetRemaining": { "type": "number" }
+      }
+    },
+    "Metrics": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "totalRequests": { "type": "integer" },
+        "successfulRequests": { "type": "integer" },
+        "failedRequests": { "type": "integer" },
+        "cacheHitRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "averageOutputTokens": { "type": "number" },
+        "averageInputTokens": { "type": "number" }
+      }
+    }
+  }
+}

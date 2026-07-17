@@ -1,0 +1,38 @@
+{
+  "template": "TimelineEvent",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "timeline-event",
+  "description": "Reusable timeline event domain template. Defines a single event on a timeline.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "TimelineEvent-specific fields",
+      "required": ["date", "timelineId"],
+      "properties": {
+        "timelineId": { "type": "string" },
+        "date": {
+          "type": "object",
+          "properties": {
+            "year": { "type": "string" },
+            "month": { "type": "string" },
+            "day": { "type": "string" },
+            "time": { "type": "string" },
+            "era": { "type": "string" },
+            "display": { "type": "string" }
+          }
+        },
+        "type": { "type": "string", "enum": ["major", "minor", "catalyst", "climax", "resolution", "background"] },
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "locations": { "type": "array", "items": { "type": "string" } },
+        "causes": { "type": "array", "items": { "type": "string" } },
+        "consequences": { "type": "array", "items": { "type": "string" } },
+        "significance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "relatedEvents": { "type": "array", "items": { "type": "string" } },
+        "sources": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

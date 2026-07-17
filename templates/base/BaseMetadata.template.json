@@ -1,0 +1,63 @@
+{
+  "template": "BaseMetadata",
+  "version": "1.0.0",
+  "description": "Descriptive metadata block — title, description, summary, keywords, language, priority, version",
+  "type": "object",
+  "required": ["title", "language"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Human-readable display title"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4096,
+      "description": "Long-form description of the entity"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Short summary for cards, previews, search results"
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 64 },
+      "description": "Search keywords and tags for indexing"
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP-47 language tag (e.g. en, en-US, fr, ja)",
+      "default": "en"
+    },
+    "author": {
+      "type": "string",
+      "description": "Original creator/author of the entity content"
+    },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle status — references BaseStatus",
+      "$ref": "BaseStatus.template.json#/definitions/statusRegistry"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Priority rank (0=lowest, 100=highest)",
+      "default": 50
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this entity's content (not system version)",
+      "examples": ["1.0.0", "2.3.1"]
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["description", "summary", "keywords", "author", "priority"],
+    "final": ["title", "language", "status", "version"]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "template": "Rule",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "rule",
+  "description": "Reusable rule domain template. Defines a law, regulation, constraint, or system rule.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Rule-specific fields",
+      "required": ["type", "scope"],
+      "properties": {
+        "type": { "type": "string", "enum": ["physics", "magic", "society", "legal", "natural", "divine", "meta", "gameplay", "narrative", "other"] },
+        "scope": { "type": "string", "enum": ["universal", "world", "region", "domain", "entity", "temporal"] },
+        "worldId": { "type": "string" },
+        "statement": { "type": "string" },
+        "rationale": { "type": "string" },
+        "exceptions": { "type": "array", "items": { "type": "string" } },
+        "consequences": { "type": "string" },
+        "enforcement": { "type": "string" },
+        "severity": { "type": "string", "enum": ["absolute", "strong", "moderate", "flexible", "suggestion"] },
+        "conflictingRules": { "type": "array", "items": { "type": "string" } },
+        "relatedRules": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

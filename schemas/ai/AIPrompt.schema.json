@@ -1,0 +1,71 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIPrompt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIPrompt",
+  "description": "Prompt parts and injection data assembled for an AI generation request.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "contextInjectionItem": {
+      "type": "object",
+      "properties": {
+        "source": { "type": "string" },
+        "content": { "type": "string" },
+        "priority": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "unevaluatedProperties": false
+    },
+    "memoryInjectionItem": {
+      "type": "object",
+      "properties": {
+        "memoryId": { "type": "string" },
+        "content": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    },
+    "canonInjectionItem": {
+      "type": "object",
+      "properties": {
+        "canonId": { "type": "string" },
+        "statement": { "type": "string" },
+        "severity": { "type": "string", "enum": ["absolute", "strong", "suggestion"] }
+      },
+      "unevaluatedProperties": false
+    },
+    "examplePair": {
+      "type": "object",
+      "properties": {
+        "input": { "type": "string" },
+        "output": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "systemPrompt": { "type": "string" },
+    "developerPrompt": { "type": "string" },
+    "userPrompt": { "type": "string" },
+    "contextInjection": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contextInjectionItem" }
+    },
+    "memoryInjection": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/memoryInjectionItem" }
+    },
+    "canonInjection": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/canonInjectionItem" }
+    },
+    "examples": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/examplePair" }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "outputInstructions": { "type": "string" }
+  }
+}

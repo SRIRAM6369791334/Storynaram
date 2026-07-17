@@ -1,0 +1,38 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/PermissionValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PermissionValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "entityType": {
+      "type": "string"
+    },
+    "requiredPermissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "roleCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "ownerCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "groupCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "inheritanceCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "restrictionCheck": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

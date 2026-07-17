@@ -1,0 +1,76 @@
+{
+  "template": "AIConversation",
+  "version": "1.0.0",
+  "description": "Conversation tracking — turn management, participant profiles, topic tracking, sentiment analysis, and summarization state",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique conversation identifier"
+    },
+    "turns": {
+      "type": "array",
+      "description": "Ordered list of conversation turns",
+      "items": {
+        "type": "object",
+        "properties": {
+          "turnNumber": { "type": "integer" },
+          "participantId": { "type": "string" },
+          "message": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "tokens": { "type": "integer" }
+        }
+      }
+    },
+    "participants": {
+      "type": "array",
+      "description": "Participant definitions and profiles",
+      "items": {
+        "type": "object",
+        "properties": {
+          "participantId": { "type": "string" },
+          "type": { "type": "string", "enum": ["user", "ai", "character", "system"] },
+          "name": { "type": "string" },
+          "turnCount": { "type": "integer" }
+        }
+      }
+    },
+    "topics": {
+      "type": "array",
+      "description": "Detected topics and their evolution",
+      "items": {
+        "type": "object",
+        "properties": {
+          "topicId": { "type": "string" },
+          "label": { "type": "string" },
+          "startTurn": { "type": "integer" },
+          "endTurn": { "type": "integer" },
+          "mentions": { "type": "integer" }
+        }
+      }
+    },
+    "sentiment": {
+      "type": "object",
+      "description": "Overall and per-participant sentiment tracking",
+      "properties": {
+        "overallSentiment": { "type": "number", "minimum": -1, "maximum": 1 },
+        "perParticipant": { "type": "object", "additionalProperties": { "type": "number", "minimum": -1, "maximum": 1 } },
+        "sentimentTrend": { "type": "array", "items": { "type": "number", "minimum": -1, "maximum": 1 } }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "Conversation summarization state",
+      "properties": {
+        "lastSummaryTurn": { "type": "integer" },
+        "summaryText": { "type": "string" },
+        "summaryTokens": { "type": "integer" }
+      }
+    },
+    "state": {
+      "type": "string",
+      "description": "Current conversation state",
+      "enum": ["active", "paused", "archived", "completed", "expired"]
+    }
+  }
+}

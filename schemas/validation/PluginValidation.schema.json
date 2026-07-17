@@ -1,0 +1,76 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/PluginValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PluginValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Dependency": {
+      "type": "object",
+      "properties": {
+        "pluginId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "ResourceLimit": {
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": "number"
+        },
+        "memory": {
+          "type": "integer",
+          "description": "MB"
+        },
+        "storage": {
+          "type": "integer",
+          "description": "MB"
+        },
+        "network": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "pluginId": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Dependency"
+      }
+    },
+    "capabilityValidation": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "sandboxCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "resourceLimits": {
+      "$ref": "#/$defs/ResourceLimit"
+    },
+    "hookValidation": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "conflictCheck": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

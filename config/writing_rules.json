@@ -1,0 +1,35 @@
+﻿{
+  "showDontTell": {
+    "enabled": true,
+    "severity": "warning",
+    "exceptions": ["internal-monologue", "summary"]
+  },
+  "pacing": {
+    "actionScenesPerChapter": 1,
+    "maxDialogueBlocks": 20,
+    "minSceneWordCount": 500,
+    "maxSceneWordCount": 5000,
+    "targetChapterWordCount": 5000
+  },
+  "structural": {
+    "minChaptersPerBook": 5,
+    "maxChaptersPerBook": 100,
+    "minScenesPerChapter": 1,
+    "maxScenesPerChapter": 20
+  },
+  "pointOfView": {
+    "allowMultiplePOV": true,
+    "maxPOVPerScene": 1,
+    "requirePOVLabeling": true
+  },
+  "tense": {
+    "default": "past",
+    "allowed": ["past", "present"],
+    "enforceConsistency": true
+  },
+  "perspective": {
+    "default": "third-person-limited",
+    "allowed": ["first-person", "third-person-limited", "third-person-omniscient"],
+    "enforceConsistency": true
+  }
+}

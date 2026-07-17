@@ -1,0 +1,23 @@
+{
+  "registry": "plugin-registry",
+  "version": "1.0.0",
+  "description": "Plugin registry — available plugins, their capabilities, dependencies, and compatibility",
+  "plugins": [],
+  "capabilities": {
+    "templateExtensions": [],
+    "validators": [],
+    "exporters": [],
+    "importers": [],
+    "processors": [],
+    "hooks": [],
+    "uiComponents": []
+  },
+  "dependencies": {},
+  "compatibility": {},
+  "statistics": {
+    "totalPlugins": 0,
+    "totalCapabilities": 0,
+    "activePlugins": 0,
+    "incompatiblePlugins": 0
+  }
+}

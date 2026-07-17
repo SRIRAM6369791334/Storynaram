@@ -1,0 +1,28 @@
+{
+  "template": "WorkflowTrigger",
+  "version": "1.0.0",
+  "description": "Trigger definition block — defines what initiates workflow transitions (manual, automatic, AI-driven, time-based, event-based, rule-based)",
+  "type": "object",
+  "properties": {
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["manual", "automatic", "ai-driven", "time-based", "event-based", "rule-based"]
+          },
+          "source": { "type": "string", "description": "Trigger source identifier" },
+          "condition": { "type": "string", "description": "Condition that fires the trigger" },
+          "event": { "type": "string", "description": "Event name for event-based triggers" },
+          "cron": { "type": "string", "description": "Cron expression for time-based triggers" },
+          "delay": { "type": "integer", "description": "Delay before trigger fires (seconds)" },
+          "cooldown": { "type": "integer", "description": "Minimum interval between firings (seconds)" },
+          "maxFires": { "type": "integer", "description": "Maximum number of times this trigger can fire" }
+        }
+      }
+    }
+  }
+}

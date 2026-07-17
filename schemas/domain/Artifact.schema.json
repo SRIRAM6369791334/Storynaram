@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Artifact.schema.json",
+  "title": "Artifact",
+  "description": "Artifact domain schema — inherits BaseEntity via allOf, adds artifact-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Artifact-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["weapon", "armor", "jewelry", "tome", "relic", "tool", "instrument", "crown", "idol", "orb", "crystal", "other"] },
+        "tier": { "type": "string", "enum": ["common", "uncommon", "rare", "epic", "legendary", "mythic", "divine"] },
+        "powers": { "type": "array", "items": { "type": "string" } },
+        "curse": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "attunement": { "type": "boolean", "default": true },
+        "originalCreator": { "type": "string" },
+        "creationDate": { "type": "string" },
+        "material": { "type": "string" },
+        "historicalSignificance": { "type": "string" },
+        "owners": { "type": "array", "items": { "type": "string" } },
+        "currentLocation": { "type": "string" },
+        "destruction": { "type": "object", "properties": { "method": { "type": "string" }, "date": { "type": "string" }, "destroyedBy": { "type": "string" } } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

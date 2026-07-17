@@ -1,0 +1,66 @@
+{
+  "template": "WorkflowMetrics",
+  "version": "1.0.0",
+  "description": "Performance metrics collection — counters, histograms, gauges, and custom metrics for workflow monitoring and observability",
+  "type": "object",
+  "properties": {
+    "enabled": { "type": "boolean", "default": true },
+    "counters": {
+      "type": "object",
+      "properties": {
+        "transitions": { "type": "boolean", "default": true },
+        "retries": { "type": "boolean", "default": true },
+        "failures": { "type": "boolean", "default": true },
+        "approvals": { "type": "boolean", "default": true },
+        "rejections": { "type": "boolean", "default": true },
+        "timeouts": { "type": "boolean", "default": true }
+      }
+    },
+    "histograms": {
+      "type": "object",
+      "properties": {
+        "duration": { "type": "boolean", "default": true, "description": "Workflow duration histogram" },
+        "approvalTime": { "type": "boolean", "default": false },
+        "aiLatency": { "type": "boolean", "default": false },
+        "queueWaitTime": { "type": "boolean", "default": false },
+        "actionExecutionTime": { "type": "boolean", "default": true }
+      }
+    },
+    "gauges": {
+      "type": "object",
+      "properties": {
+        "activeWorkflows": { "type": "boolean", "default": true },
+        "queuedTasks": { "type": "boolean", "default": true },
+        "concurrentExecutions": { "type": "boolean", "default": true },
+        "successRate": { "type": "boolean", "default": true }
+      }
+    },
+    "custom": {
+      "type": "object",
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["counter", "histogram", "gauge"] },
+              "description": { "type": "string" },
+              "tags": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "provider": { "type": "string", "enum": ["prometheus", "datadog", "grafana", "cloudwatch", "custom"] },
+        "endpoint": { "type": "string" },
+        "interval": { "type": "integer", "description": "Export interval in seconds" }
+      }
+    }
+  }
+}

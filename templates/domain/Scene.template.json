@@ -1,0 +1,41 @@
+{
+  "template": "Scene",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "scene",
+  "description": "Reusable scene domain template. Defines structure for any narrative scene.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Scene-specific fields",
+      "required": ["location", "timelinePosition"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "chapterId": { "type": "string" },
+        "bookId": { "type": "string" },
+        "characters": { "type": "array", "items": { "type": "string" } },
+        "pointOfView": { "type": "string" },
+        "location": { "type": "string" },
+        "timelinePosition": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string" },
+            "end": { "type": "string" },
+            "order": { "type": "integer" }
+          }
+        },
+        "dialogue": { "type": "array", "items": { "type": "string" } },
+        "mood": { "type": "string" },
+        "tone": { "type": "string" },
+        "purpose": { "type": "string" },
+        "conflict": { "type": "string" },
+        "plotPoints": { "type": "array", "items": { "type": "string" } },
+        "wordCount": { "type": "integer", "minimum": 0 },
+        "content": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

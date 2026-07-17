@@ -1,0 +1,40 @@
+{
+  "template": "WorkflowState",
+  "version": "1.0.0",
+  "description": "State definition block — defines valid workflow states including draft, planning, writing, review, approved, published, archived, deprecated, deleted, and custom states",
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["initial", "intermediate", "final", "error", "terminal"],
+            "description": "State type in the lifecycle"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "isEditable": { "type": "boolean", "default": true },
+              "isPublishable": { "type": "boolean", "default": false },
+              "isDeletable": { "type": "boolean", "default": false },
+              "requiresReview": { "type": "boolean", "default": false },
+              "requiresApproval": { "type": "boolean", "default": false }
+            }
+          },
+          "entryActions": { "type": "array", "items": { "type": "string" } },
+          "exitActions": { "type": "array", "items": { "type": "string" } },
+          "timeout": { "type": "integer", "description": "Max time in this state (seconds)" }
+        }
+      }
+    },
+    "initialState": { "type": "string" },
+    "terminalStates": { "type": "array", "items": { "type": "string" } },
+    "errorStates": { "type": "array", "items": { "type": "string" } }
+  }
+}

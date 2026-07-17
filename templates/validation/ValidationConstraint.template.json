@@ -1,0 +1,21 @@
+{
+  "template": "ValidationConstraint",
+  "version": "1.0.0",
+  "description": "Validation constraint — defines structural or behavioral constraints such as required, unique, immutable, conditional, temporal, or cross-field",
+  "type": "object",
+  "properties": {
+    "constraintId": { "type": "string" },
+    "name": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["required", "unique", "immutable", "conditional", "temporal", "crossField"]
+    },
+    "scope": { "type": "string", "description": "Scope of the constraint (field, entity, relationship, workflow)" },
+    "field": { "type": "string", "description": "Primary field the constraint applies to" },
+    "fields": { "type": "array", "items": { "type": "string" }, "description": "Multiple fields for cross-field or composite constraints" },
+    "condition": { "type": "string", "description": "Conditional expression activating the constraint" },
+    "params": { "type": "object", "description": "Constraint-specific parameters (min, max, allowedValues, etc.)" },
+    "message": { "type": "string" },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "info"] }
+  }
+}

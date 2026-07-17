@@ -1,0 +1,70 @@
+{
+  "template": "BasePermission",
+  "version": "1.0.0",
+  "description": "Access control and permission block — role-based, attribute-based, and entity-level permissions",
+  "type": "object",
+  "properties": {
+    "accessControl": {
+      "type": "object",
+      "description": "Entity-level access control list",
+      "properties": {
+        "owner": {
+          "type": "object",
+          "properties": {
+            "read": { "type": "boolean", "default": true },
+            "write": { "type": "boolean", "default": true },
+            "delete": { "type": "boolean", "default": true },
+            "share": { "type": "boolean", "default": true }
+          }
+        },
+        "group": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "group": { "type": "string" },
+              "read": { "type": "boolean", "default": true },
+              "write": { "type": "boolean", "default": false },
+              "delete": { "type": "boolean", "default": false }
+            }
+          }
+        },
+        "world": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "read": { "type": "boolean", "default": true },
+              "write": { "type": "boolean", "default": false }
+            }
+          }
+        }
+      }
+    },
+    "inheritance": {
+      "type": "object",
+      "description": "Permission inheritance from parent entities",
+      "properties": {
+        "inheritFromParent": { "type": "boolean", "default": true },
+        "overrides": { "type": "object" }
+      }
+    },
+    "restrictions": {
+      "type": "array",
+      "description": "Time-, location-, or condition-based restrictions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["time", "location", "ip", "condition", "attribute"] },
+          "rule": { "type": "string" }
+        }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["accessControl", "restrictions", "inheritance.overrides"],
+    "final": ["inheritance.inheritFromParent"]
+  }
+}

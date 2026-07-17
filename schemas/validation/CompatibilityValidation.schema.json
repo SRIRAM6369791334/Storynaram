@@ -1,0 +1,67 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/CompatibilityValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompatibilityValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "BreakingChange": {
+      "type": "object",
+      "properties": {
+        "change": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "affectedComponent": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "mitigation": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "sourceVersion": {
+      "type": "string"
+    },
+    "targetVersion": {
+      "type": "string"
+    },
+    "forwardCompatible": {
+      "type": "boolean"
+    },
+    "backwardCompatible": {
+      "type": "boolean"
+    },
+    "breakingChanges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BreakingChange"
+      }
+    },
+    "migrationRequired": {
+      "type": "boolean"
+    },
+    "recommendedAction": {
+      "type": "string",
+      "enum": [
+        "upgrade",
+        "downgrade",
+        "defer",
+        "manual-review"
+      ]
+    }
+  }
+}

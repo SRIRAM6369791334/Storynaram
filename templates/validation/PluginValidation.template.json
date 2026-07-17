@@ -1,0 +1,16 @@
+{
+  "template": "PluginValidation",
+  "version": "1.0.0",
+  "description": "Plugin validation — validates plugin integrity, dependencies, sandboxing, resource limits, hooks, and conflict detection",
+  "type": "object",
+  "properties": {
+    "pluginId": { "type": "string" },
+    "version": { "type": "string" },
+    "dependencies": { "type": "array", "items": { "type": "object" }, "description": "Plugin dependencies with version constraints" },
+    "capabilityValidation": { "type": "object", "description": "Capability declaration validation configuration" },
+    "sandboxCheck": { "type": "object", "description": "Sandbox isolation validation configuration" },
+    "resourceLimits": { "type": "object", "description": "Resource limit enforcement configuration" },
+    "hookValidation": { "type": "object", "description": "Hook registration and execution validation configuration" },
+    "conflictCheck": { "type": "object", "description": "Plugin conflict detection configuration" }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/City.schema.json",
+  "title": "City",
+  "description": "City domain schema — inherits BaseEntity via allOf, adds city-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "City-specific fields",
+      "required": ["worldId"],
+      "properties": {
+        "worldId": { "type": "string" },
+        "countryId": { "type": "string" },
+        "kingdomId": { "type": "string" },
+        "type": { "type": "string", "enum": ["capital", "city", "town", "village", "hamlet", "fortress", "port", "trade-post", "religious", "academic"] },
+        "population": { "type": "integer", "minimum": 0 },
+        "area": { "type": "string" },
+        "districts": { "type": "array", "items": { "type": "string" } },
+        "notableLocations": { "type": "array", "items": { "type": "string" } },
+        "governance": { "type": "string" },
+        "ruler": { "type": "string" },
+        "economy": { "type": "string" },
+        "defenses": { "type": "string" },
+        "demographics": { "type": "object" },
+        "founded": { "type": "string" },
+        "notableEvents": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

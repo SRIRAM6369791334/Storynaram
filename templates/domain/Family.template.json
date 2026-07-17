@@ -1,0 +1,31 @@
+{
+  "template": "Family",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "family",
+  "description": "Reusable family domain template. Defines a family tree, lineage, or house.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Family-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["noble", "royal", "merchant", "artisan", "peasant", "criminal", "magical", "other"] },
+        "head": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "ancestors": { "type": "array", "items": { "type": "string" } },
+        "familyTree": { "type": "string" },
+        "motto": { "type": "string" },
+        "sigil": { "type": "string" },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "titles": { "type": "array", "items": { "type": "string" } },
+        "holdings": { "type": "array", "items": { "type": "string" } },
+        "alliances": { "type": "array", "items": { "type": "string" } },
+        "rivalries": { "type": "array", "items": { "type": "string" } },
+        "history": { "type": "string" }
+      }
+    }
+  }
+}

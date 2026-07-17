@@ -1,0 +1,42 @@
+﻿{
+  "character": {
+    "format": "title-case",
+    "maxLength": 60,
+    "allowApostrophes": true,
+    "allowHyphens": true,
+    "allowSpaces": true,
+    "uniquePerProject": true
+  },
+  "location": {
+    "format": "title-case",
+    "maxLength": 80,
+    "allowApostrophes": true,
+    "allowHyphens": true,
+    "uniquePerWorld": true
+  },
+  "item": {
+    "format": "title-case",
+    "maxLength": 60,
+    "uniquePerWorld": false
+  },
+  "organization": {
+    "format": "title-case",
+    "maxLength": 80,
+    "uniquePerWorld": true
+  },
+  "magic": {
+    "format": "title-case",
+    "maxLength": 60
+  },
+  "file": {
+    "maxLength": 120,
+    "allowedChars": "a-z A-Z 0-9 - _ .",
+    "forbiddenChars": "\\ / : * ? \" < > |"
+  },
+  "id": {
+    "prefixPattern": "^[a-z]{2,5}_[0-9]{6,}$",
+    "minSequenceDigits": 6,
+    "maxSequenceDigits": 9,
+    "separator": "_"
+  }
+}

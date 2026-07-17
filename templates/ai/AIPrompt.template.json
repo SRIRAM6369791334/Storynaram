@@ -1,0 +1,76 @@
+{
+  "template": "AIPrompt",
+  "version": "1.0.0",
+  "description": "Prompt assembly block — system prompt, developer prompt, user prompt with context, memory, and canon injection",
+  "type": "object",
+  "properties": {
+    "systemPrompt": {
+      "type": "string",
+      "description": "System-level instruction governing AI behavior"
+    },
+    "developerPrompt": {
+      "type": "string",
+      "description": "Developer-level instruction (Claude API developer prompt)"
+    },
+    "userPrompt": {
+      "type": "string",
+      "description": "User-facing query or instruction"
+    },
+    "contextInjection": {
+      "type": "array",
+      "description": "Context snippets injected into the prompt",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "string" },
+          "content": { "type": "string" },
+          "priority": { "type": "integer", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "memoryInjection": {
+      "type": "array",
+      "description": "Memory items injected into the prompt",
+      "items": {
+        "type": "object",
+        "properties": {
+          "memoryId": { "type": "string" },
+          "content": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
+    "canonInjection": {
+      "type": "array",
+      "description": "Canon rules injected as constraints",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canonId": { "type": "string" },
+          "statement": { "type": "string" },
+          "severity": { "type": "string", "enum": ["absolute", "strong", "suggestion"] }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Few-shot examples for in-context learning",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": { "type": "string" },
+          "output": { "type": "string" }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "description": "Output constraints and guardrails",
+      "items": { "type": "string" }
+    },
+    "outputInstructions": {
+      "type": "string",
+      "description": "Format specification for the AI response"
+    }
+  }
+}

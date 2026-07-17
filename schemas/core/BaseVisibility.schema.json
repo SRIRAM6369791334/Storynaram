@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseVisibility.schema.json",
+  "title": "BaseVisibility",
+  "description": "Visibility and publication control — who can see this entity and in what contexts",
+  "type": "object",
+  "required": ["visibility"],
+  "properties": {
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private", "restricted", "internal", "hidden", "draft"],
+      "description": "Visibility level of the entity"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the entity is published and accessible"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the entity was first published"
+    },
+    "unpublishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the entity was last unpublished"
+    },
+    "embargo": {
+      "type": "object",
+      "description": "Embargo/scheduled release settings",
+      "properties": {
+        "releaseDate": { "type": "string", "format": "date-time" },
+        "releaseAfterEntity": { "type": "string", "description": "Entity ID that must be published first" },
+        "condition": { "type": "string", "description": "Expression that must evaluate to true" }
+      }
+    },
+    "audience": {
+      "type": "array",
+      "description": "Required audience labels for access",
+      "items": { "type": "string" }
+    },
+    "accessGroups": {
+      "type": "array",
+      "description": "Access control group identifiers",
+      "items": { "type": "string" }
+    }
+  }
+}

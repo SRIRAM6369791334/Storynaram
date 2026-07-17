@@ -1,0 +1,123 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "canonCompliance": {
+      "$ref": "#/$defs/CanonComplianceConfig"
+    },
+    "constraintValidation": {
+      "$ref": "#/$defs/ConstraintValidationConfig"
+    },
+    "formatValidation": {
+      "$ref": "#/$defs/FormatValidationConfig"
+    },
+    "factualAccuracy": {
+      "$ref": "#/$defs/FactualAccuracyConfig"
+    },
+    "hallucinationDetection": {
+      "$ref": "#/$defs/HallucinationDetectionConfig"
+    },
+    "overallResult": {
+      "type": "string",
+      "enum": ["passed", "failed", "warning"]
+    }
+  },
+  "$defs": {
+    "CanonComplianceConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "strictness": {
+          "type": "string",
+          "enum": ["strict", "lenient"],
+          "default": "strict"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ConstraintValidationConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FormatValidationConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "expectedFormat": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FactualAccuracyConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "sourceEntities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "HallucinationDetectionConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "method": {
+          "type": "string",
+          "enum": ["embedding-distance", "fact-check", "consensus"]
+        },
+        "riskScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}

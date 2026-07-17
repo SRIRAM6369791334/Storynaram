@@ -1,0 +1,52 @@
+{
+  "template": "AIValidation",
+  "version": "1.0.0",
+  "description": "AI output validation block — validates responses against canon, constraints, format, and business rules",
+  "type": "object",
+  "properties": {
+    "canonCompliance": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "strictness": { "type": "string", "enum": ["strict", "lenient"], "default": "strict" },
+        "violations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "constraintValidation": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "formatValidation": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "expectedFormat": { "type": "string" },
+        "valid": { "type": "boolean" }
+      }
+    },
+    "factualAccuracy": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "sourceEntities": { "type": "array", "items": { "type": "string" } },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "hallucinationDetection": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "method": { "type": "string", "enum": ["embedding-distance", "fact-check", "consensus"] },
+        "riskScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "overallResult": {
+      "type": "string",
+      "enum": ["passed", "failed", "warning"],
+      "description": "Aggregated validation result"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "template": "Character",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseLifecycle", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "character",
+  "description": "Reusable character domain template. Defines the structure for any character entity.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Character-specific fields",
+      "required": ["appearance", "biography", "personality"],
+      "properties": {
+        "appearance": {
+          "type": "object",
+          "description": "Physical appearance descriptors",
+          "properties": {
+            "age": { "type": "integer", "minimum": 0 },
+            "ageCategory": { "type": "string", "enum": ["child", "teen", "young-adult", "adult", "middle-aged", "elder", "immortal", "unknown"] },
+            "gender": { "type": "string" },
+            "species": { "type": "string" },
+            "race": { "type": "string" },
+            "height": { "type": "string" },
+            "build": { "type": "string" },
+            "hair": { "type": "string" },
+            "eyes": { "type": "string" },
+            "distinguishingFeatures": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "biography": {
+          "type": "object",
+          "description": "Character backstory and history",
+          "properties": {
+            "birthPlace": { "type": "string" },
+            "birthDate": { "type": "string" },
+            "deathPlace": { "type": "string" },
+            "deathDate": { "type": "string" },
+            "occupation": { "type": "array", "items": { "type": "string" } },
+            "titles": { "type": "array", "items": { "type": "string" } },
+            "affiliations": { "type": "array", "items": { "type": "string" } },
+            "backstory": { "type": "string" }
+          }
+        },
+        "personality": {
+          "type": "object",
+          "description": "Character personality and psychology",
+          "properties": {
+            "traits": { "type": "array", "items": { "type": "string" } },
+            "strengths": { "type": "array", "items": { "type": "string" } },
+            "weaknesses": { "type": "array", "items": { "type": "string" } },
+            "fears": { "type": "array", "items": { "type": "string" } },
+            "motivations": { "type": "array", "items": { "type": "string" } },
+            "goals": { "type": "array", "items": { "type": "string" } },
+            "arc": { "type": "array", "items": { "type": "string" }, "description": "Character development arc stages" }
+          }
+        },
+        "abilities": {
+          "type": "array",
+          "description": "References to abilities/magic/skills",
+          "items": { "type": "string" }
+        },
+        "inventory": {
+          "type": "array",
+          "description": "References to items carried/owned",
+          "items": { "type": "string" }
+        },
+        "currentLocation": { "type": "string" },
+        "books": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "scenes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "timelineEvents": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "narrativeRole": {
+          "type": "string",
+          "enum": ["protagonist", "antagonist", "deuteragonist", "tritagonist", "supporting", "minor", "foil", "love-interest", "mentor", "sidekick", "antagonist-ally", "background"]
+        }
+      }
+    }
+  }
+}

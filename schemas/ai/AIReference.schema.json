@@ -1,0 +1,84 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIReference.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIReference",
+  "description": "Entity, relationship, memory, canon, and source references with aggregate confidence scoring.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "entityRef": {
+      "type": "object",
+      "properties": {
+        "entityId": { "type": "string" },
+        "entityType": { "type": "string" },
+        "label": { "type": "string" },
+        "mentionCount": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "relationshipRef": {
+      "type": "object",
+      "properties": {
+        "relationshipId": { "type": "string" },
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "type": { "type": "string" },
+        "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "memoryRef": {
+      "type": "object",
+      "properties": {
+        "memoryId": { "type": "string" },
+        "type": { "type": "string", "enum": ["shortTerm", "longTerm", "working", "archived"] },
+        "summary": { "type": "string" },
+        "accessCount": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "canonRef": {
+      "type": "object",
+      "properties": {
+        "canonId": { "type": "string" },
+        "statement": { "type": "string" },
+        "category": { "type": "string" },
+        "verifiedAt": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    },
+    "sourceRef": {
+      "type": "object",
+      "properties": {
+        "sourceId": { "type": "string" },
+        "sourceType": { "type": "string", "enum": ["book", "chapter", "scene", "userInput", "generated", "external"] },
+        "location": { "type": "string" },
+        "reliability": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "entityRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entityRef" }
+    },
+    "relationshipRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationshipRef" }
+    },
+    "memoryRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/memoryRef" }
+    },
+    "canonRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/canonRef" }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourceRef" }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+  }
+}

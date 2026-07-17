@@ -1,0 +1,52 @@
+{
+  "template": "AISession",
+  "version": "1.0.0",
+  "description": "AI session management — lifecycle tracking, model assignments, token usage, context accumulation, and persistence configuration",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Unique session identifier"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current session lifecycle status",
+      "enum": ["initializing", "active", "idle", "paused", "expiring", "expired", "terminated", "error"]
+    },
+    "model": {
+      "type": "string",
+      "description": "Primary model assigned to this session"
+    },
+    "tokenUsage": {
+      "type": "object",
+      "description": "Token consumption tracking for the session",
+      "properties": {
+        "totalInput": { "type": "integer" },
+        "totalOutput": { "type": "integer" },
+        "totalCached": { "type": "integer" },
+        "budgetExceeded": { "type": "boolean" },
+        "lastReset": { "type": "string", "format": "date-time" }
+      }
+    },
+    "accumulatedContext": {
+      "type": "object",
+      "description": "Context accumulated across session turns",
+      "properties": {
+        "conversationBuffer": { "type": "array", "items": { "type": "string" } },
+        "memoryIds": { "type": "array", "items": { "type": "string" } },
+        "contextSize": { "type": "integer" },
+        "compressionCount": { "type": "integer" }
+      }
+    },
+    "startedAt": {
+      "type": "string",
+      "description": "Session start timestamp",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "Session expiry timestamp",
+      "format": "date-time"
+    }
+  }
+}

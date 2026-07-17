@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseAttachment.schema.json",
+  "title": "BaseAttachment",
+  "description": "File and asset attachment block — links to images, audio, documents, and other binary assets",
+  "type": "object",
+  "properties": {
+    "attachments": {
+      "type": "array",
+      "description": "List of attachments for this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["image", "audio", "video", "document", "archive", "model", "other"]
+          },
+          "mimeType": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "filename": { "type": "string" },
+          "size": { "type": "integer", "description": "File size in bytes" },
+          "hash": { "type": "string", "description": "SHA-256 hash of the file content" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "coverImage": {
+      "type": "string",
+      "description": "URL or path to the primary cover/thumbnail image"
+    },
+    "gallery": {
+      "type": "array",
+      "description": "Ordered gallery of images for display",
+      "items": { "type": "string" }
+    }
+  }
+}

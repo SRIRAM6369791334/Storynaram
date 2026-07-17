@@ -1,0 +1,48 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowRetry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "RetryableError": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxRetries": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 3
+    },
+    "retryDelay": {
+      "type": "integer",
+      "description": "Initial delay in seconds",
+      "default": 1
+    },
+    "backoffMultiplier": {
+      "type": "number",
+      "minimum": 1.0,
+      "default": 2.0
+    },
+    "maxDelay": {
+      "type": "integer",
+      "description": "Maximum delay in seconds"
+    },
+    "retryableErrors": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/RetryableError" }
+    },
+    "onFinalFailure": {
+      "type": "string",
+      "enum": ["abort", "skip", "notify"]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "template": "WorkflowValidation",
+  "version": "1.0.0",
+  "description": "Workflow validation — validates state machine correctness, transition coverage, deadlock freedom, and guard completeness",
+  "type": "object",
+  "properties": {
+    "workflowId": { "type": "string" },
+    "stateMachineCheck": { "type": "object", "description": "State machine structure validation configuration" },
+    "transitionCoverage": { "type": "object", "description": "Ensures all states have transitions defined" },
+    "deadlockDetection": { "type": "object", "description": "Deadlock detection configuration" },
+    "unreachableStates": { "type": "array", "items": { "type": "string" }, "description": "States detected as unreachable" },
+    "missingTransitions": { "type": "array", "items": { "type": "string" }, "description": "Transitions that are missing" },
+    "guardCompleteness": { "type": "object", "description": "Ensures all transitions have appropriate guards" }
+  }
+}

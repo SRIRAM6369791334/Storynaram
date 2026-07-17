@@ -1,0 +1,38 @@
+{
+  "template": "ValidationResult",
+  "version": "1.0.0",
+  "description": "Validation result — captures the outcome of a validation run with pass/fail status, score, counts, and detailed errors/warnings",
+  "type": "object",
+  "properties": {
+    "resultId": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "profileId": { "type": "string" },
+    "entityId": { "type": "string" },
+    "entityType": { "type": "string" },
+    "passed": { "type": "boolean" },
+    "score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "ruleCount": { "type": "integer" },
+    "passedCount": { "type": "integer" },
+    "failedCount": { "type": "integer" },
+    "warningCount": { "type": "integer" },
+    "errors": {
+      "type": "array",
+      "items": { "$ref": "ValidationError.template.json" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "$ref": "ValidationWarning.template.json" }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "totalRules": { "type": "integer" },
+        "passed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "warnings": { "type": "integer" },
+        "score": { "type": "number" },
+        "duration": { "type": "number", "description": "Execution time in milliseconds" }
+      }
+    }
+  }
+}

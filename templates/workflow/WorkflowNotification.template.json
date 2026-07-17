@@ -1,0 +1,57 @@
+{
+  "template": "WorkflowNotification",
+  "version": "1.0.0",
+  "description": "Notification configuration — multi-channel delivery (email, Slack, in-app, webhook) with templates, recipients, triggers, and throttling",
+  "type": "object",
+  "properties": {
+    "enabled": { "type": "boolean", "default": true },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["email", "slack", "in-app", "webhook"]
+      }
+    },
+    "templates": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "object", "properties": { "subject": { "type": "string" }, "body": { "type": "string" } } },
+        "slack": { "type": "object", "properties": { "message": { "type": "string" }, "channel": { "type": "string" } } },
+        "in-app": { "type": "object", "properties": { "title": { "type": "string" }, "body": { "type": "string" }, "icon": { "type": "string" } } },
+        "webhook": { "type": "object", "properties": { "url": { "type": "string" }, "method": { "type": "string", "default": "POST" }, "headers": { "type": "object" } } }
+      }
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["user", "group", "role", "external"] },
+          "channel": { "type": "string" }
+        }
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "string" },
+          "channel": { "type": "string" },
+          "template": { "type": "string" },
+          "conditions": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "throttling": {
+      "type": "object",
+      "properties": {
+        "maxPerMinute": { "type": "integer" },
+        "maxPerHour": { "type": "integer" },
+        "cooldownPeriod": { "type": "integer", "description": "Cooldown in seconds" },
+        "aggregation": { "type": "boolean", "default": false }
+      }
+    }
+  }
+}

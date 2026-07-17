@@ -1,0 +1,68 @@
+{
+  "template": "AITokenBudget",
+  "version": "1.0.0",
+  "description": "Token budget management — context limits, priority allocation, chunking, compression, overflow handling, and per-component budgeting",
+  "type": "object",
+  "properties": {
+    "maxContextTokens": {
+      "type": "integer",
+      "description": "Maximum tokens allowed for the entire AI context window",
+      "minimum": 1024
+    },
+    "priorityLevels": {
+      "type": "array",
+      "description": "Priority buckets for token allocation",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "label": { "type": "string" },
+          "maxTokens": { "type": "integer" },
+          "evictable": { "type": "boolean" }
+        }
+      }
+    },
+    "chunking": {
+      "type": "object",
+      "description": "Token chunking strategy for large inputs",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["fixed", "sliding", "semantic", "recursive"] },
+        "chunkSize": { "type": "integer" },
+        "overlap": { "type": "integer" },
+        "maxChunks": { "type": "integer" }
+      }
+    },
+    "compression": {
+      "type": "object",
+      "description": "Token compression and summarization settings",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "string", "enum": ["summarize", "truncate", "deduplicate", "prune", "compress"] },
+        "compressionRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "preserveFields": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "overflow": {
+      "type": "object",
+      "description": "Overflow handling when token budget is exceeded",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["truncate", "summarize", "paginate", "priorityDrop", "error"] },
+        "fallbackModel": { "type": "string" },
+        "prioritizedRetention": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "allocation": {
+      "type": "object",
+      "description": "Per-component token allocation budget",
+      "properties": {
+        "systemPrompt": { "type": "integer" },
+        "context": { "type": "integer" },
+        "conversation": { "type": "integer" },
+        "memory": { "type": "integer" },
+        "plugins": { "type": "integer" },
+        "output": { "type": "integer" },
+        "reserve": { "type": "integer" }
+      }
+    }
+  }
+}

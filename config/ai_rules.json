@@ -1,0 +1,35 @@
+﻿{
+  "model": {
+    "primary": "claude-3-opus",
+    "fallback": "claude-3-sonnet",
+    "embedding": "text-embedding-3-small",
+    "maxContextTokens": 8192,
+    "temperature": 0.7,
+    "topP": 0.9
+  },
+  "behavior": {
+    "responseStyle": "professional",
+    "followStandards": true,
+    "validateOutput": true,
+    "requireCanonCheck": true,
+    "maxRetries": 3,
+    "timeoutSeconds": 30
+  },
+  "guardrails": {
+    "noHarmfulContent": true,
+    "noPlagiarism": true,
+    "respectCanon": true,
+    "flagInconsistencies": true,
+    "requireAttribution": true
+  },
+  "memory": {
+    "shortTermSize": 50,
+    "longTermEnabled": true,
+    "sessionRetentionMinutes": 60
+  },
+  "prompts": {
+    "templateVersion": "0.1.0",
+    "maxPromptTokens": 4096,
+    "minResponseTokens": 500
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "template": "Timeline",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "timeline",
+  "description": "Reusable timeline domain template. Defines a chronological framework for events.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Timeline-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["main", "alternate", "character", "world", "book"] },
+        "eras": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "startDate": { "type": "string" },
+              "endDate": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "calendar": {
+          "type": "object",
+          "properties": {
+            "system": { "type": "string" },
+            "epoch": { "type": "string" },
+            "months": { "type": "array", "items": { "type": "string" } },
+            "days": { "type": "array", "items": { "type": "string" } },
+            "yearLength": { "type": "integer" }
+          }
+        },
+        "events": { "type": "array", "items": { "type": "string" } },
+        "parallelTimelines": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

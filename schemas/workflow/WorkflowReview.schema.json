@@ -1,0 +1,103 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowReview.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Reviewer": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "assignedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Criterion": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "weight": { "type": "number" },
+        "required": { "type": "boolean", "default": false }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reviewerId": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "resolved": { "type": "boolean", "default": false }
+      }
+    },
+    "Decision": {
+      "type": "object",
+      "properties": {
+        "reviewerId": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": ["approved", "changes-requested", "rejected", "abstained"]
+        },
+        "score": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ScoringConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "scale": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "integer" },
+            "max": { "type": "integer" }
+          }
+        },
+        "passThreshold": { "type": "number" },
+        "aggregateMethod": {
+          "type": "string",
+          "enum": ["average", "weighted", "median", "lowest", "highest"]
+        }
+      }
+    },
+    "DeadlineConfig": {
+      "type": "object",
+      "properties": {
+        "duration": { "type": "integer" },
+        "reminderInterval": { "type": "integer" },
+        "actionOnExpiry": {
+          "type": "string",
+          "enum": ["auto-approve", "escalate", "fail", "notify"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["peer", "editorial", "technical", "ai"]
+    },
+    "reviewers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Reviewer" }
+    },
+    "criteria": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Criterion" }
+    },
+    "comments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Comment" }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Decision" }
+    },
+    "scoring": { "$ref": "#/$defs/ScoringConfig" },
+    "deadline": { "$ref": "#/$defs/DeadlineConfig" }
+  }
+}

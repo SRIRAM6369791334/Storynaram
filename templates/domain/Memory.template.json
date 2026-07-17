@@ -1,0 +1,33 @@
+{
+  "template": "Memory",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseLifecycle", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "memory",
+  "description": "Reusable memory domain template. Defines a stored recollection, event memory, or knowledge fragment.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Memory-specific fields",
+      "required": ["type", "ownerId"],
+      "properties": {
+        "type": { "type": "string", "enum": ["character", "ai", "story", "system", "canon"] },
+        "ownerId": { "type": "string" },
+        "ownerType": { "type": "string", "enum": ["character", "ai", "system", "story"] },
+        "memory": { "type": "string" },
+        "embedding": { "type": "array", "items": { "type": "number" } },
+        "importance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "recency": { "type": "string", "format": "date-time" },
+        "frequency": { "type": "integer", "minimum": 0 },
+        "associations": { "type": "array", "items": { "type": "string" } },
+        "emotions": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string" },
+        "accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "decay": { "type": "number", "minimum": 0, "maximum": 1, "description": "Memory decay factor (0=never forgotten, 1=immediately forgotten)" },
+        "consolidated": { "type": "boolean", "default": false, "description": "Whether short-term memory has been consolidated to long-term" },
+        "lastRecalled": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

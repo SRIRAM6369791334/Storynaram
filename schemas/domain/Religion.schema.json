@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Religion.schema.json",
+  "title": "Religion",
+  "description": "Religion domain schema — inherits BaseEntity via allOf, adds religion-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Religion-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["monotheistic", "polytheistic", "pantheistic", "animistic", "ancestor", "philosophical", "cult", "other"] },
+        "deities": { "type": "array", "items": { "type": "string" } },
+        "prophets": { "type": "array", "items": { "type": "string" } },
+        "holyTexts": { "type": "array", "items": { "type": "string" } },
+        "beliefs": { "type": "array", "items": { "type": "string" } },
+        "practices": { "type": "array", "items": { "type": "string" } },
+        "rituals": { "type": "array", "items": { "type": "string" } },
+        "holidays": { "type": "array", "items": { "type": "string" } },
+        "clergy": { "type": "string" },
+        "placesOfWorship": { "type": "array", "items": { "type": "string" } },
+        "symbols": { "type": "array", "items": { "type": "string" } },
+        "tenets": { "type": "array", "items": { "type": "string" } },
+        "taboos": { "type": "array", "items": { "type": "string" } },
+        "followers": { "type": "string" },
+        "history": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

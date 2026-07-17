@@ -1,0 +1,33 @@
+{
+  "template": "WorkflowCheckpoint",
+  "version": "1.0.0",
+  "description": "Checkpoint and savepoint definitions — full state snapshots with rollback support and metadata for workflow recovery",
+  "type": "object",
+  "properties": {
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "state": { "type": "string", "description": "Workflow state at checkpoint" },
+          "snapshot": { "type": "object", "description": "Full state snapshot data" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "description": { "type": "string" },
+          "canRollbackTo": { "type": "boolean", "default": true },
+          "metadata": { "type": "object" }
+        }
+      }
+    },
+    "checkpointConfig": {
+      "type": "object",
+      "properties": {
+        "autoCheckpoint": { "type": "boolean", "default": true },
+        "interval": { "type": "integer", "description": "Auto-checkpoint interval (seconds)" },
+        "maxCheckpoints": { "type": "integer", "description": "Maximum stored checkpoints" },
+        "onTransition": { "type": "boolean", "default": true, "description": "Checkpoint on every transition" },
+        "storage": { "type": "string", "enum": ["memory", "file", "database", "object-store"] }
+      }
+    }
+  }
+}

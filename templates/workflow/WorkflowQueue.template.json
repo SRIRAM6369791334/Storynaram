@@ -1,0 +1,42 @@
+{
+  "template": "WorkflowQueue",
+  "version": "1.0.0",
+  "description": "Queue configuration — priority, FIFO, and delayed queues with concurrency, size limits, retry, and dead-letter queue support",
+  "type": "object",
+  "properties": {
+    "queueName": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["priority", "fifo", "delayed"]
+    },
+    "concurrency": { "type": "integer", "minimum": 1, "default": 1 },
+    "maxSize": { "type": "integer", "minimum": 1 },
+    "retry": {
+      "type": "object",
+      "properties": {
+        "maxRetries": { "type": "integer", "default": 3 },
+        "backoff": { "type": "string", "enum": ["fixed", "exponential", "linear"] },
+        "delay": { "type": "integer", "description": "Delay in seconds" }
+      }
+    },
+    "deadLetterQueue": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "name": { "type": "string" },
+        "maxDeliveries": { "type": "integer" }
+      }
+    },
+    "priorityLevels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": { "type": "integer" },
+          "label": { "type": "string" },
+          "weight": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "template": "AIEmbedding",
+  "version": "1.0.0",
+  "description": "Embedding metadata block — model, dimensions, chunk strategy, refresh policy, and vector references",
+  "type": "object",
+  "properties": {
+    "vectorId": { "type": "string", "description": "Unique identifier for the embedding vector" },
+    "embeddingVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "modelName": { "type": "string", "description": "Name of the embedding model used" },
+    "modelVersion": { "type": "string" },
+    "dimensions": { "type": "integer", "minimum": 64, "maximum": 8192 },
+    "strategy": {
+      "type": "string",
+      "enum": ["document", "chunk", "field", "sentence", "hybrid"],
+      "description": "Chunk strategy for embedding generation"
+    },
+    "chunkConfig": {
+      "type": "object",
+      "properties": {
+        "maxTokens": { "type": "integer", "default": 512 },
+        "overlapTokens": { "type": "integer", "default": 64 },
+        "chunkField": { "type": "string" }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "description": "Fields included in embedding generation",
+      "items": { "type": "string" }
+    },
+    "refreshPolicy": {
+      "type": "string",
+      "enum": ["on-write", "scheduled", "manual", "never"],
+      "default": "on-write"
+    },
+    "lastIndexed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last successful embedding"
+    },
+    "indexStatus": {
+      "type": "string",
+      "enum": ["pending", "indexed", "failed", "stale"],
+      "default": "pending"
+    }
+  }
+}

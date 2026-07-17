@@ -1,0 +1,27 @@
+{
+  "template": "Race",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseValidation", "BaseAI", "BaseSearch", "BaseExtension"],
+  "entityType": "race",
+  "description": "Reusable race domain template. Defines a ethnic or racial group within a species.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Race-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "speciesId": { "type": "string" },
+        "type": { "type": "string", "enum": ["ethnic", "subspecies", "clan", "tribe", "bloodline", "other"] },
+        "distinguishingFeatures": { "type": "array", "items": { "type": "string" } },
+        "abilities": { "type": "array", "items": { "type": "string" } },
+        "homeland": { "type": "string" },
+        "population": { "type": "integer", "minimum": 0 },
+        "culture": { "type": "string" },
+        "language": { "type": "string" },
+        "notableFigures": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

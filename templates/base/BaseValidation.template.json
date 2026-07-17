@@ -1,0 +1,70 @@
+{
+  "template": "BaseValidation",
+  "version": "1.0.0",
+  "description": "Validation rules block — field-level, cross-field, and business rule definitions for every entity",
+  "type": "object",
+  "properties": {
+    "rules": {
+      "type": "array",
+      "description": "Validation rules applied to this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string", "description": "JSON path to the validated field" },
+          "type": {
+            "type": "string",
+            "enum": ["required", "regex", "enum", "length", "range", "reference", "unique", "custom"]
+          },
+          "params": {
+            "type": "object",
+            "description": "Rule parameters (pattern, min, max, values, etc.)"
+          },
+          "message": { "type": "string", "description": "User-facing validation error message" },
+          "severity": {
+            "type": "string",
+            "enum": ["error", "warning", "info"],
+            "default": "error"
+          }
+        }
+      }
+    },
+    "businessRules": {
+      "type": "array",
+      "description": "Higher-level business rules and invariants",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "expression": { "type": "string", "description": "Expression in the validation DSL" },
+          "severity": { "type": "string", "enum": ["error", "warning", "info"] }
+        }
+      }
+    },
+    "customValidators": {
+      "type": "array",
+      "description": "References to custom validator plugins",
+      "items": {
+        "type": "object",
+        "properties": {
+          "plugin": { "type": "string" },
+          "config": { "type": "object" }
+        }
+      }
+    },
+    "validateOn": {
+      "type": "array",
+      "description": "Triggers for validation execution",
+      "items": {
+        "type": "string",
+        "enum": ["create", "update", "publish", "import", "export", "transition"]
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["rules", "businessRules", "customValidators", "validateOn"],
+    "final": []
+  }
+}

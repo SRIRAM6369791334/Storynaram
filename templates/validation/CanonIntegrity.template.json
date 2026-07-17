@@ -1,0 +1,15 @@
+{
+  "template": "CanonIntegrity",
+  "version": "1.0.0",
+  "description": "Canon integrity — validates internal consistency across a canon's entities and rules, detecting contradictions and ensuring coherence",
+  "type": "object",
+  "properties": {
+    "canonId": { "type": "string" },
+    "entityIds": { "type": "array", "items": { "type": "string" }, "description": "Entity IDs belonging to this canon" },
+    "ruleIds": { "type": "array", "items": { "type": "string" }, "description": "Rule IDs governing this canon" },
+    "consistencyCheck": { "type": "object", "description": "Consistency validation configuration" },
+    "contradictionDetection": { "type": "object", "description": "Contradiction detection configuration" },
+    "importanceThreshold": { "type": "integer", "description": "Minimum importance score to include in validation" },
+    "lastVerified": { "type": "string", "format": "date-time", "description": "Last time canon integrity was verified" }
+  }
+}

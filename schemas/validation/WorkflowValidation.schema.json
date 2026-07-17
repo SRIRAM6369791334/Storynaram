@@ -1,0 +1,33 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/WorkflowValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "workflowId": { "type": "string" },
+    "stateMachineCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "transitionCoverage": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "deadlockDetection": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "unreachableStates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "missingTransitions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "guardCompleteness": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

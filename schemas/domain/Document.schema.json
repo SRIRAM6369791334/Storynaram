@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Document.schema.json",
+  "title": "Document",
+  "description": "Document domain schema — inherits BaseEntity via allOf, adds document-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Document-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["note", "letter", "journal", "scroll", "tome", "map", "treaty", "law", "prophecy", "research", "manuscript", "report", "contract", "other"] },
+        "author": { "type": "string" },
+        "dateWritten": { "type": "string" },
+        "language": { "type": "string" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "format": { "type": "string", "enum": ["physical", "digital", "magical", "oral"] },
+        "condition": { "type": "string" },
+        "location": { "type": "string" },
+        "owner": { "type": "string" },
+        "accessibility": { "type": "string", "enum": ["public", "restricted", "secret", "lost"] }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

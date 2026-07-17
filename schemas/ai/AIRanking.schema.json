@@ -1,0 +1,87 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIRanking.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIRanking",
+  "description": "Multi-factor relevance scoring, context priority, importance, recency, audience scoring, and final rank computation.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "relevance": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "matchedTerms": { "type": "array", "items": { "type": "string" } },
+        "semanticSimilarity": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "contextPriority": {
+      "type": "object",
+      "properties": {
+        "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "contextDepth": { "type": "integer" },
+        "proximityWeight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "narrativeRelevance": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "importance": {
+      "type": "object",
+      "properties": {
+        "globalImportance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "localImportance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "plotImpact": { "type": "number", "minimum": 0, "maximum": 1 },
+        "characterImpact": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "recency": {
+      "type": "object",
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "decayFactor": { "type": "number", "minimum": 0, "maximum": 1 },
+        "halfLife": { "type": "number" }
+      },
+      "unevaluatedProperties": false
+    },
+    "audience": {
+      "type": "object",
+      "properties": {
+        "targetAudience": { "type": "string" },
+        "engagementScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "demographicFit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sentimentAlignment": { "type": "number", "minimum": -1, "maximum": 1 }
+      },
+      "unevaluatedProperties": false
+    },
+    "combinedScore": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "number", "minimum": 0, "maximum": 1 },
+        "breakdown": {
+          "type": "object",
+          "properties": {
+            "relevanceContribution": { "type": "number" },
+            "contextContribution": { "type": "number" },
+            "importanceContribution": { "type": "number" },
+            "recencyContribution": { "type": "number" },
+            "audienceContribution": { "type": "number" }
+          },
+          "unevaluatedProperties": false
+        }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "relevance": { "$ref": "#/$defs/relevance" },
+    "contextPriority": { "$ref": "#/$defs/contextPriority" },
+    "importance": { "$ref": "#/$defs/importance" },
+    "recency": { "$ref": "#/$defs/recency" },
+    "audience": { "$ref": "#/$defs/audience" },
+    "combinedScore": { "$ref": "#/$defs/combinedScore" },
+    "finalRank": { "type": "integer", "minimum": 1 }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "template": "Spell",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseExtension"],
+  "entityType": "spell",
+  "description": "Reusable spell domain template. Defines a single magical incantation or effect.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Spell-specific fields",
+      "required": ["magicId"],
+      "properties": {
+        "magicId": { "type": "string" },
+        "school": { "type": "string" },
+        "element": { "type": "string" },
+        "tier": { "type": "integer", "minimum": 0 },
+        "incantation": { "type": "string" },
+        "gesture": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "string" } },
+        "effect": { "type": "string" },
+        "duration": { "type": "string" },
+        "range": { "type": "string" },
+        "area": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "sideEffects": { "type": "array", "items": { "type": "string" } },
+        "cooldown": { "type": "string" }
+      }
+    }
+  }
+}

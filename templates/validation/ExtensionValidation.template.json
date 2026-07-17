@@ -1,0 +1,15 @@
+{
+  "template": "ExtensionValidation",
+  "version": "1.0.0",
+  "description": "Extension validation — validates template extensions including custom fields, schema extensions, override conflicts, and plugin compatibility",
+  "type": "object",
+  "properties": {
+    "extensionId": { "type": "string" },
+    "baseTemplate": { "type": "string", "description": "Reference to the base template being extended" },
+    "customFields": { "type": "array", "items": { "type": "object" }, "description": "Custom field definitions added by the extension" },
+    "schemaExtensions": { "type": "array", "items": { "type": "object" }, "description": "Schema extension points and their configurations" },
+    "overrideValidation": { "type": "object", "description": "Validation configuration for field and behavior overrides" },
+    "conflictDetection": { "type": "object", "description": "Detection configuration for extension conflicts" },
+    "pluginCompatibility": { "type": "object", "description": "Compatibility check configuration with installed plugins" }
+  }
+}

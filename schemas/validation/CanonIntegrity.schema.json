@@ -1,0 +1,30 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/CanonIntegrity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "canonId": { "type": "string" },
+    "entityIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "ruleIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "consistencyCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "contradictionDetection": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "importanceThreshold": { "type": "integer" },
+    "lastVerified": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

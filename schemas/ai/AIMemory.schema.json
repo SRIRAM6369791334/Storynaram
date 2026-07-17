@@ -1,0 +1,107 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIMemory.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIMemory",
+  "description": "Structured memory store used by the AI to maintain narrative continuity.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "shortTermItem": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "importance": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "unevaluatedProperties": false
+    },
+    "longTermItem": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "content": { "type": "string" },
+        "consolidatedAt": { "type": "string", "format": "date-time" },
+        "accessCount": { "type": "integer" },
+        "lastAccessed": { "type": "string", "format": "date-time" },
+        "importance": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "unevaluatedProperties": false
+    },
+    "canonItem": {
+      "type": "object",
+      "properties": {
+        "canonId": { "type": "string" },
+        "statement": { "type": "string" },
+        "verifiedAt": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    },
+    "characterMemoryItem": {
+      "type": "object",
+      "properties": {
+        "memoryId": { "type": "string" },
+        "content": { "type": "string" },
+        "emotionalWeight": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "unevaluatedProperties": false
+    },
+    "conversationTurn": {
+      "type": "object",
+      "properties": {
+        "turn": { "type": "integer" },
+        "speaker": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    },
+    "archivedItem": {
+      "type": "object",
+      "properties": {
+        "archiveId": { "type": "string" },
+        "summary": { "type": "string" },
+        "originalCount": { "type": "integer" },
+        "archivedAt": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "shortTerm": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/shortTermItem" }
+    },
+    "longTerm": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/longTermItem" }
+    },
+    "canonMemory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/canonItem" }
+    },
+    "characterMemory": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/characterMemoryItem" }
+      }
+    },
+    "worldMemory": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "conversationMemory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/conversationTurn" }
+    },
+    "workingMemory": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "archivedMemory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/archivedItem" }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Timeline.schema.json",
+  "title": "Timeline",
+  "description": "Timeline domain schema — inherits BaseEntity via allOf, adds timeline-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Timeline-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["main", "alternate", "character", "world", "book"] },
+        "eras": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "startDate": { "type": "string" },
+              "endDate": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "calendar": {
+          "type": "object",
+          "properties": {
+            "system": { "type": "string" },
+            "epoch": { "type": "string" },
+            "months": { "type": "array", "items": { "type": "string" } },
+            "days": { "type": "array", "items": { "type": "string" } },
+            "yearLength": { "type": "integer" }
+          }
+        },
+        "events": { "type": "array", "items": { "type": "string" } },
+        "parallelTimelines": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

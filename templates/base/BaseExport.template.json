@@ -1,0 +1,78 @@
+{
+  "template": "BaseExport",
+  "version": "1.0.0",
+  "description": "Export configuration block — formats, transformers, destinations, and scheduling for entity export",
+  "type": "object",
+  "properties": {
+    "exportable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this entity type supports export"
+    },
+    "formats": {
+      "type": "array",
+      "description": "Supported export formats",
+      "items": {
+        "type": "string",
+        "enum": ["json", "yaml", "xml", "csv", "markdown", "html", "pdf", "docx", "epub"]
+      }
+    },
+    "transformers": {
+      "type": "array",
+      "description": "Transformer pipeline for export processing",
+      "items": {
+        "type": "object",
+        "properties": {
+          "plugin": { "type": "string" },
+          "config": { "type": "object" },
+          "order": { "type": "integer" }
+        }
+      }
+    },
+    "destinations": {
+      "type": "array",
+      "description": "Export destination definitions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["file", "s3", "api", "email", "webhook"] },
+          "uri": { "type": "string" },
+          "credentials": { "type": "string", "description": "Reference to stored credentials" }
+        }
+      }
+    },
+    "scheduling": {
+      "type": "object",
+      "description": "Scheduled/automated export settings",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "cron": { "type": "string", "description": "Cron expression" },
+        "maxExports": { "type": "integer" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "description": "Export scope — full, partial, or filtered",
+      "properties": {
+        "type": { "type": "string", "enum": ["full", "partial", "filtered"] },
+        "fields": { "type": "array", "items": { "type": "string" } },
+        "filters": { "type": "object" }
+      }
+    },
+    "includeRelations": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to include related entities in export"
+    },
+    "includeHistory": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to include event history in export"
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["formats", "transformers", "destinations", "scheduling", "scope"],
+    "final": ["exportable"]
+  }
+}

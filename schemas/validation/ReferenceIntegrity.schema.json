@@ -1,0 +1,41 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ReferenceIntegrity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "ReferenceField": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "field": { "type": "string" },
+        "targetType": { "type": "string" },
+        "required": { "type": "boolean" },
+        "cascadeDelete": { "type": "boolean" },
+        "onDelete": {
+          "type": "string",
+          "enum": ["cascade", "restrict", "set-null", "set-default", "no-action"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "entityType": { "type": "string" },
+    "referenceFields": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ReferenceField" }
+    },
+    "orphanCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "danglingCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "cycleDetection": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

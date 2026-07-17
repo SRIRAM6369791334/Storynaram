@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Book.schema.json",
+  "title": "Book",
+  "description": "Book domain schema — inherits BaseEntity via allOf, adds book-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Book-specific fields",
+      "properties": {
+        "series": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "position": { "type": "integer", "minimum": 1 },
+            "totalBooks": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "structure": {
+          "type": "object",
+          "properties": {
+            "parts": { "type": "array", "items": { "type": "string" } },
+            "chapters": { "type": "array", "items": { "type": "string" } },
+            "prologue": { "type": "boolean", "default": false },
+            "epilogue": { "type": "boolean", "default": false },
+            "interludes": { "type": "array", "items": { "type": "string" } },
+            "appendixes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "wordCount": { "type": "integer", "minimum": 0 },
+        "pageCount": { "type": "integer", "minimum": 0 },
+        "genre": { "type": "array", "items": { "type": "string" } },
+        "themes": { "type": "array", "items": { "type": "string" } },
+        "pointOfView": { "type": "string", "enum": ["first-person", "second-person", "third-person-limited", "third-person-omniscient", "multiple"] },
+        "tense": { "type": "string", "enum": ["past", "present", "future", "mixed"] },
+        "narrativeStyle": { "type": "string", "enum": ["linear", "non-linear", "epistolary", "frame", "stream-of-consciousness", "multipov"] },
+        "setting": {
+          "type": "object",
+          "properties": {
+            "world": { "type": "string" },
+            "timePeriod": { "type": "string" },
+            "duration": { "type": "string" }
+          }
+        },
+        "outline": { "type": "string" },
+        "canonStatus": { "type": "string", "enum": ["primary", "side", "alternate", "deleted"] }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

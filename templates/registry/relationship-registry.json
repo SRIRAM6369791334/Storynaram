@@ -1,0 +1,18 @@
+{
+  "registry": "relationship-registry",
+  "version": "1.0.0",
+  "description": "Registry of all entity-to-entity relationship types, cardinalities, and role labels",
+  "relationships": [],
+  "index": {
+    "bySourceType": {},
+    "byTargetType": {},
+    "byRole": {},
+    "byCardinality": {}
+  },
+  "cardinalityTypes": ["oneToOne", "oneToMany", "manyToMany", "composition", "aggregation", "association", "dependency", "inheritance"],
+  "statistics": {
+    "totalRelationships": 0,
+    "uniqueRoles": 0,
+    "bidirectionalPairs": 0
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowAssignment.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Assignee": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["user", "group", "role", "ai"]
+        },
+        "name": { "type": "string" }
+      }
+    },
+    "Assigner": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["user", "system", "ai", "rule"]
+        },
+        "name": { "type": "string" }
+      }
+    },
+    "Deadline": {
+      "type": "object",
+      "properties": {
+        "due": { "type": "string", "format": "date-time" },
+        "reminderBefore": { "type": "integer" }
+      }
+    },
+    "Dependency": {
+      "type": "object",
+      "properties": {
+        "assignmentId": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["blocks", "blocked-by", "related-to"]
+        }
+      }
+    },
+    "RoutingRule": {
+      "type": "object",
+      "properties": {
+        "field": { "type": "string" },
+        "operator": { "type": "string" },
+        "value": { "type": "object" },
+        "target": { "type": "string" }
+      }
+    },
+    "RoutingConfig": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["round-robin", "load-balanced", "role-based", "manual", "ai-optimized"]
+        },
+        "rules": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/RoutingRule" }
+        },
+        "allowReassignment": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "properties": {
+    "assignee": { "$ref": "#/$defs/Assignee" },
+    "assigner": { "$ref": "#/$defs/Assigner" },
+    "role": { "type": "string" },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "backlog"]
+    },
+    "deadline": { "$ref": "#/$defs/Deadline" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "assigned", "in-progress", "completed", "blocked", "deferred", "cancelled"]
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Dependency" }
+    },
+    "routing": { "$ref": "#/$defs/RoutingConfig" }
+  }
+}

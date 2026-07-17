@@ -1,0 +1,116 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/IntegrationProfile.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IntegrationProfile",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "IntegrationPoint": {
+      "type": "object",
+      "properties": {
+        "pointId": {
+          "type": "string"
+        },
+        "sourceField": {
+          "type": "string"
+        },
+        "targetField": {
+          "type": "string"
+        },
+        "transform": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "source-to-target",
+            "target-to-source",
+            "bidirectional"
+          ]
+        }
+      }
+    },
+    "Mapping": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": {}
+        }
+      }
+    }
+  },
+  "properties": {
+    "profileId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sourceLayer": {
+      "type": "string",
+      "enum": [
+        "base",
+        "domain",
+        "ai",
+        "workflow",
+        "validation",
+        "registry",
+        "composition",
+        "schema",
+        "storage",
+        "plugin"
+      ]
+    },
+    "targetLayer": {
+      "type": "string",
+      "enum": [
+        "base",
+        "domain",
+        "ai",
+        "workflow",
+        "validation",
+        "registry",
+        "composition",
+        "schema",
+        "storage",
+        "plugin"
+      ]
+    },
+    "integrationPoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IntegrationPoint"
+      }
+    },
+    "validationRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Rule references"
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Mapping"
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

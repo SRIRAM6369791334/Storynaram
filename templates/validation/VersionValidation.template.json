@@ -1,0 +1,22 @@
+{
+  "template": "VersionValidation",
+  "version": "1.0.0",
+  "description": "Version validation — validates template versions, schema compatibility, migration paths, deprecation status, and breaking changes",
+  "type": "object",
+  "properties": {
+    "templateId": { "type": "string" },
+    "currentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "schemaVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "compatibilityRange": {
+      "type": "object",
+      "properties": {
+        "minVersion": { "type": "string" },
+        "maxVersion": { "type": "string" }
+      },
+      "description": "Supported compatibility range"
+    },
+    "migrationPath": { "type": "array", "items": { "type": "object" }, "description": "Ordered migration steps between versions" },
+    "deprecationCheck": { "type": "object", "description": "Deprecation status validation configuration" },
+    "breakingChanges": { "type": "array", "items": { "type": "object" }, "description": "List of breaking changes introduced" }
+  }
+}

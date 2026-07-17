@@ -1,0 +1,41 @@
+﻿{
+  "paths": {
+    "root": "E:\\Storynaram",
+    "data": "data",
+    "exports": "exports",
+    "backups": "backups",
+    "logs": "logs",
+    "temp": "temp"
+  },
+  "storage": {
+    "mode": "file",
+    "maxFileSizeMB": 1,
+    "maxFileCountPerDir": 10000,
+    "maxDirDepth": 5,
+    "encoding": "utf-8",
+    "lineEndings": "lf"
+  },
+  "featureFlags": {
+    "enableAI": true,
+    "enableValidation": true,
+    "enableAutoBackup": false,
+    "enableExport": true,
+    "enableMultiUser": false
+  },
+  "limits": {
+    "maxFilenameLength": 120,
+    "maxPathLength": 240,
+    "maxTagNameLength": 30,
+    "maxEntityNameLength": 120,
+    "maxDescriptionLength": 2000,
+    "maxNotesLength": 5000,
+    "maxReferenceChainDepth": 10
+  },
+  "logging": {
+    "level": "info",
+    "console": true,
+    "file": true,
+    "maxLogFiles": 10,
+    "maxLogSizeMB": 50
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "template": "BaseSearch",
+  "version": "1.0.0",
+  "description": "Search configuration block — full-text, keyword, semantic, hybrid search settings with filters, boosting, and ranking",
+  "type": "object",
+  "properties": {
+    "searchable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this entity participates in search"
+    },
+    "fullText": {
+      "type": "object",
+      "description": "Full-text search configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "fields": {
+          "type": "array",
+          "description": "Fields included in full-text index",
+          "items": { "type": "string" }
+        },
+        "language": { "type": "string" },
+        "analyzer": { "type": "string" }
+      }
+    },
+    "keyword": {
+      "type": "object",
+      "description": "Keyword search configuration",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "boostTerms": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "semantic": {
+      "type": "object",
+      "description": "Semantic/vector search configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "field": { "type": "string", "description": "Field used for semantic embedding" },
+        "model": { "type": "string" },
+        "minScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "hybrid": {
+      "type": "object",
+      "description": "Hybrid search weighting (full-text + semantic)",
+      "properties": {
+        "fullTextWeight": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.5 },
+        "semanticWeight": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.5 }
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Allowed filter dimensions for search queries",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "type": { "type": "string", "enum": ["range", "term", "exists", "geo"] }
+        }
+      }
+    },
+    "boosts": {
+      "type": "object",
+      "description": "Field-level boosting multipliers",
+      "additionalProperties": { "type": "number" }
+    },
+    "ranking": {
+      "type": "object",
+      "description": "Ranking configuration for search results",
+      "properties": {
+        "defaultSort": { "type": "string" },
+        "scoreField": { "type": "string" },
+        "popularityField": { "type": "string" },
+        "recencyFactor": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["fullText", "keyword", "semantic", "hybrid", "filters", "boosts", "ranking"],
+    "final": ["searchable"]
+  }
+}

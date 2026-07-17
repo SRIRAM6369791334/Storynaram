@@ -1,0 +1,121 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowApproval.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Approver": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["user", "group", "ai", "role"]
+        }
+      }
+    },
+    "EscalationLevel": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "integer" },
+        "afterDuration": { "type": "integer" },
+        "assignTo": { "type": "string" },
+        "notification": { "type": "string" }
+      }
+    },
+    "EscalationConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "escalationLevels": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/EscalationLevel" }
+        }
+      }
+    },
+    "VotingConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["unanimous", "majority", "super-majority", "any", "weighted"]
+        },
+        "threshold": { "type": "number" },
+        "weights": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "AutoApproveCondition": {
+      "type": "object",
+      "properties": {
+        "field": { "type": "string" },
+        "operator": {
+          "type": "string",
+          "enum": ["equals", "not-equals", "less-than", "greater-than", "in", "matches"]
+        },
+        "value": { "type": "object" }
+      }
+    },
+    "AutoApproveConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "conditions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AutoApproveCondition" }
+        }
+      }
+    },
+    "Stage": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "order": { "type": "integer" },
+        "approvers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "requiredCount": { "type": "integer" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "escalation": { "$ref": "#/$defs/EscalationConfig" }
+      }
+    },
+    "DeadlineConfig": {
+      "type": "object",
+      "properties": {
+        "duration": { "type": "integer" },
+        "action": {
+          "type": "string",
+          "enum": ["escalate", "auto-approve", "auto-reject", "notify"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["single", "multi-stage", "parallel", "sequential", "ai", "human", "hybrid"]
+    },
+    "stages": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Stage" }
+    },
+    "approvers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Approver" }
+    },
+    "deadline": { "$ref": "#/$defs/DeadlineConfig" },
+    "escalation": { "$ref": "#/$defs/EscalationConfig" },
+    "voting": { "$ref": "#/$defs/VotingConfig" },
+    "autoApprove": { "$ref": "#/$defs/AutoApproveConfig" },
+    "result": {
+      "type": "string",
+      "enum": ["approved", "rejected", "pending", "escalated", "expired"]
+    }
+  }
+}

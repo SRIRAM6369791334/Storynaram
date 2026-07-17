@@ -1,0 +1,22 @@
+{
+  "template": "ValidationError",
+  "version": "1.0.0",
+  "description": "Validation error — detailed error record with severity, category, expected vs actual values, error code, and recovery strategy",
+  "type": "object",
+  "properties": {
+    "errorId": { "type": "string" },
+    "ruleId": { "type": "string", "description": "Reference to the rule that produced this error" },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "info"] },
+    "category": { "type": "string", "enum": ["required", "format", "enum", "length", "range", "pattern", "reference", "unique", "business", "integrity", "custom"] },
+    "field": { "type": "string", "description": "JSON path to the validated field" },
+    "value": { "type": "any", "description": "Actual value that failed validation" },
+    "expected": { "type": "any", "description": "Expected value or condition" },
+    "message": { "type": "string" },
+    "errorCode": { "type": "string" },
+    "recovery": {
+      "type": "string",
+      "enum": ["auto-fix", "manual-fix", "skip", "abort", "flag"]
+    },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}

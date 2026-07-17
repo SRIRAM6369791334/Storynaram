@@ -1,0 +1,47 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowQueue.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "RetryConfig": {
+      type: "object",
+      properties: {
+        maxRetries: { type: "integer", default: 3 },
+        backoff: { type: "string", enum: ["fixed", "exponential", "linear"] },
+        delay: { type: "integer", description: "Delay in seconds" }
+      },
+      unevaluatedProperties: false
+    },
+    "DeadLetterQueue": {
+      type: "object",
+      properties: {
+        enabled: { type: "boolean", default: false },
+        name: { type: "string" },
+        maxDeliveries: { type: "integer" }
+      },
+      unevaluatedProperties: false
+    },
+    "PriorityLevel": {
+      type: "object",
+      properties: {
+        level: { type: "integer" },
+        label: { type: "string" },
+        weight: { type: "integer" }
+      },
+      unevaluatedProperties: false
+    }
+  },
+  "properties": {
+    "queueName": { type: "string" },
+    "type": { type: "string", enum: ["priority", "fifo", "delayed"] },
+    "concurrency": { type: "integer", minimum: 1, default: 1 },
+    "maxSize": { type: "integer", minimum: 1 },
+    "retry": { "$ref": "#/$defs/RetryConfig" },
+    "deadLetterQueue": { "$ref": "#/$defs/DeadLetterQueue" },
+    "priorityLevels": {
+      type: "array",
+      items: { "$ref": "#/$defs/PriorityLevel" }
+    }
+  }
+}

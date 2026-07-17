@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Dialogue.schema.json",
+  "title": "Dialogue",
+  "description": "Dialogue domain schema — inherits BaseEntity via allOf, adds dialogue-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Dialogue-specific fields",
+      "required": ["speakers", "lines"],
+      "properties": {
+        "sceneId": { "type": "string" },
+        "speakers": { "type": "array", "items": { "type": "string" } },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "speaker": { "type": "string" },
+              "text": { "type": "string" },
+              "emotion": { "type": "string" },
+              "action": { "type": "string" },
+              "tone": { "type": "string" }
+            }
+          }
+        },
+        "language": { "type": "string" },
+        "context": { "type": "string" },
+        "subtext": { "type": "string" },
+        "purpose": { "type": "string" },
+        "isMonologue": { "type": "boolean", "default": false },
+        "isInternalThought": { "type": "boolean", "default": false }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

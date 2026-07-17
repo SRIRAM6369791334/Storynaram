@@ -1,0 +1,17 @@
+{
+  "registry": "composition-registry",
+  "version": "1.0.0",
+  "description": "Composition cache and audit — records every assembled entity's composition chain",
+  "compositions": {},
+  "cache": {
+    "byTemplate": {},
+    "byHash": {}
+  },
+  "auditLog": [],
+  "statistics": {
+    "totalCompositions": 0,
+    "cacheHits": 0,
+    "cacheMisses": 0,
+    "averageCompositionTime": 0
+  }
+}

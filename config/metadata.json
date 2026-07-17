@@ -1,0 +1,30 @@
+﻿{
+  "project": {
+    "createdAt": "2026-07-17T00:00:00Z",
+    "createdBy": "",
+    "updatedAt": "2026-07-17T00:00:00Z",
+    "updatedBy": "",
+    "version": "0.1.0",
+    "build": 1
+  },
+  "entityDefaults": {
+    "version": 1,
+    "status": "draft",
+    "locale": "en"
+  },
+  "canon": {
+    "requireApproval": true,
+    "requireAuditTrail": true,
+    "allowOverride": false
+  },
+  "ai": {
+    "confidenceThreshold": 0.8,
+    "requireHumanReview": true,
+    "maxContextTokens": 8192
+  },
+  "schema": {
+    "version": "0.1.0",
+    "strictMode": true,
+    "allowExtraFields": false
+  }
+}

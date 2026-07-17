@@ -1,0 +1,24 @@
+{
+  "registry": "template-registry",
+  "version": "1.0.0",
+  "description": "Central registry of all template types — base, domain, extension, and future plugin templates",
+  "templates": {
+    "base": [],
+    "domain": [],
+    "extension": [],
+    "plugin": [],
+    "future": []
+  },
+  "index": {
+    "byPrefix": {},
+    "byEntityType": {},
+    "byCategory": {}
+  },
+  "statistics": {
+    "totalTemplates": 0,
+    "baseTemplates": 0,
+    "domainTemplates": 0,
+    "extensionTemplates": 0,
+    "pluginTemplates": 0
+  }
+}

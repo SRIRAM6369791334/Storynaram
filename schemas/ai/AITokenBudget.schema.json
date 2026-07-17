@@ -1,0 +1,73 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AITokenBudget.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AITokenBudget",
+  "description": "Token budget management — context limits, priority allocation, chunking, compression, overflow handling, and per-component budgeting.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "priorityLevel": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "label": { "type": "string" },
+        "maxTokens": { "type": "integer" },
+        "evictable": { "type": "boolean" }
+      },
+      "unevaluatedProperties": false
+    },
+    "chunking": {
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["fixed", "sliding", "semantic", "recursive"] },
+        "chunkSize": { "type": "integer" },
+        "overlap": { "type": "integer" },
+        "maxChunks": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    },
+    "compression": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "string", "enum": ["summarize", "truncate", "deduplicate", "prune", "compress"] },
+        "compressionRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "preserveFields": { "type": "array", "items": { "type": "string" } }
+      },
+      "unevaluatedProperties": false
+    },
+    "overflow": {
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["truncate", "summarize", "paginate", "priorityDrop", "error"] },
+        "fallbackModel": { "type": "string" },
+        "prioritizedRetention": { "type": "array", "items": { "type": "string" } }
+      },
+      "unevaluatedProperties": false
+    },
+    "allocation": {
+      "type": "object",
+      "properties": {
+        "systemPrompt": { "type": "integer" },
+        "context": { "type": "integer" },
+        "conversation": { "type": "integer" },
+        "memory": { "type": "integer" },
+        "plugins": { "type": "integer" },
+        "output": { "type": "integer" },
+        "reserve": { "type": "integer" }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "properties": {
+    "maxContextTokens": { "type": "integer", "minimum": 1024 },
+    "priorityLevels": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/priorityLevel" }
+    },
+    "chunking": { "$ref": "#/$defs/chunking" },
+    "compression": { "$ref": "#/$defs/compression" },
+    "overflow": { "$ref": "#/$defs/overflow" },
+    "allocation": { "$ref": "#/$defs/allocation" }
+  }
+}

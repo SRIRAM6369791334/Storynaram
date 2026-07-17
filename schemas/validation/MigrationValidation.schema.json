@@ -1,0 +1,74 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/MigrationValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MigrationValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "FieldMapping": {
+      "type": "object",
+      "properties": {
+        "fromField": {
+          "type": "string"
+        },
+        "toField": {
+          "type": "string"
+        },
+        "transform": {
+          "type": "string"
+        },
+        "default": {
+          "type": {}
+        }
+      }
+    },
+    "TransformStep": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "expression": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "fromVersion": {
+      "type": "string"
+    },
+    "toVersion": {
+      "type": "string"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "documentCount": {
+      "type": "integer"
+    },
+    "fieldMappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FieldMapping"
+      }
+    },
+    "requiredTransforms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TransformStep"
+      }
+    },
+    "dataLossCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "rollbackValidation": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

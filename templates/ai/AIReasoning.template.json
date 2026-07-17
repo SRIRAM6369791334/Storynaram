@@ -1,0 +1,49 @@
+{
+  "template": "AIReasoning",
+  "version": "1.0.0",
+  "description": "Reasoning engine block — planning, verification, consistency checking, conflict detection, and multi-step reasoning",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": ["direct", "chain-of-thought", "tree-of-thought", "reAct", "reflexion", "plan-and-execute"],
+      "default": "chain-of-thought"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Reasoning steps executed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer" },
+          "type": { "type": "string", "enum": ["plan", "reason", "verify", "search", "recall", "conclude"] },
+          "input": { "type": "string" },
+          "output": { "type": "string" },
+          "tokens": { "type": "integer" }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "strategy": { "type": "string", "enum": ["self-verify", "cross-verify", "external"] },
+        "maxRetries": { "type": "integer", "default": 2 }
+      }
+    },
+    "consistencyCheck": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "checkAgainst": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "conflictDetection": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "resolution": { "type": "string", "enum": ["auto-resolve", "flag", "reject"] }
+      }
+    }
+  }
+}

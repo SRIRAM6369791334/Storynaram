@@ -1,0 +1,62 @@
+{
+  "template": "BaseSecurity",
+  "version": "1.0.0",
+  "description": "Security configuration block — encryption, redaction, audit logging, data classification, and access policies",
+  "type": "object",
+  "properties": {
+    "classification": {
+      "type": "string",
+      "enum": ["public", "internal", "confidential", "restricted", "secret"],
+      "description": "Data classification level"
+    },
+    "encryption": {
+      "type": "object",
+      "description": "Field-level encryption settings",
+      "properties": {
+        "atRest": { "type": "boolean", "default": false },
+        "inTransit": { "type": "boolean", "default": true },
+        "encryptedFields": {
+          "type": "array",
+          "description": "Fields that must be encrypted at rest",
+          "items": { "type": "string" }
+        },
+        "kmsKey": { "type": "string", "description": "Key management system key identifier" }
+      }
+    },
+    "redaction": {
+      "type": "array",
+      "description": "Fields with redaction/obfuscation rules",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "method": { "type": "string", "enum": ["mask", "truncate", "hash", "remove"] },
+          "condition": { "type": "string", "description": "Role or context requiring redaction" }
+        }
+      }
+    },
+    "auditLogging": {
+      "type": "object",
+      "description": "Security audit logging configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "logReads": { "type": "boolean", "default": false },
+        "logWrites": { "type": "boolean", "default": true },
+        "retentionDays": { "type": "integer", "default": 365 }
+      }
+    },
+    "accessPolicy": {
+      "type": "object",
+      "description": "Access policy identifiers",
+      "properties": {
+        "policyId": { "type": "string" },
+        "attributes": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["encryption.encryptedFields", "redaction", "auditLogging", "accessPolicy"],
+    "final": ["classification"]
+  }
+}

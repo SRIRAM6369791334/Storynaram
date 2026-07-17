@@ -1,0 +1,73 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowRollback.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "UndoAction": {
+      "type": "object",
+      "properties": {
+        "actionId": { "type": "string" },
+        "type": { "type": "string" },
+        "order": { "type": "integer" },
+        "compensatingAction": { "type": "string" },
+        "params": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "DataRestoreConfig": {
+      "type": "object",
+      "properties": {
+        "restoreEntities": {
+          "type": "boolean",
+          "default": true
+        },
+        "restoreState": {
+          "type": "boolean",
+          "default": true
+        },
+        "excludeFields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "backupLocation": { "type": "string" }
+      }
+    },
+    "NotificationConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "channels": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "message": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "rollbackTo": {
+      "type": "string",
+      "description": "Checkpoint ID to roll back to"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["sequential", "snapshot", "compensating"]
+    },
+    "undoActions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/UndoAction" }
+    },
+    "dataRestore": { "$ref": "#/$defs/DataRestoreConfig" },
+    "notification": { "$ref": "#/$defs/NotificationConfig" }
+  }
+}

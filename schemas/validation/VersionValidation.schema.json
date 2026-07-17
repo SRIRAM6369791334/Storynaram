@@ -1,0 +1,90 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/VersionValidation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VersionValidation",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "CompatibilityRange": {
+      "type": "object",
+      "properties": {
+        "minVersion": {
+          "type": "string"
+        },
+        "maxVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "MigrationStep": {
+      "type": "object",
+      "properties": {
+        "fromVersion": {
+          "type": "string"
+        },
+        "toVersion": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "BreakingChange": {
+      "type": "object",
+      "properties": {
+        "change": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "affectedField": {
+          "type": "string"
+        },
+        "mitigation": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "templateId": {
+      "type": "string"
+    },
+    "currentVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "compatibilityRange": {
+      "$ref": "#/$defs/CompatibilityRange"
+    },
+    "migrationPath": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MigrationStep"
+      }
+    },
+    "deprecationCheck": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "breakingChanges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BreakingChange"
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AICanon.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AICanon",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "verificationMode": {
+      "type": "string",
+      "enum": ["strict", "lenient", "suggestive"],
+      "default": "strict"
+    },
+    "canonRules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CanonRule"
+      }
+    },
+    "conflictDetection": {
+      "$ref": "#/$defs/ConflictDetectionConfig"
+    },
+    "lastVerified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verificationResult": {
+      "$ref": "#/$defs/VerificationResult"
+    }
+  },
+  "$defs": {
+    "CanonRule": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "canonId": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "importance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "category": {
+          "type": "string",
+          "enum": ["fact", "relationship", "timeline", "rule", "character", "world"]
+        }
+      }
+    },
+    "ConflictDetectionConfig": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8
+        }
+      }
+    },
+    "VerificationResult": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

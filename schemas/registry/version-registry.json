@@ -1,0 +1,13 @@
+{
+  "registryName": "Schema Version Registry",
+  "version": "1.0.0",
+  "schemaVersions": {
+    "core": "1.0.0",
+    "domain": "1.0.0",
+    "ai": "1.0.0",
+    "workflow": "1.0.0",
+    "validation": "1.0.0"
+  },
+  "versionPolicy": "semver",
+  "currentRelease": "storynaram-schemas-1.0.0"
+}

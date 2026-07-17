@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Armor.schema.json",
+  "title": "Armor",
+  "description": "Armor domain schema — inherits BaseEntity via allOf, adds armor-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Armor-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["light", "medium", "heavy", "shield", "helmet", "gloves", "boots", "cloak", "full-plate", "chainmail", "leather", "robe", "magical", "other"] },
+        "material": { "type": "string" },
+        "defense": { "type": "integer", "minimum": 0 },
+        "weight": { "type": "string" },
+        "durability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "magical": { "type": "boolean", "default": false },
+        "enchantments": { "type": "array", "items": { "type": "string" } },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "attunement": { "type": "boolean", "default": false },
+        "owner": { "type": "string" }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

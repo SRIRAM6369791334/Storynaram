@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Canon.schema.json",
+  "title": "Canon",
+  "description": "Canon domain schema — inherits BaseEntity via allOf, adds canon-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Canon-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["primary", "alternate", "retconned", "deleted", "side", "expanded", "fan", "draft"] },
+        "status": { "type": "string", "enum": ["active", "superseded", "retconned", "archived"] },
+        "authority": { "type": "string" },
+        "source": { "type": "string" },
+        "decisions": { "type": "array", "items": { "type": "object", "properties": { "decision": { "type": "string" }, "rationale": { "type": "string" }, "date": { "type": "string" }, "decisionMaker": { "type": "string" } } } },
+        "inconsistencies": { "type": "array", "items": { "type": "string" } },
+        "resolvedInconsistencies": { "type": "array", "items": { "type": "string" } },
+        "entities": { "type": "array", "items": { "type": "string" } },
+        "events": { "type": "array", "items": { "type": "string" } },
+        "relatedCanons": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

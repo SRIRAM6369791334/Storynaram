@@ -1,0 +1,25 @@
+{
+  "template": "ReferenceIntegrity",
+  "version": "1.0.0",
+  "description": "Reference integrity — validates references between entities including orphan detection, dangling checks, and cycle detection",
+  "type": "object",
+  "properties": {
+    "entityType": { "type": "string" },
+    "referenceFields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string", "description": "Reference field name" },
+          "targetType": { "type": "string", "description": "Target entity type" },
+          "required": { "type": "boolean" },
+          "cascadeDelete": { "type": "boolean" },
+          "onDelete": { "type": "string", "enum": ["cascade", "restrict", "set-null", "set-default", "no-action"] }
+        }
+      }
+    },
+    "orphanCheck": { "type": "object", "description": "Configuration for orphan record detection" },
+    "danglingCheck": { "type": "object", "description": "Configuration for dangling reference detection" },
+    "cycleDetection": { "type": "object", "description": "Configuration for circular reference detection" }
+  }
+}

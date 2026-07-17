@@ -1,0 +1,49 @@
+{
+  "template": "WorkflowConfiguration",
+  "version": "1.0.0",
+  "description": "Workflow configuration root — global settings for timeout, concurrency, error handling, logging, and feature flags",
+  "type": "object",
+  "properties": {
+    "workflowId": { "type": "string" },
+    "version": { "type": "string" },
+    "timeout": { "type": "integer", "description": "Global workflow timeout in seconds" },
+    "concurrency": {
+      "type": "object",
+      "properties": {
+        "maxParallelExecutions": { "type": "integer", "minimum": 1 },
+        "maxParallelActions": { "type": "integer", "minimum": 1 },
+        "throttle": { "type": "integer", "description": "Throttle limit per second" },
+        "lockTimeout": { "type": "integer", "description": "Lock acquisition timeout (seconds)" }
+      }
+    },
+    "errorHandling": {
+      "type": "object",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["fail-fast", "continue", "retry", "compensate"] },
+        "maxErrors": { "type": "integer" },
+        "errorState": { "type": "string" },
+        "onErrorAction": { "type": "string" }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "string", "enum": ["debug", "info", "warn", "error"] },
+        "includePayload": { "type": "boolean", "default": false },
+        "includeState": { "type": "boolean", "default": false },
+        "destination": { "type": "string", "enum": ["console", "file", "database", "external"] }
+      }
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "parallelExecution": { "type": "boolean", "default": false },
+        "aiAssisted": { "type": "boolean", "default": false },
+        "autoRecovery": { "type": "boolean", "default": false },
+        "versioning": { "type": "boolean", "default": true },
+        "dryRun": { "type": "boolean", "default": false },
+        "featureFlags": { "type": "object" }
+      }
+    }
+  }
+}

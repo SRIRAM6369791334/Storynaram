@@ -1,0 +1,30 @@
+{
+  "template": "Technology",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "technology",
+  "description": "Reusable technology domain template. Defines any technological system, device, or innovation.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Technology-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["mechanical", "electrical", "chemical", "biological", "industrial", "military", "communication", "transportation", "energy", "computing", "medical", "agricultural", "other"] },
+        "era": { "type": "string" },
+        "tier": { "type": "integer", "minimum": 0, "description": "Technological advancement level" },
+        "inventor": { "type": "string" },
+        "inventionDate": { "type": "string" },
+        "principles": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "string" } },
+        "applications": { "type": "array", "items": { "type": "string" } },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "resourceCost": { "type": "string" },
+        "prevalence": { "type": "string", "enum": ["widespread", "common", "uncommon", "rare", "experimental", "lost"] },
+        "relatedTechnologies": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "template": "Culture",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseValidation", "BaseAI", "BaseSearch", "BaseExtension"],
+  "entityType": "culture",
+  "description": "Reusable culture domain template. Defines a society, people, or cultural group.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Culture-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["tribal", "feudal", "urban", "nomadic", "seafaring", "mountain", "desert", "forest", "underground", "academic", "martial", "trade", "other"] },
+        "values": { "type": "array", "items": { "type": "string" } },
+        "customs": { "type": "array", "items": { "type": "string" } },
+        "traditions": { "type": "array", "items": { "type": "string" } },
+        "cuisine": { "type": "array", "items": { "type": "string" } },
+        "clothing": { "type": "string" },
+        "architecture": { "type": "string" },
+        "art": { "type": "string" },
+        "music": { "type": "string" },
+        "socialStructure": { "type": "string" },
+        "genderRoles": { "type": "string" },
+        "ritesOfPassage": { "type": "array", "items": { "type": "string" } },
+        "language": { "type": "string" },
+        "religion": { "type": "string" },
+        "taboos": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

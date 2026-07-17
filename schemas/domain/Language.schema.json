@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Language.schema.json",
+  "title": "Language",
+  "description": "Language domain schema — inherits BaseEntity via allOf, adds language-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Language-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["constructed", "natural", "ancient", "dead", "trade", "ritual", "sign"] },
+        "script": { "type": "string" },
+        "alphabet": { "type": "string" },
+        "phonology": { "type": "string" },
+        "grammar": { "type": "string" },
+        "vocabulary": { "type": "string" },
+        "dialects": { "type": "array", "items": { "type": "string" } },
+        "speakers": { "type": "string" },
+        "origin": { "type": "string" },
+        "relatedLanguages": { "type": "array", "items": { "type": "string" } },
+        "commonPhrases": { "type": "array", "items": { "type": "object", "properties": { "phrase": { "type": "string" }, "translation": { "type": "string" } } } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

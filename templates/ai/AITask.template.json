@@ -1,0 +1,72 @@
+{
+  "template": "AITask",
+  "version": "1.0.0",
+  "description": "AI task definition — type, input/output specifications, model requirements, timeout, retry policy, and task metadata",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique task identifier"
+    },
+    "type": {
+      "type": "string",
+      "description": "Task type classification",
+      "enum": ["generation", "analysis", "classification", "extraction", "transformation", "validation", "search", "summarization", "reasoning", "embedding"]
+    },
+    "input": {
+      "type": "object",
+      "description": "Task input specifications",
+      "properties": {
+        "format": { "type": "string", "enum": ["text", "json", "markdown", "structured", "binary"] },
+        "schema": { "type": "object" },
+        "maxInputTokens": { "type": "integer" },
+        "source": { "type": "string" }
+      }
+    },
+    "output": {
+      "type": "object",
+      "description": "Task output specifications",
+      "properties": {
+        "format": { "type": "string", "enum": ["text", "json", "markdown", "structured", "binary"] },
+        "schema": { "type": "object" },
+        "maxOutputTokens": { "type": "integer" }
+      }
+    },
+    "model": {
+      "type": "object",
+      "description": "Model requirements and constraints",
+      "properties": {
+        "modelId": { "type": "string" },
+        "capabilities": { "type": "array", "items": { "type": "string" } },
+        "minTokens": { "type": "integer" },
+        "parameters": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "timeout": {
+      "type": "integer",
+      "description": "Task execution timeout in milliseconds",
+      "minimum": 1000
+    },
+    "retry": {
+      "type": "object",
+      "description": "Retry policy configuration",
+      "properties": {
+        "maxRetries": { "type": "integer", "minimum": 0 },
+        "backoffStrategy": { "type": "string", "enum": ["fixed", "exponential", "linear", "jitter"] },
+        "backoffMs": { "type": "integer" },
+        "retryableErrors": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Arbitrary task metadata",
+      "properties": {
+        "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "sessionId": { "type": "string" },
+        "workflowId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

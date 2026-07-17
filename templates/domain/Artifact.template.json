@@ -1,0 +1,31 @@
+{
+  "template": "Artifact",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "artifact",
+  "description": "Reusable artifact domain template. Defines a unique or legendary item of significance.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Artifact-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["weapon", "armor", "jewelry", "tome", "relic", "tool", "instrument", "crown", "idol", "orb", "crystal", "other"] },
+        "tier": { "type": "string", "enum": ["common", "uncommon", "rare", "epic", "legendary", "mythic", "divine"] },
+        "powers": { "type": "array", "items": { "type": "string" } },
+        "curse": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "attunement": { "type": "boolean", "default": true },
+        "originalCreator": { "type": "string" },
+        "creationDate": { "type": "string" },
+        "material": { "type": "string" },
+        "historicalSignificance": { "type": "string" },
+        "owners": { "type": "array", "items": { "type": "string" } },
+        "currentLocation": { "type": "string" },
+        "destruction": { "type": "object", "properties": { "method": { "type": "string" }, "date": { "type": "string" }, "destroyedBy": { "type": "string" } } }
+      }
+    }
+  }
+}

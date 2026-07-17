@@ -1,0 +1,24 @@
+﻿{
+  "current": "0.1.0",
+  "major": 0,
+  "minor": 1,
+  "patch": 0,
+  "build": 1,
+  "phase": "foundation",
+  "schema": "0.1.0",
+  "aiArchitecture": "0.1.0",
+  "domainModel": "0.1.0",
+  "history": [
+    {
+      "version": "0.1.0",
+      "date": "2026-07-17",
+      "phase": "foundation",
+      "description": "Initial architecture freeze"
+    }
+  ],
+  "next": {
+    "version": "0.2.0",
+    "phase": "schema-templates",
+    "description": "JSON Schema definitions and entity templates"
+  }
+}

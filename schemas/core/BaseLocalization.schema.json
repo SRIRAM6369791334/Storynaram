@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseLocalization.schema.json",
+  "title": "BaseLocalization",
+  "description": "Multi-language localization block — translated fields per locale for every localizable entity",
+  "type": "object",
+  "properties": {
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "Primary locale of this entity"
+    },
+    "localizations": {
+      "type": "array",
+      "description": "Alternative locale translations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "locale": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "summary": { "type": "string" },
+          "fields": {
+            "type": "object",
+            "description": "Key-value pairs of localized field values",
+            "additionalProperties": { "type": "string" }
+          },
+          "translator": { "type": "string" },
+          "translatedAt": { "type": "string", "format": "date-time" },
+          "machineTranslated": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "autoTranslate": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to auto-generate machine translations for missing locales"
+    },
+    "fallbackLocale": {
+      "type": "string",
+      "description": "Locale to use when a translation is unavailable"
+    }
+  }
+}

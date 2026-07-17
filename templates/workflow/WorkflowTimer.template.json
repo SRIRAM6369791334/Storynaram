@@ -1,0 +1,38 @@
+{
+  "template": "WorkflowTimer",
+  "version": "1.0.0",
+  "description": "Timer definitions — delay, interval, cron, and timeout timers with repeat control and fire/expire actions",
+  "type": "object",
+  "properties": {
+    "timers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["delay", "interval", "cron", "timeout"]
+          },
+          "duration": { "type": "integer", "description": "Duration in seconds" },
+          "repeat": { "type": "boolean", "default": false },
+          "maxFires": { "type": "integer" },
+          "onFire": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string" },
+              "params": { "type": "object" }
+            }
+          },
+          "onExpire": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string" },
+              "params": { "type": "object" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

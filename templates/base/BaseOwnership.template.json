@@ -1,0 +1,62 @@
+{
+  "template": "BaseOwnership",
+  "version": "1.0.0",
+  "description": "Ownership and container tracking — who owns this entity and what it belongs to",
+  "type": "object",
+  "required": ["ownerType", "ownerId"],
+  "properties": {
+    "ownerType": {
+      "type": "string",
+      "description": "Type of the owning entity"
+    },
+    "ownerId": {
+      "type": "string",
+      "pattern": "^[a-z]+_[0-9]{6,}$",
+      "description": "ID of the owning entity"
+    },
+    "containerType": {
+      "type": "string",
+      "description": "Type of the containing entity (if different from owner)"
+    },
+    "containerId": {
+      "type": "string",
+      "pattern": "^[a-z]+_[0-9]{6,}$",
+      "description": "ID of the container entity"
+    },
+    "ownershipType": {
+      "type": "string",
+      "enum": ["exclusive", "shared", "temporary", "inherited", "referential"],
+      "description": "Nature of ownership"
+    },
+    "ownerHistory": {
+      "type": "array",
+      "description": "Historical record of ownership transfers",
+      "items": {
+        "type": "object",
+        "properties": {
+          "previousOwnerType": { "type": "string" },
+          "previousOwnerId": { "type": "string" },
+          "newOwnerType": { "type": "string" },
+          "newOwnerId": { "type": "string" },
+          "transferredAt": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permission overrides tied to ownership",
+      "properties": {
+        "ownerCanEdit": { "type": "boolean", "default": true },
+        "ownerCanDelete": { "type": "boolean", "default": true },
+        "containerCanEdit": { "type": "boolean", "default": false },
+        "containerCanDelete": { "type": "boolean", "default": false }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": true,
+    "overrideable": ["containerType", "containerId", "ownerHistory", "permissions", "ownershipType"],
+    "final": ["ownerType", "ownerId"]
+  }
+}

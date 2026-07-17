@@ -1,0 +1,31 @@
+{
+  "template": "Vehicle",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "vehicle",
+  "description": "Reusable vehicle domain template. Defines any mode of transportation.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Vehicle-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["ship", "boat", "carriage", "wagon", "airship", "flying", "submersible", "land", "space", "magical", "other"] },
+        "worldId": { "type": "string" },
+        "owner": { "type": "string" },
+        "crew": { "type": "array", "items": { "type": "string" } },
+        "capacity": { "type": "integer", "minimum": 0 },
+        "speed": { "type": "string" },
+        "weapons": { "type": "array", "items": { "type": "string" } },
+        "defenses": { "type": "array", "items": { "type": "string" } },
+        "propulsion": { "type": "string" },
+        "size": { "type": "string" },
+        "material": { "type": "string" },
+        "condition": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "history": { "type": "string" }
+      }
+    }
+  }
+}

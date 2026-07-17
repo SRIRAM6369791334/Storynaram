@@ -1,0 +1,80 @@
+{
+  "template": "WorkflowReview",
+  "version": "1.0.0",
+  "description": "Review process definition — peer, editorial, technical, and AI review workflows with scoring, criteria, and decisions",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["peer", "editorial", "technical", "ai"]
+    },
+    "reviewers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "assignedAt": { "type": "string", "format": "date-time" },
+          "completedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "weight": { "type": "number" },
+          "required": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "reviewerId": { "type": "string" },
+          "text": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "resolved": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "reviewerId": { "type": "string" },
+          "decision": { "type": "string", "enum": ["approved", "changes-requested", "rejected", "abstained"] },
+          "score": { "type": "number" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "scale": { "type": "object", "properties": { "min": { "type": "integer" }, "max": { "type": "integer" } } },
+        "passThreshold": { "type": "number" },
+        "aggregateMethod": { "type": "string", "enum": ["average", "weighted", "median", "lowest", "highest"] }
+      }
+    },
+    "deadline": {
+      "type": "object",
+      "properties": {
+        "duration": { "type": "integer", "description": "Duration in seconds" },
+        "reminderInterval": { "type": "integer", "description": "Reminder interval in seconds" },
+        "actionOnExpiry": { "type": "string", "enum": ["auto-approve", "escalate", "fail", "notify"] }
+      }
+    }
+  }
+}

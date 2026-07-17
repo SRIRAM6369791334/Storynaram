@@ -1,0 +1,44 @@
+{
+  "template": "WorkflowTransition",
+  "version": "1.0.0",
+  "description": "Transition definition block — defines valid state transitions with triggers, guards, and actions",
+  "type": "object",
+  "properties": {
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["manual", "automatic", "ai-driven", "time-based", "event-based", "rule-based"]
+          },
+          "label": { "type": "string" },
+          "guard": { "type": "string", "description": "Condition that must evaluate to true" },
+          "action": { "type": "string", "description": "Action invoked on transition" },
+          "trigger": { "type": "string" },
+          "condition": { "type": "string" },
+          "autoTransition": { "type": "boolean", "default": false },
+          "autoTransitionDelay": { "type": "integer", "description": "Delay before auto-transition (seconds)" }
+        }
+      }
+    },
+    "transitionHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "trigger": { "type": "string" },
+          "actor": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

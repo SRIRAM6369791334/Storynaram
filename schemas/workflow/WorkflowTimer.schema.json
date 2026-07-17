@@ -1,0 +1,35 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowTimer.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "TimerAction": {
+      type: "object",
+      properties: {
+        action: { type: "string" },
+        params: { type: "object", additionalProperties: true }
+      },
+      unevaluatedProperties: false
+    },
+    "TimerDefinition": {
+      type: "object",
+      properties: {
+        id: { type: "string" },
+        type: { type: "string", enum: ["delay", "interval", "cron", "timeout"] },
+        duration: { type: "integer", description: "Duration in seconds" },
+        repeat: { type: "boolean", default: false },
+        maxFires: { type: "integer" },
+        onFire: { "$ref": "#/$defs/TimerAction" },
+        onExpire: { "$ref": "#/$defs/TimerAction" }
+      },
+      unevaluatedProperties: false
+    }
+  },
+  "properties": {
+    "timers": {
+      type: "array",
+      items: { "$ref": "#/$defs/TimerDefinition" }
+    }
+  }
+}

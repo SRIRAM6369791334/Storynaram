@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseStatus.schema.json",
+  "title": "BaseStatus",
+  "description": "Lifecycle state machine — defines valid statuses, transitions, and state metadata",
+  "type": "object",
+  "required": ["status", "state"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "published", "archived", "deprecated", "deleted"],
+      "description": "Current lifecycle status"
+    },
+    "state": {
+      "type": "string",
+      "description": "Operational state of the entity (e.g. active, archived, locked, pending)"
+    },
+    "previousStatus": {
+      "type": "string",
+      "description": "Status immediately before the current one (for rollback support)"
+    },
+    "statusHistory": {
+      "type": "array",
+      "description": "Full status transition log",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "by": { "type": "string" },
+          "at": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "statusFlags": {
+      "type": "array",
+      "description": "Zero or more boolean flags decorating the current status",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

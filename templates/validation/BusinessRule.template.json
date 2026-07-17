@@ -1,0 +1,19 @@
+{
+  "template": "BusinessRule",
+  "version": "1.0.0",
+  "description": "Business rule — domain-specific validation logic with conditions and actions",
+  "type": "object",
+  "properties": {
+    "ruleId": { "type": "string" },
+    "name": { "type": "string" },
+    "domain": { "type": "string", "description": "Business domain this rule belongs to" },
+    "description": { "type": "string" },
+    "expression": { "type": "string", "description": "Business rule expression or DSL snippet" },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "info"] },
+    "category": { "type": "string", "enum": ["required", "format", "enum", "length", "range", "pattern", "reference", "unique", "business", "integrity", "custom"] },
+    "scope": { "type": "string", "description": "Scope (field, entity, cross-entity, workflow, ai)" },
+    "conditions": { "type": "array", "items": { "type": "object" }, "description": "Conditions under which this rule triggers" },
+    "actions": { "type": "array", "items": { "type": "object" }, "description": "Actions to take when the rule fails" },
+    "enabled": { "type": "boolean", "default": true }
+  }
+}

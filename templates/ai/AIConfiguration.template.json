@@ -1,0 +1,89 @@
+{
+  "template": "AIConfiguration",
+  "version": "1.0.0",
+  "description": "AI configuration root — model selection, default parameters, feature flags, limits, logging, and multi-model orchestration",
+  "type": "object",
+  "properties": {
+    "defaultModel": {
+      "type": "string",
+      "description": "Default model identifier for unqualified requests"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Default generation parameters",
+      "properties": {
+        "temperature": { "type": "number", "minimum": 0, "maximum": 2 },
+        "topP": { "type": "number", "minimum": 0, "maximum": 1 },
+        "topK": { "type": "integer" },
+        "maxTokens": { "type": "integer" },
+        "stopSequences": { "type": "array", "items": { "type": "string" } },
+        "frequencyPenalty": { "type": "number", "minimum": -2, "maximum": 2 },
+        "presencePenalty": { "type": "number", "minimum": -2, "maximum": 2 }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature flag configuration",
+      "properties": {
+        "streaming": { "type": "boolean" },
+        "caching": { "type": "boolean" },
+        "toolUse": { "type": "boolean" },
+        "structuredOutput": { "type": "boolean" },
+        "parallelToolCalls": { "type": "boolean" },
+        "vision": { "type": "boolean" },
+        "functionCalling": { "type": "boolean" }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "description": "Rate limits and usage thresholds",
+      "properties": {
+        "requestsPerMinute": { "type": "integer" },
+        "requestsPerHour": { "type": "integer" },
+        "tokensPerMinute": { "type": "integer" },
+        "tokensPerDay": { "type": "integer" },
+        "maxConcurrency": { "type": "integer" },
+        "maxContextWindow": { "type": "integer" },
+        "maxOutputTokens": { "type": "integer" }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "description": "Logging and tracing configuration",
+      "properties": {
+        "level": { "type": "string", "enum": ["debug", "info", "warn", "error", "none"] },
+        "logPrompts": { "type": "boolean" },
+        "logResponses": { "type": "boolean" },
+        "logTokenUsage": { "type": "boolean" },
+        "logLatency": { "type": "boolean" },
+        "destination": { "type": "string" }
+      }
+    },
+    "models": {
+      "type": "array",
+      "description": "Multi-model configuration definitions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "modelId": { "type": "string" },
+          "provider": { "type": "string" },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "parameters": { "type": "object" },
+          "costPerToken": { "type": "number" },
+          "priority": { "type": "integer" }
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "description": "Runtime environment configuration",
+      "properties": {
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "cacheEnabled": { "type": "boolean" },
+        "cacheTtl": { "type": "integer" },
+        "persistenceEnabled": { "type": "boolean" },
+        "healthCheckInterval": { "type": "integer" }
+      }
+    }
+  }
+}

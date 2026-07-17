@@ -1,0 +1,70 @@
+{
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowAudit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "ChangeRecord": {
+      type: "object",
+      properties: {
+        field: { type: "string" },
+        oldValue: { type: {} },
+        newValue: { type: {} }
+      },
+      unevaluatedProperties: false
+    },
+    "AuditEvent": {
+      type: "object",
+      properties: {
+        id: { type: "string" },
+        action: { type: "string" },
+        actor: { type: "string" },
+        timestamp: { type: "string", format: "date-time" },
+        details: { type: "object", additionalProperties: true },
+        changes: {
+          type: "array",
+          items: { "$ref": "#/$defs/ChangeRecord" }
+        }
+      },
+      unevaluatedProperties: false
+    },
+    "RetentionConfig": {
+      type: "object",
+      properties: {
+        duration: { type: "integer", description: "Retention duration in seconds" },
+        archiveAfter: { type: "integer", description: "Archive after duration in seconds" },
+        storage: { type: "string", enum: ["database", "file", "object-store", "cold-storage"] }
+      },
+      unevaluatedProperties: false
+    },
+    "ExportConfig": {
+      type: "object",
+      properties: {
+        enabled: { type: "boolean", default: false },
+        format: { type: "string", enum: ["json", "csv", "parquet"] },
+        schedule: { type: "string" },
+        destination: { type: "string" }
+      },
+      unevaluatedProperties: false
+    },
+    "IntegrityConfig": {
+      type: "object",
+      properties: {
+        hashAlgorithm: { type: "string", default: "sha256" },
+        signingEnabled: { type: "boolean", default: false },
+        verifyOnRead: { type: "boolean", default: true }
+      },
+      unevaluatedProperties: false
+    }
+  },
+  "properties": {
+    "enabled": { type: "boolean", default: true },
+    "events": {
+      type: "array",
+      items: { "$ref": "#/$defs/AuditEvent" }
+    },
+    "retention": { "$ref": "#/$defs/RetentionConfig" },
+    "export": { "$ref": "#/$defs/ExportConfig" },
+    "integrity": { "$ref": "#/$defs/IntegrityConfig" }
+  }
+}

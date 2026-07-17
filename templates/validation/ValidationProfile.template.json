@@ -1,0 +1,20 @@
+{
+  "template": "ValidationProfile",
+  "version": "1.0.0",
+  "description": "Validation profile — groups validation rules for one or more entity types with a configurable mode, overrides, and priority",
+  "type": "object",
+  "properties": {
+    "profileId": { "type": "string" },
+    "name": { "type": "string" },
+    "entityTypes": { "type": "array", "items": { "type": "string" }, "description": "Entity types this profile applies to" },
+    "rules": { "type": "array", "items": { "type": "string", "description": "Reference to a ValidationRule template ID" } },
+    "mode": {
+      "type": "string",
+      "enum": ["strict", "lenient", "custom"],
+      "default": "strict"
+    },
+    "overrides": { "type": "object", "description": "Per-rule severity or param overrides keyed by ruleId" },
+    "enabled": { "type": "boolean", "default": true },
+    "priority": { "type": "integer", "description": "Execution priority (lower = higher priority)" }
+  }
+}

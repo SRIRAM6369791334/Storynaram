@@ -1,0 +1,28 @@
+{
+  "template": "Ability",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseValidation", "BaseAI", "BaseSearch", "BaseExtension"],
+  "entityType": "ability",
+  "description": "Reusable ability domain template. Defines any skill, talent, power, or capability.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Ability-specific fields",
+      "properties": {
+        "type": { "type": "string", "enum": ["skill", "talent", "power", "technique", "knowledge", "innate", "learned", "supernatural"] },
+        "category": { "type": "string" },
+        "source": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "progression": { "type": "string" },
+        "maxLevel": { "type": "integer", "minimum": 1 },
+        "cooldown": { "type": "string" },
+        "cost": { "type": "string" },
+        "effects": { "type": "array", "items": { "type": "string" } },
+        "restrictions": { "type": "array", "items": { "type": "string" } },
+        "learnedBy": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

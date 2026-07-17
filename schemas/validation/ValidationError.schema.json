@@ -1,0 +1,32 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationError.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "errorId": { "type": "string" },
+    "ruleId": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "required", "format", "enum", "length", "range",
+        "pattern", "reference", "unique", "business",
+        "integrity", "custom"
+      ]
+    },
+    "field": { "type": "string" },
+    "value": {},
+    "expected": {},
+    "message": { "type": "string" },
+    "errorCode": { "type": "string" },
+    "recovery": {
+      "type": "string",
+      "enum": ["auto-fix", "manual-fix", "skip", "abort", "flag"]
+    },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}

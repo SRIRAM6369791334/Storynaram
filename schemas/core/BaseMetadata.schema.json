@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseMetadata.schema.json",
+  "title": "BaseMetadata",
+  "description": "Descriptive metadata schema — title, description, summary, keywords, language, author, priority, version",
+  "type": "object",
+  "required": ["title", "language"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "description": { "type": "string", "maxLength": 4096 },
+    "summary": { "type": "string", "maxLength": 512 },
+    "keywords": { "type": "array", "items": { "type": "string", "maxLength": 64 } },
+    "language": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
+    "author": { "type": "string" },
+    "status": { "type": "string" },
+    "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

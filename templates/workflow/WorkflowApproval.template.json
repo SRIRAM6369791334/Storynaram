@@ -1,0 +1,93 @@
+{
+  "template": "WorkflowApproval",
+  "version": "1.0.0",
+  "description": "Approval chain definition — single, multi-stage, parallel, sequential, AI, human, and hybrid approval workflows with escalation and voting",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["single", "multi-stage", "parallel", "sequential", "ai", "human", "hybrid"]
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "order": { "type": "integer" },
+          "approvers": { "type": "array", "items": { "type": "string" } },
+          "requiredCount": { "type": "integer" },
+          "deadline": { "type": "string", "format": "date-time" },
+          "escalation": { "$ref": "#/properties/escalation" }
+        }
+      }
+    },
+    "approvers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "type": { "type": "string", "enum": ["user", "group", "ai", "role"] }
+        }
+      }
+    },
+    "deadline": {
+      "type": "object",
+      "properties": {
+        "duration": { "type": "integer", "description": "Duration in seconds" },
+        "action": { "type": "string", "enum": ["escalate", "auto-approve", "auto-reject", "notify"] }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "escalationLevels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "level": { "type": "integer" },
+              "afterDuration": { "type": "integer" },
+              "assignTo": { "type": "string" },
+              "notification": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "voting": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["unanimous", "majority", "super-majority", "any", "weighted"] },
+        "threshold": { "type": "number", "description": "Fraction required (0.0-1.0)" },
+        "weights": { "type": "object", "description": "Map of approver to vote weight" }
+      }
+    },
+    "autoApprove": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": { "type": "string" },
+              "operator": { "type": "string", "enum": ["equals", "not-equals", "less-than", "greater-than", "in", "matches"] },
+              "value": {}
+            }
+          }
+        }
+      }
+    },
+    "result": {
+      "type": "string",
+      "enum": ["approved", "rejected", "pending", "escalated", "expired"]
+    }
+  }
+}

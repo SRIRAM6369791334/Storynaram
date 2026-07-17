@@ -1,0 +1,40 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/BusinessRule.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "ruleId": { "type": "string" },
+    "name": { "type": "string" },
+    "domain": { "type": "string" },
+    "description": { "type": "string" },
+    "expression": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    },
+    "category": {
+      "type": "string",
+      "enum": ["required", "format", "enum", "length", "range", "pattern", "reference", "unique", "business", "integrity", "custom"]
+    },
+    "scope": { "type": "string" },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

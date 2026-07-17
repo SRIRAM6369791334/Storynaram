@@ -1,0 +1,21 @@
+{
+  "registry": "inheritance-registry",
+  "version": "1.0.0",
+  "description": "Complete inheritance tree — maps every template to its ancestors and descendants",
+  "tree": {
+    "BaseEntity": {
+      "parents": [],
+      "children": [],
+      "depth": 0,
+      "inheritsFrom": null
+    }
+  },
+  "flattenedInheritance": {},
+  "inheritanceChains": {},
+  "statistics": {
+    "totalTemplates": 0,
+    "maxDepth": 0,
+    "abstractTemplates": 0,
+    "concreteTemplates": 0
+  }
+}

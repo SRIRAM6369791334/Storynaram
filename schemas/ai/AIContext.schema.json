@@ -1,0 +1,86 @@
+{
+  "$id": "https://storynaram.dev/schemas/ai/AIContext.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIContext",
+  "description": "Aggregated context bundle passed to the AI for story-aware generation.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "entityContext": {
+      "type": "object",
+      "properties": {
+        "entityId": { "type": "string" },
+        "entityType": { "type": "string" },
+        "templateVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+      },
+      "unevaluatedProperties": false
+    },
+    "storyContext": {
+      "type": "object",
+      "properties": {
+        "bookId": { "type": "string" },
+        "chapterId": { "type": "string" },
+        "sceneId": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    },
+    "worldContext": {
+      "type": "object",
+      "properties": {
+        "worldId": { "type": "string" },
+        "timelinePosition": { "type": "string" },
+        "activeRules": { "type": "array", "items": { "type": "string" } }
+      },
+      "unevaluatedProperties": false
+    },
+    "timelineContext": {
+      "type": "object",
+      "properties": {
+        "currentDate": { "type": "string" },
+        "relevantEvents": { "type": "array", "items": { "type": "string" } },
+        "era": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    },
+    "sceneContext": {
+      "type": "object",
+      "properties": {
+        "activeCharacters": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "string" },
+        "mood": { "type": "string" },
+        "conflict": { "type": "string" }
+      },
+      "unevaluatedProperties": false
+    },
+    "conversationContext": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "content": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "unevaluatedProperties": false
+      }
+    },
+    "memoryContext": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sessionContext": {
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "userId": { "type": "string" },
+        "modelId": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" }
+      },
+      "unevaluatedProperties": false
+    },
+    "pluginContext": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

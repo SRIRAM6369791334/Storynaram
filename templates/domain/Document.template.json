@@ -1,0 +1,29 @@
+{
+  "template": "Document",
+  "version": "1.0.0",
+  "extends": "BaseEntity",
+  "inherits": ["BaseIdentifier", "BaseMetadata", "BaseAudit", "BaseVersion", "BaseStatus", "BaseOwnership", "BaseReference", "BaseRelationship", "BaseTag", "BaseVisibility", "BaseLocalization", "BaseAttachment", "BaseValidation", "BaseAI", "BaseSearch", "BaseHistory", "BaseExtension"],
+  "entityType": "document",
+  "description": "Reusable document domain template. Defines any written work, note, or record.",
+  "required": ["identifier", "metadata", "audit"],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Document-specific fields",
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["note", "letter", "journal", "scroll", "tome", "map", "treaty", "law", "prophecy", "research", "manuscript", "report", "contract", "other"] },
+        "author": { "type": "string" },
+        "dateWritten": { "type": "string" },
+        "language": { "type": "string" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "format": { "type": "string", "enum": ["physical", "digital", "magical", "oral"] },
+        "condition": { "type": "string" },
+        "location": { "type": "string" },
+        "owner": { "type": "string" },
+        "accessibility": { "type": "string", "enum": ["public", "restricted", "secret", "lost"] }
+      }
+    }
+  }
+}

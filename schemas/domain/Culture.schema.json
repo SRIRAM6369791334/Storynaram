@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Culture.schema.json",
+  "title": "Culture",
+  "description": "Culture domain schema — inherits BaseEntity via allOf, adds culture-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Culture-specific fields",
+      "properties": {
+        "worldId": { "type": "string" },
+        "type": { "type": "string", "enum": ["tribal", "feudal", "urban", "nomadic", "seafaring", "mountain", "desert", "forest", "underground", "academic", "martial", "trade", "other"] },
+        "values": { "type": "array", "items": { "type": "string" } },
+        "customs": { "type": "array", "items": { "type": "string" } },
+        "traditions": { "type": "array", "items": { "type": "string" } },
+        "cuisine": { "type": "array", "items": { "type": "string" } },
+        "clothing": { "type": "string" },
+        "architecture": { "type": "string" },
+        "art": { "type": "string" },
+        "music": { "type": "string" },
+        "socialStructure": { "type": "string" },
+        "genderRoles": { "type": "string" },
+        "ritesOfPassage": { "type": "array", "items": { "type": "string" } },
+        "language": { "type": "string" },
+        "religion": { "type": "string" },
+        "taboos": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

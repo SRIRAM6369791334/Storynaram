@@ -1,0 +1,5 @@
+{
+  "registryName": "Runtime Schema Registry",
+  "version": "1.0.0",
+  "description": "Active runtime schema bindings"
+}

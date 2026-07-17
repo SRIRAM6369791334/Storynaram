@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/core/BaseWorkflow.schema.json",
+  "title": "BaseWorkflow",
+  "description": "Workflow configuration block — state machines, approval workflows, automation rules, and pipeline stages",
+  "type": "object",
+  "properties": {
+    "workflows": {
+      "type": "array",
+      "description": "Workflow definitions for this entity",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "stages": {
+            "type": "array",
+            "description": "Ordered stages in this workflow",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "label": { "type": "string" },
+                "assignee": { "type": "string", "description": "User/role assigned" },
+                "actions": { "type": "array", "items": { "type": "string" } },
+                "timeout": { "type": "integer", "description": "Stage timeout in hours" }
+              }
+            }
+          },
+          "triggers": {
+            "type": "array",
+            "description": "Automation triggers",
+            "items": {
+              "type": "object",
+              "properties": {
+                "on": { "type": "string", "description": "Trigger event" },
+                "action": { "type": "string" },
+                "condition": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "description": "Active task/assignment records",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string" },
+          "assignedTo": { "type": "string" },
+          "stage": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "in-progress", "completed", "blocked"] },
+          "dueDate": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "description": "Automation and event-driven action configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "event": { "type": "string" },
+              "condition": { "type": "string" },
+              "actions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "template": "CompatibilityValidation",
+  "version": "1.0.0",
+  "description": "Compatibility validation — assesses forward and backward compatibility between versions with breaking change analysis and migration recommendations",
+  "type": "object",
+  "properties": {
+    "sourceVersion": { "type": "string" },
+    "targetVersion": { "type": "string" },
+    "forwardCompatible": { "type": "boolean" },
+    "backwardCompatible": { "type": "boolean" },
+    "breakingChanges": { "type": "array", "items": { "type": "object" }, "description": "Identified breaking changes between versions" },
+    "migrationRequired": { "type": "boolean" },
+    "recommendedAction": { "type": "string", "description": "Recommended action: upgrade, downgrade, defer, or manual review" }
+  }
+}

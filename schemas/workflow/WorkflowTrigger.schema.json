@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/workflow/WorkflowTrigger.schema.json",
+  "title": "WorkflowTrigger",
+  "description": "Trigger definitions for a workflow",
+  "type": "object",
+  "$defs": {
+    "TriggerDefinition": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["manual", "automatic", "ai-driven", "time-based", "event-based", "rule-based"]
+        },
+        "source": { "type": "string" },
+        "condition": { "type": "string" },
+        "event": { "type": "string" },
+        "cron": { "type": "string" },
+        "delay": { "type": "integer" },
+        "cooldown": { "type": "integer" },
+        "maxFires": { "type": "integer" }
+      }
+    }
+  },
+  "properties": {
+    "triggers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/TriggerDefinition" }
+    }
+  },
+  "unevaluatedProperties": false
+}

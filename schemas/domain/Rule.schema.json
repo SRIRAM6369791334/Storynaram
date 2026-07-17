@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Rule.schema.json",
+  "title": "Rule",
+  "description": "Rule domain schema — inherits BaseEntity via allOf, adds rule-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Rule-specific fields",
+      "required": ["type", "scope"],
+      "properties": {
+        "type": { "type": "string", "enum": ["physics", "magic", "society", "legal", "natural", "divine", "meta", "gameplay", "narrative", "other"] },
+        "scope": { "type": "string", "enum": ["universal", "world", "region", "domain", "entity", "temporal"] },
+        "worldId": { "type": "string" },
+        "statement": { "type": "string" },
+        "rationale": { "type": "string" },
+        "exceptions": { "type": "array", "items": { "type": "string" } },
+        "consequences": { "type": "string" },
+        "enforcement": { "type": "string" },
+        "severity": { "type": "string", "enum": ["absolute", "strong", "moderate", "flexible", "suggestion"] },
+        "conflictingRules": { "type": "array", "items": { "type": "string" } },
+        "relatedRules": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

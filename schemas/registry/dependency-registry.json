@@ -1,0 +1,10 @@
+{
+  "registryName": "Dependency Registry",
+  "version": "1.0.0",
+  "dependencies": [
+    { "from": "core/BaseEntity", "to": ["core/BaseIdentifier", "core/BaseMetadata", "core/BaseAudit"], "type": "allOf" },
+    { "from": "core/BaseExtension", "to": ["core/BaseValidation"], "type": "$ref" },
+    { "from": "domain/*", "to": ["core/BaseEntity"], "type": "allOf" },
+    { "from": "workflow/Workflow", "to": ["workflow/WorkflowState", "workflow/WorkflowTransition", "workflow/WorkflowTrigger", "workflow/WorkflowCondition", "workflow/WorkflowAction", "workflow/WorkflowApproval", "workflow/WorkflowReview", "workflow/WorkflowAssignment", "workflow/WorkflowNotification", "workflow/WorkflowEvent", "workflow/WorkflowCheckpoint", "workflow/WorkflowRollback", "workflow/WorkflowRetry", "workflow/WorkflowSchedule", "workflow/WorkflowTimer", "workflow/WorkflowQueue", "workflow/WorkflowAudit", "workflow/WorkflowMetrics", "workflow/WorkflowConfiguration"], "type": "$ref" }
+  ]
+}

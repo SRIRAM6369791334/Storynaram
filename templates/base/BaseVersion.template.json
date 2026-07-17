@@ -1,0 +1,51 @@
+{
+  "template": "BaseVersion",
+  "version": "1.0.0",
+  "description": "System versioning and document lifecycle tracking block",
+  "type": "object",
+  "required": ["schemaVersion", "templateVersion", "entityVersion"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version of the JSON schema this document conforms to"
+    },
+    "templateVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version of the base template used"
+    },
+    "entityVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this specific entity document"
+    },
+    "changelog": {
+      "type": "array",
+      "description": "Per-version change descriptions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string", "format": "date-time" },
+          "author": { "type": "string" },
+          "changes": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "description": "Compatibility ranges for dependent systems",
+      "properties": {
+        "minSchemaVersion": { "type": "string" },
+        "maxSchemaVersion": { "type": "string" },
+        "minEngineVersion": { "type": "string" }
+      }
+    }
+  },
+  "inheritanceRules": {
+    "extensible": false,
+    "overrideable": ["changelog", "compatibility"],
+    "final": ["schemaVersion", "templateVersion", "entityVersion"]
+  }
+}

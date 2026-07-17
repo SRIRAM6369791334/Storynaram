@@ -1,0 +1,30 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationConstraint.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "properties": {
+    "constraintId": { "type": "string" },
+    "name": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["required", "unique", "immutable", "conditional", "temporal", "crossField"]
+    },
+    "scope": { "type": "string", "description": "Scope of constraint" },
+    "field": { "type": "string" },
+    "fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "condition": { "type": "string" },
+    "params": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "message": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://storynaram.dev/schemas/domain/Item.schema.json",
+  "title": "Item",
+  "description": "Item domain schema — inherits BaseEntity via allOf, adds item-specific fields under entity block",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/BaseEntity.schema.json" }],
+  "properties": {
+    "entity": {
+      "type": "object",
+      "description": "Item-specific fields",
+      "required": ["category"],
+      "properties": {
+        "category": { "type": "string", "enum": ["weapon", "armor", "artifact", "tool", "consumable", "clothing", "jewelry", "book", "key", "food", "material", "currency", "miscellaneous"] },
+        "subcategory": { "type": "string" },
+        "material": { "type": "string" },
+        "weight": { "type": "string" },
+        "dimensions": { "type": "string" },
+        "value": { "type": "object", "properties": { "currency": { "type": "string" }, "amount": { "type": "number", "minimum": 0 } } },
+        "condition": { "type": "string" },
+        "durability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "magical": { "type": "boolean", "default": false },
+        "magicalProperties": { "type": "array", "items": { "type": "string" } },
+        "owner": { "type": "string" },
+        "location": { "type": "string" },
+        "history": { "type": "string" },
+        "crafting": { "type": "object", "properties": { "creator": { "type": "string" }, "materials": { "type": "array", "items": { "type": "string" } }, "date": { "type": "string" } } }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

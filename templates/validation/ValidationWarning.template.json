@@ -1,0 +1,19 @@
+{
+  "template": "ValidationWarning",
+  "version": "1.0.0",
+  "description": "Validation warning — non-blocking alert with suggestion for remediation",
+  "type": "object",
+  "properties": {
+    "warningId": { "type": "string" },
+    "ruleId": { "type": "string", "description": "Reference to the rule that produced this warning" },
+    "severity": { "type": "string", "enum": ["low", "info"] },
+    "category": { "type": "string", "enum": ["required", "format", "enum", "length", "range", "pattern", "reference", "unique", "business", "integrity", "custom"] },
+    "field": { "type": "string", "description": "JSON path to the validated field" },
+    "value": { "type": "any", "description": "Actual value" },
+    "expected": { "type": "any", "description": "Expected value or condition" },
+    "message": { "type": "string" },
+    "code": { "type": "string" },
+    "suggestion": { "type": "string", "description": "Recommended remediation" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}

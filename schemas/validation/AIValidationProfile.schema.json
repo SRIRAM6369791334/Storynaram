@@ -1,0 +1,48 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/AIValidationProfile.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "AIChecks": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "hallucination": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "canonCompliance": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "factualAccuracy": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "formatAdherence": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "constraintSatisfaction": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "properties": {
+    "profileId": { "type": "string" },
+    "name": { "type": "string" },
+    "modelId": { "type": "string" },
+    "checks": { "$ref": "#/$defs/AIChecks" },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$id": "https://storynaram.dev/schemas/validation/ValidationResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "$defs": {
+    "Summary": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "totalRules": { "type": "integer" },
+        "passed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "warnings": { "type": "integer" },
+        "score": { "type": "number" },
+        "duration": { "type": "number" }
+      }
+    }
+  },
+  "properties": {
+    "resultId": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "profileId": { "type": "string" },
+    "entityId": { "type": "string" },
+    "entityType": { "type": "string" },
+    "passed": { "type": "boolean" },
+    "score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "ruleCount": { "type": "integer" },
+    "passedCount": { "type": "integer" },
+    "failedCount": { "type": "integer" },
+    "warningCount": { "type": "integer" },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "References to ValidationError"
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "References to ValidationWarning"
+    },
+    "summary": { "$ref": "#/$defs/Summary" }
+  }
+}
