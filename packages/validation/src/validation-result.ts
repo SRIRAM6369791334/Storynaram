@@ -1,18 +1,18 @@
-import { ValidationSeverity } from './validation-severity';
-import { EntityId } from '@storynaram/core';
+import type { ValidationSeverity } from './validation-severity';
+import type { EntityId } from '@storynaram/core';
 
-export type ValidationIssue = {
+export interface ValidationIssue {
   path: string;
   message: string;
   severity: ValidationSeverity;
   code?: string;
-};
+}
 
-export type ValidationResult = {
+export interface ValidationResult {
   resultId: string;
   entityId: EntityId;
   passed: boolean;
   score: number;
   issues: ValidationIssue[];
   timestamp: Date;
-};
+}
