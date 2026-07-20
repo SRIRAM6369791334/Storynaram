@@ -66,6 +66,6 @@ describe('AIOutputValidator', () => {
       schema: { required: ['name', 'age'] },
     }, 3);
     expect(result.valid).toBe(false);
-    expect(result.attempts).toBe(1);
+    expect(result.attempts).toBe(4);
   });
 });

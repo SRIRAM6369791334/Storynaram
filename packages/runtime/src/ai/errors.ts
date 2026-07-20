@@ -1,6 +1,8 @@
-export class AIRuntimeError extends Error {
-  constructor(message: string, public readonly code?: string) {
-    super(message);
+import { EntityRuntimeError } from '../errors';
+
+export class AIRuntimeError extends EntityRuntimeError {
+  constructor(message: string, code?: string) {
+    super(message, code);
     this.name = 'AIRuntimeError';
   }
 }

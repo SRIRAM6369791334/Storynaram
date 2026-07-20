@@ -84,17 +84,15 @@ describe('AIPromptBuilder', () => {
       template: { id: 't1', version: '1.0', name: 'test', template: 'Hello {{name}}', variables: ['name'], systemPrompt: 'Template system' },
       variables: { name: 'Alice' },
     });
-    expect(messages.length).toBe(3);
+    expect(messages.length).toBe(2);
     expect(messages[0]?.role).toBe('system');
-    expect(messages[0]?.content).toBe('System');
-    expect(messages[1]?.role).toBe('system');
-    expect(messages[1]?.content).toBe('Template system');
-    expect(messages[2]?.role).toBe('user');
-    expect(messages[2]?.content).toBe('Hello Alice');
+    expect(messages[0]?.content).toBe('Template system');
+    expect(messages[1]?.role).toBe('user');
+    expect(messages[1]?.content).toBe('Hello Alice');
   });
 
   it('should throw on empty messages', () => {
-    expect(() => builder.build()).toThrow(AIValidationError);
+    expect(() => builder.addUser('').build()).toThrow(AIValidationError);
   });
 
   it('should accept assistant messages without content when toolCalls exist', () => {

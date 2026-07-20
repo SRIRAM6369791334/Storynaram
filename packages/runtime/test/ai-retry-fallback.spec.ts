@@ -111,34 +111,45 @@ describe('AIFallbackPolicy', () => {
   });
 
   it('should exhaust fallbacks and throw', async () => {
-    await expect(fallbackPolicy.executeWithFallback(
-      { model: 'unknown-model', messages: [{ role: 'user', content: 'Hi' }] },
-      { providers: ['mock'], models: ['unknown-model'] },
+    const failingProvider = new MockProvider({ failureRate: 1 });
+    const emptyRegistry = new AIProviderRegistry();
+    emptyRegistry.register(failingProvider);
+    const policy = new AIFallbackPolicy(emptyRegistry);
+    await expect(policy.executeWithFallback(
+      { model: 'mock-model', messages: [{ role: 'user', content: 'Hi' }] },
+      { providers: ['mock'], models: ['mock-model'] },
     )).rejects.toThrow(AIFallbackExhaustedError);
   });
 
   it('should call onFallback callback on switch', async () => {
-    providerRegistry.createProvider({ name: 'mock', displayName: 'Mock2' });
-    providerRegistry.register(providerRegistry.createProvider({ name: 'openai', displayName: 'OpenAI' }));
+    const registry = new AIProviderRegistry();
+    registry.register(new MockProvider({}));
+    const policy = new AIFallbackPolicy(registry);
 
     let fallbackCalled = false;
-    const result = await fallbackPolicy.executeWithFallback(
+    const result = await policy.executeWithFallback(
       { model: 'mock-model', messages: [{ role: 'user', content: 'Hi' }] },
-      { providers: ['mock'], models: ['mock-model'] },
+      { providers: ['nonexistent', 'mock'], models: ['mock-model', 'mock-model'] },
       () => { fallbackCalled = true; },
     );
     expect(result.usedProvider).toBe('mock');
+    expect(fallbackCalled).toBe(true);
   });
 
-  it('should track attempted providers', async () => {
+  it('should track attempted providers on failure', async () => {
+    const failingProvider = new MockProvider({ failureRate: 1 });
+    const emptyRegistry = new AIProviderRegistry();
+    emptyRegistry.register(failingProvider);
+    const policy = new AIFallbackPolicy(emptyRegistry);
     try {
-      await fallbackPolicy.executeWithFallback(
-        { model: 'unknown', messages: [{ role: 'user', content: 'Hi' }] },
-        { providers: ['mock', 'mock'], models: ['unknown', 'unknown2'] },
+      await policy.executeWithFallback(
+        { model: 'mock-model', messages: [{ role: 'user', content: 'Hi' }] },
+        { providers: ['mock'], models: ['mock-model', 'other-model'] },
       );
     } catch (error) {
       if (error instanceof AIFallbackExhaustedError) {
         expect(error.attemptedProviders.length).toBe(2);
+        expect(error.attemptedModels.length).toBe(2);
       }
     }
   });
