@@ -1,0 +1,47 @@
+{
+  "name": "@storynaram/storage-provider",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "bench": "vitest run --include '**/*.bench.ts'",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@aws-sdk/s3-request-presigner": "^3.700.0",
+    "@azure/storage-blob": "^12.26.0",
+    "@nestjs/common": "^11.0.0",
+    "@storynaram/core": "workspace:^",
+    "@storynaram/runtime": "workspace:^",
+    "@storynaram/logger": "workspace:^",
+    "mime-types": "^2.1.35",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.0.0",
+    "@types/mime-types": "^2.1.4",
+    "@types/uuid": "^11.0.0",
+    "minio": "^8.0.0",
+    "vitest": "^3.0.0"
+  }
+}

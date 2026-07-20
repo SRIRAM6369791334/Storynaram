@@ -1,0 +1,254 @@
+import { Module, Global, DynamicModule, Provider, Logger } from '@nestjs/common';
+import { StorageClient } from './storage-client';
+import { StorageRegistry } from './storage-registry';
+import { BucketManager } from './bucket-manager';
+import { ObjectManager } from './object-manager';
+import { MultipartUploadManager } from './multipart-upload-manager';
+import { SignedUrlService } from './signed-url-service';
+import { MetadataService } from './metadata-service';
+import { LifecycleManager } from './lifecycle-manager';
+import { ReplicationManager } from './replication-manager';
+import { VersionManager } from './version-manager';
+import { StorageHealthIndicator } from './observability/health-indicator';
+import { StorageMetricsCollector } from './observability/metrics-collector';
+import { StorageStatisticsService } from './observability/statistics-service';
+import { S3Adapter } from './adapters/s3.adapter';
+import { MinIOAdapter } from './adapters/minio.adapter';
+import { AzureBlobAdapter } from './adapters/azure-blob.adapter';
+import { LocalFSAdapter } from './adapters/local-fs.adapter';
+import { MemoryAdapter } from './adapters/memory.adapter';
+import {
+  STORAGE_MODULE_OPTIONS,
+  STORAGE_CLIENT,
+  STORAGE_REGISTRY,
+  STORAGE_BUCKET_MANAGER,
+  STORAGE_OBJECT_MANAGER,
+  STORAGE_MULTIPART_UPLOAD_MANAGER,
+  STORAGE_SIGNED_URL_SERVICE,
+  STORAGE_METADATA_SERVICE,
+  STORAGE_LIFECYCLE_MANAGER,
+  STORAGE_REPLICATION_MANAGER,
+  STORAGE_VERSION_MANAGER,
+  STORAGE_HEALTH_INDICATOR,
+  STORAGE_METRICS_COLLECTOR,
+  STORAGE_STATISTICS_SERVICE,
+  getStorageClientToken,
+  getStorageProviderConfigToken,
+} from './tokens';
+import type { StorageModuleOptions, StorageProviderConfig, StorageModuleAsyncOptions } from './tokens';
+import type { IStorageAdapter } from './adapters/storage-adapter.interface';
+
+function createAdapter(config: StorageProviderConfig): IStorageAdapter {
+  const logger = new Logger('StorageAdapterFactory');
+  logger.log(`Creating adapter for provider ${config.name} (type: ${config.type})`);
+
+  switch (config.type) {
+    case 's3':
+      return new S3Adapter(config.name, {
+        endpoint: config.endpoint,
+        region: config.region,
+        credentials: config.credentials as any,
+        tls: config.tls,
+        forcePathStyle: false,
+      });
+    case 'minio':
+      return new MinIOAdapter(config.name, {
+        endpoint: config.endpoint!,
+        region: config.region,
+        credentials: config.credentials as any,
+        tls: config.tls,
+        forcePathStyle: true,
+      });
+    case 'azure-blob':
+      return new AzureBlobAdapter(config.name, {
+        connectionString: config.credentials?.connectionString,
+        accountName: config.credentials?.accountName,
+        accountKey: config.credentials?.accountKey,
+      });
+    case 'local-fs':
+      return new LocalFSAdapter(config.name, {
+        basePath: config.endpoint,
+      });
+    case 'memory':
+      return new MemoryAdapter(config.name);
+    default:
+      throw new Error(`Unsupported storage provider type: ${config.type}`);
+  }
+}
+
+function createClientProvider(config: StorageProviderConfig): Provider[] {
+  const clientToken = getStorageClientToken(config.name);
+  const configToken = getStorageProviderConfigToken(config.name);
+
+  return [
+    {
+      provide: configToken,
+      useValue: config,
+    },
+    {
+      provide: clientToken,
+      useFactory: async () => {
+        const adapter = createAdapter(config);
+        const client = new StorageClient(adapter);
+        await client.connect();
+        return client;
+      },
+    },
+  ];
+}
+
+function createManagerProviders(clientToken: symbol): Provider[] {
+  return [
+    {
+      provide: STORAGE_BUCKET_MANAGER,
+      useFactory: (client: StorageClient) => new BucketManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_OBJECT_MANAGER,
+      useFactory: (client: StorageClient) => new ObjectManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_MULTIPART_UPLOAD_MANAGER,
+      useFactory: (client: StorageClient) => new MultipartUploadManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_SIGNED_URL_SERVICE,
+      useFactory: (client: StorageClient) => new SignedUrlService(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_METADATA_SERVICE,
+      useFactory: (client: StorageClient) => new MetadataService(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_LIFECYCLE_MANAGER,
+      useFactory: (client: StorageClient) => new LifecycleManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_REPLICATION_MANAGER,
+      useFactory: (client: StorageClient) => new ReplicationManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_VERSION_MANAGER,
+      useFactory: (client: StorageClient) => new VersionManager(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_HEALTH_INDICATOR,
+      useFactory: (client: StorageClient) => new StorageHealthIndicator(client),
+      inject: [clientToken],
+    },
+    {
+      provide: STORAGE_METRICS_COLLECTOR,
+      useFactory: () => new StorageMetricsCollector(),
+      inject: [],
+    },
+    {
+      provide: STORAGE_STATISTICS_SERVICE,
+      useFactory: (client: StorageClient, health: StorageHealthIndicator, metrics: StorageMetricsCollector) =>
+        new StorageStatisticsService(client, health, metrics),
+      inject: [clientToken, STORAGE_HEALTH_INDICATOR, STORAGE_METRICS_COLLECTOR],
+    },
+  ];
+}
+
+@Global()
+@Module({})
+export class StorageModule {
+  static forRoot(options: StorageModuleOptions): DynamicModule {
+    const logger = new Logger('StorageModule');
+    const defaultProviderName = options.defaultProvider ?? options.providers[0]?.name;
+    const defaultClientToken = defaultProviderName ? getStorageClientToken(defaultProviderName) : STORAGE_CLIENT;
+
+    const clientProviders = options.providers.flatMap(createClientProvider);
+    const defaultClientAlias = defaultProviderName
+      ? [
+          {
+            provide: STORAGE_CLIENT,
+            useExisting: getStorageClientToken(defaultProviderName),
+          },
+        ]
+      : [];
+
+    const allManagerProviders = options.providers.flatMap(p =>
+      createManagerProviders(getStorageClientToken(p.name) as symbol),
+    );
+
+    const registryProvider: Provider = {
+      provide: STORAGE_REGISTRY,
+      useFactory: (...clients: StorageClient[]) => {
+        const registry = new StorageRegistry();
+        for (let i = 0; i < options.providers.length; i++) {
+          registry.register(options.providers[i].name, clients[i]);
+        }
+        return registry;
+      },
+      inject: options.providers.map(p => getStorageClientToken(p.name)),
+    };
+
+    const optionProvider: Provider = {
+      provide: STORAGE_MODULE_OPTIONS,
+      useValue: options,
+    };
+
+    return {
+      module: StorageModule,
+      global: true,
+      providers: [
+        optionProvider,
+        ...clientProviders,
+        ...defaultClientAlias,
+        registryProvider,
+        ...allManagerProviders,
+      ],
+      exports: [
+        STORAGE_MODULE_OPTIONS,
+        STORAGE_CLIENT,
+        STORAGE_REGISTRY,
+        STORAGE_BUCKET_MANAGER,
+        STORAGE_OBJECT_MANAGER,
+        STORAGE_MULTIPART_UPLOAD_MANAGER,
+        STORAGE_SIGNED_URL_SERVICE,
+        STORAGE_METADATA_SERVICE,
+        STORAGE_LIFECYCLE_MANAGER,
+        STORAGE_REPLICATION_MANAGER,
+        STORAGE_VERSION_MANAGER,
+        STORAGE_HEALTH_INDICATOR,
+        STORAGE_METRICS_COLLECTOR,
+        STORAGE_STATISTICS_SERVICE,
+        ...options.providers.map(p => getStorageClientToken(p.name)),
+      ],
+    };
+  }
+
+  static forRootAsync(options: StorageModuleAsyncOptions): DynamicModule {
+    return {
+      module: StorageModule,
+      global: true,
+      imports: options.imports ?? [],
+      providers: [
+        {
+          provide: STORAGE_MODULE_OPTIONS,
+          useFactory: options.useFactory,
+          inject: options.inject,
+        },
+      ],
+      exports: [STORAGE_MODULE_OPTIONS],
+    };
+  }
+
+  static forFeature(providerNames: string[]): DynamicModule {
+    const providerTokens = providerNames.map(n => getStorageClientToken(n));
+    return {
+      module: StorageModule,
+      providers: [],
+      exports: providerTokens,
+    };
+  }
+}
