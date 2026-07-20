@@ -1,6 +1,6 @@
 import { Injectable, Logger, Optional } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { PluginId, PluginEvent } from './types';
+import type { PluginId } from './types';
 import type { EventBusPort } from '@storynaram/events';
 
 type EventHandler = (payload: Record<string, unknown>) => void;
@@ -21,24 +21,16 @@ export class PluginEventBridge {
 
   async publish(eventType: string, pluginId: PluginId, payload: Record<string, unknown>): Promise<void> {
     if (!this.enabled) return;
-
-    const event: PluginEvent = {
-      eventId: uuid(),
-      eventType,
-      pluginId,
-      timestamp: new Date(),
-      payload,
-    };
-
-    this.logger.debug(`Publishing event: ${eventType} for plugin: ${pluginId}`);
+    const eventId = uuid();
+    const timestamp = new Date();
 
     if (this.eventBus) {
       try {
         await this.eventBus.publish({
-          eventId: event.eventId,
+          eventId,
           eventType: `plugin.${eventType}`,
           aggregateId: pluginId,
-          timestamp: event.timestamp,
+          timestamp,
           payload,
         });
       } catch (error) {

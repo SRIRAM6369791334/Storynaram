@@ -1,5 +1,5 @@
 {
-    "name": "@storynaram/runtime",
+    "name": "@storynaram/redis-provider",
     "version": "0.1.0",
     "private": true,
     "type": "module",
@@ -21,17 +21,14 @@
         "typecheck": "tsc --noEmit",
         "test": "vitest run",
         "test:watch": "vitest",
-        "bench": "vitest run --include '**/*.bench.ts'",
         "lint": "eslint src/"
     },
     "dependencies": {
         "@nestjs/common": "^11.0.0",
         "@storynaram/core": "workspace:^",
-        "@storynaram/events": "workspace:^",
+        "@storynaram/runtime": "workspace:^",
         "@storynaram/logger": "workspace:^",
-        "@storynaram/registry": "workspace:^",
-        "@storynaram/schemas": "workspace:^",
-        "@storynaram/validation": "workspace:^",
+        "ioredis": "^5.6.0",
         "reflect-metadata": "^0.2.0",
         "rxjs": "^7.8.0",
         "uuid": "^14.0.1"
@@ -39,6 +36,7 @@
     "devDependencies": {
         "@nestjs/testing": "^11.0.0",
         "@types/uuid": "^11.0.0",
+        "ioredis-mock": "^8.9.0",
         "vitest": "^3.0.0"
     }
 }

@@ -67,6 +67,12 @@ export {
   RelationshipQueryService,
   RelationshipValidator,
   RelationshipStatisticsService,
+  RelationshipError,
+  RelationshipNotFoundError,
+  RelationshipConflictError,
+  GraphCycleError,
+  RelationshipValidationError,
+  RelationshipConfigurationError,
   RELATIONSHIP_OPTIONS,
 } from './relationship';
 export type { RelationshipPort } from './relationship';
