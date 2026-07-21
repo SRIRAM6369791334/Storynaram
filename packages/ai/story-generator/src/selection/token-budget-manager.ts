@@ -6,7 +6,7 @@ export interface TokenBudget {
 }
 
 export class TokenBudgetManager {
-  private readonly maxModelTokens: number;
+  private maxModelTokens: number;
   private readonly safetyMargin: number;
   private readonly reservedForSystem: number;
   private readonly reservedForOutput: number;
@@ -50,6 +50,6 @@ export class TokenBudgetManager {
   }
 
   setModelMaxTokens(max: number): void {
-    (this as { maxModelTokens: number }).maxModelTokens = max;
+    this.maxModelTokens = max;
   }
 }

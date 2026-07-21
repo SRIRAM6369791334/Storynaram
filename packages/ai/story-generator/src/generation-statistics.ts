@@ -39,10 +39,11 @@ export class GenerationStatistics {
 
   getStats(chaptersGenerated: number): GenStats {
     const totalDuration = this.startTime > 0 ? Date.now() - this.startTime : 0;
-    const totalTokens = this.chapterTokens.reduce(
-      (acc, t) => ({ input: acc.input + t.input, output: acc.output + t.total, total: acc.total + t.total }),
+    const total = this.chapterTokens.reduce(
+      (acc, t) => ({ input: acc.input + t.input, output: acc.output + t.output, total: acc.total + t.total }),
       { input: 0, output: 0, total: 0 },
     );
+    const totalTokens = { inputTokens: total.input, outputTokens: total.output, totalTokens: total.total };
     const avgLatency = this.chapterLatencies.length > 0
       ? this.chapterLatencies.reduce((a, b) => a + b, 0) / this.chapterLatencies.length
       : 0;

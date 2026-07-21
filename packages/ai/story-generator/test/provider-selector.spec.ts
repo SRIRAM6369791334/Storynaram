@@ -36,8 +36,7 @@ describe('ProviderSelector', () => {
 
   it('returns null when no fallback available', () => {
     const selector = new ProviderSelector();
-    selector.registerProvider({ name: 'only-one', priority: 1, models: ['m1'] });
-    const fallback = selector.selectFallback('m1', 'only-one', { exclude: ['only-one'] });
+    const fallback = selector.selectFallback('nonexistent-model', 'nonexistent-provider', { exclude: ['openai', 'anthropic', 'gemini', 'ollama', 'azure-openai', 'openrouter', 'mock'] });
 
     expect(fallback).toBeNull();
   });

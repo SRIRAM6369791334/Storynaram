@@ -344,8 +344,9 @@ export class StoryGenerationEngine {
   }
 
   private sessionStatTrack(chapterNumber: number, latencyMs: number, tokenUsage: { inputTokens: number; outputTokens: number; totalTokens: number }, model: string, provider: string): void {
+    const { inputTokens, outputTokens, totalTokens } = tokenUsage;
     for (const [, session] of this.activeSessions) {
-      session.statistics.recordChapterGeneration(latencyMs, tokenUsage, model, provider);
+      session.statistics.recordChapterGeneration(latencyMs, { input: inputTokens, output: outputTokens, total: totalTokens }, model, provider);
     }
   }
 

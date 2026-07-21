@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { ContextBuilder } from '../src/prompt/context-builder';
-import type { ExecutionResult, StoryDraft, ChapterDraft } from '@storynaram/narrative-execution';
+import { ExecutionResult, type StoryDraft, type ChapterDraft } from '@storynaram/narrative-execution';
 
 function makeMockResult(): ExecutionResult {
   const draft: StoryDraft = {
