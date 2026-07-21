@@ -1,0 +1,29 @@
+{
+  "id": "book_001_chapter_01_scene_02",
+  "chapter_id": "book_001_chapter_01",
+  "scene_number": 2,
+  "title": "Morning Light",
+  "status": "planned",
+  "word_count_target": 1000,
+  "word_count_actual": 0,
+  "pov_character": null,
+  "location_id": null,
+  "characters_present": [],
+  "type": "introduction",
+  "goal": "Introduce protagonist's ordinary world and daily routine",
+  "conflict": "Internal — protagonist feels something has shifted",
+  "emotional_arc": "routine → reflective → determined",
+  "key_events": [
+    "Protagonist goes through their morning routine",
+    "Flash of the previous night's event intrudes",
+    "Protagonist makes a decision to investigate"
+  ],
+  "transitions": {
+    "in": "Morning after the mysterious event",
+    "out": "Protagonist steps out to begin their investigation"
+  },
+  "time_of_day": "morning",
+  "tone": "reflective",
+  "created_at": "2026-01-15T00:00:00.000Z",
+  "updated_at": "2026-01-15T00:00:00.000Z"
+}

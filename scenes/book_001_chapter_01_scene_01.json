@@ -1,0 +1,29 @@
+{
+  "id": "book_001_chapter_01_scene_01",
+  "chapter_id": "book_001_chapter_01",
+  "scene_number": 1,
+  "title": "The Whisper in the Dark",
+  "status": "planned",
+  "word_count_target": 1000,
+  "word_count_actual": 0,
+  "pov_character": null,
+  "location_id": null,
+  "characters_present": [],
+  "type": "hook",
+  "goal": "Capture reader attention and establish mystery",
+  "conflict": "Protagonist senses something wrong but cannot identify it",
+  "emotional_arc": "curious → unsettled → alert",
+  "key_events": [
+    "Protagonist experiences an unexplained phenomenon",
+    "A hint of the larger conflict is revealed",
+    "Scene ends with a question that demands an answer"
+  ],
+  "transitions": {
+    "in": "First scene — no transition in",
+    "out": "Cut to next morning, protagonist cannot shake the feeling"
+  },
+  "time_of_day": "night",
+  "tone": "atmospheric",
+  "created_at": "2026-01-15T00:00:00.000Z",
+  "updated_at": "2026-01-15T00:00:00.000Z"
+}
