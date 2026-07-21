@@ -8,3 +8,16 @@ coverage/
 *.log
 .pnpm-store/
 .eslintcache
+
+# Next.js build output
+.next/
+
+# Local build artifacts and caches
+.cache/
+build/
+
+# pnpm debug log
+pnpm-debug.log*
+
+# macOS
+.DS_Store
