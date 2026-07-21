@@ -2,56 +2,52 @@ import { describe, it, expect, vi } from 'vitest';
 import { StreamingCoordinator } from '../src/output/streaming-coordinator';
 
 describe('StreamingCoordinator', () => {
-  it('streams chapter content via AI runtime', async () => {
+  it('streams token chunks from AI runtime async generator', async () => {
     const coordinator = new StreamingCoordinator();
-    const mockGenerate = vi.fn().mockResolvedValue({
-      id: 'resp-1',
-      model: 'gpt-4',
-      provider: 'openai',
-      messages: [{ role: 'assistant', content: 'Once upon a time in a faraway land...' }],
-      tokenUsage: { inputTokens: 50, outputTokens: 100, totalTokens: 150 },
-      finishReason: 'stop',
-      latencyMs: 200,
+    const mockGenerateStream = vi.fn().mockImplementation(async function* () {
+      yield { index: 0, delta: 'Once upon ', finishReason: null };
+      yield { index: 1, delta: 'a time in ', finishReason: null };
+      yield { index: 2, delta: 'a faraway land...', finishReason: 'stop' };
     });
 
-    const result = await coordinator.streamChapter(
-      { generate: mockGenerate } as any,
+    const chunks: any[] = [];
+    for await (const chunk of coordinator.streamChapter(
+      { generateStream: mockGenerateStream } as any,
       { model: 'gpt-4', messages: [{ role: 'user', content: 'Write a story' }] },
       1,
       {},
-    );
+    )) {
+      chunks.push(chunk);
+    }
 
-    expect(result.content).toBe('Once upon a time in a faraway land...');
-    expect(result.tokenUsage.totalTokens).toBe(150);
-    expect(mockGenerate).toHaveBeenCalledTimes(1);
+    expect(chunks.length).toBeGreaterThan(1);
+    const tokenChunks = chunks.filter(c => c.type === 'token');
+    expect(tokenChunks.length).toBe(3);
+    expect(tokenChunks[0]!.delta).toBe('Once upon ');
+    expect(tokenChunks[1]!.delta).toBe('a time in ');
+    expect(tokenChunks[2]!.delta).toBe('a faraway land...');
+    expect(chunks.some(c => c.type === 'chapter:start')).toBe(true);
+    expect(chunks.some(c => c.type === 'chapter:complete')).toBe(true);
   });
 
-  it('calls onChunk callback with stream chunks', async () => {
+  it('emits chapter:start then tokens then chapter:complete in order', async () => {
     const coordinator = new StreamingCoordinator();
-    const onChunk = vi.fn();
-    const mockGenerate = vi.fn().mockResolvedValue({
-      id: 'resp-2',
-      model: 'gpt-4',
-      provider: 'openai',
-      messages: [{ role: 'assistant', content: 'Word1 Word2 Word3 Word4 Word5 Word6 Word7 Word8 Word9 Word10' }],
-      tokenUsage: { inputTokens: 10, outputTokens: 20, totalTokens: 30 },
-      finishReason: 'stop',
-      latencyMs: 100,
+    const mockGenerateStream = vi.fn().mockImplementation(async function* () {
+      yield { index: 0, delta: 'hello world', finishReason: 'stop' };
     });
 
-    await coordinator.streamChapter(
-      { generate: mockGenerate } as any,
-      { model: 'gpt-4', messages: [{ role: 'user', content: 'Write' }] },
-      1,
-      { onChunk },
-    );
+    const chunkTypes: string[] = [];
+    for await (const chunk of coordinator.streamChapter(
+      { generateStream: mockGenerateStream } as any,
+      { model: 'gpt-4', messages: [] },
+      5,
+      {},
+    )) {
+      chunkTypes.push(chunk.type);
+    }
 
-    expect(onChunk).toHaveBeenCalled();
-    expect(onChunk.mock.calls.length).toBeGreaterThan(0);
-
-    const firstChunk = onChunk.mock.calls[0]![0];
-    expect(firstChunk.chapterNumber).toBe(1);
-    expect(firstChunk.chunkIndex).toBe(0);
+    expect(chunkTypes[0]).toBe('chapter:start');
+    expect(chunkTypes[chunkTypes.length - 1]).toBe('chapter:complete');
   });
 
   it('tracks active stream count', () => {

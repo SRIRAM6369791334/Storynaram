@@ -1,5 +1,5 @@
 export { StoryGenerationEngine } from './story-generation-engine';
-export type { EngineHealth, EngineOptions } from './story-generation-engine';
+export type { EngineHealth, EngineOptions, GenerationStreamEvent } from './story-generation-engine';
 
 export { GenerationSession } from './generation-session';
 export type { GenerationStatus } from './generation-session';

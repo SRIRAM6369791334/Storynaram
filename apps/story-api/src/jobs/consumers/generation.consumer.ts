@@ -1,7 +1,7 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Logger, Inject } from '@nestjs/common';
-import { StoryGenerationEngine } from '@storynaram/story-generator';
+import { StoryGenerationEngine, GenerationStreamEvent } from '@storynaram/story-generator';
 import { GenerationDataLoader } from '../../modules/generation/generation-data-loader';
 import { JobsService } from '../jobs.service';
 
@@ -42,37 +42,54 @@ export class GenerationConsumer extends WorkerHost {
     try {
       const executionResult = await this.dataLoader.load(data.storyId, data.chapters, { model: data.model });
 
-      this.jobsService.updateJob(generationId, { progress: 10 });
+      this.jobsService.updateJob(generationId, { progress: 5 });
 
-      const result = await this.engine.generate(executionResult, {
-        model: data.model,
-        provider: data.provider,
-        temperature: data.temperature,
-        maxTokens: data.maxTokens,
+      const controller = new AbortController();
+      let currentChapterIndex = 0;
+      const totalChapters = executionResult.storyDraft.chapters.length;
+
+      this.jobsService.emitStreamEvent({
+        type: 'started',
+        generationId,
+        message: 'Generation started',
       });
 
-      this.jobsService.updateJob(generationId, { progress: 90 });
+      const chapters: Array<Record<string, unknown>> = [];
+      let fullStory = '';
+      let totalTokenUsage = { inputTokens: 0, outputTokens: 0, totalTokens: 0 };
+      let qualityPassed = false;
+      let qualityChecks: Array<{ name: string; passed: boolean; score: number; issues: string[] }> = [];
+      let metrics: Record<string, unknown> = {};
 
-      const chapters = result.chapters.map((ch) => ({
-        number: ch.number,
-        title: ch.title,
-        content: ch.content,
-        wordCount: ch.wordCount,
-        model: ch.model,
-        provider: ch.provider,
-        latencyMs: ch.latencyMs,
-      }));
+      const stream = this.engine.generateStream(
+        executionResult,
+        {
+          model: data.model,
+          provider: data.provider,
+          temperature: data.temperature,
+          maxTokens: data.maxTokens,
+        },
+        controller.signal,
+      );
+
+      let chapterAccumulator = '';
+
+      for await (const event of stream) {
+        await this.handleStreamEvent(event, generationId, chapters, totalChapters, totalTokenUsage);
+      }
+
+      this.jobsService.updateJob(generationId, { progress: 95 });
+
+      fullStory = chapters.map((ch: Record<string, unknown>) => ch.content as string).join('\n\n');
+      qualityPassed = qualityChecks.every(c => c.passed);
 
       const resultPayload = {
         status: 'completed',
-        sessionId: result.sessionId,
-        chaptersGenerated: result.metrics.chaptersGenerated,
-        totalTokens: result.metrics.totalTokens,
-        totalCost: result.metrics.totalCost,
+        chaptersGenerated: chapters.length,
         chapters,
-        fullStory: result.fullStory,
-        qualityPassed: result.qualityReport.passed,
-        metrics: result.metrics,
+        fullStory,
+        qualityPassed,
+        metrics,
       };
 
       this.jobsService.updateJob(generationId, {
@@ -82,7 +99,13 @@ export class GenerationConsumer extends WorkerHost {
         completedAt: new Date(),
       });
 
-      this.logger.log(`Generation ${generationId} completed: ${result.metrics.chaptersGenerated} chapters, ${result.metrics.totalTokens} tokens`);
+      this.jobsService.emitStreamEvent({
+        type: 'done',
+        generationId,
+        metrics,
+      });
+
+      this.logger.log(`Generation ${generationId} completed: ${chapters.length} chapters`);
 
       return resultPayload;
     } catch (error) {
@@ -95,7 +118,104 @@ export class GenerationConsumer extends WorkerHost {
         completedAt: new Date(),
       });
 
+      this.jobsService.emitStreamEvent({
+        type: 'error',
+        generationId,
+        error: message,
+      });
+
       return { status: 'failed', error: message };
+    }
+  }
+
+  private async handleStreamEvent(
+    event: GenerationStreamEvent,
+    generationId: string,
+    chapters: Array<Record<string, unknown>>,
+    totalChapters: number,
+    totalTokenUsage: { inputTokens: number; outputTokens: number; totalTokens: number },
+  ): Promise<void> {
+    switch (event.type) {
+      case 'chapter:start': {
+        chapters.push({ number: event.chapterNumber, title: event.chapterTitle, content: '' });
+        const progress = Math.min(10 + Math.round((chapters.length / totalChapters) * 80), 90);
+        this.jobsService.updateJob(generationId, { progress });
+        this.jobsService.emitStreamEvent({
+          type: 'chapter:start',
+          generationId,
+          chapterNumber: event.chapterNumber,
+          chapterTitle: event.chapterTitle,
+        });
+        break;
+      }
+
+      case 'token': {
+        if (chapters.length > 0) {
+          const currentChapter = chapters[chapters.length - 1]!;
+          currentChapter.content = (currentChapter.content as string) + event.delta;
+        }
+        this.jobsService.emitStreamEvent({
+          type: 'token',
+          generationId,
+          chapterNumber: event.chapterNumber,
+          delta: event.delta,
+          index: event.index,
+          finishReason: event.finishReason,
+          latencyMs: event.latencyMs,
+          timeToFirstTokenMs: event.timeToFirstTokenMs,
+        });
+        break;
+      }
+
+      case 'chapter:complete': {
+        const chapter = chapters.find(c => c.number === event.chapterNumber);
+        if (chapter) {
+          chapter.content = event.content;
+          chapter.tokenUsage = event.tokenUsage;
+          chapter.latencyMs = event.latencyMs;
+          chapter.wordCount = event.content.split(/\s+/).filter(Boolean).length;
+        }
+        totalTokenUsage.outputTokens += event.tokenUsage.outputTokens;
+        totalTokenUsage.totalTokens += event.tokenUsage.totalTokens;
+        this.jobsService.emitStreamEvent({
+          type: 'chapter:complete',
+          generationId,
+          chapterNumber: event.chapterNumber,
+          chapterTitle: event.chapterTitle,
+          content: event.content,
+          tokenUsage: event.tokenUsage,
+          latencyMs: event.latencyMs,
+          timeToFirstTokenMs: event.timeToFirstTokenMs,
+        });
+        break;
+      }
+
+      case 'quality:check': {
+        this.jobsService.emitStreamEvent({
+          type: 'quality:check',
+          generationId,
+          checks: event.checks,
+        });
+        break;
+      }
+
+      case 'metrics': {
+        this.jobsService.emitStreamEvent({
+          type: 'metrics',
+          generationId,
+          metrics: event.metrics as unknown as Record<string, unknown>,
+        });
+        break;
+      }
+
+      case 'error': {
+        this.jobsService.emitStreamEvent({
+          type: 'error',
+          generationId,
+          error: event.message,
+        });
+        break;
+      }
     }
   }
 }

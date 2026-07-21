@@ -1,11 +1,20 @@
-import type { AIResponse, AIRequest } from '@storynaram/runtime';
+import type { AIRequest } from '@storynaram/runtime';
 import type { AIRuntimeService } from '@storynaram/runtime';
 
+export type StreamChunkType = 'token' | 'chapter:start' | 'chapter:complete' | 'done' | 'error';
+
 export interface StreamChunk {
-  content: string;
+  type: StreamChunkType;
+  delta?: string;
+  content?: string;
   chapterNumber: number;
   chunkIndex: number;
   isComplete: boolean;
+  finishReason?: string | null;
+  latencyMs?: number;
+  timeToFirstTokenMs?: number;
+  tokenUsage?: { inputTokens: number; outputTokens: number; totalTokens: number };
+  error?: string;
 }
 
 export type StreamCallback = (chunk: StreamChunk) => void | Promise<void>;
@@ -13,59 +22,123 @@ export type StreamCallback = (chunk: StreamChunk) => void | Promise<void>;
 export class StreamingCoordinator {
   private activeStreams: Map<string, AbortController> = new Map();
 
-  async streamChapter(
+  async *streamChapter(
     aiRuntime: AIRuntimeService,
     request: AIRequest,
     chapterNumber: number,
-    options: { onChunk?: StreamCallback; signal?: AbortSignal },
-  ): Promise<{ content: string; tokenUsage: { inputTokens: number; outputTokens: number; totalTokens: number }; latencyMs: number }> {
-    const streamId = `chapter-${chapterNumber}-${Date.now()}`;
+    options: { signal?: AbortSignal },
+  ): AsyncGenerator<StreamChunk> {
+    const streamId = `chapter-${chapterNumber}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const controller = new AbortController();
     this.activeStreams.set(streamId, controller);
 
+    const externalSignal = options.signal;
+    const abortHandler = () => { if (!controller.signal.aborted) controller.abort(); };
+    if (externalSignal) {
+      if (externalSignal.aborted) {
+        controller.abort();
+      } else {
+        externalSignal.addEventListener('abort', abortHandler, { once: true });
+      }
+    }
+
+    let accumulatedContent = '';
+    let outputTokens = 0;
+    let timeToFirstTokenMs = 0;
+    let hasYieldedToken = false;
+    const chapterStartTime = Date.now();
+
+    yield {
+      type: 'chapter:start',
+      delta: '',
+      chapterNumber,
+      chunkIndex: 0,
+      isComplete: false,
+    };
+
     try {
-      const startTime = Date.now();
-      const response = await aiRuntime.generate(
+      const generator = aiRuntime.generateStream(
         { ...request, stream: true },
         { sessionId: streamId },
       );
 
-      const content = response.messages[response.messages.length - 1]?.content ?? '';
+      let chunkIndex = 1;
 
-      if (options.onChunk) {
-        const words = content.split(' ');
-        const chunkSize = Math.ceil(words.length / 5);
-        for (let i = 0; i < 5; i++) {
-          const chunkWords = words.slice(i * chunkSize, (i + 1) * chunkSize);
-          if (chunkWords.length > 0) {
-            await options.onChunk({
-              content: chunkWords.join(' '),
-              chapterNumber,
-              chunkIndex: i,
-              isComplete: i === 4,
-            });
-          }
+      for await (const chunk of generator) {
+        if (controller.signal.aborted) break;
+
+        const now = Date.now();
+        if (!hasYieldedToken && chunk.delta) {
+          timeToFirstTokenMs = now - chapterStartTime;
+          hasYieldedToken = true;
         }
+
+        if (chunk.delta) {
+          accumulatedContent += chunk.delta;
+          outputTokens++;
+        }
+
+        if (chunk.delta || chunk.finishReason) {
+          yield {
+            type: 'token',
+            delta: chunk.delta ?? '',
+            chapterNumber,
+            chunkIndex: chunkIndex++,
+            isComplete: false,
+            finishReason: chunk.finishReason,
+            latencyMs: now - chapterStartTime,
+            timeToFirstTokenMs,
+            tokenUsage: chunk.tokenUsage
+              ? {
+                  inputTokens: chunk.tokenUsage.inputTokens,
+                  outputTokens: chunk.tokenUsage.outputTokens,
+                  totalTokens: chunk.tokenUsage.totalTokens,
+                }
+              : undefined,
+          };
+        }
+
+        if (chunk.finishReason === 'stop' || chunk.finishReason === 'length') break;
       }
 
-      this.activeStreams.delete(streamId);
-      return {
-        content,
-        tokenUsage: response.tokenUsage,
-        latencyMs: Date.now() - startTime,
+      const totalLatencyMs = Date.now() - chapterStartTime;
+
+      yield {
+        type: 'chapter:complete',
+        content: accumulatedContent,
+        chapterNumber,
+        chunkIndex: 0,
+        isComplete: true,
+        latencyMs: totalLatencyMs,
+        timeToFirstTokenMs,
+        tokenUsage: { inputTokens: 0, outputTokens, totalTokens: outputTokens },
       };
     } catch (error) {
-      this.activeStreams.delete(streamId);
+      const message = error instanceof Error ? error.message : String(error);
+      yield {
+        type: 'error',
+        error: message,
+        chapterNumber,
+        chunkIndex: 0,
+        isComplete: true,
+      };
       throw error;
+    } finally {
+      if (externalSignal) {
+        externalSignal.removeEventListener('abort', abortHandler);
+      }
+      this.activeStreams.delete(streamId);
     }
   }
 
-  cancelStream(streamId: string): void {
+  cancelStream(streamId: string): boolean {
     const controller = this.activeStreams.get(streamId);
     if (controller) {
       controller.abort();
       this.activeStreams.delete(streamId);
+      return true;
     }
+    return false;
   }
 
   cancelAll(): void {

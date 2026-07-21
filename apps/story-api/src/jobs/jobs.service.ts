@@ -1,6 +1,24 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { EventEmitter } from 'events';
 
+export interface StreamEventPayload {
+  type: 'token' | 'chapter:start' | 'chapter:complete' | 'quality:check' | 'metrics' | 'error' | 'connected' | 'started' | 'done';
+  generationId: string;
+  chapterNumber?: number;
+  chapterTitle?: string;
+  delta?: string;
+  content?: string;
+  index?: number;
+  finishReason?: string | null;
+  latencyMs?: number;
+  timeToFirstTokenMs?: number;
+  tokenUsage?: { inputTokens: number; outputTokens: number; totalTokens: number };
+  checks?: Array<{ name: string; passed: boolean; score: number; issues: string[] }>;
+  metrics?: Record<string, unknown>;
+  error?: string;
+  message?: string;
+}
+
 export interface JobStatus {
   id: string;
   name: string;
@@ -39,6 +57,10 @@ export class JobsService {
       Object.assign(existing, updates);
       this.events.emit(`job:${id}:updated`, existing);
     }
+  }
+
+  emitStreamEvent(event: StreamEventPayload): void {
+    this.events.emit(`job:${event.generationId}:stream`, event);
   }
 
   getJob(id: string): JobStatus | undefined {
