@@ -59,7 +59,7 @@ describe('CharacterAggregate', () => {
     const char = new CharacterAggregate(new CharacterIdentity('1'));
     char.addGoal('Defeat the dragon', GoalType.QUEST);
     expect(char.goals.active).toHaveLength(1);
-    const goal = char.goals.all[0];
+    const goal = char.goals.all[0]!;
     char.completeGoal(goal.id);
     expect(char.goals.completed).toHaveLength(1);
     expect(char.domainEvents.some(e => e.eventType === 'character.goal.completed')).toBe(true);
@@ -69,14 +69,14 @@ describe('CharacterAggregate', () => {
     const char = new CharacterAggregate(new CharacterIdentity('1'));
     char.addRelationship('char-2', 'Samwise', RelationshipType.FRIEND);
     expect(char.relationships.count).toBe(1);
-    expect(char.relationships.all[0].targetName).toBe('Samwise');
+    expect(char.relationships.all[0]!.targetName).toBe('Samwise');
   });
 
   it('manages inventory', () => {
     const char = new CharacterAggregate(new CharacterIdentity('1'));
     char.addInventoryItem('The One Ring', 'A powerful artifact', 1);
     expect(char.inventory.count).toBe(1);
-    expect(char.inventory.all[0].name).toBe('The One Ring');
+    expect(char.inventory.all[0]!.name).toBe('The One Ring');
   });
 
   it('manages knowledge', () => {

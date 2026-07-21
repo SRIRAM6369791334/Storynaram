@@ -15,7 +15,7 @@ describe('AuditTrail', () => {
     );
     audit.record(entry);
     expect(audit.getEntries()).toHaveLength(1);
-    expect(audit.getEntries()[0].entityId).toBe('1');
+    expect(audit.getEntries()[0]!.entityId).toBe('1');
   });
 
   it('records multiple entries', () => {

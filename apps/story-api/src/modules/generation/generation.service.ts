@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Inject, Logger } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { StoryGenerationEngine } from '@storynaram/story-generator';
 import { ExecutionResult } from '@storynaram/narrative-execution';
@@ -26,7 +26,7 @@ export class GenerationService {
   private readonly logger = new Logger(GenerationService.name);
   private readonly generations = new Map<string, GenerationRecord>();
 
-  constructor(private readonly engine: StoryGenerationEngine) {}
+  constructor(@Inject(StoryGenerationEngine) private readonly engine: StoryGenerationEngine) {}
 
   async generate(dto: GenerateStoryDto): Promise<GenerationResponseDto> {
     const id = randomUUID();

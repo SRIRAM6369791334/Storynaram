@@ -106,6 +106,6 @@ describe('CharacterFactory', () => {
       },
     });
     expect(character.domainEvents.length).toBeGreaterThanOrEqual(1);
-    expect(character.domainEvents[0].eventType).toBe('character.created');
+    expect(character.domainEvents[0]!.eventType).toBe('character.created');
   });
 });

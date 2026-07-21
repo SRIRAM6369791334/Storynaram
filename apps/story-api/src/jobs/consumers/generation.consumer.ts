@@ -1,6 +1,6 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
-import { Logger } from '@nestjs/common';
+import { Logger, Inject } from '@nestjs/common';
 import { StoryGenerationEngine } from '@storynaram/story-generator';
 import { ExecutionResult } from '@storynaram/narrative-execution';
 import type { StoryDraft, ChapterDraft, ExecutionReport, ValidationReport } from '@storynaram/narrative-execution';
@@ -22,7 +22,7 @@ interface GenerationJobData {
 export class GenerationConsumer extends WorkerHost {
   private readonly logger = new Logger(GenerationConsumer.name);
 
-  constructor(private readonly engine: StoryGenerationEngine) {
+  constructor(@Inject(StoryGenerationEngine) private readonly engine: StoryGenerationEngine) {
     super();
   }
 

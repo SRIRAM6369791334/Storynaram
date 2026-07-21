@@ -1,5 +1,6 @@
+import { Injectable } from '@nestjs/common';
 import type { ExecutionResult, StoryDraft, ChapterDraft } from '@storynaram/narrative-execution';
-import type { AIRuntimeService } from '@storynaram/runtime';
+import { AIRuntimeService } from '@storynaram/runtime';
 import { GenerationSession, type GenerationStatus } from './generation-session';
 import type { GenerationOptions } from './generation-context';
 import { GenerationPipeline } from './generation-pipeline';
@@ -33,6 +34,7 @@ export interface EngineOptions {
   maxConcurrentChapters?: number;
 }
 
+@Injectable()
 export class StoryGenerationEngine {
   private activeSessions: Map<string, GenerationSession> = new Map();
   private totalGenerations: number = 0;

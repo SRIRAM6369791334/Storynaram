@@ -37,5 +37,5 @@ export abstract class ValueObject {
     return left.every((val, idx) => deepEqual(val, right[idx]));
   }
 
-  abstract toJSON(): Record<string, unknown>;
+  abstract toJSON(): Record<string, unknown> | unknown[];
 }

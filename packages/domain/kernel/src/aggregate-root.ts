@@ -42,7 +42,7 @@ export abstract class AggregateRoot<TIdentity extends Identity = Identity> exten
 
   protected abstract applySnapshot(snapshot: DomainSnapshot): void;
 
-  toJSON(): Record<string, unknown> {
+  override toJSON(): Record<string, unknown> {
     return {
       ...super.toJSON(),
       snapshotVersion: this._snapshotVersion,

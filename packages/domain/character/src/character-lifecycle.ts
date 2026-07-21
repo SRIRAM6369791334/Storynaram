@@ -35,11 +35,11 @@ export class CharacterLifecycle {
     const stages = [LifeStage.CHILD, LifeStage.ADOLESCENT, LifeStage.ADULT, LifeStage.ELDERLY];
     const currentIdx = stages.indexOf(character.status.lifeStage);
     if (currentIdx < stages.length - 1) {
-      const newStatus = character.status.setLifeStage(stages[currentIdx + 1]);
+      const newStatus = character.status.setLifeStage(stages[currentIdx + 1]!);
       character.applyStatus(newStatus);
       character.addDomainEvent(new CharacterUpdatedEvent(
         character.identity.value,
-        { action: 'aged', newStage: stages[currentIdx + 1] },
+        { action: 'aged', newStage: stages[currentIdx + 1]! },
       ));
     }
   }

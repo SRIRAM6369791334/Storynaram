@@ -43,8 +43,8 @@ describe('AggregateRoot', () => {
     const agg = new TestAggregate('1', 'initial');
     agg.changeValue('v2');
     expect(agg.domainEvents).toHaveLength(1);
-    expect(agg.domainEvents[0].eventType).toBe('value.changed');
-    expect(agg.domainEvents[0].payload).toEqual({ oldValue: 'initial', newValue: 'v2' });
+    expect(agg.domainEvents[0]!.eventType).toBe('value.changed');
+    expect(agg.domainEvents[0]!.payload).toEqual({ oldValue: 'initial', newValue: 'v2' });
   });
 
   it('clearEvents removes all events', () => {

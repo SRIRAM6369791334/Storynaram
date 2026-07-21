@@ -1,4 +1,5 @@
 import { bench, describe } from 'vitest';
+import { GoalType } from '../src/character-goals';
 import { CharacterFactory } from '../src/character-factory';
 
 const factory = new CharacterFactory();
@@ -25,7 +26,7 @@ describe('Serialization', () => {
 
   for (let i = 0; i < 10; i++) {
     character.learnSkill(`Skill ${i}`, i + 1);
-    character.addGoal(`Goal ${i}`, 'SHORT_TERM');
+    character.addGoal(`Goal ${i}`, GoalType.SHORT_TERM);
   }
 
   bench('toJSON on rich character', () => {

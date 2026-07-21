@@ -25,6 +25,12 @@ export class CompositionService {
     return Array.from(this.compositions.values()).map(c => this.toDto(c));
   }
 
+  async findByStoryId(storyId: string): Promise<CompositionResponseDto[]> {
+    return Array.from(this.compositions.values())
+      .filter(c => c.storyId === storyId)
+      .map(c => this.toDto(c));
+  }
+
   async findById(id: string): Promise<CompositionResponseDto> {
     const record = this.compositions.get(id);
     if (!record) throw new NotFoundException(`Composition ${id} not found`);

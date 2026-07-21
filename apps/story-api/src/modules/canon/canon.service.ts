@@ -25,6 +25,12 @@ export class CanonService {
     return Array.from(this.canons.values()).map(c => this.toDto(c));
   }
 
+  async findByStoryId(storyId: string): Promise<CanonResponseDto[]> {
+    return Array.from(this.canons.values())
+      .filter(c => c.storyId === storyId)
+      .map(c => this.toDto(c));
+  }
+
   async findById(id: string): Promise<CanonResponseDto> {
     const record = this.canons.get(id);
     if (!record) throw new NotFoundException(`Canon entry ${id} not found`);

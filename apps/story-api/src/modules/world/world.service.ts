@@ -26,6 +26,12 @@ export class WorldService {
     return Array.from(this.worlds.values()).map(w => this.toDto(w));
   }
 
+  async findByStoryId(storyId: string): Promise<WorldResponseDto[]> {
+    return Array.from(this.worlds.values())
+      .filter(w => w.storyId === storyId)
+      .map(w => this.toDto(w));
+  }
+
   async findById(id: string): Promise<WorldResponseDto> {
     const record = this.worlds.get(id);
     if (!record) throw new NotFoundException(`World ${id} not found`);

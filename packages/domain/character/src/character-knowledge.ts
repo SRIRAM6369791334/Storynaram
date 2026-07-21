@@ -20,7 +20,7 @@ export class KnowledgeEntry {
     const levels = [KnowledgeLevel.NOVICE, KnowledgeLevel.INTERMEDIATE, KnowledgeLevel.ADVANCED, KnowledgeLevel.EXPERT, KnowledgeLevel.MASTER];
     const idx = levels.indexOf(this.level);
     if (idx < levels.length - 1) {
-      this.level = levels[idx + 1];
+      this.level = levels[idx + 1] ?? this.level;
     }
   }
 }

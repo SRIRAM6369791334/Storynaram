@@ -25,6 +25,12 @@ export class NarrativeService {
     return Array.from(this.narratives.values()).map(n => this.toDto(n));
   }
 
+  async findByStoryId(storyId: string): Promise<NarrativeResponseDto[]> {
+    return Array.from(this.narratives.values())
+      .filter(n => n.storyId === storyId)
+      .map(n => this.toDto(n));
+  }
+
   async findById(id: string): Promise<NarrativeResponseDto> {
     const record = this.narratives.get(id);
     if (!record) throw new NotFoundException(`Narrative ${id} not found`);

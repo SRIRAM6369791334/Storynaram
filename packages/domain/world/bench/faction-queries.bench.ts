@@ -7,7 +7,7 @@ function createFactions(count: number): WorldFactions {
   for (let i = 0; i < count; i++) {
     factions.push(new Faction(
       `f-${i}`, `Faction ${i}`, `Description ${i}`,
-      types[i % types.length],
+      types[i % types.length]!,
       Math.floor(Math.random() * 100),
     ));
   }

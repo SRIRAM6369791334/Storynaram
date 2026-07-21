@@ -1,4 +1,4 @@
-import { AggregateRoot, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
+import { AggregateRoot, DomainEvent, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
 import { CharacterIdentity } from './character-identity';
 import { CharacterProfile } from './character-profile';
 import { CharacterAppearance } from './character-appearance';
@@ -78,6 +78,10 @@ export class CharacterAggregate extends AggregateRoot<CharacterIdentity> {
   get emotion(): CharacterEmotion { return this._emotion; }
   get status(): CharacterStatus { return this._status; }
   get statistics(): CharacterStatistics { return this._statistics; }
+
+  override addDomainEvent(event: DomainEvent): void {
+    super.addDomainEvent(event);
+  }
 
   applyProfile(profile: CharacterProfile): void {
     this._profile = profile;
@@ -274,7 +278,7 @@ export class CharacterAggregate extends AggregateRoot<CharacterIdentity> {
     this._statistics = data.statistics as CharacterStatistics;
   }
 
-  toJSON(): Record<string, unknown> {
+  override toJSON(): Record<string, unknown> {
     return {
       ...super.toJSON(),
       profile: this._profile.toJSON(),

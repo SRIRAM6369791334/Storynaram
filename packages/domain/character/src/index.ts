@@ -2,7 +2,6 @@ export { CharacterIdentity } from './character-identity';
 
 export {
   CharacterProfile,
-  CharacterProfileProps,
   CharacterName,
   CharacterAge,
   CharacterBirthDate,
@@ -12,23 +11,24 @@ export {
   CharacterRole,
   CharacterTitle,
 } from './character-profile';
+export type { CharacterProfileProps } from './character-profile';
 
-export {
-  CharacterAppearance,
-  CharacterAppearanceProps,
-} from './character-appearance';
+export { CharacterAppearance } from './character-appearance';
+export type { CharacterAppearanceProps } from './character-appearance';
 
 export {
   CharacterPersonality,
-  CharacterPersonalityProps,
   CharacterTraits,
   CharacterAlignment,
 } from './character-personality';
+export type { CharacterPersonalityProps } from './character-personality';
 
-export { CharacterBiography, BiographyEntry } from './character-biography';
+export { CharacterBiography } from './character-biography';
+export type { BiographyEntry } from './character-biography';
 
 export { CharacterSkills, CharacterSkill } from './character-skills';
-export { CharacterAbilities, AbilityScores } from './character-abilities';
+export { CharacterAbilities } from './character-abilities';
+export type { AbilityScores } from './character-abilities';
 
 export {
   CharacterGoals,
@@ -58,16 +58,18 @@ export { CharacterMemory, MemoryEntry } from './character-memory';
 
 export { CharacterEmotion, PrimaryEmotion } from './character-emotion';
 
-export { CharacterStatus, CharacterStatusProps, LifeStage, Consciousness } from './character-status';
+export { CharacterStatus, LifeStage, Consciousness } from './character-status';
+export type { CharacterStatusProps } from './character-status';
 
-export { CharacterStatistics, CharacterStatisticsProps } from './character-statistics';
+export { CharacterStatistics } from './character-statistics';
+export type { CharacterStatisticsProps } from './character-statistics';
 
 export { CharacterAggregate } from './character-aggregate';
 
 export { CharacterLifecycle } from './character-lifecycle';
 
-export {
-  CharacterFactory,
+export { CharacterFactory } from './character-factory';
+export type {
   CreateCharacterProps,
   CreateCharacterProfileInput,
   CreateCharacterAppearanceInput,
@@ -75,7 +77,8 @@ export {
   CreateCharacterAbilitiesInput,
 } from './character-factory';
 
-export { CharacterRepositoryContract, CHARACTER_REPOSITORY } from './character-repository';
+export type { CharacterRepositoryContract } from './character-repository';
+export { CHARACTER_REPOSITORY } from './character-repository';
 
 export { CharacterDomainService } from './character-domain-service';
 
@@ -111,8 +114,8 @@ export {
 
 export { CharacterDomainModule } from './character.module';
 
+export type { CharacterRuntimeIntegrations } from './integration';
 export {
-  CharacterRuntimeIntegrations,
   indexCharacterForSearch,
   triggerCharacterWorkflow,
   handleCharacterCreatedIntegration,

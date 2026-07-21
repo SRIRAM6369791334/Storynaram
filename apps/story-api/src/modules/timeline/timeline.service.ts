@@ -25,6 +25,12 @@ export class TimelineService {
     return Array.from(this.timelines.values()).map(t => this.toDto(t));
   }
 
+  async findByStoryId(storyId: string): Promise<TimelineResponseDto[]> {
+    return Array.from(this.timelines.values())
+      .filter(t => t.storyId === storyId)
+      .map(t => this.toDto(t));
+  }
+
   async findById(id: string): Promise<TimelineResponseDto> {
     const record = this.timelines.get(id);
     if (!record) throw new NotFoundException(`Timeline ${id} not found`);
