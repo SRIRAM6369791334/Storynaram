@@ -16,6 +16,7 @@ import { SearchMetricsCollector } from './observability/search-metrics';
 import { SearchStatisticsService } from './observability/search-statistics';
 import { SearchHealthIndicator } from './observability/search-health-indicator';
 import { InMemorySearchAdapter } from './adapters/in-memory-search.adapter';
+import type { InjectionToken } from '@nestjs/common';
 import type { SearchProvider } from './search-provider.interface';
 import type { SearchModuleOptions, SearchProviderConfig } from './types';
 
@@ -112,8 +113,8 @@ export class SearchModule {
     const providers: Provider[] = [
       {
         provide: SEARCH_MODULE_OPTIONS,
-        useFactory: asyncOptions.useFactory,
-        inject: asyncOptions.inject ?? [],
+        useFactory: asyncOptions.useFactory as (...args: InjectionToken[]) => SearchModuleOptions | Promise<SearchModuleOptions>,
+        inject: (asyncOptions.inject ?? []) as InjectionToken[],
       },
       {
         provide: SEARCH_PROVIDER,

@@ -208,6 +208,7 @@ export interface AggregationResult {
   docCountErrorUpperBound?: number;
   hits?: { hits: SearchHit[] };
   meta?: Record<string, unknown>;
+  aggResult?: Record<string, AggregationResult>;
 }
 
 export interface AggregationBucket {

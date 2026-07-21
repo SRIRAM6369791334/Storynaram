@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SearchResult, SearchHit, AggregationResult, AggregationBucket, FacetResult } from './types';
+import type { SearchResult, SearchHit, AggregationResult, AggregationBucket, FacetResult, SuggestResult } from './types';
 
 @Injectable()
 export class SearchResultMapper {
@@ -23,7 +23,7 @@ export class SearchResultMapper {
       maxScore,
       hits: innerHits?.map(h => this.mapHit(h)) ?? [],
       aggregations: aggregations ? this.mapAggregations(aggregations) : undefined,
-      suggests: raw.suggest as Record<string, unknown[]> | undefined,
+      suggests: raw.suggest as Record<string, SuggestResult[]> | undefined,
       timedOut: (raw.timed_out as boolean) ?? false,
       shards: this.mapShards(raw._shards as Record<string, unknown> | undefined),
     };

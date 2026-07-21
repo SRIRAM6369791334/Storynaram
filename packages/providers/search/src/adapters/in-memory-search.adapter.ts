@@ -279,7 +279,7 @@ export class InMemorySearchAdapter implements SearchProvider {
       return {
         took: Date.now() - start,
         total,
-        maxScore: hits.length > 0 ? hits[0].score : 0,
+        maxScore: hits.length > 0 ? hits[0]!.score : 0,
         hits: hits.slice(from, from + size),
         aggregations: aggs,
         timedOut: false,
@@ -290,7 +290,7 @@ export class InMemorySearchAdapter implements SearchProvider {
     return {
       took: Date.now() - start,
       total,
-      maxScore: hits.length > 0 ? hits[0].score : 0,
+      maxScore: hits.length > 0 ? hits[0]!.score : 0,
       hits: hits.slice(from, from + size),
       timedOut: false,
       shards: { total: 1, successful: 1, failed: 0, skipped: 0 },
@@ -452,10 +452,10 @@ export class InMemorySearchAdapter implements SearchProvider {
     if ('range' in query) {
       for (const [field, range] of Object.entries(query.range)) {
         const actual = this.getNestedValue(body, field) as number;
-        if (range.gte != null && (actual < range.gte)) return false;
-        if (range.lte != null && (actual > range.lte)) return false;
-        if (range.gt != null && (actual <= range.gt)) return false;
-        if (range.lt != null && (actual >= range.lt)) return false;
+        if (range.gte != null && (actual < Number(range.gte))) return false;
+        if (range.lte != null && (actual > Number(range.lte))) return false;
+        if (range.gt != null && (actual <= Number(range.gt))) return false;
+        if (range.lt != null && (actual >= Number(range.lt))) return false;
       }
       return true;
     }
@@ -554,16 +554,26 @@ export class InMemorySearchAdapter implements SearchProvider {
   private fuzzyMatch(actual: string, expected: string): boolean {
     const maxDist = Math.max(1, Math.floor(expected.length * 0.3));
     if (Math.abs(actual.length - expected.length) > maxDist) return false;
-    const dp: number[][] = Array.from({ length: actual.length + 1 }, () => Array(expected.length + 1).fill(0));
-    for (let i = 0; i <= actual.length; i++) dp[i][0] = i;
-    for (let j = 0; j <= expected.length; j++) dp[0][j] = j;
+    const rows: number[][] = Array.from({ length: actual.length + 1 }, () => Array(expected.length + 1).fill(0));
+    for (let i = 0; i <= actual.length; i++) {
+      const row = rows[i]!;
+      row[0] = i;
+    }
+    for (let j = 0; j <= expected.length; j++) {
+      rows[0]![j] = j;
+    }
     for (let i = 1; i <= actual.length; i++) {
+      const currentRow = rows[i]!;
+      const prevRow = rows[i - 1]!;
       for (let j = 1; j <= expected.length; j++) {
         const cost = actual[i - 1] === expected[j - 1] ? 0 : 1;
-        dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        const del = prevRow[j]! + 1;
+        const ins = currentRow[j - 1]! + 1;
+        const sub = prevRow[j - 1]! + cost;
+        currentRow[j] = Math.min(del, ins, sub);
       }
     }
-    return dp[actual.length][expected.length] <= maxDist;
+    return rows[actual.length]![expected.length]! <= maxDist;
   }
 
   private applySort(hits: SearchHit[], sort: SearchQuery['sort']): SearchHit[] {
@@ -733,8 +743,8 @@ export class InMemorySearchAdapter implements SearchProvider {
 function parseInterval(interval: string): number {
   const match = interval.match(/^(\d+)([smhdw])$/);
   if (!match) return 3600000;
-  const value = parseInt(match[1], 10);
-  switch (match[2]) {
+  const value = parseInt(match[1]!, 10);
+  switch (match[2]!) {
     case 's': return value * 1000;
     case 'm': return value * 60000;
     case 'h': return value * 3600000;

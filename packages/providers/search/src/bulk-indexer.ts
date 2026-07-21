@@ -32,7 +32,9 @@ export class BulkIndexer {
       } else {
         hadErrors = true;
         this.logger.error('Bulk batch failed', result.reason);
-        for (const op of batches[results.indexOf(result) as number]) {
+        const failedBatch = batches[results.indexOf(result)];
+        if (!failedBatch) continue;
+        for (const op of failedBatch) {
           combined.push({
             [op.action]: {
               _index: op.index,
@@ -115,7 +117,7 @@ export class BulkIndexer {
 
       processed += result.hits.length;
       const lastHit = result.hits[result.hits.length - 1];
-      searchAfter = lastHit.sort;
+      searchAfter = lastHit?.sort;
 
       this.logger.debug(`Reindexed ${processed}/${count} documents`);
     }

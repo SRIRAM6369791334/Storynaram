@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SearchQuery, QueryClause } from './types';
+import type { SearchQuery, QueryClause, BoolQuery } from './types';
 import { InvalidQueryError } from './errors';
 
 @Injectable()
@@ -58,12 +58,12 @@ export class SearchQueryCompiler {
     throw new InvalidQueryError(`Unknown query clause type: ${JSON.stringify(clause).slice(0, 100)}`);
   }
 
-  private compileBool(bool: NonNullable<QueryClause['bool']>): { bool: Record<string, unknown> } {
+  private compileBool(bool: BoolQuery['bool']): { bool: Record<string, unknown> } {
     const result: Record<string, unknown> = {};
-    if (bool.must) result.must = bool.must.map(q => this.compileClause(q));
-    if (bool.should) result.should = bool.should.map(q => this.compileClause(q));
-    if (bool.filter) result.filter = bool.filter.map(q => this.compileClause(q));
-    if (bool.mustNot) result.must_not = bool.mustNot.map(q => this.compileClause(q));
+    if (bool.must) result.must = bool.must.map((q: QueryClause) => this.compileClause(q));
+    if (bool.should) result.should = bool.should.map((q: QueryClause) => this.compileClause(q));
+    if (bool.filter) result.filter = bool.filter.map((q: QueryClause) => this.compileClause(q));
+    if (bool.mustNot) result.must_not = bool.mustNot.map((q: QueryClause) => this.compileClause(q));
     if (bool.minimumShouldMatch !== undefined) result.minimum_should_match = bool.minimumShouldMatch;
     if (bool.boost !== undefined) result.boost = bool.boost;
     return { bool: result };

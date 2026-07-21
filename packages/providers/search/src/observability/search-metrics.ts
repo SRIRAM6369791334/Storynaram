@@ -80,8 +80,8 @@ export class SearchMetricsCollector {
     const bucket = this.metrics.latencyBuckets.get(operation);
     if (!bucket || bucket.length === 0) return 0;
     const sorted = [...bucket].sort((a, b) => a - b);
-    const index = Math.ceil((percentile / 100) * sorted.length) - 1;
-    return sorted[Math.max(0, index)];
+    const index = Math.max(0, Math.ceil((percentile / 100) * sorted.length) - 1);
+    return sorted[index] ?? 0;
   }
 
   reset(): void {
