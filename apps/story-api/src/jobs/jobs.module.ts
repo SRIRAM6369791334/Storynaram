@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef, Global } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
 import { JobsService } from './jobs.service';
 import { GenerationProducer } from './producers/generation.producer';
@@ -26,7 +26,7 @@ import { GenerationModule } from '../modules/generation/generation.module';
       { name: 'story-publishing' },
       { name: 'bulk-export' },
     ),
-    GenerationModule,
+    forwardRef(() => GenerationModule),
   ],
   providers: [
     JobsService,
@@ -39,6 +39,7 @@ import { GenerationModule } from '../modules/generation/generation.module';
     JobsService,
     GenerationProducer, RevisionProducer,
     PublishingProducer, BulkExportProducer,
+    BullModule,
   ],
 })
 export class JobsModule {}

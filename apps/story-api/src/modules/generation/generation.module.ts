@@ -1,6 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
+import { BullModule } from '@nestjs/bullmq';
 import { AIRuntimeService } from '@storynaram/runtime';
 import { StoryGenerationEngine } from '@storynaram/story-generator';
+import { JobsModule } from '../../jobs/jobs.module';
 import { StoryModule } from '../story/story.module';
 import { CharacterModule } from '../character/character.module';
 import { WorldModule } from '../world/world.module';
@@ -14,6 +16,8 @@ import { GenerationDataLoader } from './generation-data-loader';
 
 @Module({
   imports: [
+    BullModule.registerQueue({ name: 'story-generation' }),
+    forwardRef(() => JobsModule),
     StoryModule,
     CharacterModule,
     WorldModule,
@@ -37,6 +41,6 @@ import { GenerationDataLoader } from './generation-data-loader';
       inject: [AIRuntimeService],
     },
   ],
-  exports: [GenerationService, StoryGenerationEngine],
+  exports: [GenerationService, StoryGenerationEngine, GenerationDataLoader],
 })
 export class GenerationModule {}

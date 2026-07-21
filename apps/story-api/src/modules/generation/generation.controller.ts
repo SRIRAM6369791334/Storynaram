@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Param, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Delete, Body, Param, Res, HttpStatus } from '@nestjs/common';
 import type { Response } from 'express';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { GenerationService } from './generation.service';
@@ -11,13 +11,13 @@ export class GenerationController {
   constructor(private readonly generationService: GenerationService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Generate story content using AI (async, returns generation ID)' })
+  @ApiOperation({ summary: 'Generate story content using AI (queued via BullMQ)' })
   async generate(@Param('storyId') storyId: string, @Body() dto: GenerateStoryDto) {
     return this.generationService.generate({ ...dto, storyId });
   }
 
   @Post('stream')
-  @ApiOperation({ summary: 'Generate story content using AI with Server-Sent Events streaming' })
+  @ApiOperation({ summary: 'Generate with progress stream (SSE job progress)' })
   async generateStream(
     @Param('storyId') storyId: string,
     @Body() dto: GenerateStoryDto,
@@ -49,5 +49,21 @@ export class GenerationController {
       return { statusCode: HttpStatus.NOT_FOUND, message: 'Generation not found' };
     }
     return result;
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Cancel a queued or in-progress generation' })
+  async cancel(@Param('id') id: string) {
+    const cancelled = await this.generationService.cancel(id);
+    if (!cancelled) {
+      return { statusCode: HttpStatus.NOT_FOUND, message: 'Generation not found or already completed' };
+    }
+    return { status: 'cancelled' };
+  }
+
+  @Post(':id/cancel')
+  @ApiOperation({ summary: 'Cancel a queued or in-progress generation (POST variant)' })
+  async cancelPost(@Param('id') id: string) {
+    return this.cancel(id);
   }
 }

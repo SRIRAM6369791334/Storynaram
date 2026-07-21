@@ -1,14 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { EventEmitter } from 'events';
 
 export interface JobStatus {
   id: string;
   name: string;
-  status: 'completed' | 'failed' | 'active' | 'waiting' | 'delayed';
+  status: 'queued' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'delayed';
   progress: number;
   data?: Record<string, unknown>;
-  result?: unknown;
+  result?: Record<string, unknown>;
   failedReason?: string;
   createdAt: Date;
+  startedAt?: Date;
   completedAt?: Date;
 }
 
@@ -16,6 +18,15 @@ export interface JobStatus {
 export class JobsService {
   private readonly logger = new Logger(JobsService.name);
   private readonly jobs = new Map<string, JobStatus>();
+  private readonly _eventBus = new EventEmitter();
+
+  constructor() {
+    this._eventBus.setMaxListeners(100);
+  }
+
+  get events(): EventEmitter {
+    return this._eventBus;
+  }
 
   trackJob(job: JobStatus): void {
     this.jobs.set(job.id, job);
@@ -26,6 +37,7 @@ export class JobsService {
     const existing = this.jobs.get(id);
     if (existing) {
       Object.assign(existing, updates);
+      this.events.emit(`job:${id}:updated`, existing);
     }
   }
 
@@ -34,7 +46,7 @@ export class JobsService {
   }
 
   getQueuedJobs(): JobStatus[] {
-    return Array.from(this.jobs.values()).filter(j => j.status === 'waiting' || j.status === 'delayed' || j.status === 'active');
+    return Array.from(this.jobs.values()).filter(j => j.status === 'queued' || j.status === 'processing');
   }
 
   getCompletedJobs(): JobStatus[] {

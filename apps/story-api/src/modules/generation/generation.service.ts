@@ -1,210 +1,202 @@
-import { Injectable, Inject, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
+import { Queue } from 'bullmq';
+import { InjectQueue } from '@nestjs/bullmq';
 import { randomUUID } from 'crypto';
-import { StoryGenerationEngine } from '@storynaram/story-generator';
-import { ExecutionResult } from '@storynaram/narrative-execution';
-import type { StoryDraft, ChapterDraft, ExecutionReport, ValidationReport } from '@storynaram/narrative-execution';
-import { GenerateStoryDto, ChapterInputDto } from './dto/generate-story.dto';
-import { GenerationResponseDto, GeneratedChapterDto, GenerationMetricsDto } from './dto/generation-response.dto';
+import { GenerateStoryDto } from './dto/generate-story.dto';
+import { GenerationResponseDto } from './dto/generation-response.dto';
+import { JobsService } from '../../jobs/jobs.service';
 
 type StreamEventCallback = (event: string, data: Record<string, unknown>) => void;
-
-interface GenerationRecord {
-  id: string;
-  storyId: string;
-  status: string;
-  createdAt: Date;
-  completedAt?: Date;
-  error?: string;
-  chapters?: GeneratedChapterDto[];
-  fullStory?: string;
-  qualityPassed?: boolean;
-  metrics?: GenerationMetricsDto;
-}
 
 @Injectable()
 export class GenerationService {
   private readonly logger = new Logger(GenerationService.name);
-  private readonly generations = new Map<string, GenerationRecord>();
 
-  constructor(@Inject(StoryGenerationEngine) private readonly engine: StoryGenerationEngine) {}
+  constructor(
+    @InjectQueue('story-generation') private readonly queue: Queue,
+    private readonly jobsService: JobsService,
+  ) {}
 
   async generate(dto: GenerateStoryDto): Promise<GenerationResponseDto> {
-    const id = randomUUID();
-    const record: GenerationRecord = {
-      id,
-      storyId: dto.storyId,
-      status: 'queued',
-      createdAt: new Date(),
-    };
-    this.generations.set(id, record);
+    const generationId = randomUUID();
+    const now = new Date();
 
-    this.processGeneration(id, dto).catch((err) => {
-      this.logger.error(`Generation ${id} failed: ${err.message}`);
-      record.status = 'failed';
-      record.error = err.message;
-      record.completedAt = new Date();
+    this.jobsService.trackJob({
+      id: generationId,
+      name: 'story-generation',
+      status: 'queued',
+      progress: 0,
+      data: { storyId: dto.storyId, options: dto.options },
+      createdAt: now,
     });
 
-    return this.toResponse(record);
+    const job = await this.queue.add(
+      'generate',
+      {
+        generationId,
+        storyId: dto.storyId,
+        title: dto.title,
+        chapters: dto.chapters,
+        model: dto.model,
+        provider: dto.provider,
+        temperature: dto.temperature,
+        maxTokens: dto.maxTokens,
+        metadata: dto.options,
+        timestamp: now.toISOString(),
+      },
+      {
+        jobId: generationId,
+        priority: 0,
+        attempts: 3,
+        backoff: { type: 'exponential', delay: 2000 },
+        removeOnComplete: { age: 3600 * 24 },
+        removeOnFail: { age: 3600 * 24 },
+      },
+    );
+
+    this.logger.log(`Enqueued generation ${generationId} for story ${dto.storyId} (job ${job.id})`);
+
+    return {
+      id: generationId,
+      storyId: dto.storyId,
+      status: 'queued',
+      createdAt: now.toISOString(),
+    };
   }
 
   async generateStream(
     dto: GenerateStoryDto,
     emit: StreamEventCallback,
   ): Promise<void> {
-    const id = randomUUID();
+    const generationId = randomUUID();
+    const now = new Date();
 
-    emit('start', { generationId: id, storyId: dto.storyId });
+    this.jobsService.trackJob({
+      id: generationId,
+      name: 'story-generation',
+      status: 'queued',
+      progress: 0,
+      data: { storyId: dto.storyId },
+      createdAt: now,
+    });
 
-    try {
-      const executionResult = this.buildExecutionResult(dto);
-      emit('progress', { stage: 'generating' });
+    emit('start', { generationId, storyId: dto.storyId, status: 'queued' });
 
-      const result = await this.engine.generate(executionResult, {
+    const job = await this.queue.add(
+      'generate',
+      {
+        generationId,
+        storyId: dto.storyId,
+        title: dto.title,
+        chapters: dto.chapters,
         model: dto.model,
         provider: dto.provider,
         temperature: dto.temperature,
         maxTokens: dto.maxTokens,
-        stream: dto.stream ?? true,
-      });
-
-      for (const chapter of result.chapters) {
-        emit('chapter', {
-          number: chapter.number,
-          title: chapter.title,
-          content: chapter.content,
-          wordCount: chapter.wordCount,
-        });
-      }
-
-      emit('complete', {
-        sessionId: result.sessionId,
-        chaptersGenerated: result.metrics.chaptersGenerated,
-        totalTokens: result.metrics.totalTokens,
-        totalCost: result.metrics.totalCost,
-        qualityPassed: result.qualityReport.passed,
-      });
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      emit('error', { message });
-    }
-  }
-
-  async getStatus(id: string): Promise<GenerationResponseDto | null> {
-    const record = this.generations.get(id);
-    if (!record) return null;
-    return this.toResponse(record);
-  }
-
-  private buildExecutionResult(dto: GenerateStoryDto): ExecutionResult {
-    const chapters: ChapterDraft[] = (dto.chapters ?? [{ number: 1, title: 'Chapter 1' }]).map(
-      (c: ChapterInputDto) => ({
-        number: c.number,
-        title: c.title,
-        content: '',
-        wordCount: 0,
-      }),
+        metadata: dto.options,
+        timestamp: now.toISOString(),
+      },
+      {
+        jobId: generationId,
+        priority: 0,
+        attempts: 3,
+        backoff: { type: 'exponential', delay: 2000 },
+        removeOnComplete: { age: 3600 * 24 },
+        removeOnFail: { age: 3600 * 24 },
+      },
     );
 
-    const storyDraft: StoryDraft = {
-      title: dto.title ?? 'Untitled Story',
-      chapters,
-      characters: [],
-      worlds: [],
-      timeline: { events: [], overallTimeline: '' },
-      narrative: { synopsis: '', chapters: [] },
-      composition: { arcs: [], overallStructure: '' },
-      validationResults: [],
-      metadata: { storyId: dto.storyId },
-    };
+    this.logger.log(`Stream enqueued generation ${generationId} for story ${dto.storyId} (job ${job.id})`);
 
-    const executionReport: ExecutionReport = {
-      sessionId: randomUUID(),
-      status: 'completed',
-      stages: [],
-      totalDurationMs: 0,
-      totalTokens: 0,
-      model: dto.model ?? 'mock-model',
-    };
+    await this.waitForCompletion(generationId, emit);
+  }
 
-    const validationReport: ValidationReport = {
-      passed: true,
-      validations: [],
-      summary: '',
-    };
+  private async waitForCompletion(
+    generationId: string,
+    emit: StreamEventCallback,
+  ): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
+        emit('error', { message: 'Generation timed out' });
+        reject(new Error('Generation timed out'));
+      }, 30 * 60 * 1000);
 
-    return new ExecutionResult({
-      sessionId: randomUUID(),
-      storyDraft,
-      executionReport,
-      validationReport,
-      statistics: {
-        totalTasks: 1,
-        completedTasks: 0,
-        failedTasks: 0,
-        totalDurationMs: 0,
-        totalTokenUsage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
-        agentTimings: [],
-        stageTimings: [],
-      },
+      const onUpdate = (status: { status: string; progress: number; result?: Record<string, unknown>; failedReason?: string }) => {
+        emit('progress', { generationId, status: status.status, progress: status.progress });
+
+        if (status.status === 'processing') {
+          emit('progress', { stage: 'generating' });
+        }
+
+        if (status.status === 'completed') {
+          clearTimeout(timeout);
+          this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
+          emit('complete', {
+            generationId,
+            result: status.result,
+          });
+          resolve();
+        }
+
+        if (status.status === 'failed') {
+          clearTimeout(timeout);
+          this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
+          emit('error', { message: status.failedReason ?? 'Generation failed' });
+          reject(new Error(status.failedReason ?? 'Generation failed'));
+        }
+      };
+
+      this.jobsService.events.on(`job:${generationId}:updated`, onUpdate);
+
+      const current = this.jobsService.getJob(generationId);
+      if (current && (current.status === 'completed' || current.status === 'failed')) {
+        clearTimeout(timeout);
+        this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
+        if (current.status === 'completed') {
+          emit('complete', { generationId, result: current.result });
+          resolve();
+        } else {
+          emit('error', { message: current.failedReason ?? 'Generation failed' });
+          reject(new Error(current.failedReason ?? 'Generation failed'));
+        }
+      }
     });
   }
 
-  private async processGeneration(id: string, dto: GenerateStoryDto): Promise<void> {
-    const record = this.generations.get(id);
-    if (!record) return;
+  async getStatus(id: string): Promise<GenerationResponseDto | null> {
+    const record = this.jobsService.getJob(id);
+    if (!record) return null;
 
-    try {
-      const executionResult = this.buildExecutionResult(dto);
-      const result = await this.engine.generate(executionResult, {
-        model: dto.model,
-        provider: dto.provider,
-        temperature: dto.temperature,
-        maxTokens: dto.maxTokens,
-        stream: dto.stream,
-      });
+    const bullJob = await this.queue.getJob(id);
 
-      record.status = 'completed';
-      record.completedAt = result.completedAt;
-      record.chapters = result.chapters.map((ch) => ({
-        number: ch.number,
-        title: ch.title,
-        content: ch.content,
-        wordCount: ch.wordCount,
-        model: ch.model,
-        provider: ch.provider,
-        latencyMs: ch.latencyMs,
-      }));
-      record.fullStory = result.fullStory;
-      record.qualityPassed = result.qualityReport.passed;
-      record.metrics = {
-        totalDurationMs: result.metrics.totalDurationMs,
-        totalTokens: result.metrics.totalTokens,
-        totalCost: result.metrics.totalCost,
-        chaptersGenerated: result.metrics.chaptersGenerated,
-        averageLatencyMs: result.metrics.averageLatencyMs,
-        modelsUsed: result.metrics.modelsUsed,
-        providersUsed: result.metrics.providersUsed,
-      };
-    } catch (err) {
-      record.status = 'failed';
-      record.error = err instanceof Error ? err.message : String(err);
-      record.completedAt = new Date();
-    }
-  }
-
-  private toResponse(record: GenerationRecord): GenerationResponseDto {
     return {
       id: record.id,
-      storyId: record.storyId,
+      storyId: (record.data?.storyId as string) ?? '',
       status: record.status,
       createdAt: record.createdAt.toISOString(),
+      startedAt: record.startedAt?.toISOString(),
       completedAt: record.completedAt?.toISOString(),
-      error: record.error,
-      chapters: record.chapters,
-      fullStory: record.fullStory,
-      qualityPassed: record.qualityPassed,
-      metrics: record.metrics,
+      error: record.failedReason,
+      chapters: record.result?.chapters as never,
+      fullStory: record.result?.fullStory as string | undefined,
+      qualityPassed: record.result?.qualityPassed as boolean | undefined,
+      metrics: record.result?.metrics as never,
+      progress: record.progress,
+      retryAttempt: bullJob?.attemptsMade,
     };
+  }
+
+  async cancel(id: string): Promise<boolean> {
+    const job = await this.queue.getJob(id);
+    if (!job) return false;
+
+    if (await job.isActive() || await job.isWaiting()) {
+      await job.remove();
+      this.jobsService.updateJob(id, { status: 'cancelled', completedAt: new Date() });
+      this.logger.log(`Cancelled generation ${id}`);
+      return true;
+    }
+    return false;
   }
 }

@@ -60,6 +60,9 @@ export class GenerationResponseDto {
   createdAt!: string;
 
   @ApiPropertyOptional()
+  startedAt?: string;
+
+  @ApiPropertyOptional()
   completedAt?: string;
 
   @ApiPropertyOptional()
@@ -76,4 +79,10 @@ export class GenerationResponseDto {
 
   @ApiPropertyOptional()
   metrics?: GenerationMetricsDto;
+
+  @ApiPropertyOptional()
+  progress?: number;
+
+  @ApiPropertyOptional()
+  retryAttempt?: number;
 }
