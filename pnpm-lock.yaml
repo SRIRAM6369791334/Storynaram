@@ -246,6 +246,68 @@ importers:
         specifier: ^7.8.0
         version: 7.8.2
 
+  packages/ai/narrative-execution:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/narrative-planner':
+        specifier: workspace:*
+        version: link:../narrative-planner
+      '@storynaram/runtime':
+        specifier: workspace:*
+        version: link:../../runtime
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
+  packages/ai/narrative-planner:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/canon-domain':
+        specifier: workspace:*
+        version: link:../../domain/canon
+      '@storynaram/character-domain':
+        specifier: workspace:*
+        version: link:../../domain/character
+      '@storynaram/composition-domain':
+        specifier: workspace:*
+        version: link:../../domain/composition
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../../domain/kernel
+      '@storynaram/narrative-domain':
+        specifier: workspace:*
+        version: link:../../domain/narrative
+      '@storynaram/platform':
+        specifier: workspace:*
+        version: link:../../platform
+      '@storynaram/runtime':
+        specifier: workspace:*
+        version: link:../../runtime
+      '@storynaram/storage':
+        specifier: workspace:*
+        version: link:../../storage
+      '@storynaram/timeline-domain':
+        specifier: workspace:*
+        version: link:../../domain/timeline
+      '@storynaram/world-domain':
+        specifier: workspace:*
+        version: link:../../domain/world
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
   packages/common:
     dependencies:
       '@nestjs/common':
@@ -300,7 +362,39 @@ importers:
         specifier: ^7.8.0
         version: 7.8.2
 
+  packages/domain/canon:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
   packages/domain/character:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
+  packages/domain/composition:
     dependencies:
       '@nestjs/common':
         specifier: ^11.0.0
@@ -321,6 +415,38 @@ importers:
       '@nestjs/common':
         specifier: ^11.0.0
         version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
+  packages/domain/narrative:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
+
+  packages/domain/timeline:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../kernel
     devDependencies:
       '@nestjs/testing':
         specifier: ^11.0.0
@@ -389,6 +515,25 @@ importers:
       rxjs:
         specifier: ^7.8.0
         version: 7.8.2
+
+  packages/platform:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.0.0
+        version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@storynaram/composition-domain':
+        specifier: workspace:*
+        version: link:../domain/composition
+      '@storynaram/domain-kernel':
+        specifier: workspace:*
+        version: link:../domain/kernel
+    devDependencies:
+      '@nestjs/testing':
+        specifier: ^11.0.0
+        version: 11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28)(@nestjs/platform-express@11.1.28)
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@22.20.1)(terser@5.49.0)
 
   packages/plugin-sdk:
     dependencies:

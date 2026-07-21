@@ -1,11 +1,11 @@
 import { AggregateRoot, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
 import { WorldIdentity } from './world-identity';
-import { WorldProfile } from './world-profile';
+import { WorldProfile, WorldName, WorldDescription } from './world-profile';
 import { WorldGeography, Coordinates, Area, Population, Biome, Climate as ClimateVO, Temperature } from './world-geography';
 import { WorldMap } from './world-map';
 import { Calendar, TimeSystem } from './world-calendar';
 import { WorldFactions, Faction, FactionType } from './world-faction';
-import { WorldCultures, Culture } from './world-culture';
+import { WorldCultures, Culture, Currency, CurrencyCode } from './world-culture';
 import { MagicSystem } from './world-magic-system';
 import { TechnologyLevel } from './world-technology-level';
 import { EconomicSystem } from './world-economy';
@@ -44,8 +44,8 @@ export class WorldAggregate extends AggregateRoot<WorldIdentity> {
   constructor(identity: WorldIdentity) {
     super(identity);
     this._profile = new WorldProfile({
-      name: null as never,
-      description: null as never,
+      name: new WorldName('Unnamed World'),
+      description: new WorldDescription(''),
       genre: '',
       tone: '',
     });
@@ -68,7 +68,7 @@ export class WorldAggregate extends AggregateRoot<WorldIdentity> {
     this._cultures = new WorldCultures();
     this._magicSystem = new MagicSystem('None', 'arcane', 0, 'No magic system defined', []);
     this._technologyLevel = new TechnologyLevel('medieval', 'Default technology', []);
-    this._economicSystem = new EconomicSystem('traditional', 'Default economy', null as never, []);
+    this._economicSystem = new EconomicSystem('traditional', 'Default economy', new Currency('default-currency', 'Default Coin', new CurrencyCode('DEF'), 'D'), []);
     this._resources = new WorldNaturalResources();
     this._rules = new WorldRules();
     this._history = new WorldHistory();

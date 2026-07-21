@@ -3,4 +3,5 @@ packages:
   - "packages/*"
   - "packages/domain/*"
   - "packages/providers/*"
+  - "packages/ai/*"
   - "plugins/*"

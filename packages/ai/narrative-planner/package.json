@@ -1,0 +1,38 @@
+{
+  "name": "@storynaram/narrative-planner",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@storynaram/domain-kernel": "workspace:*",
+    "@storynaram/narrative-domain": "workspace:*",
+    "@storynaram/character-domain": "workspace:*",
+    "@storynaram/world-domain": "workspace:*",
+    "@storynaram/timeline-domain": "workspace:*",
+    "@storynaram/canon-domain": "workspace:*",
+    "@storynaram/composition-domain": "workspace:*",
+    "@storynaram/platform": "workspace:*",
+    "@storynaram/runtime": "workspace:*",
+    "@storynaram/storage": "workspace:*"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.0.0",
+    "@storynaram/domain-kernel": "workspace:*",
+    "@storynaram/narrative-domain": "workspace:*",
+    "@storynaram/character-domain": "workspace:*",
+    "@storynaram/world-domain": "workspace:*",
+    "@storynaram/timeline-domain": "workspace:*",
+    "@storynaram/canon-domain": "workspace:*",
+    "@storynaram/composition-domain": "workspace:*",
+    "@storynaram/platform": "workspace:*",
+    "@storynaram/runtime": "workspace:*",
+    "@storynaram/storage": "workspace:*",
+    "vitest": "^3.2.0"
+  }
+}
