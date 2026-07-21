@@ -4,7 +4,7 @@ import { InjectQueue } from '@nestjs/bullmq';
 import { randomUUID } from 'crypto';
 import { GenerateStoryDto } from './dto/generate-story.dto';
 import { GenerationResponseDto } from './dto/generation-response.dto';
-import { JobsService } from '../../jobs/jobs.service';
+import { JobsService, type StreamEventPayload } from '../../jobs/jobs.service';
 
 type StreamEventCallback = (event: string, data: Record<string, unknown>) => void;
 
@@ -71,6 +71,8 @@ export class GenerationService {
     const generationId = randomUUID();
     const now = new Date();
 
+    emit('connected', { generationId, storyId: dto.storyId });
+
     this.jobsService.trackJob({
       id: generationId,
       name: 'story-generation',
@@ -80,7 +82,7 @@ export class GenerationService {
       createdAt: now,
     });
 
-    emit('start', { generationId, storyId: dto.storyId, status: 'queued' });
+    emit('started', { generationId, storyId: dto.storyId, status: 'queued' });
 
     const job = await this.queue.add(
       'generate',
@@ -95,6 +97,7 @@ export class GenerationService {
         maxTokens: dto.maxTokens,
         metadata: dto.options,
         timestamp: now.toISOString(),
+        stream: true,
       },
       {
         jobId: generationId,
@@ -108,31 +111,26 @@ export class GenerationService {
 
     this.logger.log(`Stream enqueued generation ${generationId} for story ${dto.storyId} (job ${job.id})`);
 
-    await this.waitForCompletion(generationId, emit);
+    await this.forwardStreamEvents(generationId, emit);
   }
 
-  private async waitForCompletion(
+  private async forwardStreamEvents(
     generationId: string,
     emit: StreamEventCallback,
   ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       const timeout = setTimeout(() => {
-        this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
-        emit('error', { message: 'Generation timed out' });
+        cleanup();
+        emit('failed', { generationId, error: 'Generation timed out after 30 minutes' });
         reject(new Error('Generation timed out'));
       }, 30 * 60 * 1000);
 
       const onUpdate = (status: { status: string; progress: number; result?: Record<string, unknown>; failedReason?: string }) => {
         emit('progress', { generationId, status: status.status, progress: status.progress });
 
-        if (status.status === 'processing') {
-          emit('progress', { stage: 'generating' });
-        }
-
         if (status.status === 'completed') {
-          clearTimeout(timeout);
-          this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
-          emit('complete', {
+          cleanup();
+          emit('completed', {
             generationId,
             result: status.result,
           });
@@ -140,24 +138,101 @@ export class GenerationService {
         }
 
         if (status.status === 'failed') {
-          clearTimeout(timeout);
-          this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
-          emit('error', { message: status.failedReason ?? 'Generation failed' });
+          cleanup();
+          emit('failed', { generationId, error: status.failedReason ?? 'Generation failed' });
           reject(new Error(status.failedReason ?? 'Generation failed'));
+        }
+
+        if (status.status === 'cancelled') {
+          cleanup();
+          emit('cancelled', { generationId });
+          resolve();
         }
       };
 
-      this.jobsService.events.on(`job:${generationId}:updated`, onUpdate);
+      const onStreamEvent = (payload: StreamEventPayload) => {
+        switch (payload.type) {
+          case 'token':
+            emit('token', {
+              generationId: payload.generationId,
+              chapterNumber: payload.chapterNumber,
+              delta: payload.delta,
+              index: payload.index,
+              finishReason: payload.finishReason,
+              latencyMs: payload.latencyMs,
+              timeToFirstTokenMs: payload.timeToFirstTokenMs,
+            });
+            break;
 
-      const current = this.jobsService.getJob(generationId);
-      if (current && (current.status === 'completed' || current.status === 'failed')) {
+          case 'chapter:start':
+            emit('chapter', {
+              generationId: payload.generationId,
+              chapterNumber: payload.chapterNumber,
+              chapterTitle: payload.chapterTitle,
+              action: 'start',
+            });
+            break;
+
+          case 'chapter:complete':
+            emit('chapter', {
+              generationId: payload.generationId,
+              chapterNumber: payload.chapterNumber,
+              chapterTitle: payload.chapterTitle,
+              action: 'complete',
+              content: payload.content,
+              tokenUsage: payload.tokenUsage,
+              latencyMs: payload.latencyMs,
+              timeToFirstTokenMs: payload.timeToFirstTokenMs,
+            });
+            break;
+
+          case 'quality:check':
+            emit('progress', {
+              generationId: payload.generationId,
+              status: 'validating',
+              checks: payload.checks,
+            });
+            break;
+
+          case 'metrics':
+            emit('progress', {
+              generationId: payload.generationId,
+              status: 'metrics',
+              metrics: payload.metrics,
+            });
+            break;
+
+          case 'error':
+            cleanup();
+            emit('failed', { generationId: payload.generationId, error: payload.error });
+            reject(new Error(payload.error));
+            break;
+
+          case 'done':
+            break;
+        }
+      };
+
+      const cleanup = () => {
         clearTimeout(timeout);
         this.jobsService.events.removeListener(`job:${generationId}:updated`, onUpdate);
+        this.jobsService.events.removeListener(`job:${generationId}:stream`, onStreamEvent);
+      };
+
+      this.jobsService.events.on(`job:${generationId}:updated`, onUpdate);
+      this.jobsService.events.on(`job:${generationId}:stream`, onStreamEvent);
+
+      const current = this.jobsService.getJob(generationId);
+      if (current && (current.status === 'completed' || current.status === 'failed' || current.status === 'cancelled')) {
+        cleanup();
         if (current.status === 'completed') {
-          emit('complete', { generationId, result: current.result });
+          emit('completed', { generationId, result: current.result });
+          resolve();
+        } else if (current.status === 'cancelled') {
+          emit('cancelled', { generationId });
           resolve();
         } else {
-          emit('error', { message: current.failedReason ?? 'Generation failed' });
+          emit('failed', { generationId, error: current.failedReason ?? 'Generation failed' });
           reject(new Error(current.failedReason ?? 'Generation failed'));
         }
       }
@@ -194,6 +269,11 @@ export class GenerationService {
     if (await job.isActive() || await job.isWaiting()) {
       await job.remove();
       this.jobsService.updateJob(id, { status: 'cancelled', completedAt: new Date() });
+      this.jobsService.emitStreamEvent({
+        type: 'error',
+        generationId: id,
+        error: 'Generation cancelled by user',
+      });
       this.logger.log(`Cancelled generation ${id}`);
       return true;
     }

@@ -1,5 +1,5 @@
-import { Controller, Post, Get, Delete, Body, Param, Res, HttpStatus } from '@nestjs/common';
-import type { Response } from 'express';
+import { Controller, Post, Get, Delete, Body, Param, Res, HttpStatus, Req } from '@nestjs/common';
+import type { Response, Request } from 'express';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { GenerationService } from './generation.service';
 import { GenerateStoryDto } from './dto/generate-story.dto';
@@ -17,10 +17,11 @@ export class GenerationController {
   }
 
   @Post('stream')
-  @ApiOperation({ summary: 'Generate with progress stream (SSE job progress)' })
+  @ApiOperation({ summary: 'Generate with real-time token streaming via SSE' })
   async generateStream(
     @Param('storyId') storyId: string,
     @Body() dto: GenerateStoryDto,
+    @Req() req: Request,
     @Res() res: Response,
   ) {
     res.setHeader('Content-Type', 'text/event-stream');
@@ -28,16 +29,29 @@ export class GenerationController {
     res.setHeader('Connection', 'keep-alive');
     res.setHeader('X-Accel-Buffering', 'no');
 
+    req.on('close', () => {
+      res.end();
+    });
+
     try {
       await this.generationService.generateStream({ ...dto, storyId }, (event, data) => {
-        res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
+        try {
+          res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
+          if (event === 'completed' || event === 'failed' || event === 'cancelled') {
+            res.end();
+          }
+        } catch {
+          // client disconnected
+        }
       });
-      res.write('event: done\ndata: {}\n\n');
-      res.end();
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      res.write(`event: error\ndata: ${JSON.stringify({ message })}\n\n`);
-      res.end();
+      try {
+        res.write(`event: error\ndata: ${JSON.stringify({ message })}\n\n`);
+        res.end();
+      } catch {
+        // client disconnected
+      }
     }
   }
 

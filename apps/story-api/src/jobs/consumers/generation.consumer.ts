@@ -19,7 +19,6 @@ interface GenerationJobData {
 
 @Processor('story-generation', {
   concurrency: 3,
-  timeout: 30 * 60 * 1000,
 })
 export class GenerationConsumer extends WorkerHost {
   private readonly logger = new Logger(GenerationConsumer.name);
@@ -45,7 +44,6 @@ export class GenerationConsumer extends WorkerHost {
       this.jobsService.updateJob(generationId, { progress: 5 });
 
       const controller = new AbortController();
-      let currentChapterIndex = 0;
       const totalChapters = executionResult.storyDraft.chapters.length;
 
       this.jobsService.emitStreamEvent({
@@ -57,9 +55,8 @@ export class GenerationConsumer extends WorkerHost {
       const chapters: Array<Record<string, unknown>> = [];
       let fullStory = '';
       let totalTokenUsage = { inputTokens: 0, outputTokens: 0, totalTokens: 0 };
-      let qualityPassed = false;
-      let qualityChecks: Array<{ name: string; passed: boolean; score: number; issues: string[] }> = [];
-      let metrics: Record<string, unknown> = {};
+      const qualityChecks: Array<{ name: string; passed: boolean; score: number; issues: string[] }> = [];
+      const metricsHolder: { value?: Record<string, unknown> } = {};
 
       const stream = this.engine.generateStream(
         executionResult,
@@ -72,16 +69,14 @@ export class GenerationConsumer extends WorkerHost {
         controller.signal,
       );
 
-      let chapterAccumulator = '';
-
       for await (const event of stream) {
-        await this.handleStreamEvent(event, generationId, chapters, totalChapters, totalTokenUsage);
+        await this.handleStreamEvent(event, generationId, chapters, totalChapters, totalTokenUsage, qualityChecks, metricsHolder);
       }
 
       this.jobsService.updateJob(generationId, { progress: 95 });
 
       fullStory = chapters.map((ch: Record<string, unknown>) => ch.content as string).join('\n\n');
-      qualityPassed = qualityChecks.every(c => c.passed);
+      const qualityPassed = qualityChecks.every(c => c.passed);
 
       const resultPayload = {
         status: 'completed',
@@ -89,7 +84,7 @@ export class GenerationConsumer extends WorkerHost {
         chapters,
         fullStory,
         qualityPassed,
-        metrics,
+        metrics: metricsHolder.value ?? {},
       };
 
       this.jobsService.updateJob(generationId, {
@@ -102,7 +97,7 @@ export class GenerationConsumer extends WorkerHost {
       this.jobsService.emitStreamEvent({
         type: 'done',
         generationId,
-        metrics,
+        metrics: metricsHolder.value ?? {},
       });
 
       this.logger.log(`Generation ${generationId} completed: ${chapters.length} chapters`);
@@ -134,6 +129,8 @@ export class GenerationConsumer extends WorkerHost {
     chapters: Array<Record<string, unknown>>,
     totalChapters: number,
     totalTokenUsage: { inputTokens: number; outputTokens: number; totalTokens: number },
+    qualityChecks: Array<{ name: string; passed: boolean; score: number; issues: string[] }>,
+    metricsHolder: { value?: Record<string, unknown> },
   ): Promise<void> {
     switch (event.type) {
       case 'chapter:start': {
@@ -191,6 +188,7 @@ export class GenerationConsumer extends WorkerHost {
       }
 
       case 'quality:check': {
+        qualityChecks.push(...event.checks);
         this.jobsService.emitStreamEvent({
           type: 'quality:check',
           generationId,
@@ -200,6 +198,7 @@ export class GenerationConsumer extends WorkerHost {
       }
 
       case 'metrics': {
+        metricsHolder.value = event.metrics as unknown as Record<string, unknown>;
         this.jobsService.emitStreamEvent({
           type: 'metrics',
           generationId,
