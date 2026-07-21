@@ -1,10 +1,9 @@
 'use client';
 
 import { useWorkspaceStore } from '@/stores/workspace-store';
-import { cn } from '@/utils/cn';
 import {
   FileText, Users, Globe, Calendar, BookOpen,
-  PenTool, Layout, BookMarked, ChevronLeft, Search,
+  PenTool, Layout, BookMarked, ChevronLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -33,7 +32,7 @@ export function Sidebar() {
           key={item.id}
           variant={activeLeftView === item.id ? 'secondary' : 'ghost'}
           size="icon"
-          onClick={() => setActiveLeftView(item.id)}
+          onClick={() => { setActiveLeftView(item.id); }}
           title={item.label}
         >
           <item.icon className="h-4 w-4" />

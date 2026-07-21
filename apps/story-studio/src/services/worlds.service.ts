@@ -11,7 +11,7 @@ export const worldsService = {
   async create(data: { name: string; description?: string; genre?: string }): Promise<World> {
     return apiFetch<World>('/worlds', { method: 'POST', body: JSON.stringify(data) });
   },
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/worlds/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/worlds/${id}`, { method: 'DELETE' });
   },
 };

@@ -29,7 +29,7 @@ export default function StoryPage() {
     <div className="flex h-full flex-col">
       <div className="border-b px-4 py-2">
         <h1 className="text-sm font-medium">{story.title}</h1>
-        <p className="text-xs text-muted-foreground">{story.status} · {story.genres?.join(', ')}</p>
+        <p className="text-xs text-muted-foreground">{story.status} · {story.genres.join(', ')}</p>
       </div>
       <div className="flex-1">
         <StoryEditor />

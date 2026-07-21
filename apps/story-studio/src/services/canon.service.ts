@@ -11,7 +11,7 @@ export const canonService = {
   async create(data: { name: string; description?: string }): Promise<CanonEntry> {
     return apiFetch<CanonEntry>('/canon', { method: 'POST', body: JSON.stringify(data) });
   },
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/canon/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/canon/${id}`, { method: 'DELETE' });
   },
 };

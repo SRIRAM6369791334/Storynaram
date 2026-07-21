@@ -2,7 +2,7 @@
 
 import { useWorkspaceStore } from '@/stores/workspace-store';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Terminal, Bell, Bot, ListOrdered, ScrollText } from 'lucide-react';
+import { Terminal, Bell, Bot, ListOrdered } from 'lucide-react';
 
 export function BottomPanel() {
   const { showBottomPanel } = useWorkspaceStore();
@@ -11,7 +11,7 @@ export function BottomPanel() {
 
   return (
     <div className="flex h-[200px] flex-col border-t bg-background">
-      <Tabs value="console" onValueChange={() => {}} className="flex-1 flex flex-col">
+      <Tabs value="console" onValueChange={() => { /* tab switch handled by value */ }} className="flex-1 flex flex-col">
         <TabsList className="mx-2 mt-1 h-7">
           <TabsTrigger value="console" className="text-xs py-0"><Terminal className="h-3 w-3 mr-1" />Console</TabsTrigger>
           <TabsTrigger value="notifications" className="text-xs py-0"><Bell className="h-3 w-3 mr-1" />Notifications</TabsTrigger>

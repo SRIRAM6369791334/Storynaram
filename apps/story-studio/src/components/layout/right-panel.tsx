@@ -11,7 +11,7 @@ export function RightPanel() {
 
   return (
     <div className="flex h-full w-[320px] flex-col border-l bg-background">
-      <Tabs value="ai" onValueChange={() => {}} className="flex-1 flex flex-col">
+      <Tabs value="ai" onValueChange={() => { /* tab switch handled by value */ }} className="flex-1 flex flex-col">
         <TabsList className="mx-2 mt-2">
           <TabsTrigger value="ai"><Bot className="h-3.5 w-3.5 mr-1" />AI</TabsTrigger>
           <TabsTrigger value="quality"><Sparkles className="h-3.5 w-3.5 mr-1" />Quality</TabsTrigger>

@@ -47,7 +47,7 @@ export function SettingsPage() {
         <div className="border rounded-lg p-4">
           <div className="flex gap-2">
             {(['light', 'dark', 'system'] as const).map((t) => (
-              <Button key={t} size="sm" variant={theme === t ? 'primary' : 'secondary'} onClick={() => setTheme(t)}>
+              <Button key={t} size="sm" variant={theme === t ? 'primary' : 'secondary'} onClick={() => { setTheme(t); }}>
                 {t.charAt(0).toUpperCase() + t.slice(1)}
               </Button>
             ))}
@@ -89,7 +89,7 @@ export function SettingsPage() {
             </div>
             <div className="flex items-center gap-2">
               <Input type={showKey ? 'text' : 'password'} className="w-48" placeholder="sk-..." value="sk-••••••••••" readOnly />
-              <Button size="sm" variant="ghost" onClick={() => setShowKey(!showKey)}>
+              <Button size="sm" variant="ghost" onClick={() => { setShowKey(!showKey); }}>
                 <Eye className="h-3 w-3" />
               </Button>
             </div>

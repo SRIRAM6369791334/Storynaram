@@ -16,7 +16,9 @@ export function WorldMap({ locations = [] }: { locations?: Location[] }) {
 
   useEffect(() => {
     if (!ctx || locations.length === 0) return;
-    const { width, height } = canvasRef.current!;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const { width, height } = canvas;
     ctx.clearRect(0, 0, width, height);
 
     ctx.strokeStyle = 'hsl(var(--border))';

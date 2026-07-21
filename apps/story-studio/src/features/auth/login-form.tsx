@@ -10,19 +10,19 @@ export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await login({ email, password });
+    void login({ email, password });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={(e) => { handleSubmit(e); }} className="space-y-4">
       <Input
         label="Email"
         type="email"
         placeholder="user@storynaram.com"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => { setEmail(e.target.value); }}
         required
       />
       <Input
@@ -30,7 +30,7 @@ export function LoginForm() {
         type="password"
         placeholder="Enter your password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => { setPassword(e.target.value); }}
         required
       />
       {loginError && <p className="text-xs text-destructive">{loginError.message}</p>}

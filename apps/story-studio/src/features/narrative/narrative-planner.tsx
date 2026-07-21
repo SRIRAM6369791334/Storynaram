@@ -8,7 +8,7 @@ import { ListSkeleton } from '@/components/ui/skeleton';
 import { toast } from '@/components/ui/toast';
 import { Dialog } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Route, Plus, Trash2, Sparkles } from 'lucide-react';
+import { Route, Plus, Trash2 } from 'lucide-react';
 
 export function NarrativePlanner() {
   const { data: narratives, isLoading } = useNarratives();
@@ -40,7 +40,7 @@ export function NarrativePlanner() {
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Narratives</h2>
         <div className="flex gap-1">
-          <Button size="sm" variant="ghost" onClick={() => setShowCreate(true)}>
+          <Button size="sm" variant="ghost" onClick={() => { setShowCreate(true); }}>
             <Plus className="h-3 w-3 mr-1" />Add
           </Button>
         </div>
@@ -53,7 +53,7 @@ export function NarrativePlanner() {
           <div
             key={narr.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50"
-            onClick={() => openTab({ id: `narrative-${narr.id}`, title: narr.title, type: 'narrative', entityId: narr.id })}
+            onClick={() => { openTab({ id: `narrative-${narr.id}`, title: narr.title, type: 'narrative', entityId: narr.id }); }}
           >
             <div className="flex items-center gap-3">
               <Route className="h-4 w-4 text-muted-foreground" />
@@ -71,9 +71,9 @@ export function NarrativePlanner() {
 
       <Dialog open={showCreate} onOpenChange={setShowCreate} title="Create Narrative" description="Plan a story arc or narrative thread">
         <div className="space-y-3">
-          <Input label="Title" placeholder="Narrative title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!title.trim() || createNarrative.isPending}>
+          <Input label="Title" placeholder="Narrative title" value={title} onChange={(e) => { setTitle(e.target.value); }} />
+          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+          <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!title.trim() || createNarrative.isPending}>
             {createNarrative.isPending ? 'Creating...' : 'Create'}
           </Button>
         </div>

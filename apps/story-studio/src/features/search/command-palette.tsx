@@ -3,9 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useWorkspaceStore } from '@/stores/workspace-store';
 import { useAuth } from '@/hooks/use-auth';
-import { searchService } from '@/services/search.service';
 import { Search, FileText, Users, Globe, ArrowRight, LogOut } from 'lucide-react';
-import { useDebounce } from '@/hooks/use-debounce';
 
 interface CommandItem {
   id: string;
@@ -16,10 +14,9 @@ interface CommandItem {
 }
 
 export function CommandPalette() {
-  const { isCommandPaletteOpen, setCommandPaletteOpen, openTab } = useWorkspaceStore();
+  const { isCommandPaletteOpen, setCommandPaletteOpen } = useWorkspaceStore();
   const { logout } = useAuth();
   const [query, setQuery] = useState('');
-  const debouncedQuery = useDebounce(query, 200);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -39,7 +36,7 @@ export function CommandPalette() {
       if (e.key === 'Escape') setCommandPaletteOpen(false);
     };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    return () => { window.removeEventListener('keydown', handler); };
   }, [isCommandPaletteOpen, setCommandPaletteOpen]);
 
   if (!isCommandPaletteOpen) return null;
@@ -57,9 +54,9 @@ export function CommandPalette() {
     : commands;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]" onClick={() => setCommandPaletteOpen(false)}>
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]" onClick={() => { setCommandPaletteOpen(false); }}>
       <div className="fixed inset-0 bg-black/50" />
-      <div className="relative w-full max-w-lg rounded-lg border bg-background shadow-2xl" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-full max-w-lg rounded-lg border bg-background shadow-2xl" onClick={(e) => { e.stopPropagation(); }}>
         <div className="flex items-center border-b px-3">
           <Search className="h-4 w-4 text-muted-foreground mr-2" />
           <input
@@ -67,7 +64,7 @@ export function CommandPalette() {
             className="flex-1 h-11 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             placeholder="Search commands..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); }}
           />
           <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground">ESC</kbd>
         </div>

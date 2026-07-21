@@ -36,7 +36,7 @@ export const storiesService = {
     });
   },
 
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/stories/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/stories/${id}`, { method: 'DELETE' });
   },
 };

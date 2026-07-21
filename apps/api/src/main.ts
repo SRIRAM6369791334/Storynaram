@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
-import { AppModule } from './app.module';
-import { GlobalValidationPipe } from './common/pipes/global-validation.pipe';
-import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { AppModule } from './app.module.js';
+import { GlobalValidationPipe } from './common/pipes/global-validation.pipe.js';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter.js';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });

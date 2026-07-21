@@ -26,7 +26,9 @@ export function CharacterGraph({
 
   useEffect(() => {
     if (!ctx || characters.length === 0) return;
-    const { width, height } = canvasRef.current!;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const { width, height } = canvas;
     ctx.clearRect(0, 0, width, height);
 
     const angleStep = (Math.PI * 2) / characters.length;

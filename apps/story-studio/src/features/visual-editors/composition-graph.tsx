@@ -15,7 +15,9 @@ export function CompositionGraph({ scenes = [] }: { scenes?: SceneNode[] }) {
 
   useEffect(() => {
     if (!ctx || scenes.length === 0) return;
-    const { width, height } = canvasRef.current!;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const { width, height } = canvas;
     ctx.clearRect(0, 0, width, height);
 
     const padding = 40;
@@ -36,8 +38,8 @@ export function CompositionGraph({ scenes = [] }: { scenes?: SceneNode[] }) {
     const maxH = Math.max(...sortedChapters.map(([, sc]) => sc.length));
     const totalH = maxH * (nodeH + gapY) + padding * 2;
 
-    canvasRef.current!.width = Math.max(totalW, width);
-    canvasRef.current!.height = Math.max(totalH, height);
+    canvas.width = Math.max(totalW, width);
+    canvas.height = Math.max(totalH, height);
 
     sortedChapters.forEach(([chapter, sc], ci) => {
       const startX = padding + ci * (nodeW + gapX);
@@ -83,7 +85,8 @@ export function CompositionGraph({ scenes = [] }: { scenes?: SceneNode[] }) {
       ctx.fillStyle = 'hsl(var(--muted-foreground))';
       ctx.font = '10px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(`Ch. ${chapter}`, colCenter, sortedChapters[ci][1].length * (nodeH + gapY) + padding + 20);
+      const chapterLength = sortedChapters[ci]?.[1]?.length ?? 0;
+      ctx.fillText(`Ch. ${String(chapter)}`, colCenter, chapterLength * (nodeH + gapY) + padding + 20);
     });
   }, [ctx, scenes, canvasRef]);
 

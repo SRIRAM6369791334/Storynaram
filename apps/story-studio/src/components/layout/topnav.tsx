@@ -5,7 +5,7 @@ import { useWorkspaceStore } from '@/stores/workspace-store';
 import { Button } from '@/components/ui/button';
 import {
   PanelLeft, PanelRight, PanelBottom, Command,
-  Sun, Moon, LogOut, User,
+  Sun, Moon, LogOut,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { useThemeStore } from '@/stores/theme-store';
@@ -29,12 +29,12 @@ export function TopNav() {
         <Button variant="ghost" size="icon" onClick={toggleBottomPanel} title="Toggle Bottom Panel">
           <PanelBottom className="h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="icon" onClick={() => setCommandPaletteOpen(true)} title="Command Palette (Ctrl+P)">
+        <Button variant="ghost" size="icon" onClick={() => { setCommandPaletteOpen(true); }} title="Command Palette (Ctrl+P)">
           <Command className="h-4 w-4" />
         </Button>
       </div>
       <div className="flex items-center gap-1">
-        <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} title="Toggle Theme">
+        <Button variant="ghost" size="icon" onClick={() => { setTheme(theme === 'dark' ? 'light' : 'dark'); }} title="Toggle Theme">
           {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </Button>
         {user && (

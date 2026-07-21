@@ -41,7 +41,7 @@ export function StoryList() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Stories</h2>
-        <Button size="sm" variant="ghost" onClick={() => setShowCreate(true)}>
+        <Button size="sm" variant="ghost" onClick={() => { setShowCreate(true); }}>
           <Plus className="h-3 w-3 mr-1" />New
         </Button>
       </div>
@@ -53,7 +53,7 @@ export function StoryList() {
           <div
             key={story.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50 transition-colors"
-            onClick={() => openTab({ id: `story-${story.id}`, title: story.title, type: 'story', entityId: story.id })}
+            onClick={() => { openTab({ id: `story-${story.id}`, title: story.title, type: 'story', entityId: story.id }); }}
           >
             <div className="flex items-start gap-3 min-w-0">
               <FileText className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground" />
@@ -81,9 +81,9 @@ export function StoryList() {
 
       <Dialog open={showCreate} onOpenChange={setShowCreate} title="Create Story" description="Create a new story project">
         <div className="space-y-3">
-          <Input label="Title" placeholder="Story title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!title.trim() || createStory.isPending}>
+          <Input label="Title" placeholder="Story title" value={title} onChange={(e) => { setTitle(e.target.value); }} />
+          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+          <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!title.trim() || createStory.isPending}>
             {createStory.isPending ? 'Creating...' : 'Create'}
           </Button>
         </div>

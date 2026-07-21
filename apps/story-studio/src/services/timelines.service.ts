@@ -11,7 +11,7 @@ export const timelinesService = {
   async create(data: { name: string; description?: string }): Promise<Timeline> {
     return apiFetch<Timeline>('/timelines', { method: 'POST', body: JSON.stringify(data) });
   },
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/timelines/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/timelines/${id}`, { method: 'DELETE' });
   },
 };

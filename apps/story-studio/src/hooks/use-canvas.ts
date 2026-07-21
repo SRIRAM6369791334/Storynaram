@@ -16,7 +16,7 @@ export function useCanvas() {
 
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
-    if (canvas && canvas.parentElement) {
+    if (canvas?.parentElement) {
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
     }
@@ -25,7 +25,7 @@ export function useCanvas() {
   useEffect(() => {
     resize();
     window.addEventListener('resize', resize);
-    return () => window.removeEventListener('resize', resize);
+    return () => { window.removeEventListener('resize', resize); };
   }, [resize]);
 
   return { canvasRef, ctx, resize };

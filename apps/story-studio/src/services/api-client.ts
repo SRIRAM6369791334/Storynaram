@@ -2,6 +2,15 @@ import { apiUrl } from '@/utils/api-url';
 import { useAuthStore } from '@/stores/auth-store';
 import type { AuthTokens } from '@/types';
 
+interface ErrorBody {
+  message?: string;
+}
+
+interface TokenResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
 let refreshPromise: Promise<AuthTokens | null> | null = null;
 
 async function refreshTokens(): Promise<AuthTokens | null> {
@@ -15,7 +24,7 @@ async function refreshTokens(): Promise<AuthTokens | null> {
       body: JSON.stringify({ refreshToken: tokens.refreshToken }),
     });
     if (!res.ok) return null;
-    const data = await res.json();
+    const data: TokenResponse = await res.json() as TokenResponse;
     const newTokens: AuthTokens = { accessToken: data.accessToken, refreshToken: data.refreshToken };
     useAuthStore.getState().setTokens(newTokens);
     return newTokens;
@@ -46,35 +55,33 @@ export async function apiFetch<T>(
   };
 
   if (tokens?.accessToken) {
-    headers['Authorization'] = `Bearer ${tokens.accessToken}`;
+    headers.Authorization = `Bearer ${tokens.accessToken}`;
   }
 
   const res = await fetch(url, { ...options, headers });
 
   if (res.status === 401 && tokens?.refreshToken) {
-    if (!refreshPromise) {
-      refreshPromise = refreshTokens();
-    }
+    refreshPromise ??= refreshTokens();
     const newTokens = await refreshPromise;
     refreshPromise = null;
 
     if (newTokens) {
-      headers['Authorization'] = `Bearer ${newTokens.accessToken}`;
+      headers.Authorization = `Bearer ${newTokens.accessToken}`;
       const retryRes = await fetch(url, { ...options, headers });
       if (!retryRes.ok) {
-        const errBody = await retryRes.json().catch(() => ({ message: retryRes.statusText }));
+        const errBody: ErrorBody = await retryRes.json().catch(() => ({ message: retryRes.statusText })) as ErrorBody;
         throw new ApiFetchError(retryRes.status, errBody.message ?? 'Request failed');
       }
-      return retryRes.json();
+      return retryRes.json() as Promise<T>;
     }
   }
 
   if (!res.ok) {
-    const errBody = await res.json().catch(() => ({ message: res.statusText }));
+    const errBody: ErrorBody = await res.json().catch(() => ({ message: res.statusText })) as ErrorBody;
     throw new ApiFetchError(res.status, errBody.message ?? 'Request failed');
   }
 
-  return res.json();
+  return res.json() as Promise<T>;
 }
 
 export class ApiFetchError extends Error {

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useThemeStore } from '@/stores/theme-store';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,11 +8,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 export default function SettingsPage() {
   const { theme, setTheme } = useThemeStore();
+  const [tab, setTab] = useState('general');
 
   return (
     <div className="mx-auto max-w-2xl p-6 space-y-6">
       <h1 className="text-lg font-bold">Settings</h1>
-      <Tabs value="general" onValueChange={() => {}}>
+      <Tabs value={tab} onValueChange={(v) => { setTab(v); }}>
         <TabsList>
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="editor">Editor</TabsTrigger>
@@ -25,7 +27,7 @@ export default function SettingsPage() {
             <h3 className="text-sm font-medium mb-2">Theme</h3>
             <div className="flex gap-2">
               {(['light', 'dark', 'system'] as const).map((t) => (
-                <Button key={t} variant={theme === t ? 'primary' : 'default'} onClick={() => setTheme(t)}>
+                <Button key={t} variant={theme === t ? 'primary' : 'default'} onClick={() => { setTheme(t); }}>
                   {t.charAt(0).toUpperCase() + t.slice(1)}
                 </Button>
               ))}

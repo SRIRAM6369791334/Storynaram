@@ -7,11 +7,10 @@ import { RightPanel } from '@/components/layout/right-panel';
 import { BottomPanel } from '@/components/layout/bottom-panel';
 import { Dock } from '@/components/layout/dock';
 import { useWorkspaceStore } from '@/stores/workspace-store';
-import { cn } from '@/utils/cn';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 export default function WorkspaceLayout({ children }: { children: React.ReactNode }) {
-  const { showLeftSidebar, showRightPanel, showBottomPanel, panelSizes } = useWorkspaceStore();
+  const { showLeftSidebar, showRightPanel, showBottomPanel } = useWorkspaceStore();
 
   return (
     <AuthGuard>

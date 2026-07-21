@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-type KeyCombo = { key: string; ctrl?: boolean; meta?: boolean; shift?: boolean; alt?: boolean };
+interface KeyCombo { key: string; ctrl?: boolean; meta?: boolean; shift?: boolean; alt?: boolean }
 
 export function useKeyboard(combo: KeyCombo, handler: () => void, deps: unknown[] = []) {
   useEffect(() => {
@@ -20,6 +20,6 @@ export function useKeyboard(combo: KeyCombo, handler: () => void, deps: unknown[
     };
 
     window.addEventListener('keydown', listener);
-    return () => window.removeEventListener('keydown', listener);
-  }, [combo, handler, ...deps]);
+    return () => { window.removeEventListener('keydown', listener); };
+  }, [combo, handler, deps]);
 }

@@ -18,7 +18,7 @@ export function Dock() {
             'flex items-center gap-1.5 px-3 h-full border-r text-xs cursor-pointer whitespace-nowrap hover:bg-accent/50 transition-colors',
             activeTabId === tab.id && 'bg-background border-b-2 border-b-primary',
           )}
-          onClick={() => setActiveTab(tab.id)}
+          onClick={() => { setActiveTab(tab.id); }}
         >
           <FileText className="h-3 w-3" />
           <span>{tab.title}</span>

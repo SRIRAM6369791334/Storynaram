@@ -39,7 +39,7 @@ export function CanonManager() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Canon</h2>
-        <Button size="sm" variant="ghost" onClick={() => setShowCreate(true)}>
+        <Button size="sm" variant="ghost" onClick={() => { setShowCreate(true); }}>
           <Plus className="h-3 w-3 mr-1" />Add
         </Button>
       </div>
@@ -51,7 +51,7 @@ export function CanonManager() {
           <div
             key={entry.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50"
-            onClick={() => openTab({ id: `canon-${entry.id}`, title: entry.name, type: 'canon', entityId: entry.id })}
+            onClick={() => { openTab({ id: `canon-${entry.id}`, title: entry.name, type: 'canon', entityId: entry.id }); }}
           >
             <div className="flex items-center gap-3">
               <BookMarked className="h-4 w-4 text-muted-foreground" />
@@ -69,9 +69,9 @@ export function CanonManager() {
 
       <Dialog open={showCreate} onOpenChange={setShowCreate} title="Add Canon Entry" description="Define a fixed point in your story world">
         <div className="space-y-3">
-          <Input label="Name" placeholder="Entry name" value={name} onChange={(e) => setName(e.target.value)} />
-          <Input label="Description" placeholder="What is this canon fact?" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!name.trim() || createEntry.isPending}>
+          <Input label="Name" placeholder="Entry name" value={name} onChange={(e) => { setName(e.target.value); }} />
+          <Input label="Description" placeholder="What is this canon fact?" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+          <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!name.trim() || createEntry.isPending}>
             {createEntry.isPending ? 'Creating...' : 'Create'}
           </Button>
         </div>

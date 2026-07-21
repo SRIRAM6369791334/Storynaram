@@ -9,7 +9,7 @@ export function StoryEditor() {
 
   return (
     <div className="flex h-full flex-col">
-      <Tabs value="write" onValueChange={() => {}} className="flex-1 flex flex-col">
+      <Tabs value="write" onValueChange={() => { /* tab switch handled by default value */ }} className="flex-1 flex flex-col">
         <TabsList className="mx-2 mt-2">
           <TabsTrigger value="write"><FileText className="h-3.5 w-3.5 mr-1" />Write</TabsTrigger>
           <TabsTrigger value="outline"><BookOpen className="h-3.5 w-3.5 mr-1" />Outline</TabsTrigger>
@@ -21,7 +21,7 @@ export function StoryEditor() {
             className="h-full w-full resize-none bg-transparent p-4 text-sm font-mono outline-none scrollbar-thin"
             placeholder="Start writing your story..."
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => { setContent(e.target.value); }}
           />
         </TabsContent>
         <TabsContent value="outline" className="flex-1 p-4 overflow-y-auto">

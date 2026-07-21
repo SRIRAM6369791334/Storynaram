@@ -22,7 +22,7 @@ export function AiChat() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSend = async () => {
+  const handleSend = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = { role: 'user', content: input };
@@ -67,11 +67,11 @@ export function AiChat() {
         <div className="flex gap-2">
           <Input
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => { setInput(e.target.value); }}
             placeholder="Ask AI about your story..."
-            onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
+            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { handleSend(); } }}
           />
-          <Button size="icon" onClick={handleSend} disabled={!input.trim() || isLoading}>
+          <Button size="icon" onClick={() => { handleSend(); }} disabled={!input.trim() || isLoading}>
             <Send className="h-4 w-4" />
           </Button>
         </div>

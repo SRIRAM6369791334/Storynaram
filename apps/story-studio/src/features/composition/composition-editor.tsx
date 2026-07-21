@@ -39,7 +39,7 @@ export function CompositionEditor() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Compositions</h2>
-        <Button size="sm" variant="ghost" onClick={() => setShowCreate(true)}>
+        <Button size="sm" variant="ghost" onClick={() => { setShowCreate(true); }}>
           <Plus className="h-3 w-3 mr-1" />Add
         </Button>
       </div>
@@ -51,7 +51,7 @@ export function CompositionEditor() {
           <div
             key={comp.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50"
-            onClick={() => openTab({ id: `composition-${comp.id}`, title: comp.title, type: 'composition', entityId: comp.id })}
+            onClick={() => { openTab({ id: `composition-${comp.id}`, title: comp.title, type: 'composition', entityId: comp.id }); }}
           >
             <div className="flex items-center gap-3">
               <Layers className="h-4 w-4 text-muted-foreground" />
@@ -69,9 +69,9 @@ export function CompositionEditor() {
 
       <Dialog open={showCreate} onOpenChange={setShowCreate} title="Create Composition" description="Compile scenes and chapters">
         <div className="space-y-3">
-          <Input label="Title" placeholder="Composition title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!title.trim() || createComposition.isPending}>
+          <Input label="Title" placeholder="Composition title" value={title} onChange={(e) => { setTitle(e.target.value); }} />
+          <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+          <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!title.trim() || createComposition.isPending}>
             {createComposition.isPending ? 'Creating...' : 'Create'}
           </Button>
         </div>

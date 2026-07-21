@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { ListSkeleton } from '@/components/ui/skeleton';
 import { toast } from '@/components/ui/toast';
 import { Dialog } from '@/components/ui/dialog';
-import { BookOpen, Globe, Plus, Loader2, CheckCircle2, XCircle } from 'lucide-react';
+import { Globe, Plus, Loader2, CheckCircle2, XCircle } from 'lucide-react';
 
 export function PublishingManager() {
   const { data: publications, isLoading } = usePublications();
@@ -36,7 +36,7 @@ export function PublishingManager() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Publishing</h2>
-        <Button size="sm" variant="ghost" onClick={() => setShowPublish(true)}>
+        <Button size="sm" variant="ghost" onClick={() => { setShowPublish(true); }}>
           <Plus className="h-3 w-3 mr-1" />Publish
         </Button>
       </div>
@@ -48,7 +48,7 @@ export function PublishingManager() {
           <div
             key={pub.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50"
-            onClick={() => openTab({ id: `publication-${pub.id}`, title: `Publication ${pub.id.slice(0, 8)}`, type: 'publication', entityId: pub.id })}
+            onClick={() => { openTab({ id: `publication-${pub.id}`, title: `Publication ${pub.id.slice(0, 8)}`, type: 'publication', entityId: pub.id }); }}
           >
             <div className="flex items-center gap-3">
               {pub.status === 'completed' ? (
@@ -76,7 +76,7 @@ export function PublishingManager() {
             <Globe className="h-4 w-4 inline mr-1" />
             Your story will be published in EPUB and PDF formats.
           </div>
-          <Button variant="primary" className="w-full" onClick={handlePublish} disabled={!storyId.trim() || publishStory.isPending}>
+          <Button variant="primary" className="w-full" onClick={() => { void handlePublish(); }} disabled={!storyId.trim() || publishStory.isPending}>
             {publishStory.isPending ? 'Publishing...' : 'Start Publication'}
           </Button>
         </div>

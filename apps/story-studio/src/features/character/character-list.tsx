@@ -39,7 +39,7 @@ export function CharacterList() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium">Characters</h2>
-        <Button size="sm" variant="ghost" onClick={() => setShowCreate(true)}>
+        <Button size="sm" variant="ghost" onClick={() => { setShowCreate(true); }}>
           <Plus className="h-3 w-3 mr-1" />Add
         </Button>
       </div>
@@ -51,7 +51,7 @@ export function CharacterList() {
           <div
             key={char.id}
             className="group flex items-center justify-between rounded-lg border p-3 cursor-pointer hover:bg-accent/50"
-            onClick={() => openTab({ id: `character-${char.id}`, title: char.name, type: 'character', entityId: char.id })}
+            onClick={() => { openTab({ id: `character-${char.id}`, title: char.name, type: 'character', entityId: char.id }); }}
           >
             <div className="flex items-center gap-3">
               <Users className="h-4 w-4 text-muted-foreground" />
@@ -69,9 +69,9 @@ export function CharacterList() {
 
       <Dialog open={showCreate} onOpenChange={setShowCreate} title="Add Character" description="Create a new character">
         <div className="space-y-3">
-          <Input label="Name" placeholder="Character name" value={name} onChange={(e) => setName(e.target.value)} />
-          <Input label="Role" placeholder="e.g. protagonist, villain" value={role} onChange={(e) => setRole(e.target.value)} />
-          <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!name.trim()}>Create</Button>
+          <Input label="Name" placeholder="Character name" value={name} onChange={(e) => { setName(e.target.value); }} />
+          <Input label="Role" placeholder="e.g. protagonist, villain" value={role} onChange={(e) => { setRole(e.target.value); }} />
+          <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!name.trim()}>Create</Button>
         </div>
       </Dialog>
     </div>

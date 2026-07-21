@@ -14,7 +14,7 @@ export const charactersService = {
     return apiFetch<Character>('/characters', { method: 'POST', body: JSON.stringify(data) });
   },
 
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/characters/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/characters/${id}`, { method: 'DELETE' });
   },
 };

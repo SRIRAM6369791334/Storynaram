@@ -15,7 +15,9 @@ export function TimelineGraph({ events = [] }: { events?: TimelineEvent[] }) {
 
   useEffect(() => {
     if (!ctx || events.length === 0) return;
-    const { width, height } = canvasRef.current!;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const { width, height } = canvas;
 
     ctx.clearRect(0, 0, width, height);
     ctx.strokeStyle = 'hsl(var(--muted-foreground) / 0.5)';

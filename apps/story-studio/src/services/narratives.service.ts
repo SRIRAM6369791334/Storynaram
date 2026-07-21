@@ -11,7 +11,7 @@ export const narrativesService = {
   async create(data: { title: string; description?: string }): Promise<Narrative> {
     return apiFetch<Narrative>('/narratives', { method: 'POST', body: JSON.stringify(data) });
   },
-  async delete(id: string): Promise<void> {
-    await apiFetch<void>(`/narratives/${id}`, { method: 'DELETE' });
+  async delete(id: string) {
+    await apiFetch<unknown>(`/narratives/${id}`, { method: 'DELETE' });
   },
 };

@@ -1,11 +1,9 @@
 'use client';
 
-import { useStories, useCreateStory } from '@/hooks/use-stories';
+import { useCreateStory } from '@/hooks/use-stories';
 import { useWorkspaceStore } from '@/stores/workspace-store';
-import { StoryList } from '@/features/story/story-list';
 import { StoryEditor } from '@/components/workspace/editor';
 import { EmptyState } from '@/components/workspace/empty-state';
-import { AiChat } from '@/features/ai/ai-chat';
 import { useState } from 'react';
 import { Dialog } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -45,13 +43,13 @@ export default function WorkspacePage() {
           title="Welcome to Storynaram Studio"
           description="Your AI-powered story IDE. Create a story to start writing, planning, and publishing."
           actionLabel="Create Story"
-          onAction={() => setShowCreate(true)}
+          onAction={() => { setShowCreate(true); }}
         />
         <Dialog open={showCreate} onOpenChange={setShowCreate} title="Create Story" description="Start a new story project">
           <div className="space-y-3">
-            <Input label="Title" placeholder="Story title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <Button variant="primary" className="w-full" onClick={handleCreate} disabled={!title.trim() || createStory.isPending}>
+            <Input label="Title" placeholder="Story title" value={title} onChange={(e) => { setTitle(e.target.value); }} />
+            <Input label="Description" placeholder="Brief description" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+            <Button variant="primary" className="w-full" onClick={() => { void handleCreate(); }} disabled={!title.trim() || createStory.isPending}>
               {createStory.isPending ? 'Creating...' : 'Create'}
             </Button>
           </div>
