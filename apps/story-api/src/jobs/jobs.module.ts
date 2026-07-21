@@ -9,6 +9,7 @@ import { GenerationConsumer } from './consumers/generation.consumer';
 import { RevisionConsumer } from './consumers/revision.consumer';
 import { PublishingConsumer } from './consumers/publishing.consumer';
 import { BulkExportConsumer } from './consumers/bulk-export.consumer';
+import { GenerationModule } from '../modules/generation/generation.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { BulkExportConsumer } from './consumers/bulk-export.consumer';
       { name: 'story-publishing' },
       { name: 'bulk-export' },
     ),
+    GenerationModule,
   ],
   providers: [
     JobsService,

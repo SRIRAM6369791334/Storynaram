@@ -2,10 +2,33 @@ import { describe, it, expect } from 'vitest';
 import { PublishingService } from '../../src/modules/publishing/publishing.service';
 import { GenerationService } from '../../src/modules/generation/generation.service';
 import { RevisionService } from '../../src/modules/revision/revision.service';
+import type { StoryGenerationEngine } from '@storynaram/story-generator';
+
+function createMockEngine(): StoryGenerationEngine {
+  return {
+    generate: async () => ({
+      sessionId: 'mock-session',
+      storyTitle: 'Mock Story',
+      chapters: [],
+      fullStory: '',
+      qualityReport: { passed: true, checks: [] },
+      metrics: {
+        totalDurationMs: 0, totalTokens: 0, totalCost: 0,
+        chaptersGenerated: 0, averageLatencyMs: 0,
+        modelsUsed: [], providersUsed: [],
+        streamingEnabled: false, retryCount: 0,
+      },
+      completedAt: new Date(),
+    }),
+    getHealth: () => ({ status: 'healthy', activeSessions: 0, totalGenerations: 0, failedGenerations: 0 }),
+    getSession: () => undefined,
+  } as unknown as StoryGenerationEngine;
+}
 
 describe('Publishing Pipeline Flow', () => {
+  const mockEngine = createMockEngine();
   const publishingService = new PublishingService();
-  const generationService = new GenerationService();
+  const generationService = new GenerationService(mockEngine);
   const revisionService = new RevisionService();
 
   it('should run full AI publishing pipeline', async () => {

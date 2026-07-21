@@ -14,13 +14,13 @@ export class ProviderSelector {
   }
 
   private registerDefaultProviders(): void {
-    this.registerProvider({ name: 'openai', priority: 1, models: ['gpt-4', 'gpt-4-turbo', 'gpt-3.5-turbo'], apiKeyEnv: 'OPENAI_API_KEY' });
-    this.registerProvider({ name: 'anthropic', priority: 2, models: ['claude-3-opus', 'claude-3-sonnet', 'claude-3-haiku'], apiKeyEnv: 'ANTHROPIC_API_KEY' });
-    this.registerProvider({ name: 'gemini', priority: 3, models: ['gemini-pro'], apiKeyEnv: 'GEMINI_API_KEY' });
-    this.registerProvider({ name: 'ollama', priority: 4, models: ['llama3', 'mistral'], baseUrl: 'http://localhost:11434' });
-    this.registerProvider({ name: 'azure-openai', priority: 5, models: ['gpt-4', 'gpt-4-turbo'], apiKeyEnv: 'AZURE_OPENAI_API_KEY' });
-    this.registerProvider({ name: 'openrouter', priority: 6, models: ['gpt-4', 'claude-3-opus', 'gemini-pro'], apiKeyEnv: 'OPENROUTER_API_KEY' });
-    this.registerProvider({ name: 'mock', priority: 99, models: ['mock-model'] });
+    this.registerProvider({ name: 'openai', priority: 1, models: ['gpt-4o', 'gpt-4o-mini', 'o3-mini', 'gpt-4.1-nano'], apiKeyEnv: 'OPENAI_API_KEY' });
+    this.registerProvider({ name: 'anthropic', priority: 2, models: ['claude-sonnet-4-20250514', 'claude-haiku-3-5-20241022'], apiKeyEnv: 'ANTHROPIC_API_KEY' });
+    this.registerProvider({ name: 'gemini', priority: 3, models: ['gemini-2.5-flash', 'gemini-2.5-pro'], apiKeyEnv: 'GEMINI_API_KEY' });
+    this.registerProvider({ name: 'ollama', priority: 4, models: ['llama3.2', 'mistral'], baseUrl: 'http://localhost:11434' });
+    this.registerProvider({ name: 'azure-openai', priority: 5, models: ['gpt-4o', 'gpt-4o-mini'], apiKeyEnv: 'AZURE_OPENAI_API_KEY' });
+    this.registerProvider({ name: 'openrouter', priority: 6, models: ['anthropic/claude-sonnet-4', 'openai/gpt-4o', 'google/gemini-2.5-flash'], apiKeyEnv: 'OPENROUTER_API_KEY' });
+    this.registerProvider({ name: 'mock', priority: 99, models: ['mock-model', 'mock-small'] });
   }
 
   registerProvider(config: ProviderConfig): void {

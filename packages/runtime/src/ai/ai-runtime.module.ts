@@ -55,7 +55,10 @@ export class AIRuntimeModule {
         useFactory: () => new AICacheService(resolvedOptions.cacheTtlMs ?? 300000),
       },
       AICostTracker,
-      AIStatisticsService,
+      {
+        provide: AIStatisticsService,
+        useFactory: () => new AIStatisticsService(),
+      },
       AIOutputValidator,
       AIRetryPolicy,
       AIFallbackPolicy,
@@ -86,6 +89,7 @@ export class AIRuntimeModule {
         AIRetryPolicy,
         AIFallbackPolicy,
         MockProvider,
+        AI_RUNTIME_OPTIONS,
       ],
     };
   }
@@ -106,7 +110,10 @@ export class AIRuntimeModule {
         useFactory: () => new AICacheService(300000),
       },
       AICostTracker,
-      AIStatisticsService,
+      {
+        provide: AIStatisticsService,
+        useFactory: () => new AIStatisticsService(),
+      },
       AIOutputValidator,
       AIRetryPolicy,
       AIFallbackPolicy,

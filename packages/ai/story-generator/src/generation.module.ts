@@ -1,5 +1,5 @@
 import { Module, Global, type DynamicModule } from '@nestjs/common';
-import type { AIRuntimeService } from '@storynaram/runtime';
+import { AIRuntimeService } from '@storynaram/runtime';
 import { StoryGenerationEngine, type EngineOptions } from './story-generation-engine';
 import { PromptAssembler } from './prompt/prompt-assembler';
 import { PromptOptimizer } from './prompt/prompt-optimizer';
@@ -28,7 +28,7 @@ export class GenerationModule {
           useFactory: (aiRuntime: AIRuntimeService) => {
             return new StoryGenerationEngine(aiRuntime, options?.engine);
           },
-          inject: ['AIRuntimeService'],
+          inject: [AIRuntimeService],
         },
         PromptAssembler,
         PromptOptimizer,
@@ -52,7 +52,7 @@ export class GenerationModule {
           useFactory: (aiRuntime: AIRuntimeService) => {
             return new StoryGenerationEngine(aiRuntime, options?.engine);
           },
-          inject: ['AIRuntimeService'],
+          inject: [AIRuntimeService],
         },
         PromptAssembler,
         PromptOptimizer,

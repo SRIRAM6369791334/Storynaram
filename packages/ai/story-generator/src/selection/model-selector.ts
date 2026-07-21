@@ -22,29 +22,38 @@ export class ModelSelector {
   }
 
   private registerDefaultModels(): void {
-    this.registerModel('gpt-4', {
-      maxTokens: 8192, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.03, costPer1kOutput: 0.06,
+    this.registerModel('gpt-4o', {
+      maxTokens: 128000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.0025, costPer1kOutput: 0.01,
     });
-    this.registerModel('gpt-4-turbo', {
-      maxTokens: 128000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.01, costPer1kOutput: 0.03,
+    this.registerModel('gpt-4o-mini', {
+      maxTokens: 128000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.00015, costPer1kOutput: 0.0006,
     });
-    this.registerModel('gpt-3.5-turbo', {
-      maxTokens: 16384, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.0015, costPer1kOutput: 0.002,
+    this.registerModel('o3-mini', {
+      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.0011, costPer1kOutput: 0.0044,
     });
-    this.registerModel('claude-3-opus', {
-      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: false, supportsFunctionCalling: true, costPer1kInput: 0.015, costPer1kOutput: 0.075,
+    this.registerModel('gpt-4.1-nano', {
+      maxTokens: 1048576, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.0001, costPer1kOutput: 0.0004,
     });
-    this.registerModel('claude-3-sonnet', {
-      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: false, supportsFunctionCalling: true, costPer1kInput: 0.003, costPer1kOutput: 0.015,
+    this.registerModel('claude-sonnet-4-20250514', {
+      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.003, costPer1kOutput: 0.015,
     });
-    this.registerModel('claude-3-haiku', {
-      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: false, supportsFunctionCalling: true, costPer1kInput: 0.00025, costPer1kOutput: 0.00125,
+    this.registerModel('claude-haiku-3-5-20241022', {
+      maxTokens: 200000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.0008, costPer1kOutput: 0.004,
     });
-    this.registerModel('gemini-pro', {
-      maxTokens: 30720, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: false, costPer1kInput: 0.00025, costPer1kOutput: 0.0005,
+    this.registerModel('gemini-2.5-flash', {
+      maxTokens: 1048576, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.000075, costPer1kOutput: 0.0003,
     });
-    this.registerModel('mistral-large', {
-      maxTokens: 32768, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.002, costPer1kOutput: 0.006,
+    this.registerModel('gemini-2.5-pro', {
+      maxTokens: 1048576, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0.00125, costPer1kOutput: 0.01,
+    });
+    this.registerModel('llama3.2', {
+      maxTokens: 128000, supportsStreaming: true, supportsTools: false, supportsJson: false, supportsFunctionCalling: false, costPer1kInput: 0, costPer1kOutput: 0,
+    });
+    this.registerModel('mistral', {
+      maxTokens: 32000, supportsStreaming: true, supportsTools: false, supportsJson: false, supportsFunctionCalling: false, costPer1kInput: 0, costPer1kOutput: 0,
+    });
+    this.registerModel('mock-model', {
+      maxTokens: 128000, supportsStreaming: true, supportsTools: true, supportsJson: true, supportsFunctionCalling: true, costPer1kInput: 0, costPer1kOutput: 0,
     });
   }
 
@@ -119,10 +128,11 @@ export class ModelSelector {
   }
 
   private modelToProvider(model: string): string {
-    if (model.startsWith('gpt')) return 'openai';
+    if (model.startsWith('gpt') || model === 'o3-mini' || model === 'gpt-4.1-nano') return 'openai';
     if (model.startsWith('claude')) return 'anthropic';
     if (model.startsWith('gemini')) return 'gemini';
-    if (model.startsWith('mistral')) return 'mistral';
+    if (model === 'llama3.2' || model === 'mistral') return 'ollama';
+    if (model.startsWith('mock')) return 'mock';
     return 'openai';
   }
 }
