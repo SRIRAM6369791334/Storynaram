@@ -35,7 +35,8 @@ import {
   getStorageClientToken,
   getStorageProviderConfigToken,
 } from './tokens';
-import type { StorageModuleOptions, StorageProviderConfig, StorageModuleAsyncOptions } from './tokens';
+import type { StorageModuleOptions, StorageProviderConfig } from './types';
+import type { StorageModuleAsyncOptions } from './tokens';
 import type { IStorageAdapter } from './adapters/storage-adapter.interface';
 
 function createAdapter(config: StorageProviderConfig): IStorageAdapter {
@@ -176,7 +177,7 @@ export class StorageModule {
         ]
       : [];
 
-    const allManagerProviders = options.providers.flatMap(p =>
+    const allManagerProviders = options.providers.flatMap((p: StorageProviderConfig) =>
       createManagerProviders(getStorageClientToken(p.name) as symbol),
     );
 
@@ -185,11 +186,15 @@ export class StorageModule {
       useFactory: (...clients: StorageClient[]) => {
         const registry = new StorageRegistry();
         for (let i = 0; i < options.providers.length; i++) {
-          registry.register(options.providers[i].name, clients[i]);
+          const client = clients[i];
+          const providerConfig = options.providers[i];
+          if (client && providerConfig) {
+            registry.register(providerConfig.name, client);
+          }
         }
         return registry;
       },
-      inject: options.providers.map(p => getStorageClientToken(p.name)),
+      inject: options.providers.map((p: StorageProviderConfig) => getStorageClientToken(p.name)),
     };
 
     const optionProvider: Provider = {
@@ -222,7 +227,7 @@ export class StorageModule {
         STORAGE_HEALTH_INDICATOR,
         STORAGE_METRICS_COLLECTOR,
         STORAGE_STATISTICS_SERVICE,
-        ...options.providers.map(p => getStorageClientToken(p.name)),
+        ...options.providers.map((p: StorageProviderConfig) => getStorageClientToken(p.name)),
       ],
     };
   }

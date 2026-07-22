@@ -26,6 +26,7 @@ import {
   PutObjectTaggingCommand,
   GetObjectTaggingCommand,
   DeleteObjectsCommand,
+  TransitionStorageClass,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import type { IStorageAdapter } from './storage-adapter.interface';
@@ -59,7 +60,7 @@ import {
 export class S3Adapter implements IStorageAdapter {
   readonly providerType = 's3';
   private readonly logger = new Logger(S3Adapter.name);
-  private client: S3Client;
+  private client!: S3Client;
   private _connected = false;
 
   constructor(
@@ -381,14 +382,14 @@ export class S3Adapter implements IStorageAdapter {
           } : undefined,
           Transitions: r.transition ? [{
             Days: r.transition.days,
-            StorageClass: r.transition.storageClass,
+            StorageClass: r.transition.storageClass as TransitionStorageClass,
           }] : undefined,
           NoncurrentVersionExpiration: r.noncurrentVersionExpiration ? {
             NoncurrentDays: r.noncurrentVersionExpiration.noncurrentDays,
           } : undefined,
           NoncurrentVersionTransitions: r.noncurrentVersionTransition ? [{
             NoncurrentDays: r.noncurrentVersionTransition.noncurrentDays,
-            StorageClass: r.noncurrentVersionTransition.storageClass,
+            StorageClass: r.noncurrentVersionTransition.storageClass as TransitionStorageClass,
           }] : undefined,
           AbortIncompleteMultipartUpload: r.abortIncompleteMultipartUpload ? {
             DaysAfterInitiation: r.abortIncompleteMultipartUpload.daysAfterInitiation,
@@ -427,7 +428,6 @@ export class S3Adapter implements IStorageAdapter {
           Prefix: r.prefix,
           Destination: {
             Bucket: r.destinationBucket,
-            StorageClass: r.destinationRegion,
           },
           DeleteMarkerReplication: r.deleteMarkerReplication ? { Status: 'Enabled' } : { Status: 'Disabled' },
         })),

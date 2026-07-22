@@ -81,6 +81,6 @@ export class StorageMetricsCollector {
     if (!latencies || latencies.length === 0) return 0;
     const sorted = [...latencies].sort((a, b) => a - b);
     const idx = Math.ceil((percentile / 100) * sorted.length) - 1;
-    return sorted[Math.max(0, idx)];
+    return sorted[Math.max(0, idx)] ?? 0;
   }
 }

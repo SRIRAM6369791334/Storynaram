@@ -36,7 +36,7 @@ import {
 export class AzureBlobAdapter implements IStorageAdapter {
   readonly providerType = 'azure-blob';
   private readonly logger = new Logger(AzureBlobAdapter.name);
-  private client: BlobServiceClient;
+  private client!: BlobServiceClient;
   private _connected = false;
 
   constructor(
@@ -248,19 +248,14 @@ export class AzureBlobAdapter implements IStorageAdapter {
   async getTags(bucket: string, key: string): Promise<Record<string, string>> {
     try {
       const result = await this.getBlobClient(bucket, key).getTags();
-      const tags: Record<string, string> = {};
-      for (const tag of result.tags ?? []) {
-        if (tag.key) tags[tag.key] = tag.value ?? '';
-      }
-      return tags;
+      return result.tags ?? {};
     } catch {
       return {};
     }
   }
 
   async setTags(bucket: string, key: string, tags: Record<string, string>): Promise<void> {
-    const tagArray = Object.entries(tags).map(([key, value]) => ({ key, value }));
-    await this.getBlobClient(bucket, key).setTags(tagArray);
+    await this.getBlobClient(bucket, key).setTags(tags);
   }
 
   async createMultipartUpload(_bucket: string, _key: string, _options?: MultipartUploadOptions): Promise<string> {
@@ -284,7 +279,7 @@ export class AzureBlobAdapter implements IStorageAdapter {
     const container = this.getContainerClient(bucket);
     const blob = container.getBlobClient(key);
     const expiresOn = new Date(Date.now() + (options?.expiresInSeconds ?? 3600) * 1000);
-    let permissions: ContainerSASPermissions;
+    let permissions: any;
     switch (operation) {
       case 'upload':
       case 'delete':

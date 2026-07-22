@@ -91,5 +91,5 @@ export type {
   TimeoutOptions,
   CompressionOptions,
   TLSOptions,
-  StorageModuleAsyncOptions,
 } from './types';
+export type { StorageModuleAsyncOptions } from './tokens';

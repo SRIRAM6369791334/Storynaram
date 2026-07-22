@@ -54,7 +54,7 @@ import { ConnectionError, ObjectNotFoundError, BucketNotFoundError } from '../er
 export class MinIOAdapter implements IStorageAdapter {
   readonly providerType = 'minio';
   private readonly logger = new Logger(MinIOAdapter.name);
-  private client: S3Client;
+  private client!: S3Client;
   private _connected = false;
 
   constructor(
