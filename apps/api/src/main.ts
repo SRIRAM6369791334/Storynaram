@@ -26,7 +26,7 @@ async function bootstrap(): Promise<void> {
 
   app.enableShutdownHooks();
 
-  const port = process.env.PORT || 4000;
+  const port = process.env.PORT || 3000;
   await app.listen(port);
 
   logger.log(`Storynaram API running on http://localhost:${port}/api/v1`);

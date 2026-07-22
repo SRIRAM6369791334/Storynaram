@@ -1,8 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/login/page": "/login",
-  "/page": "/",
-  "/workspace/stories/[id]/page": "/workspace/stories/[id]",
-  "/workspace/page": "/workspace",
-  "/workspace/settings/page": "/workspace/settings"
-}

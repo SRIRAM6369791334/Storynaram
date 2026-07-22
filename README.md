@@ -50,6 +50,9 @@ E:\Storynaram/
 # Install dependencies
 pnpm install
 
+# Build all workspace packages
+pnpm -r build
+
 # Start all services (backend + frontend + worker)
 tools\run-everything.bat
 
