@@ -30,7 +30,7 @@ export class ProviderSelector {
 
   selectProvider(model: string, preferProvider?: string): ProviderConfig {
     if (preferProvider) {
-      const preferred = this.providers.find(p => p.name === preferProvider && p.models.includes(model));
+      const preferred = this.providers.find(p => p.name === preferProvider);
       if (preferred) return preferred;
     }
 

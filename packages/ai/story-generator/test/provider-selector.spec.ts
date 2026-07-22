@@ -54,8 +54,8 @@ describe('ProviderSelector', () => {
     const selector = new ProviderSelector();
     const models = selector.listModelsForProvider('anthropic');
 
-    expect(models).toContain('claude-3-opus');
-    expect(models).toContain('claude-3-sonnet');
+    expect(models).toContain('claude-sonnet-4-20250514');
+    expect(models).toContain('claude-haiku-3-5-20241022');
   });
 
   it('gets provider by name', () => {

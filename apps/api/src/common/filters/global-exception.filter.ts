@@ -27,10 +27,14 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         ? exception.message
         : 'Internal server error';
 
-    this.logger.error(
-      `HTTP ${status} - ${message} - ${request.method} ${request.url}`,
-      exception instanceof Error ? exception.stack : undefined,
-    );
+    if (status === HttpStatus.NOT_FOUND) {
+      this.logger.warn(`HTTP ${status} - ${message} - ${request.method} ${request.url}`);
+    } else {
+      this.logger.error(
+        `HTTP ${status} - ${message} - ${request.method} ${request.url}`,
+        exception instanceof Error ? exception.stack : undefined,
+      );
+    }
 
     response.status(status).json({
       statusCode: status,

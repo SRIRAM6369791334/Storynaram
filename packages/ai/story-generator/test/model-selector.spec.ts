@@ -4,9 +4,9 @@ import { ModelSelector } from '../src/selection/model-selector';
 describe('ModelSelector', () => {
   it('selects a model by preference', () => {
     const selector = new ModelSelector();
-    const selection = selector.select({ preferredModel: 'gpt-4' });
+    const selection = selector.select({ preferredModel: 'gpt-4o' });
 
-    expect(selection.model).toBe('gpt-4');
+    expect(selection.model).toBe('gpt-4o');
     expect(selection.provider).toBe('openai');
     expect(selection.capability.maxTokens).toBeGreaterThan(0);
   });
@@ -50,7 +50,7 @@ describe('ModelSelector', () => {
 
   it('returns capability for known model', () => {
     const selector = new ModelSelector();
-    const capability = selector.getCapability('gpt-4-turbo');
+    const capability = selector.getCapability('gpt-4o');
 
     expect(capability).toBeDefined();
     expect(capability!.maxTokens).toBe(128000);
@@ -68,9 +68,9 @@ describe('ModelSelector', () => {
     const selector = new ModelSelector();
     const models = selector.listModels();
 
-    expect(models).toContain('gpt-4');
-    expect(models).toContain('claude-3-opus');
-    expect(models).toContain('gemini-pro');
+    expect(models).toContain('gpt-4o');
+    expect(models).toContain('claude-sonnet-4-20250514');
+    expect(models).toContain('gemini-2.5-pro');
   });
 
   it('allows registering custom models', () => {

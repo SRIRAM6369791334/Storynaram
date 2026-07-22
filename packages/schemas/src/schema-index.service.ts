@@ -95,15 +95,11 @@ export class SchemaIndexService {
   }
 
   getCategoryCounts(): Record<SchemaCategory, number> {
-    const counts: Record<SchemaCategory, number> = {
-      core: 0,
-      domain: 0,
-      ai: 0,
-      workflow: 0,
-      validation: 0,
-    };
+    const counts = {} as Record<SchemaCategory, number>;
     for (const [cat, metas] of this.byCategory) {
-      counts[cat] = metas.length;
+      if (metas.length > 0) {
+        counts[cat] = metas.length;
+      }
     }
     return counts;
   }
