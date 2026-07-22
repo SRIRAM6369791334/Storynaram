@@ -40,6 +40,10 @@ export class WorkerService implements OnModuleInit, OnModuleDestroy {
       this.logger.log(`Job ${job.id} completed`);
     });
 
+    this.worker.on('error', (err) => {
+      this.logger.warn(`Worker Redis connection waiting: ${err.message}`);
+    });
+
     this.worker.on('failed', (job, err) => {
       this.logger.error(`Job ${job?.id} failed: ${err.message}`, err.stack);
     });
