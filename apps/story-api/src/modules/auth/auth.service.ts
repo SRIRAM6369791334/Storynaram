@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ConflictException, OnModuleInit } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
 import { loadAppConfig } from '../../config/app.config';
@@ -21,9 +21,21 @@ export interface TokenPair {
 }
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnModuleInit {
   private readonly users = new Map<string, StoredUser>();
   private readonly refreshTokens = new Map<string, string>();
+
+  onModuleInit(): void {
+    const demoId = '00000000-0000-0000-0000-000000000001';
+    this.users.set(demoId, {
+      id: demoId,
+      email: 'user@storynaram.com',
+      password: 'password123',
+      firstName: 'Demo',
+      lastName: 'User',
+      roles: ['author', 'admin'],
+    });
+  }
 
   async register(dto: RegisterDto): Promise<{ id: string; email: string }> {
     const existing = Array.from(this.users.values()).find(u => u.email === dto.email);

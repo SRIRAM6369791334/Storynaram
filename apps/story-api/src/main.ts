@@ -3,10 +3,10 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
 import helmet from 'helmet';
-import { AppModule } from './app.module';
-import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
-import { GlobalValidationPipe } from './common/pipes/validation.pipe';
-import { RequestIdMiddleware } from './middleware/request-id.middleware';
+import { AppModule } from './app.module.js';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter.js';
+import { GlobalValidationPipe } from './common/pipes/validation.pipe.js';
+import { RequestIdMiddleware } from './middleware/request-id.middleware.js';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -40,7 +40,7 @@ async function bootstrap(): Promise<void> {
 
   app.enableShutdownHooks();
 
-  const port = process.env.PORT ?? 4000;
+  const port = process.env.STORY_API_PORT ?? process.env.PORT ?? 3002;
   await app.listen(port);
 
   logger.log(`Storynaram Story API running on http://localhost:${port}/api/v1`);
