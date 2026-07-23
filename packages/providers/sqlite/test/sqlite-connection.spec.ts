@@ -59,7 +59,8 @@ describe('SQLiteConnection', () => {
 
   it('throws ConnectionError on bad file path', async () => {
     const c = new SQLiteConnection();
-    await expect(c.initialize({ database: 'Z:\\nonexistent\\dir\\db.sqlite' })).rejects.toThrow();
+    const badPath = join(tmpdir(), `__test-nonexistent-${Math.random().toString(36).slice(2)}`, 'db.sqlite');
+    await expect(c.initialize({ database: badPath })).rejects.toThrow();
   });
 
   it('detects WAL mode with file-based database', async () => {
