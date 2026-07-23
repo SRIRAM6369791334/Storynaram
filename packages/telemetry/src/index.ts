@@ -5,8 +5,8 @@ import { trace, Tracer, Span } from '@opentelemetry/api';
 export class TraceService {
   private readonly tracer: Tracer;
 
-  constructor(name?: string) {
-    this.tracer = trace.getTracer(name ?? 'storynaram');
+  constructor() {
+    this.tracer = trace.getTracer('storynaram');
   }
 
   getTracer(): Tracer {
