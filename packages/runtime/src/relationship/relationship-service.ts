@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityEventService } from '../entity-event.service';
-import { RuntimeConfig } from '../runtime-config';
-import { RelationshipGraph } from './relationship-graph';
-import { RelationshipTraversalService } from './relationship-traversal.service';
-import { RelationshipQueryService } from './relationship-query.service';
-import { RelationshipValidator } from './relationship-validator';
-import type { RelationshipPort } from './relationship-port';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { RuntimeConfig } from '../runtime-config.js';
+import { RelationshipGraph } from './relationship-graph.js';
+import { RelationshipTraversalService } from './relationship-traversal.service.js';
+import { RelationshipQueryService } from './relationship-query.service.js';
+import { RelationshipValidator } from './relationship-validator.js';
+import type { RelationshipPort } from './relationship-port.js';
 import type {
   RelationshipEdge,
   RelationshipNode,
@@ -22,11 +22,11 @@ import type {
   RelationshipConfig,
   RelationshipValidationResult,
   RelationshipDirection,
-} from './types';
+} from './types.js';
 import {
   RelationshipNotFoundError,
   RelationshipValidationError,
-} from './errors';
+} from './errors.js';
 
 @Injectable()
 export class RelationshipService implements RelationshipPort {

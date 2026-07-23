@@ -1,10 +1,10 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { TimelineAggregate } from './timeline-aggregate';
-import { TimelineIdentity } from './timeline-identity';
-import { TimelineDate } from './timeline-date';
-import { TimelineCalendar } from './timeline-calendar';
-import { assertValidEventDate } from './business-rules';
-import type { EventType } from './timeline-event';
+import { TimelineAggregate } from './timeline-aggregate.js';
+import { TimelineIdentity } from './timeline-identity.js';
+import { TimelineDate } from './timeline-date.js';
+import { TimelineCalendar } from './timeline-calendar.js';
+import { assertValidEventDate } from './business-rules.js';
+import type { EventType } from './timeline-event.js';
 
 export interface CreateTimelineEventInput {
   id?: string;

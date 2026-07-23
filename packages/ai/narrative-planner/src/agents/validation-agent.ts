@@ -1,6 +1,6 @@
-import { BasePlannerAgent, AgentResult } from './agent-base';
-import { PlanningContext, PromptPackage } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { BasePlannerAgent, AgentResult } from './agent-base.js';
+import { PlanningContext, PromptPackage } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export class ValidationAgent extends BasePlannerAgent {
   public readonly name = 'ValidationAgent';

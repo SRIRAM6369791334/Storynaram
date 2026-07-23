@@ -1,4 +1,4 @@
-export { CharacterIdentity } from './character-identity';
+export { CharacterIdentity } from './character-identity.js';
 
 export {
   CharacterProfile,
@@ -10,77 +10,77 @@ export {
   CharacterOccupation,
   CharacterRole,
   CharacterTitle,
-} from './character-profile';
-export type { CharacterProfileProps } from './character-profile';
+} from './character-profile.js';
+export type { CharacterProfileProps } from './character-profile.js';
 
-export { CharacterAppearance } from './character-appearance';
-export type { CharacterAppearanceProps } from './character-appearance';
+export { CharacterAppearance } from './character-appearance.js';
+export type { CharacterAppearanceProps } from './character-appearance.js';
 
 export {
   CharacterPersonality,
   CharacterTraits,
   CharacterAlignment,
-} from './character-personality';
-export type { CharacterPersonalityProps } from './character-personality';
+} from './character-personality.js';
+export type { CharacterPersonalityProps } from './character-personality.js';
 
-export { CharacterBiography } from './character-biography';
-export type { BiographyEntry } from './character-biography';
+export { CharacterBiography } from './character-biography.js';
+export type { BiographyEntry } from './character-biography.js';
 
-export { CharacterSkills, CharacterSkill } from './character-skills';
-export { CharacterAbilities } from './character-abilities';
-export type { AbilityScores } from './character-abilities';
+export { CharacterSkills, CharacterSkill } from './character-skills.js';
+export { CharacterAbilities } from './character-abilities.js';
+export type { AbilityScores } from './character-abilities.js';
 
 export {
   CharacterGoals,
   CharacterGoal,
   GoalType,
   GoalStatus,
-} from './character-goals';
+} from './character-goals.js';
 
 export {
   CharacterRelationships,
   CharacterRelationship,
   RelationshipType,
-} from './character-relationships';
+} from './character-relationships.js';
 
 export {
   CharacterInventory,
   InventoryItem,
-} from './character-inventory';
+} from './character-inventory.js';
 
 export {
   CharacterKnowledge,
   KnowledgeEntry,
   KnowledgeLevel,
-} from './character-knowledge';
+} from './character-knowledge.js';
 
-export { CharacterMemory, MemoryEntry } from './character-memory';
+export { CharacterMemory, MemoryEntry } from './character-memory.js';
 
-export { CharacterEmotion, PrimaryEmotion } from './character-emotion';
+export { CharacterEmotion, PrimaryEmotion } from './character-emotion.js';
 
-export { CharacterStatus, LifeStage, Consciousness } from './character-status';
-export type { CharacterStatusProps } from './character-status';
+export { CharacterStatus, LifeStage, Consciousness } from './character-status.js';
+export type { CharacterStatusProps } from './character-status.js';
 
-export { CharacterStatistics } from './character-statistics';
-export type { CharacterStatisticsProps } from './character-statistics';
+export { CharacterStatistics } from './character-statistics.js';
+export type { CharacterStatisticsProps } from './character-statistics.js';
 
-export { CharacterAggregate } from './character-aggregate';
+export { CharacterAggregate } from './character-aggregate.js';
 
-export { CharacterLifecycle } from './character-lifecycle';
+export { CharacterLifecycle } from './character-lifecycle.js';
 
-export { CharacterFactory } from './character-factory';
+export { CharacterFactory } from './character-factory.js';
 export type {
   CreateCharacterProps,
   CreateCharacterProfileInput,
   CreateCharacterAppearanceInput,
   CreateCharacterPersonalityInput,
   CreateCharacterAbilitiesInput,
-} from './character-factory';
+} from './character-factory.js';
 
-export type { CharacterRepositoryContract } from './character-repository';
-export { CHARACTER_REPOSITORY } from './character-repository';
+export type { CharacterRepositoryContract } from './character-repository.js';
+export { CHARACTER_REPOSITORY } from './character-repository.js';
 
-export { CharacterDomainService } from './character-domain-service';
+export { CharacterDomainService } from './character-domain-service.js';
 
 export {
   AliveSpecification,
@@ -91,7 +91,7 @@ export {
   VillainSpecification,
   CompanionSpecification,
   EnemySpecification,
-} from './character-specifications';
+} from './character-specifications.js';
 
 export {
   CharacterCreatedEvent,
@@ -100,7 +100,7 @@ export {
   CharacterRelationshipChangedEvent,
   CharacterSkillLearnedEvent,
   CharacterGoalCompletedEvent,
-} from './character-events';
+} from './character-events.js';
 
 export {
   UniqueIdentityRule,
@@ -110,13 +110,13 @@ export {
   StatusTransitionRule,
   assertAgeValid,
   assertUniqueIdentity,
-} from './business-rules';
+} from './business-rules.js';
 
-export { CharacterDomainModule } from './character.module';
+export { CharacterDomainModule } from './character.module.js';
 
-export type { CharacterRuntimeIntegrations } from './integration';
+export type { CharacterRuntimeIntegrations } from './integration.js';
 export {
   indexCharacterForSearch,
   triggerCharacterWorkflow,
   handleCharacterCreatedIntegration,
-} from './integration';
+} from './integration.js';

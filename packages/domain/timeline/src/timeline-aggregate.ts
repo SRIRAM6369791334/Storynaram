@@ -1,20 +1,20 @@
 import { AggregateRoot, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
-import { TimelineIdentity } from './timeline-identity';
-import { TimelineDate } from './timeline-date';
-import { TimelineDuration } from './timeline-date';
-import { TimelineCalendar } from './timeline-calendar';
-import { TimelineEvent, TimelineEvents, EventType } from './timeline-event';
-import { TimelineBranch, TimelineBranches } from './timeline-branch';
-import { TimelineEra, TimelineEras } from './timeline-era';
-import { TimelineStatistics } from './timeline-statistics';
+import { TimelineIdentity } from './timeline-identity.js';
+import { TimelineDate } from './timeline-date.js';
+import { TimelineDuration } from './timeline-date.js';
+import { TimelineCalendar } from './timeline-calendar.js';
+import { TimelineEvent, TimelineEvents, EventType } from './timeline-event.js';
+import { TimelineBranch, TimelineBranches } from './timeline-branch.js';
+import { TimelineEra, TimelineEras } from './timeline-era.js';
+import { TimelineStatistics } from './timeline-statistics.js';
 import {
   TimelineCreatedEvent,
   TimelineEventAddedEvent,
   TimelineBranchCreatedEvent,
   TimelineMergedEvent,
   TimelineArchivedEvent,
-} from './timeline-events';
-import { BranchConsistencyRule, CausalityValidationRule, CircularDependencyRule, ChronologicalOrderRule, ParentBranchRule } from './business-rules';
+} from './timeline-events.js';
+import { BranchConsistencyRule, CausalityValidationRule, CircularDependencyRule, ChronologicalOrderRule, ParentBranchRule } from './business-rules.js';
 
 export class TimelineAggregate extends AggregateRoot<TimelineIdentity> {
   private _name: string;

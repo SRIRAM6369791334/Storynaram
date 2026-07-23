@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from '../storage-client';
-import type { HealthCheckResult, StorageCapacityInfo } from '../types';
+import { StorageClient } from '../storage-client.js';
+import type { HealthCheckResult, StorageCapacityInfo } from '../types.js';
 
 @Injectable()
 export class StorageHealthIndicator {

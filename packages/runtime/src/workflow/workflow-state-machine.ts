@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { WorkflowStatus, TransitionType } from './types';
-import { WorkflowStateError } from './errors';
+import type { WorkflowStatus, TransitionType } from './types.js';
+import { WorkflowStateError } from './errors.js';
 
 const VALID_TRANSITIONS: Record<WorkflowStatus, Partial<Record<TransitionType, WorkflowStatus>>> = {
   Created: { success: 'Ready' },

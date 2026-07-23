@@ -1,5 +1,5 @@
 import { BusinessRule, BusinessRuleViolation, Severity, BusinessRuleError } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
+import { CharacterAggregate } from './character-aggregate.js';
 
 export class UniqueIdentityRule extends BusinessRule {
   constructor(

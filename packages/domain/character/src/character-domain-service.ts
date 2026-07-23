@@ -1,8 +1,8 @@
 import { DomainService, DomainContext, Specification } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
-import { CharacterIdentity } from './character-identity';
-import { CharacterRepositoryContract } from './character-repository';
-import { AliveSpecification, DeadSpecification, PlayableSpecification } from './character-specifications';
+import { CharacterAggregate } from './character-aggregate.js';
+import { CharacterIdentity } from './character-identity.js';
+import { CharacterRepositoryContract } from './character-repository.js';
+import { AliveSpecification, DeadSpecification, PlayableSpecification } from './character-specifications.js';
 
 export class CharacterDomainService extends DomainService {
   constructor(

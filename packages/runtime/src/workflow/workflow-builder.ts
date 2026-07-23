@@ -1,5 +1,5 @@
-import type { StepType, WorkflowStepConfig, RetryPolicy, TimeoutPolicy, RollbackPolicy, WorkflowOptions } from './types';
-import { WorkflowDefinition } from './workflow-definition';
+import type { StepType, WorkflowStepConfig, RetryPolicy, TimeoutPolicy, RollbackPolicy, WorkflowOptions } from './types.js';
+import { WorkflowDefinition } from './workflow-definition.js';
 
 export class WorkflowBuilder {
   private name = '';

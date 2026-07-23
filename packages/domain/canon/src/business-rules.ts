@@ -1,8 +1,8 @@
 import { BusinessRule, BusinessRuleViolation, Severity, BusinessRuleError } from '@storynaram/domain-kernel';
-import { CanonReference } from './canon-reference';
-import { CanonEntry } from './canon-entry';
-import { CanonFact } from './canon-fact';
-import { CanonCollection } from './canon-collection';
+import { CanonReference } from './canon-reference.js';
+import { CanonEntry } from './canon-entry.js';
+import { CanonFact } from './canon-fact.js';
+import { CanonCollection } from './canon-collection.js';
 
 export class SingleCanonTruthRule extends BusinessRule {
   constructor(

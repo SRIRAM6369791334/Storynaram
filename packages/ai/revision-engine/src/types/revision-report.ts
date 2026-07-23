@@ -1,4 +1,4 @@
-import type { RevisionPassType } from './revision-context';
+import type { RevisionPassType } from './revision-context.js';
 
 export interface RevisionReport {
   summary: string;

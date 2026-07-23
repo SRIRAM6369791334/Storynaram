@@ -1,7 +1,7 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { SEARCH_PROVIDER } from '../tokens';
-import type { SearchProvider } from '../search-provider.interface';
-import { SearchMetricsCollector } from './search-metrics';
+import { SEARCH_PROVIDER } from '../tokens.js';
+import type { SearchProvider } from '../search-provider.interface.js';
+import { SearchMetricsCollector } from './search-metrics.js';
 
 export interface SearchStatisticsResult {
   totalQueries: number;

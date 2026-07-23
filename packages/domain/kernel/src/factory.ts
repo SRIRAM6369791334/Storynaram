@@ -1,4 +1,4 @@
-import { FactoryError } from './errors';
+import { FactoryError } from './errors.js';
 
 export abstract class Factory<T, TProps = unknown> {
   abstract create(props: TProps): T;

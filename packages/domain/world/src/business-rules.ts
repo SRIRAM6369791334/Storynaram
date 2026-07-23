@@ -1,7 +1,7 @@
 import { BusinessRule, BusinessRuleViolation, Severity, BusinessRuleError } from '@storynaram/domain-kernel';
-import { WorldMap } from './world-map';
-import { WorldFactions } from './world-faction';
-import { Calendar } from './world-calendar';
+import { WorldMap } from './world-map.js';
+import { WorldFactions } from './world-faction.js';
+import { Calendar } from './world-calendar.js';
 
 export class UniqueWorldNameRule extends BusinessRule {
   constructor(

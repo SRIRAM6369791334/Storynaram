@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { RelationshipType, RelationshipConfig } from './types';
+import type { RelationshipType, RelationshipConfig } from './types.js';
 
 @Injectable()
 export class RelationshipRegistry {

@@ -1,7 +1,7 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { TimelineAggregate } from './timeline-aggregate';
-import { TimelineIdentity } from './timeline-identity';
-import { EventType } from './timeline-event';
+import { TimelineAggregate } from './timeline-aggregate.js';
+import { TimelineIdentity } from './timeline-identity.js';
+import { EventType } from './timeline-event.js';
 
 export interface TimelineRepositoryContract extends RepositoryContract<TimelineAggregate> {
   findByIdentity(identity: TimelineIdentity): Promise<TimelineAggregate | null>;

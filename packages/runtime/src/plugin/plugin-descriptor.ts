@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { PluginManifest, PluginDescriptor, PluginStatus } from './types';
+import type { PluginManifest, PluginDescriptor, PluginStatus } from './types.js';
 
 @Injectable()
 export class PluginDescriptorFactory {

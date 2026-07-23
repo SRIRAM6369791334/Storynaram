@@ -1,4 +1,4 @@
-import { DomainContext } from './domain-context';
+import { DomainContext } from './domain-context.js';
 
 export interface PolicyEvaluationResult {
   allowed: boolean;

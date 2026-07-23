@@ -1,9 +1,9 @@
 import { BusinessRuleViolation } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { StoryIdentity } from './story-identity';
-import { CompositionValidator } from './composition-validator';
-import { CompositionAnalyzer, AnalysisReport } from './composition-analyzer';
-import { CompositionStatistics } from './composition-statistics';
+import { StoryAggregate } from './story-aggregate.js';
+import { StoryIdentity } from './story-identity.js';
+import { CompositionValidator } from './composition-validator.js';
+import { CompositionAnalyzer, AnalysisReport } from './composition-analyzer.js';
+import { CompositionStatistics } from './composition-statistics.js';
 
 export interface CompositionResult {
   storyId: string;

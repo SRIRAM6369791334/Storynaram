@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { Currency } from './world-culture';
+import { Currency } from './world-culture.js';
 
 export type EconomicSystemType = 'traditional' | 'market' | 'command' | 'mixed' | 'feudal' | 'guild' | 'barter' | 'magical';
 

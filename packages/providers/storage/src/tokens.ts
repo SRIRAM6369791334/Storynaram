@@ -1,5 +1,5 @@
 import type { InjectionToken } from '@nestjs/common';
-import type { StorageModuleOptions } from './types';
+import type { StorageModuleOptions } from './types.js';
 
 export const STORAGE_MODULE_OPTIONS: InjectionToken = Symbol('STORAGE_MODULE_OPTIONS');
 

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as crypto from 'node:crypto';
-import type { IStorageAdapter } from './storage-adapter.interface';
+import type { IStorageAdapter } from './storage-adapter.interface.js';
 import type {
   BucketOptions,
   UploadOptions,
@@ -20,12 +20,12 @@ import type {
   LifecycleRule,
   ReplicationConfiguration,
   StorageCapacityInfo,
-} from '../types';
+} from '../types.js';
 import {
   ObjectNotFoundError,
   BucketNotFoundError,
   BucketAlreadyExistsError,
-} from '../errors';
+} from '../errors.js';
 
 interface MemoryObject {
   data: Buffer;

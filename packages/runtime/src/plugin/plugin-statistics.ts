@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import type { PluginId, PluginStatistics } from './types';
-import type { PluginRegistry } from './plugin-registry';
-import type { PluginHookRegistry } from './plugin-hook-registry';
-import type { PluginCapabilityRegistry } from './plugin-capability-registry';
-import type { PluginMetricsCollector } from './plugin-metrics';
+import type { PluginId, PluginStatistics } from './types.js';
+import type { PluginRegistry } from './plugin-registry.js';
+import type { PluginHookRegistry } from './plugin-hook-registry.js';
+import type { PluginCapabilityRegistry } from './plugin-capability-registry.js';
+import type { PluginMetricsCollector } from './plugin-metrics.js';
 
 @Injectable()
 export class PluginStatisticsService {

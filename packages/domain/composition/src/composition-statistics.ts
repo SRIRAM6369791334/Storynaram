@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { AnalysisReport } from './composition-analyzer';
+import { AnalysisReport } from './composition-analyzer.js';
 
 export interface CompositionStatisticsProps {
   totalAnalyses?: number;

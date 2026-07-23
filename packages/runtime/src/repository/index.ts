@@ -1,22 +1,22 @@
-export { RepositoryRuntimeModule } from './repository-runtime.module';
-export { RepositoryRegistry } from './repository-registry';
-export { RepositoryFactory } from './repository-factory';
-export { RepositoryManager } from './repository-manager';
-export { RepositoryContext } from './repository-context';
-export { BaseRepository } from './base-repository';
-export { MemoryRepository } from './memory-repository';
-export { Specification, FieldSpecification, CompositeSpecification } from './specification';
-export { DefaultTransaction } from './repository-transaction';
+export { RepositoryRuntimeModule } from './repository-runtime.module.js';
+export { RepositoryRegistry } from './repository-registry.js';
+export { RepositoryFactory } from './repository-factory.js';
+export { RepositoryManager } from './repository-manager.js';
+export { RepositoryContext } from './repository-context.js';
+export { BaseRepository } from './base-repository.js';
+export { MemoryRepository } from './memory-repository.js';
+export { Specification, FieldSpecification, CompositeSpecification } from './specification.js';
+export { DefaultTransaction } from './repository-transaction.js';
 export {
   RepositoryError,
   RepositoryNotFoundError,
   RepositoryConflictError,
   RepositoryTransactionError,
   RepositoryConfigurationError,
-} from './errors';
-export { RUNTIME_REPOSITORY_OPTIONS } from './tokens';
-export type { RepositoryPort } from './repository-port';
-export type { StorageProvider } from './storage-provider';
+} from './errors.js';
+export { RUNTIME_REPOSITORY_OPTIONS } from './tokens.js';
+export type { RepositoryPort } from './repository-port.js';
+export type { StorageProvider } from './storage-provider.js';
 export type {
   Filter,
   FilterCondition,
@@ -37,4 +37,4 @@ export type {
   TransactionStatus,
   UpsertOptions,
   BulkOperationResult,
-} from './types';
+} from './types.js';

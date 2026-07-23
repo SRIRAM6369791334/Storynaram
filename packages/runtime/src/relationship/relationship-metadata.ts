@@ -1,4 +1,4 @@
-import type { RelationshipEdge, RelationshipNode, RelationshipType } from './types';
+import type { RelationshipEdge, RelationshipNode, RelationshipType } from './types.js';
 
 export interface RelationshipMetadataEntry {
   edgeId: string;

@@ -1,6 +1,6 @@
-import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal';
-import { CycleDetection, CycleResult } from './cycle-detection';
-import { ReferenceGraph } from './reference-graph';
+import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal.js';
+import { CycleDetection, CycleResult } from './cycle-detection.js';
+import { ReferenceGraph } from './reference-graph.js';
 
 export interface DependencyEntry {
   domain: string;

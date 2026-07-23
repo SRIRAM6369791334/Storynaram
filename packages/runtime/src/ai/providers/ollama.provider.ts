@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { AIRequest, AIResponse, AIStreamChunk, AIProviderCapabilities, AIProviderHealth, AIModelMetadata, AIProviderName } from '../types';
-import { AIProvider } from './ai-provider.interface';
-import { AIProviderError } from '../errors';
-import type { AIProviderConfig } from '../types';
+import type { AIRequest, AIResponse, AIStreamChunk, AIProviderCapabilities, AIProviderHealth, AIModelMetadata, AIProviderName } from '../types.js';
+import { AIProvider } from './ai-provider.interface.js';
+import { AIProviderError } from '../errors.js';
+import type { AIProviderConfig } from '../types.js';
 
 @Injectable()
 export class OllamaProvider extends AIProvider {

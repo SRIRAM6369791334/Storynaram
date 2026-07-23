@@ -1,8 +1,8 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { DomainEventDispatcher } from '@storynaram/domain-kernel';
-import { WorldFactory } from './world-factory';
-import { WorldDomainService } from './world-domain-service';
-import { WORLD_REPOSITORY } from './world-repository';
+import { WorldFactory } from './world-factory.js';
+import { WorldDomainService } from './world-domain-service.js';
+import { WORLD_REPOSITORY } from './world-repository.js';
 
 @Global()
 @Module({})

@@ -1,5 +1,5 @@
-import { Renderer, type RendererResult, type RenderOptions } from './renderer';
-import type { RenderFormat } from '../types/publishing-context';
+import { Renderer, type RendererResult, type RenderOptions } from './renderer.js';
+import type { RenderFormat } from '../types/publishing-context.js';
 
 export class MarkdownRenderer extends Renderer {
   readonly format: RenderFormat = 'markdown';

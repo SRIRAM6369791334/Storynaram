@@ -1,5 +1,5 @@
 import type { EntityId } from '@storynaram/core';
-import type { Filter, PaginationInput, PaginatedResult, RepositoryTransaction, CursorInput, CursorResult } from './types';
+import type { Filter, PaginationInput, PaginatedResult, RepositoryTransaction, CursorInput, CursorResult } from './types.js';
 
 export interface StorageProvider<T extends { entityId: EntityId }> {
   create(entity: T): Promise<T>;

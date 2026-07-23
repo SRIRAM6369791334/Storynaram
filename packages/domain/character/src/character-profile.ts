@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { CharacterIdentity } from './character-identity';
+import { CharacterIdentity } from './character-identity.js';
 
 export class CharacterName extends ValueObject {
   constructor(

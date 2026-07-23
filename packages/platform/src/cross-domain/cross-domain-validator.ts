@@ -1,4 +1,4 @@
-import { IntegrationRegistry, DomainType } from '../integration-registry';
+import { IntegrationRegistry, DomainType } from '../integration-registry.js';
 
 export interface ValidationIssue {
   domain: DomainType;

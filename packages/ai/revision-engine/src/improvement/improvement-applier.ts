@@ -1,4 +1,4 @@
-import type { IssueReport, ImprovementReport } from '../types/revision-report';
+import type { IssueReport, ImprovementReport } from '../types/revision-report.js';
 
 const COMMON_FIXES: Array<{ pattern: RegExp; replacement: string; description: string }> = [
   { pattern: /\bi\b/g, replacement: 'I', description: 'Capitalize pronoun "I"' },

@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { PublishingAiService } from './publishing-ai.service';
-import { AiPublishDto } from './dto/ai-publish.dto';
+import { PublishingAiService } from './publishing-ai.service.js';
+import { AiPublishDto } from './dto/ai-publish.dto.js';
 
 @ApiTags('AI Publishing')
 @ApiBearerAuth()

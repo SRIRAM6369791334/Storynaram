@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { QueryStatistics } from './types';
+import type { QueryStatistics } from './types.js';
 
 @Injectable()
 export class QueryStatisticsService {

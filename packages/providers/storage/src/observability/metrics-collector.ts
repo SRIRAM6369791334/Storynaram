@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { StorageMetrics } from '../types';
+import type { StorageMetrics } from '../types.js';
 
 @Injectable()
 export class StorageMetricsCollector {

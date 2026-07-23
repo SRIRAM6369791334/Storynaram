@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
-import type { RepositoryTransaction, TransactionStatus, RepositoryTransactionOptions } from './types';
-import { RepositoryTransactionError } from './errors';
+import type { RepositoryTransaction, TransactionStatus, RepositoryTransactionOptions } from './types.js';
+import { RepositoryTransactionError } from './errors.js';
 
 export class DefaultTransaction implements RepositoryTransaction {
   readonly id: string;

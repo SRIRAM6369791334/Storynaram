@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { WorldService } from './world.service';
-import { CreateWorldDto } from './dto/create-world.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { WorldService } from './world.service.js';
+import { CreateWorldDto } from './dto/create-world.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Worlds')
 @ApiBearerAuth()

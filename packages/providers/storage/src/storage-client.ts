@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { IStorageAdapter } from './adapters/storage-adapter.interface';
+import type { IStorageAdapter } from './adapters/storage-adapter.interface.js';
 
 @Injectable()
 export class StorageClient {

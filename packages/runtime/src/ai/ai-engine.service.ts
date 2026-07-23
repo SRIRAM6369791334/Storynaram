@@ -1,23 +1,23 @@
 import { Injectable, Logger, Inject, Optional } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { AIRequest, AIResponse, AIStreamChunk, AISession, AIGenerateOptions, AIProviderName, AIProviderFallbackEvent, AIRequestStartedEvent, AIRequestCompletedEvent, AIRequestFailedEvent, AIToolExecutedEvent, AIRuntimeOptions, AIRetryConfig } from './types';
-import { AIProviderRegistry } from './ai-provider-registry.service';
-import { AIModelRegistry } from './ai-model-registry.service';
-import { AIPromptBuilder } from './ai-prompt-builder';
-import { AISessionManager } from './ai-session.manager';
-import { AIToolRegistry } from './tools/ai-tool-registry';
-import { AIToolExecutor } from './tools/ai-tool-executor';
-import { AIStreamingSession } from './streaming/ai-streaming-session';
-import { AICacheService } from './ai-cache.service';
-import { AICostTracker } from './ai-cost-tracker.service';
-import { AIStatisticsService } from './ai-statistics.service';
-import { AIOutputValidator } from './ai-output-validator';
-import { AIRetryPolicy } from './ai-retry-policy.service';
-import { AIFallbackPolicy } from './ai-fallback-policy.service';
-import { AI_RUNTIME_OPTIONS, AI_DEFAULT_PROVIDER, AI_DEFAULT_MODEL } from './tokens';
-import { AIProvider } from './providers/ai-provider.interface';
+import type { AIRequest, AIResponse, AIStreamChunk, AISession, AIGenerateOptions, AIProviderName, AIProviderFallbackEvent, AIRequestStartedEvent, AIRequestCompletedEvent, AIRequestFailedEvent, AIToolExecutedEvent, AIRuntimeOptions, AIRetryConfig } from './types.js';
+import { AIProviderRegistry } from './ai-provider-registry.service.js';
+import { AIModelRegistry } from './ai-model-registry.service.js';
+import { AIPromptBuilder } from './ai-prompt-builder.js';
+import { AISessionManager } from './ai-session.manager.js';
+import { AIToolRegistry } from './tools/ai-tool-registry.js';
+import { AIToolExecutor } from './tools/ai-tool-executor.js';
+import { AIStreamingSession } from './streaming/ai-streaming-session.js';
+import { AICacheService } from './ai-cache.service.js';
+import { AICostTracker } from './ai-cost-tracker.service.js';
+import { AIStatisticsService } from './ai-statistics.service.js';
+import { AIOutputValidator } from './ai-output-validator.js';
+import { AIRetryPolicy } from './ai-retry-policy.service.js';
+import { AIFallbackPolicy } from './ai-fallback-policy.service.js';
+import { AI_RUNTIME_OPTIONS, AI_DEFAULT_PROVIDER, AI_DEFAULT_MODEL } from './tokens.js';
+import { AIProvider } from './providers/ai-provider.interface.js';
 import type { EventBusPort } from '@storynaram/events';
-import { AIRuntimeError, AIProviderError, AIFallbackExhaustedError } from './errors';
+import { AIRuntimeError, AIProviderError, AIFallbackExhaustedError } from './errors.js';
 
 @Injectable()
 export class AIRuntimeService {

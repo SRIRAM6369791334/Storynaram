@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { Coordinates } from './world-geography';
+import { Coordinates } from './world-geography.js';
 
 export class City {
   constructor(

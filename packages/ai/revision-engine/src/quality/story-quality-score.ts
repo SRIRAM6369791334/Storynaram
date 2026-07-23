@@ -1,12 +1,12 @@
-import { CharacterScore } from './character-score';
-import { WorldScore } from './world-score';
-import { TimelineScore } from './timeline-score';
-import { CanonScore } from './canon-score';
-import { NarrativeScore } from './narrative-score';
-import { DialogueScore } from './dialogue-score';
-import { ReadabilityScore } from './readability-score';
-import { EmotionScore } from './emotion-score';
-import { ConsistencyScore } from './consistency-score';
+import { CharacterScore } from './character-score.js';
+import { WorldScore } from './world-score.js';
+import { TimelineScore } from './timeline-score.js';
+import { CanonScore } from './canon-score.js';
+import { NarrativeScore } from './narrative-score.js';
+import { DialogueScore } from './dialogue-score.js';
+import { ReadabilityScore } from './readability-score.js';
+import { EmotionScore } from './emotion-score.js';
+import { ConsistencyScore } from './consistency-score.js';
 
 export interface QualityScores {
   overall: number;

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreatePublishingDto } from './dto/create-publishing.dto';
-import type { PublishingResponseDto } from './dto/publishing-response.dto';
+import { CreatePublishingDto } from './dto/create-publishing.dto.js';
+import type { PublishingResponseDto } from './dto/publishing-response.dto.js';
 
 interface PublishingRecord {
   id: string;

@@ -1,20 +1,20 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
-import { PlatformBootstrap } from './platform-bootstrap';
-import { IntegrationRegistry } from './integration-registry';
-import { CrossDomainIntegrationService } from './cross-domain/cross-domain-integration.service';
-import { CrossDomainValidator } from './cross-domain/cross-domain-validator';
-import { CrossDomainReferenceResolver } from './cross-domain/cross-domain-reference-resolver';
-import { DomainEventRouter } from './cross-domain/domain-event-router';
-import { ConsistencyValidator } from './cross-domain/consistency-validator';
-import { PlatformGraph } from './graph/platform-graph';
-import { ReferenceGraph } from './graph/reference-graph';
-import { DependencyGraph } from './graph/dependency-graph';
-import { ImpactAnalysis } from './graph/impact-analysis';
-import { PlatformHealthService } from './platform-health';
-import { PlatformMetrics } from './observability/platform-metrics';
-import { DomainMetrics } from './observability/domain-metrics';
-import { DependencyReportBuilder } from './observability/dependency-report';
-import { ValidationReportBuilder } from './observability/validation-report';
+import { PlatformBootstrap } from './platform-bootstrap.js';
+import { IntegrationRegistry } from './integration-registry.js';
+import { CrossDomainIntegrationService } from './cross-domain/cross-domain-integration.service.js';
+import { CrossDomainValidator } from './cross-domain/cross-domain-validator.js';
+import { CrossDomainReferenceResolver } from './cross-domain/cross-domain-reference-resolver.js';
+import { DomainEventRouter } from './cross-domain/domain-event-router.js';
+import { ConsistencyValidator } from './cross-domain/consistency-validator.js';
+import { PlatformGraph } from './graph/platform-graph.js';
+import { ReferenceGraph } from './graph/reference-graph.js';
+import { DependencyGraph } from './graph/dependency-graph.js';
+import { ImpactAnalysis } from './graph/impact-analysis.js';
+import { PlatformHealthService } from './platform-health.js';
+import { PlatformMetrics } from './observability/platform-metrics.js';
+import { DomainMetrics } from './observability/domain-metrics.js';
+import { DependencyReportBuilder } from './observability/dependency-report.js';
+import { ValidationReportBuilder } from './observability/validation-report.js';
 
 @Global()
 @Module({})

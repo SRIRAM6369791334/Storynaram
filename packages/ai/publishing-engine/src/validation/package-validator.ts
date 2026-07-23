@@ -1,4 +1,4 @@
-import type { ValidationReport, ValidationCheck } from '../types/publishing-report';
+import type { ValidationReport, ValidationCheck } from '../types/publishing-report.js';
 
 export interface ValidationInput {
   chapters: Array<{ number: number; title: string; content: string }>;

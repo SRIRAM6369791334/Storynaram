@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
-import { SearchService } from './search.service';
-import { Public } from '../../common/decorators/public.decorator';
+import { SearchService } from './search.service.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Search')
 @ApiBearerAuth()

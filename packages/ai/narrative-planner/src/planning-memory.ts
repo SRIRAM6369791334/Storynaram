@@ -1,7 +1,7 @@
-import { PlanningSession } from './planning-session';
-import { PlanningResult } from './planning-result';
-import { PlanningContext } from './planning-context';
-import { SessionCheckpoint } from './planning-session';
+import { PlanningSession } from './planning-session.js';
+import { PlanningResult } from './planning-result.js';
+import { PlanningContext } from './planning-context.js';
+import { SessionCheckpoint } from './planning-session.js';
 
 export class PlanningMemory {
   private readonly sessions = new Map<string, PlanningSession>();

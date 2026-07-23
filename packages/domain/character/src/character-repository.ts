@@ -1,7 +1,7 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
-import { CharacterIdentity } from './character-identity';
-import { CharacterStatus } from './character-status';
+import { CharacterAggregate } from './character-aggregate.js';
+import { CharacterIdentity } from './character-identity.js';
+import { CharacterStatus } from './character-status.js';
 
 export interface CharacterRepositoryContract extends RepositoryContract<CharacterAggregate> {
   findByIdentity(identity: CharacterIdentity): Promise<CharacterAggregate | null>;

@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { NarrativeAggregate } from './narrative-aggregate';
-import { NarrativeCreatedEvent, NarrativePublishedEvent } from './narrative-events';
+import { NarrativeAggregate } from './narrative-aggregate.js';
+import { NarrativeCreatedEvent, NarrativePublishedEvent } from './narrative-events.js';
 
 export interface NarrativeRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

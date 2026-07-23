@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { CanonAggregate } from './canon-aggregate';
-import { CanonCreatedEvent, ConflictDetectedEvent, CanonPublishedEvent } from './canon-events';
+import { CanonAggregate } from './canon-aggregate.js';
+import { CanonCreatedEvent, ConflictDetectedEvent, CanonPublishedEvent } from './canon-events.js';
 
 export interface CanonRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

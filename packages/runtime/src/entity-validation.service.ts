@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import type { SchemaRegistryService, SchemaId } from '@storynaram/schemas';
 import type { ValidationEngineService } from '@storynaram/validation';
 import type { EntityId } from '@storynaram/core';
-import { EntityValidationError } from './errors';
-import { RuntimeConfig } from './runtime-config';
+import { EntityValidationError } from './errors.js';
+import { RuntimeConfig } from './runtime-config.js';
 
 @Injectable()
 export class EntityValidationService {

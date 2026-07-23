@@ -1,27 +1,27 @@
-export { SearchModule } from './search.module';
-export { SearchClient } from './search-client';
-export { SearchRegistry } from './search-registry';
-export { SearchIndexManager } from './search-index-manager';
-export { DocumentMapper } from './document-mapper';
-export { BulkIndexer } from './bulk-indexer';
-export { SearchQueryCompiler } from './search-query-compiler';
-export { SearchResultMapper } from './search-result-mapper';
-export { InMemorySearchAdapter } from './adapters/in-memory-search.adapter';
-export { SearchMetricsCollector } from './observability/search-metrics';
-export { SearchStatisticsService } from './observability/search-statistics';
-export { SearchHealthIndicator } from './observability/search-health-indicator';
-export type { SearchProvider } from './search-provider.interface';
+export { SearchModule } from './search.module.js';
+export { SearchClient } from './search-client.js';
+export { SearchRegistry } from './search-registry.js';
+export { SearchIndexManager } from './search-index-manager.js';
+export { DocumentMapper } from './document-mapper.js';
+export { BulkIndexer } from './bulk-indexer.js';
+export { SearchQueryCompiler } from './search-query-compiler.js';
+export { SearchResultMapper } from './search-result-mapper.js';
+export { InMemorySearchAdapter } from './adapters/in-memory-search.adapter.js';
+export { SearchMetricsCollector } from './observability/search-metrics.js';
+export { SearchStatisticsService } from './observability/search-statistics.js';
+export { SearchHealthIndicator } from './observability/search-health-indicator.js';
+export type { SearchProvider } from './search-provider.interface.js';
 
-export * from './tokens';
-export * from './types';
-export * from './errors';
+export * from './tokens.js';
+export * from './types.js';
+export * from './errors.js';
 
 export {
   SEARCH_MODULE_OPTIONS, SEARCH_PROVIDER, SEARCH_CLIENT, SEARCH_REGISTRY,
   SEARCH_INDEX_MANAGER, SEARCH_DOCUMENT_MAPPER, SEARCH_BULK_INDEXER,
   SEARCH_QUERY_COMPILER, SEARCH_RESULT_MAPPER,
   SEARCH_HEALTH_INDICATOR, SEARCH_METRICS_COLLECTOR, SEARCH_STATISTICS_SERVICE,
-} from './tokens';
+} from './tokens.js';
 export type {
   SearchIndexConfig, IndexSettings, IndexTemplate, IndexAlias,
   SearchDocument, BulkOperation, BulkResponse, BulkResponseItem,
@@ -32,13 +32,13 @@ export type {
   SearchProviderConfig, SearchModuleOptions,
   ReindexOptions, ShardStats, ScoreFunction, GeoPoint,
   AnalyzerConfig,
-} from './types';
+} from './types.js';
 export {
   SearchError, IndexNotFoundError, IndexAlreadyExistsError,
   DocumentNotFoundError, BulkOperationError, SearchTimeoutError,
   InvalidQueryError, ClusterUnavailableError, ProviderNotFoundError,
   ReindexError, TemplateNotFoundError,
-} from './errors';
-export type { SearchHealthResult } from './observability/search-health-indicator';
-export type { SearchStatisticsResult } from './observability/search-statistics';
-export type { SearchMetricsData } from './observability/search-metrics';
+} from './errors.js';
+export type { SearchHealthResult } from './observability/search-health-indicator.js';
+export type { SearchStatisticsResult } from './observability/search-statistics.js';
+export type { SearchMetricsData } from './observability/search-metrics.js';

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AITool, AIToolDefinition } from '../types';
-import { AIToolError } from '../errors';
+import type { AITool, AIToolDefinition } from '../types.js';
+import { AIToolError } from '../errors.js';
 
 @Injectable()
 export class AIToolRegistry {

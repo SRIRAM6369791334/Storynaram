@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EntityId } from './entity-id';
+import { EntityId } from './entity-id.js';
 
 @Injectable()
 export abstract class CorePort {

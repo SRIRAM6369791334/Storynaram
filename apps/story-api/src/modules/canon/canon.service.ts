@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateCanonDto } from './dto/create-canon.dto';
-import type { CanonResponseDto } from './dto/canon-response.dto';
+import { CreateCanonDto } from './dto/create-canon.dto.js';
+import type { CanonResponseDto } from './dto/canon-response.dto.js';
 
 interface CanonRecord {
   id: string;

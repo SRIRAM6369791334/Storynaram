@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SearchDocument, SearchHit } from './types';
+import type { SearchDocument, SearchHit } from './types.js';
 
 @Injectable()
 export class DocumentMapper {

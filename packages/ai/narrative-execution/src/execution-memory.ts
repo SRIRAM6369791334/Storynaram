@@ -1,4 +1,4 @@
-import type { AgentOutput } from './agents/execution-agent';
+import type { AgentOutput } from './agents/execution-agent.js';
 
 export interface ExecutionRecord {
   agentId: string;

@@ -1,12 +1,12 @@
 import { Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { EntityNotFoundError, EntityOperationError } from './errors';
-import { EntityCacheService } from './entity-cache.service';
-import { EntityEventService } from './entity-event.service';
-import { EntityValidationService } from './entity-validation.service';
-import { EntityLifecycleService } from './entity-lifecycle.service';
-import { RuntimeConfig } from './runtime-config';
-import type { EntityFilter, EntityPage } from './types';
+import { EntityNotFoundError, EntityOperationError } from './errors.js';
+import { EntityCacheService } from './entity-cache.service.js';
+import { EntityEventService } from './entity-event.service.js';
+import { EntityValidationService } from './entity-validation.service.js';
+import { EntityLifecycleService } from './entity-lifecycle.service.js';
+import { RuntimeConfig } from './runtime-config.js';
+import type { EntityFilter, EntityPage } from './types.js';
 
 export abstract class EntityService<T extends { entityId: EntityId }> {
   protected readonly logger: Logger;

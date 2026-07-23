@@ -29,7 +29,7 @@ import {
   TransitionStorageClass,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import type { IStorageAdapter } from './storage-adapter.interface';
+import type { IStorageAdapter } from './storage-adapter.interface.js';
 import type {
   BucketOptions,
   UploadOptions,
@@ -49,12 +49,12 @@ import type {
   LifecycleRule,
   ReplicationConfiguration,
   StorageCapacityInfo,
-} from '../types';
+} from '../types.js';
 import {
   ConnectionError,
   ObjectNotFoundError,
   BucketNotFoundError,
-} from '../errors';
+} from '../errors.js';
 
 @Injectable()
 export class S3Adapter implements IStorageAdapter {

@@ -4,7 +4,7 @@ import * as fsp from 'node:fs/promises';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
 import * as os from 'node:os';
-import type { IStorageAdapter } from './storage-adapter.interface';
+import type { IStorageAdapter } from './storage-adapter.interface.js';
 import type {
   BucketOptions,
   UploadOptions,
@@ -24,13 +24,13 @@ import type {
   LifecycleRule,
   ReplicationConfiguration,
   StorageCapacityInfo,
-} from '../types';
+} from '../types.js';
 import {
   ConnectionError,
   ObjectNotFoundError,
   BucketNotFoundError,
   BucketAlreadyExistsError,
-} from '../errors';
+} from '../errors.js';
 
 @Injectable()
 export class LocalFSAdapter implements IStorageAdapter {

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AIStreamChunk, AIRequest, AIResponse, AIProviderName } from '../types';
-import type { AIProvider } from '../providers/ai-provider.interface';
-import { AITimeoutError } from '../errors';
+import type { AIStreamChunk, AIRequest, AIResponse, AIProviderName } from '../types.js';
+import type { AIProvider } from '../providers/ai-provider.interface.js';
+import { AITimeoutError } from '../errors.js';
 
 export interface StreamController {
   abort(): void;

@@ -1,8 +1,8 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { DomainEventDispatcher } from '@storynaram/domain-kernel';
-import { NarrativeFactory } from './narrative-factory';
-import { NarrativeDomainService } from './narrative-domain-service';
-import { NARRATIVE_REPOSITORY } from './narrative-repository';
+import { NarrativeFactory } from './narrative-factory.js';
+import { NarrativeDomainService } from './narrative-domain-service.js';
+import { NARRATIVE_REPOSITORY } from './narrative-repository.js';
 
 @Global()
 @Module({})

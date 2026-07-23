@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
+import { StoryAggregate } from './story-aggregate.js';
 
 export class DraftSpec extends Specification<StoryAggregate> {
   isSatisfiedBy(candidate: StoryAggregate): boolean {

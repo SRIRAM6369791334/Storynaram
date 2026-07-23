@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginManifest, PluginDescriptor, PluginId } from './types';
-import { PluginLoadError } from './errors';
-import { PluginManifestService } from './plugin-manifest';
-import { PluginDescriptorFactory } from './plugin-descriptor';
-import { PluginDependencyResolver } from './plugin-dependency-resolver';
+import type { PluginManifest, PluginDescriptor, PluginId } from './types.js';
+import { PluginLoadError } from './errors.js';
+import { PluginManifestService } from './plugin-manifest.js';
+import { PluginDescriptorFactory } from './plugin-descriptor.js';
+import { PluginDependencyResolver } from './plugin-dependency-resolver.js';
 
 @Injectable()
 export class PluginLoader {

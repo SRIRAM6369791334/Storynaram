@@ -1,8 +1,8 @@
-import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal';
-import { CycleDetection, CycleResult } from './cycle-detection';
-import { ReferenceGraph } from './reference-graph';
-import { DependencyGraph } from './dependency-graph';
-import { ImpactAnalysis } from './impact-analysis';
+import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal.js';
+import { CycleDetection, CycleResult } from './cycle-detection.js';
+import { ReferenceGraph } from './reference-graph.js';
+import { DependencyGraph } from './dependency-graph.js';
+import { ImpactAnalysis } from './impact-analysis.js';
 
 export interface PlatformGraphSummary {
   totalNodes: number;

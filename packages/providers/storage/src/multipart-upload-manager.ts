@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { MultipartUploadOptions, PartETag, MultipartUploadInfo } from './types';
-import { MultipartUploadError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { MultipartUploadOptions, PartETag, MultipartUploadInfo } from './types.js';
+import { MultipartUploadError } from './errors.js';
 
 @Injectable()
 export class MultipartUploadManager {

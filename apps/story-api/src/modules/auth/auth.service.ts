@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException, ConflictException, OnModuleInit } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
-import { loadAppConfig } from '../../config/app.config';
-import type { JwtPayload } from './strategies/jwt.strategy';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
+import { loadAppConfig } from '../../config/app.config.js';
+import type { JwtPayload } from './strategies/jwt.strategy.js';
+import { LoginDto } from './dto/login.dto.js';
+import { RegisterDto } from './dto/register.dto.js';
 
 interface StoredUser {
   id: string;

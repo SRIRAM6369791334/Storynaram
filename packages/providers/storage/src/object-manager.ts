@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
+import { StorageClient } from './storage-client.js';
 import type {
   UploadOptions,
   DownloadOptions,
@@ -10,8 +10,8 @@ import type {
   ListOptions,
   CopySource,
   CopyDestination,
-} from './types';
-import { ObjectError } from './errors';
+} from './types.js';
+import { ObjectError } from './errors.js';
 
 @Injectable()
 export class ObjectManager {

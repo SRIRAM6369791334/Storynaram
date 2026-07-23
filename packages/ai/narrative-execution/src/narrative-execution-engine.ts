@@ -1,21 +1,21 @@
 import type { PlanningResult } from '@storynaram/narrative-planner';
 import type { AIRuntimeService } from '@storynaram/runtime';
-import { ExecutionSession, type ExecutionStatus } from './execution-session';
-import { type ExecutionOptions } from './execution-context';
-import { ExecutionGraph } from './execution-graph';
-import { ExecutionScheduler, type SchedulerResult } from './execution-scheduler';
-import type { ExecutionMemory } from './execution-memory';
-import { createCheckpoint } from './execution-checkpoint';
-import { ExecutionResult, type StoryDraft, type ValidationResult, type ValidationReport, type ExecutionReport, type StageReport, type CharacterProse, type WorldProse, type TimelineProse, type NarrativeProse, type CompositionProse, type ChapterDraft } from './execution-result';
-import { CharacterExecutionAgent } from './agents/character-execution-agent';
-import { WorldExecutionAgent } from './agents/world-execution-agent';
-import { TimelineExecutionAgent } from './agents/timeline-execution-agent';
-import { CanonExecutionAgent } from './agents/canon-execution-agent';
-import { NarrativeExecutionAgent } from './agents/narrative-execution-agent';
-import { CompositionExecutionAgent } from './agents/composition-execution-agent';
-import { ValidationExecutionAgent } from './agents/validation-execution-agent';
-import { MergeExecutionAgent } from './agents/merge-execution-agent';
-import type { AgentOutput } from './agents/execution-agent';
+import { ExecutionSession, type ExecutionStatus } from './execution-session.js';
+import { type ExecutionOptions } from './execution-context.js';
+import { ExecutionGraph } from './execution-graph.js';
+import { ExecutionScheduler, type SchedulerResult } from './execution-scheduler.js';
+import type { ExecutionMemory } from './execution-memory.js';
+import { createCheckpoint } from './execution-checkpoint.js';
+import { ExecutionResult, type StoryDraft, type ValidationResult, type ValidationReport, type ExecutionReport, type StageReport, type CharacterProse, type WorldProse, type TimelineProse, type NarrativeProse, type CompositionProse, type ChapterDraft } from './execution-result.js';
+import { CharacterExecutionAgent } from './agents/character-execution-agent.js';
+import { WorldExecutionAgent } from './agents/world-execution-agent.js';
+import { TimelineExecutionAgent } from './agents/timeline-execution-agent.js';
+import { CanonExecutionAgent } from './agents/canon-execution-agent.js';
+import { NarrativeExecutionAgent } from './agents/narrative-execution-agent.js';
+import { CompositionExecutionAgent } from './agents/composition-execution-agent.js';
+import { ValidationExecutionAgent } from './agents/validation-execution-agent.js';
+import { MergeExecutionAgent } from './agents/merge-execution-agent.js';
+import type { AgentOutput } from './agents/execution-agent.js';
 
 export interface EngineHealth {
   status: 'healthy' | 'degraded' | 'unhealthy';

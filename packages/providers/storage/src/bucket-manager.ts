@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { BucketOptions, LifecycleRule, ReplicationConfiguration } from './types';
-import { BucketError, BucketNotFoundError, BucketAlreadyExistsError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { BucketOptions, LifecycleRule, ReplicationConfiguration } from './types.js';
+import { BucketError, BucketNotFoundError, BucketAlreadyExistsError } from './errors.js';
 
 @Injectable()
 export class BucketManager {

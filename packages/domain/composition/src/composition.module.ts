@@ -1,11 +1,11 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { DomainEventDispatcher } from '@storynaram/domain-kernel';
-import { StoryFactory } from './story-factory';
-import { StoryDomainService } from './story-domain-service';
-import { CompositionEngine } from './composition-engine';
-import { CompositionValidator } from './composition-validator';
-import { CompositionAnalyzer } from './composition-analyzer';
-import { STORY_REPOSITORY } from './story-repository';
+import { StoryFactory } from './story-factory.js';
+import { StoryDomainService } from './story-domain-service.js';
+import { CompositionEngine } from './composition-engine.js';
+import { CompositionValidator } from './composition-validator.js';
+import { CompositionAnalyzer } from './composition-analyzer.js';
+import { STORY_REPOSITORY } from './story-repository.js';
 
 @Global()
 @Module({})

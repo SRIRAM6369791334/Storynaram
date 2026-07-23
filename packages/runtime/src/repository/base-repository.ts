@@ -1,17 +1,17 @@
 import { Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityEventService } from '../entity-event.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityLifecycleService } from '../entity-lifecycle.service';
-import { RuntimeConfig } from '../runtime-config';
-import { Specification } from './specification';
-import type { StorageProvider } from './storage-provider';
-import type { RepositoryPort } from './repository-port';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityLifecycleService } from '../entity-lifecycle.service.js';
+import { RuntimeConfig } from '../runtime-config.js';
+import { Specification } from './specification.js';
+import type { StorageProvider } from './storage-provider.js';
+import type { RepositoryPort } from './repository-port.js';
 import {
   RepositoryNotFoundError,
   RepositoryConflictError,
-} from './errors';
+} from './errors.js';
 import type {
   Filter,
   PaginationInput,
@@ -24,7 +24,7 @@ import type {
   Sort,
   UpsertOptions,
   BulkOperationResult,
-} from './types';
+} from './types.js';
 
 export abstract class BaseRepository<T extends { entityId: EntityId }> implements RepositoryPort<T> {
   abstract readonly entityType: string;

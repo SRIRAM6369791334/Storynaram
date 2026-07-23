@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateWorldDto } from './dto/create-world.dto';
-import type { WorldResponseDto } from './dto/world-response.dto';
+import { CreateWorldDto } from './dto/create-world.dto.js';
+import type { WorldResponseDto } from './dto/world-response.dto.js';
 
 interface WorldRecord {
   id: string;

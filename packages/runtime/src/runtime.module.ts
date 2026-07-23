@@ -1,10 +1,10 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { RuntimeConfig } from './runtime-config';
-import { EntityCacheService } from './entity-cache.service';
-import { EntityEventService } from './entity-event.service';
-import { EntityValidationService } from './entity-validation.service';
-import { EntityLifecycleService } from './entity-lifecycle.service';
-import type { EntityRuntimeOptions } from './types';
+import { RuntimeConfig } from './runtime-config.js';
+import { EntityCacheService } from './entity-cache.service.js';
+import { EntityEventService } from './entity-event.service.js';
+import { EntityValidationService } from './entity-validation.service.js';
+import { EntityLifecycleService } from './entity-lifecycle.service.js';
+import type { EntityRuntimeOptions } from './types.js';
 
 @Module({})
 export class RuntimeModule {

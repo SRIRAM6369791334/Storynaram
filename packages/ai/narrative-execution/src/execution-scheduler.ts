@@ -1,8 +1,8 @@
-import type { ExecutionGraph, ExecutionTask, TaskStatus } from './execution-graph';
-import type { ExecutionContext } from './execution-context';
-import type { ExecutionMemory } from './execution-memory';
-import { ExecutionQueue } from './execution-queue';
-import type { AgentOutput } from './agents/execution-agent';
+import type { ExecutionGraph, ExecutionTask, TaskStatus } from './execution-graph.js';
+import type { ExecutionContext } from './execution-context.js';
+import type { ExecutionMemory } from './execution-memory.js';
+import { ExecutionQueue } from './execution-queue.js';
+import type { AgentOutput } from './agents/execution-agent.js';
 
 export type SchedulerMode = 'sequential' | 'parallel';
 

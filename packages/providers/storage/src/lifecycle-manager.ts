@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { LifecycleRule } from './types';
-import { LifecycleError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { LifecycleRule } from './types.js';
+import { LifecycleError } from './errors.js';
 
 @Injectable()
 export class LifecycleManager {

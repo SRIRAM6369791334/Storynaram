@@ -5,7 +5,7 @@ import {
   CallHandler,
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
-import { successResponse } from '../dto/api-response.dto';
+import { successResponse } from '../dto/api-response.dto.js';
 import { Request } from 'express';
 
 @Injectable()

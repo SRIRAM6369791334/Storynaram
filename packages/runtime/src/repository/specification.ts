@@ -1,4 +1,4 @@
-import type { Filter } from './types';
+import type { Filter } from './types.js';
 
 export abstract class Specification<T> {
   abstract satisfiedBy(item: T): boolean;

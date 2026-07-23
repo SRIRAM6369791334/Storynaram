@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { CanonReference } from './canon-reference';
+import { CanonReference } from './canon-reference.js';
 
 export type FactType = 'character' | 'world' | 'timeline' | 'location' | 'magic' | 'technology' | 'relationship' | 'history' | 'lore' | 'book' | 'scene';
 

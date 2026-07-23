@@ -13,28 +13,28 @@ import {
   type AIProviderConfig,
   type AIProviderName,
 } from '@storynaram/runtime';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './modules/auth/auth.module';
-import { HealthModule } from './modules/health/health.module';
-import { MonitoringModule } from './modules/monitoring/monitoring.module';
-import { StoryModule } from './modules/story/story.module';
-import { CharacterModule } from './modules/character/character.module';
-import { WorldModule } from './modules/world/world.module';
-import { TimelineModule } from './modules/timeline/timeline.module';
-import { CanonModule } from './modules/canon/canon.module';
-import { NarrativeModule } from './modules/narrative/narrative.module';
-import { CompositionModule } from './modules/composition/composition.module';
-import { PublishingModule } from './modules/publishing/publishing.module';
-import { PlannerModule } from './modules/planner/planner.module';
-import { GenerationModule } from './modules/generation/generation.module';
-import { RevisionModule } from './modules/revision/revision.module';
-import { PublishingAiModule } from './modules/publishing-ai/publishing-ai.module';
-import { SearchModule } from './modules/search/search.module';
-import { StorageModule } from './modules/storage/storage.module';
-import { RealtimeModule } from './modules/realtime/realtime.module';
-import { JobsModule } from './jobs/jobs.module';
-import { ApiModule } from './modules/api/api.module';
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
+import { AuthModule } from './modules/auth/auth.module.js';
+import { HealthModule } from './modules/health/health.module.js';
+import { MonitoringModule } from './modules/monitoring/monitoring.module.js';
+import { StoryModule } from './modules/story/story.module.js';
+import { CharacterModule } from './modules/character/character.module.js';
+import { WorldModule } from './modules/world/world.module.js';
+import { TimelineModule } from './modules/timeline/timeline.module.js';
+import { CanonModule } from './modules/canon/canon.module.js';
+import { NarrativeModule } from './modules/narrative/narrative.module.js';
+import { CompositionModule } from './modules/composition/composition.module.js';
+import { PublishingModule } from './modules/publishing/publishing.module.js';
+import { PlannerModule } from './modules/planner/planner.module.js';
+import { GenerationModule } from './modules/generation/generation.module.js';
+import { RevisionModule } from './modules/revision/revision.module.js';
+import { PublishingAiModule } from './modules/publishing-ai/publishing-ai.module.js';
+import { SearchModule } from './modules/search/search.module.js';
+import { StorageModule } from './modules/storage/storage.module.js';
+import { RealtimeModule } from './modules/realtime/realtime.module.js';
+import { JobsModule } from './jobs/jobs.module.js';
+import { ApiModule } from './modules/api/api.module.js';
 
 function buildAIProviders(): AIProviderConfig[] {
   const providers: AIProviderConfig[] = [];

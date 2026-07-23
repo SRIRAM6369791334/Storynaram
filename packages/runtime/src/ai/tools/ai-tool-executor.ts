@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AITool, AIToolResult, AIToolCall } from '../types';
-import { AIToolError, AITimeoutError } from '../errors';
-import { AIToolRegistry } from './ai-tool-registry';
+import type { AITool, AIToolResult, AIToolCall } from '../types.js';
+import { AIToolError, AITimeoutError } from '../errors.js';
+import { AIToolRegistry } from './ai-tool-registry.js';
 
 @Injectable()
 export class AIToolExecutor {

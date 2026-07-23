@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateCompositionDto } from './dto/create-composition.dto';
-import type { CompositionResponseDto } from './dto/composition-response.dto';
+import { CreateCompositionDto } from './dto/create-composition.dto.js';
+import type { CompositionResponseDto } from './dto/composition-response.dto.js';
 
 interface CompositionRecord {
   id: string;

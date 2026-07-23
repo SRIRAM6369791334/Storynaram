@@ -3,11 +3,11 @@ import {
   Body, Param, ParseUUIDPipe, HttpCode, HttpStatus,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { StoryService } from './story.service';
-import { CreateStoryDto } from './dto/create-story.dto';
-import { UpdateStoryDto } from './dto/update-story.dto';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { Public } from '../../common/decorators/public.decorator';
+import { StoryService } from './story.service.js';
+import { CreateStoryDto } from './dto/create-story.dto.js';
+import { UpdateStoryDto } from './dto/update-story.dto.js';
+import { Roles } from '../../common/decorators/roles.decorator.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Stories')
 @ApiBearerAuth()

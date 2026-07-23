@@ -1,22 +1,22 @@
 import { DynamicModule, Module, Global } from '@nestjs/common';
-import { RepositoryRegistry } from '../repository/repository-registry';
-import { RelationshipGraph } from '../relationship/relationship-graph';
-import { RelationshipTraversalService } from '../relationship/relationship-traversal.service';
-import { RelationshipQueryService } from '../relationship/relationship-query.service';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityEventService } from '../entity-event.service';
-import { RuntimeConfig } from '../runtime-config';
-import { QueryEngineService } from './query-engine.service';
-import { QueryPlanner } from './query-planner';
-import { QueryOptimizer } from './query-optimizer';
-import { QueryExecutor } from './query-executor';
-import { QueryCacheService } from './query-cache.service';
-import { QueryStatisticsService } from './query-statistics.service';
-import { QueryContext } from './query-context';
-import { QueryRegistry } from './query-registry';
-import type { QueryEngineOptions } from './types';
-import { QUERY_ENGINE_OPTIONS } from './tokens';
+import { RepositoryRegistry } from '../repository/repository-registry.js';
+import { RelationshipGraph } from '../relationship/relationship-graph.js';
+import { RelationshipTraversalService } from '../relationship/relationship-traversal.service.js';
+import { RelationshipQueryService } from '../relationship/relationship-query.service.js';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { RuntimeConfig } from '../runtime-config.js';
+import { QueryEngineService } from './query-engine.service.js';
+import { QueryPlanner } from './query-planner.js';
+import { QueryOptimizer } from './query-optimizer.js';
+import { QueryExecutor } from './query-executor.js';
+import { QueryCacheService } from './query-cache.service.js';
+import { QueryStatisticsService } from './query-statistics.service.js';
+import { QueryContext } from './query-context.js';
+import { QueryRegistry } from './query-registry.js';
+import type { QueryEngineOptions } from './types.js';
+import { QUERY_ENGINE_OPTIONS } from './tokens.js';
 
 const DEFAULT_OPTIONS: QueryEngineOptions = {
   defaultTimeoutMs: 10000,

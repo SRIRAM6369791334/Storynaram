@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { CanonEntry } from './canon-entry';
-import { FactType } from './canon-fact';
+import { CanonEntry } from './canon-entry.js';
+import { FactType } from './canon-fact.js';
 
 export class CanonCollection extends ValueObject {
   private readonly items: Map<string, CanonEntry>;

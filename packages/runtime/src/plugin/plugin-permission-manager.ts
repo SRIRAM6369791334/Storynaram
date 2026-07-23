@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginId, PluginPermission } from './types';
-import { PluginPermissionError } from './errors';
+import type { PluginId, PluginPermission } from './types.js';
+import { PluginPermissionError } from './errors.js';
 
 @Injectable()
 export class PluginPermissionManager {

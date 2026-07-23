@@ -1,20 +1,20 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
 import type { ValidationEngineService } from '@storynaram/validation';
-import { RepositoryManager } from '../repository/repository-manager';
-import { RelationshipService } from '../relationship/relationship-service';
-import { QueryEngineService } from '../query/query-engine.service';
-import { WorkflowDefinition } from './workflow-definition';
-import { WorkflowBuilder } from './workflow-builder';
-import { WorkflowExecutor } from './workflow-executor';
-import { WorkflowRegistry } from './workflow-registry';
-import { WorkflowInstanceManager } from './workflow-instance';
-import { WorkflowContext } from './workflow-context';
-import { WorkflowHistoryService } from './workflow-history';
-import { WorkflowCheckpointService } from './workflow-checkpoint';
-import { WorkflowMetricsService } from './workflow-metrics';
-import { WorkflowStateMachine } from './workflow-state-machine';
-import { WorkflowScheduler } from './workflow-scheduler';
+import { RepositoryManager } from '../repository/repository-manager.js';
+import { RelationshipService } from '../relationship/relationship-service.js';
+import { QueryEngineService } from '../query/query-engine.service.js';
+import { WorkflowDefinition } from './workflow-definition.js';
+import { WorkflowBuilder } from './workflow-builder.js';
+import { WorkflowExecutor } from './workflow-executor.js';
+import { WorkflowRegistry } from './workflow-registry.js';
+import { WorkflowInstanceManager } from './workflow-instance.js';
+import { WorkflowContext } from './workflow-context.js';
+import { WorkflowHistoryService } from './workflow-history.js';
+import { WorkflowCheckpointService } from './workflow-checkpoint.js';
+import { WorkflowMetricsService } from './workflow-metrics.js';
+import { WorkflowStateMachine } from './workflow-state-machine.js';
+import { WorkflowScheduler } from './workflow-scheduler.js';
 import type {
   WorkflowInstance,
   WorkflowResult,
@@ -27,7 +27,7 @@ import type {
   RetryPolicy,
   TimeoutPolicy,
   RollbackPolicy,
-} from './types';
+} from './types.js';
 
 @Injectable()
 export class WorkflowEngine {

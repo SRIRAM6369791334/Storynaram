@@ -1,5 +1,5 @@
-import type { MetadataPackage, CoverMetadata } from '../types/publishing-report';
-import type { TOCEntry } from '../types/publishing-result';
+import type { MetadataPackage, CoverMetadata } from '../types/publishing-report.js';
+import type { TOCEntry } from '../types/publishing-result.js';
 
 export interface MetadataInput {
   title: string;

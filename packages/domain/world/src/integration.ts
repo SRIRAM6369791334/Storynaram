@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { WorldAggregate } from './world-aggregate';
-import { WorldCreatedEvent, RegionAddedEvent } from './world-events';
+import { WorldAggregate } from './world-aggregate.js';
+import { WorldCreatedEvent, RegionAddedEvent } from './world-events.js';
 
 export interface WorldRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

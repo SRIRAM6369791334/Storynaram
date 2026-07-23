@@ -1,14 +1,14 @@
 import { DynamicModule, Module, Global } from '@nestjs/common';
-import { RelationshipGraph } from './relationship-graph';
-import { RelationshipService } from './relationship-service';
-import { RelationshipRegistry } from './relationship-registry';
-import { RelationshipResolver } from './relationship-resolver';
-import { RelationshipTraversalService } from './relationship-traversal.service';
-import { RelationshipQueryService } from './relationship-query.service';
-import { RelationshipValidator } from './relationship-validator';
-import { RelationshipStatisticsService } from './relationship-statistics';
-import type { RelationshipRuntimeOptions } from './types';
-import { RELATIONSHIP_OPTIONS } from './tokens';
+import { RelationshipGraph } from './relationship-graph.js';
+import { RelationshipService } from './relationship-service.js';
+import { RelationshipRegistry } from './relationship-registry.js';
+import { RelationshipResolver } from './relationship-resolver.js';
+import { RelationshipTraversalService } from './relationship-traversal.service.js';
+import { RelationshipQueryService } from './relationship-query.service.js';
+import { RelationshipValidator } from './relationship-validator.js';
+import { RelationshipStatisticsService } from './relationship-statistics.js';
+import type { RelationshipRuntimeOptions } from './types.js';
+import { RELATIONSHIP_OPTIONS } from './tokens.js';
 
 @Global()
 @Module({})

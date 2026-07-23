@@ -1,10 +1,10 @@
 import { DomainService, Specification } from '@storynaram/domain-kernel';
-import { TimelineAggregate } from './timeline-aggregate';
-import { TimelineIdentity } from './timeline-identity';
-import { TimelineRepositoryContract } from './timeline-repository';
-import { EventType, TimelineEvent } from './timeline-event';
-import { TimelineDate } from './timeline-date';
-import { MainTimelineSpec, BranchTimelineSpec, HistoricalTimelineSpec } from './timeline-specifications';
+import { TimelineAggregate } from './timeline-aggregate.js';
+import { TimelineIdentity } from './timeline-identity.js';
+import { TimelineRepositoryContract } from './timeline-repository.js';
+import { EventType, TimelineEvent } from './timeline-event.js';
+import { TimelineDate } from './timeline-date.js';
+import { MainTimelineSpec, BranchTimelineSpec, HistoricalTimelineSpec } from './timeline-specifications.js';
 
 export class TimelineDomainService extends DomainService {
   constructor(

@@ -1,4 +1,4 @@
-import { DependencyGraph, DependencyLevel } from '../graph/dependency-graph';
+import { DependencyGraph, DependencyLevel } from '../graph/dependency-graph.js';
 
 export interface DependencyReportEntry {
   domain: string;

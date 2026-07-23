@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { readdirSync } from 'fs';
 import { join, resolve } from 'path';
-import type { SchemaCategory, DiscoveryResult } from './types';
+import type { SchemaCategory, DiscoveryResult } from './types.js';
 
 @Injectable()
 export class SchemaDiscoveryService {

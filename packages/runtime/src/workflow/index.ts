@@ -1,17 +1,17 @@
-export { WorkflowRuntimeModule } from './workflow-runtime.module';
-export { WorkflowEngine } from './workflow-engine';
-export { WorkflowBuilder, WorkflowStepBuilder } from './workflow-builder';
-export { WorkflowDefinition } from './workflow-definition';
-export { WorkflowExecutor } from './workflow-executor';
-export { WorkflowStepExecutor } from './workflow-step';
-export { WorkflowStateMachine } from './workflow-state-machine';
-export { WorkflowInstanceManager } from './workflow-instance';
-export { WorkflowContext } from './workflow-context';
-export { WorkflowHistoryService } from './workflow-history';
-export { WorkflowCheckpointService } from './workflow-checkpoint';
-export { WorkflowMetricsService } from './workflow-metrics';
-export { WorkflowRegistry } from './workflow-registry';
-export { WorkflowScheduler } from './workflow-scheduler';
+export { WorkflowRuntimeModule } from './workflow-runtime.module.js';
+export { WorkflowEngine } from './workflow-engine.js';
+export { WorkflowBuilder, WorkflowStepBuilder } from './workflow-builder.js';
+export { WorkflowDefinition } from './workflow-definition.js';
+export { WorkflowExecutor } from './workflow-executor.js';
+export { WorkflowStepExecutor } from './workflow-step.js';
+export { WorkflowStateMachine } from './workflow-state-machine.js';
+export { WorkflowInstanceManager } from './workflow-instance.js';
+export { WorkflowContext } from './workflow-context.js';
+export { WorkflowHistoryService } from './workflow-history.js';
+export { WorkflowCheckpointService } from './workflow-checkpoint.js';
+export { WorkflowMetricsService } from './workflow-metrics.js';
+export { WorkflowRegistry } from './workflow-registry.js';
+export { WorkflowScheduler } from './workflow-scheduler.js';
 export {
   WorkflowError,
   WorkflowExecutionError,
@@ -19,8 +19,8 @@ export {
   WorkflowTimeoutError,
   WorkflowRollbackError,
   WorkflowCheckpointError,
-} from './errors';
-export { WORKFLOW_OPTIONS } from './tokens';
+} from './errors.js';
+export { WORKFLOW_OPTIONS } from './tokens.js';
 export type {
   WorkflowStatus,
   StepType,
@@ -40,4 +40,4 @@ export type {
   WorkflowMetrics,
   CheckpointData,
   WorkflowRuntimeOptions,
-} from './types';
+} from './types.js';

@@ -1,5 +1,5 @@
-import type { IssueReport } from '../types/revision-report';
-import type { RevisionPassType } from '../types/revision-context';
+import type { IssueReport } from '../types/revision-report.js';
+import type { RevisionPassType } from '../types/revision-context.js';
 
 export interface RevisionAgentResult {
   passType: RevisionPassType;

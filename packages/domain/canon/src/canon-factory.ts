@@ -1,9 +1,9 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { CanonAggregate } from './canon-aggregate';
-import { CanonIdentity } from './canon-identity';
-import { FactType } from './canon-fact';
-import { CanonReference } from './canon-reference';
-import { CanonRule } from './canon-rule';
+import { CanonAggregate } from './canon-aggregate.js';
+import { CanonIdentity } from './canon-identity.js';
+import { FactType } from './canon-fact.js';
+import { CanonReference } from './canon-reference.js';
+import { CanonRule } from './canon-rule.js';
 
 export interface CreateCanonEntryInput {
   entryId?: string;

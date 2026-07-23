@@ -1,6 +1,6 @@
 import type { RevisionResult } from '@storynaram/revision-engine';
-import type { PublishingEngine } from './engine/publishing-engine';
-import type { PublishingOptions } from './types/publishing-context';
+import type { PublishingEngine } from './engine/publishing-engine.js';
+import type { PublishingOptions } from './types/publishing-context.js';
 
 export function publishStory(
   engine: PublishingEngine,

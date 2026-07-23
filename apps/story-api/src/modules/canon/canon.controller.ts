@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { CanonService } from './canon.service';
-import { CreateCanonDto } from './dto/create-canon.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { CanonService } from './canon.service.js';
+import { CreateCanonDto } from './dto/create-canon.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Canon')
 @ApiBearerAuth()

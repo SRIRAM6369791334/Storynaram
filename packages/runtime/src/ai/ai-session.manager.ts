@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { AISession, AIConversation, AIMessage } from './types';
+import type { AISession, AIConversation, AIMessage } from './types.js';
 
 export interface AISessionOptions {
   id?: string;

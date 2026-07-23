@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginId, PluginManifest } from './types';
-import { PluginDependencyError } from './errors';
+import type { PluginId, PluginManifest } from './types.js';
+import { PluginDependencyError } from './errors.js';
 
 interface DependencyNode {
   id: PluginId;

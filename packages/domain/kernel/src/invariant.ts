@@ -1,4 +1,4 @@
-import { BusinessRuleError } from './errors';
+import { BusinessRuleError } from './errors.js';
 
 export class Invariant {
   static require(condition: boolean, message: string): asserts condition {

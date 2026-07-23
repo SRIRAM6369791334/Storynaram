@@ -4,7 +4,7 @@ import type {
   SearchQuery, SearchResult, AutocompleteQuery, FacetResult,
   ClusterHealthResponse, IndexStatsResponse,
   ReindexOptions,
-} from './types';
+} from './types.js';
 
 export interface SearchProvider {
   readonly name: string;

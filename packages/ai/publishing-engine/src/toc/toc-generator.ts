@@ -1,4 +1,4 @@
-import type { TOCEntry } from '../types/publishing-result';
+import type { TOCEntry } from '../types/publishing-result.js';
 
 export interface TOCGeneratorOptions {
   includeChapterIndex?: boolean;

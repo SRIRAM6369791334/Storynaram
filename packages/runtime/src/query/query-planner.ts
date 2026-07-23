@@ -8,9 +8,9 @@ import type {
   LogicalGroup,
   FilterOperand,
   QueryEngineOptions,
-} from './types';
+} from './types.js';
 import type { EntityId } from '@storynaram/core';
-import { QueryContext } from './query-context';
+import { QueryContext } from './query-context.js';
 
 @Injectable()
 export class QueryPlanner {

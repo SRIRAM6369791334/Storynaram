@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { NarrativeService } from './narrative.service';
-import { CreateNarrativeDto } from './dto/create-narrative.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { NarrativeService } from './narrative.service.js';
+import { CreateNarrativeDto } from './dto/create-narrative.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Narratives')
 @ApiBearerAuth()

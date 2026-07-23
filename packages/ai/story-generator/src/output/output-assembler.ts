@@ -1,4 +1,4 @@
-import type { GeneratedChapter } from '../generation-result';
+import type { GeneratedChapter } from '../generation-result.js';
 
 export class OutputAssembler {
   assembleFullStory(chapters: GeneratedChapter[]): string {

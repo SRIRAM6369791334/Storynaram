@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { SearchQuery, QueryClause, BoolQuery } from './types';
-import { InvalidQueryError } from './errors';
+import type { SearchQuery, QueryClause, BoolQuery } from './types.js';
+import { InvalidQueryError } from './errors.js';
 
 @Injectable()
 export class SearchQueryCompiler {

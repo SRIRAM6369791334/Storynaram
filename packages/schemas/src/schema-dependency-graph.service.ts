@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { SchemaMeta, SchemaId } from './types';
-import { CircularDependencyError } from './errors';
+import type { SchemaMeta, SchemaId } from './types.js';
+import { CircularDependencyError } from './errors.js';
 
 @Injectable()
 export class SchemaDependencyGraphService {

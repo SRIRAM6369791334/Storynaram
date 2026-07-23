@@ -1,8 +1,8 @@
 import { Controller, Post, Get, Delete, Body, Param, Res, HttpStatus, Req } from '@nestjs/common';
 import type { Response, Request } from 'express';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { GenerationService } from './generation.service';
-import { GenerateStoryDto } from './dto/generate-story.dto';
+import { GenerationService } from './generation.service.js';
+import { GenerateStoryDto } from './dto/generate-story.dto.js';
 
 @ApiTags('AI Generation')
 @ApiBearerAuth()

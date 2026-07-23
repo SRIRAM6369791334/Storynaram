@@ -1,8 +1,8 @@
-import { IntegrationRegistry, DomainType } from '../integration-registry';
-import { CrossDomainValidator } from './cross-domain-validator';
-import { CrossDomainReferenceResolver, ReferenceDescriptor } from './cross-domain-reference-resolver';
-import { DomainEventRouter } from './domain-event-router';
-import { ConsistencyValidator } from './consistency-validator';
+import { IntegrationRegistry, DomainType } from '../integration-registry.js';
+import { CrossDomainValidator } from './cross-domain-validator.js';
+import { CrossDomainReferenceResolver, ReferenceDescriptor } from './cross-domain-reference-resolver.js';
+import { DomainEventRouter } from './domain-event-router.js';
+import { ConsistencyValidator } from './consistency-validator.js';
 
 export interface CrossDomainLink {
   sourceDomain: DomainType;

@@ -1,5 +1,5 @@
-import { IntegrationRegistry, DomainType } from './integration-registry';
-import { PlatformGraph } from './graph/platform-graph';
+import { IntegrationRegistry, DomainType } from './integration-registry.js';
+import { PlatformGraph } from './graph/platform-graph.js';
 
 export interface HealthStatus {
   status: 'healthy' | 'degraded' | 'unhealthy';

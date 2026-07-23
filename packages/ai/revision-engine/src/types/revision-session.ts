@@ -1,7 +1,7 @@
 import type { GenerationResult } from '@storynaram/story-generator';
-import type { RevisionContext } from './revision-context';
-import { RevisionMemory } from './revision-memory';
-import { RevisionStatistics } from './revision-statistics';
+import type { RevisionContext } from './revision-context.js';
+import { RevisionMemory } from './revision-memory.js';
+import { RevisionStatistics } from './revision-statistics.js';
 
 export type RevisionStatus = 'created' | 'analyzing' | 'detecting' | 'running-passes' | 'applying-fixes' | 'validating' | 'generating-reports' | 'completed' | 'failed' | 'cancelled';
 

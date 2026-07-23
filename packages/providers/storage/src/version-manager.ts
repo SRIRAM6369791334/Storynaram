@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { ObjectVersion } from './types';
-import { VersionError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { ObjectVersion } from './types.js';
+import { VersionError } from './errors.js';
 
 @Injectable()
 export class VersionManager {

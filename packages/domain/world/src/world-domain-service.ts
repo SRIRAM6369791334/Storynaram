@@ -1,9 +1,9 @@
 import { DomainService, Specification } from '@storynaram/domain-kernel';
-import { WorldAggregate } from './world-aggregate';
-import { WorldIdentity } from './world-identity';
-import { WorldRepositoryContract } from './world-repository';
-import { Region } from './world-political';
-import { FantasySpecification, SciFiSpecification, HistoricalSpecification, ModernSpecification, PostApocalypticSpecification, OpenWorldSpecification, SandboxSpecification } from './world-specifications';
+import { WorldAggregate } from './world-aggregate.js';
+import { WorldIdentity } from './world-identity.js';
+import { WorldRepositoryContract } from './world-repository.js';
+import { Region } from './world-political.js';
+import { FantasySpecification, SciFiSpecification, HistoricalSpecification, ModernSpecification, PostApocalypticSpecification, OpenWorldSpecification, SandboxSpecification } from './world-specifications.js';
 
 export class WorldDomainService extends DomainService {
   constructor(

@@ -1,5 +1,5 @@
 import type { ExecutionResult, StoryDraft, ChapterDraft } from '@storynaram/narrative-execution';
-import type { GenerationOptions } from '../generation-context';
+import type { GenerationOptions } from '../generation-context.js';
 
 export interface GenerationContextData {
   storyDraft: StoryDraft;

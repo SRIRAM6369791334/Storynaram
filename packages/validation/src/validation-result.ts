@@ -1,4 +1,4 @@
-import type { ValidationSeverity } from './validation-severity';
+import type { ValidationSeverity } from './validation-severity.js';
 import type { EntityId } from '@storynaram/core';
 
 export interface ValidationIssue {

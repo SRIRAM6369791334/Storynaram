@@ -1,6 +1,6 @@
-import { Entity } from './entity';
-import { Identity } from './identity';
-import { Specification } from './specification';
+import { Entity } from './entity.js';
+import { Identity } from './identity.js';
+import { Specification } from './specification.js';
 
 export interface RepositoryContract<T extends Entity> {
   findById(id: Identity): Promise<T | null>;

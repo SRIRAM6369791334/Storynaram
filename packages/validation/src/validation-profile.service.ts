@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { ValidationProfileConfig } from './types';
-import { ValidationProfileError } from './errors';
+import type { ValidationProfileConfig } from './types.js';
+import { ValidationProfileError } from './errors.js';
 
 const DEFAULT_PROFILES: Record<string, ValidationProfileConfig> = {
   default: {

@@ -1,20 +1,20 @@
 import { AggregateRoot, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
-import { WorldIdentity } from './world-identity';
-import { WorldProfile, WorldName, WorldDescription } from './world-profile';
-import { WorldGeography, Coordinates, Area, Population, Biome, Climate as ClimateVO, Temperature } from './world-geography';
-import { WorldMap } from './world-map';
-import { Calendar, TimeSystem } from './world-calendar';
-import { WorldFactions, Faction, FactionType } from './world-faction';
-import { WorldCultures, Culture, Currency, CurrencyCode } from './world-culture';
-import { MagicSystem } from './world-magic-system';
-import { TechnologyLevel } from './world-technology-level';
-import { EconomicSystem } from './world-economy';
-import { WorldNaturalResources, NaturalResource } from './world-economy';
-import { WorldRules, WorldRule, RuleCategory } from './world-rule';
-import { WorldHistory, WorldEvent } from './world-history';
-import { WorldStatistics } from './world-statistics';
-import { WorldSettlements, City, Village, Landmark } from './world-settlements';
-import { Region } from './world-political';
+import { WorldIdentity } from './world-identity.js';
+import { WorldProfile, WorldName, WorldDescription } from './world-profile.js';
+import { WorldGeography, Coordinates, Area, Population, Biome, Climate as ClimateVO, Temperature } from './world-geography.js';
+import { WorldMap } from './world-map.js';
+import { Calendar, TimeSystem } from './world-calendar.js';
+import { WorldFactions, Faction, FactionType } from './world-faction.js';
+import { WorldCultures, Culture, Currency, CurrencyCode } from './world-culture.js';
+import { MagicSystem } from './world-magic-system.js';
+import { TechnologyLevel } from './world-technology-level.js';
+import { EconomicSystem } from './world-economy.js';
+import { WorldNaturalResources, NaturalResource } from './world-economy.js';
+import { WorldRules, WorldRule, RuleCategory } from './world-rule.js';
+import { WorldHistory, WorldEvent } from './world-history.js';
+import { WorldStatistics } from './world-statistics.js';
+import { WorldSettlements, City, Village, Landmark } from './world-settlements.js';
+import { Region } from './world-political.js';
 import {
   WorldCreatedEvent,
   RegionAddedEvent,
@@ -23,7 +23,7 @@ import {
   CultureUpdatedEvent,
   HistoryRecordedEvent,
   WorldDeletedEvent,
-} from './world-events';
+} from './world-events.js';
 
 export class WorldAggregate extends AggregateRoot<WorldIdentity> {
   private _profile: WorldProfile;

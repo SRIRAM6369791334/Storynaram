@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SchemaDefinition } from './schema-definition';
+import { SchemaDefinition } from './schema-definition.js';
 
 export interface ValidationIssue {
   path: string;

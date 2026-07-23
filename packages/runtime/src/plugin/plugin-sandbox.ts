@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginId, PluginDescriptor, PluginPermission } from './types';
-import { PluginPermissionError } from './errors';
-import type { PluginPermissionManager } from './plugin-permission-manager';
+import type { PluginId, PluginDescriptor, PluginPermission } from './types.js';
+import { PluginPermissionError } from './errors.js';
+import type { PluginPermissionManager } from './plugin-permission-manager.js';
 
 @Injectable()
 export class PluginSandbox {

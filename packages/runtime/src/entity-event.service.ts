@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
 import type { EventBusPort, StoryEvent } from '@storynaram/events';
-import type { EntityEventType, EntityEvent } from './types';
-import { RuntimeConfig } from './runtime-config';
+import type { EntityEventType, EntityEvent } from './types.js';
+import { RuntimeConfig } from './runtime-config.js';
 
 @Injectable()
 export class EntityEventService {

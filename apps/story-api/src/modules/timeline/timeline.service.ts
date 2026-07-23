@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateTimelineDto } from './dto/create-timeline.dto';
-import type { TimelineResponseDto } from './dto/timeline-response.dto';
+import { CreateTimelineDto } from './dto/create-timeline.dto.js';
+import type { TimelineResponseDto } from './dto/timeline-response.dto.js';
 
 interface TimelineRecord {
   id: string;

@@ -1,20 +1,20 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { WorldAggregate } from './world-aggregate';
-import { WorldIdentity } from './world-identity';
+import { WorldAggregate } from './world-aggregate.js';
+import { WorldIdentity } from './world-identity.js';
 import {
   WorldProfile,
   WorldName,
   WorldDescription,
-} from './world-profile';
+} from './world-profile.js';
 import {
   WorldGeography,
   Area,
   Population,
   Climate,
   Biome,
-} from './world-geography';
-import { Calendar, TimeSystem, MonthDefinition } from './world-calendar';
-import { assertUniqueWorldName } from './business-rules';
+} from './world-geography.js';
+import { Calendar, TimeSystem, MonthDefinition } from './world-calendar.js';
+import { assertUniqueWorldName } from './business-rules.js';
 
 export interface CreateWorldProfileInput {
   name: string;

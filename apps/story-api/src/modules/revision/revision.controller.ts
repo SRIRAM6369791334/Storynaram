@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { RevisionService } from './revision.service';
-import { ReviseStoryDto } from './dto/revise-story.dto';
+import { RevisionService } from './revision.service.js';
+import { ReviseStoryDto } from './dto/revise-story.dto.js';
 
 @ApiTags('AI Revision')
 @ApiBearerAuth()

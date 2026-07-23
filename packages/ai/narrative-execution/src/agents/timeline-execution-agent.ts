@@ -1,4 +1,4 @@
-import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent';
+import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent.js';
 
 export class TimelineExecutionAgent extends ExecutionAgent {
   readonly id = 'timeline-execution';

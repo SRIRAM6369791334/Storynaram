@@ -1,17 +1,17 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { SearchProvider, AliasAction } from '../search-provider.interface';
+import type { SearchProvider, AliasAction } from '../search-provider.interface.js';
 import type {
   SearchIndexConfig, IndexTemplate, IndexAlias,
   SearchDocument, BulkOperation, BulkResponse, BulkResponseItem,
   SearchQuery, SearchResult, SearchHit, AutocompleteQuery, FacetResult,
   ClusterHealthResponse, IndexStatsResponse, ShardStats,
   QueryClause, ReindexOptions, AggregationClause, AggregationResult, AggregationBucket,
-} from '../types';
+} from '../types.js';
 import {
   IndexNotFoundError, IndexAlreadyExistsError, DocumentNotFoundError,
   ClusterUnavailableError, InvalidQueryError,
-} from '../errors';
-import { SearchQueryCompiler, CompiledSearchQuery } from '../search-query-compiler';
+} from '../errors.js';
+import { SearchQueryCompiler, CompiledSearchQuery } from '../search-query-compiler.js';
 
 interface IndexState {
   config: SearchIndexConfig;

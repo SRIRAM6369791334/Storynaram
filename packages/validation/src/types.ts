@@ -1,6 +1,6 @@
 import type { SchemaId } from '@storynaram/schemas';
 import type { EntityId } from '@storynaram/core';
-import type { ValidationIssue } from './validation-result';
+import type { ValidationIssue } from './validation-result.js';
 
 export type ValidationMode = 'strict' | 'relaxed' | 'development' | 'production' | 'fast' | 'deep';
 

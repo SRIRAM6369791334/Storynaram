@@ -1,16 +1,16 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
-import { NarrativePlanner } from './narrative-planner';
-import { PlanningMemory } from './planning-memory';
-import { PlanningStatistics } from './planning-statistics';
-import { PlanningGraph } from './planning-graph';
-import { IdeaAgent } from './agents/idea-agent';
-import { CharacterAgent } from './agents/character-agent';
-import { WorldAgent } from './agents/world-agent';
-import { TimelineAgent } from './agents/timeline-agent';
-import { CanonAgent } from './agents/canon-agent';
-import { NarrativeAgent } from './agents/narrative-agent';
-import { CompositionAgent } from './agents/composition-agent';
-import { ValidationAgent } from './agents/validation-agent';
+import { NarrativePlanner } from './narrative-planner.js';
+import { PlanningMemory } from './planning-memory.js';
+import { PlanningStatistics } from './planning-statistics.js';
+import { PlanningGraph } from './planning-graph.js';
+import { IdeaAgent } from './agents/idea-agent.js';
+import { CharacterAgent } from './agents/character-agent.js';
+import { WorldAgent } from './agents/world-agent.js';
+import { TimelineAgent } from './agents/timeline-agent.js';
+import { CanonAgent } from './agents/canon-agent.js';
+import { NarrativeAgent } from './agents/narrative-agent.js';
+import { CompositionAgent } from './agents/composition-agent.js';
+import { ValidationAgent } from './agents/validation-agent.js';
 
 export interface NarrativePlannerModuleOptions {
   maxRetries?: number;

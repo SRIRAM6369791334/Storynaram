@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { PlannerService } from './planner.service';
-import { PlanStoryDto } from './dto/plan-story.dto';
+import { PlannerService } from './planner.service.js';
+import { PlanStoryDto } from './dto/plan-story.dto.js';
 
 @ApiTags('AI Planning')
 @ApiBearerAuth()

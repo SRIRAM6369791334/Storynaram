@@ -1,11 +1,11 @@
-export { RuntimeModule } from './runtime.module';
-export { RuntimeConfig } from './runtime-config';
-export { EntityService } from './entity-service';
-export { EntityCacheService } from './entity-cache.service';
-export { EntityEventService } from './entity-event.service';
-export { EntityValidationService } from './entity-validation.service';
-export { EntityLifecycleService } from './entity-lifecycle.service';
-export { EntityRuntimeError, EntityNotFoundError, EntityValidationError, EntityOperationError } from './errors';
+export { RuntimeModule } from './runtime.module.js';
+export { RuntimeConfig } from './runtime-config.js';
+export { EntityService } from './entity-service.js';
+export { EntityCacheService } from './entity-cache.service.js';
+export { EntityEventService } from './entity-event.service.js';
+export { EntityValidationService } from './entity-validation.service.js';
+export { EntityLifecycleService } from './entity-lifecycle.service.js';
+export { EntityRuntimeError, EntityNotFoundError, EntityValidationError, EntityOperationError } from './errors.js';
 export type {
   EntityEventType,
   EntityEvent,
@@ -13,7 +13,7 @@ export type {
   EntityPage,
   EntityHooks,
   EntityRuntimeOptions,
-} from './types';
+} from './types.js';
 
 export {
   RepositoryRuntimeModule,
@@ -33,7 +33,7 @@ export {
   RepositoryTransactionError,
   RepositoryConfigurationError,
   RUNTIME_REPOSITORY_OPTIONS,
-} from './repository';
+} from './repository/index.js';
 export type {
   RepositoryPort,
   StorageProvider,
@@ -56,7 +56,7 @@ export type {
   TransactionStatus,
   UpsertOptions,
   BulkOperationResult,
-} from './repository';
+} from './repository/index.js';
 export {
   RelationshipRuntimeModule,
   RelationshipGraph,
@@ -74,8 +74,8 @@ export {
   RelationshipValidationError,
   RelationshipConfigurationError,
   RELATIONSHIP_OPTIONS,
-} from './relationship';
-export type { RelationshipPort } from './relationship';
+} from './relationship/index.js';
+export type { RelationshipPort } from './relationship/index.js';
 export {
   QueryRuntimeModule,
   QueryEngineService,
@@ -96,7 +96,7 @@ export {
   QueryOptimizationError,
   QueryTimeoutError,
   QUERY_ENGINE_OPTIONS,
-} from './query';
+} from './query/index.js';
 export type {
   FilterOperator as QueryFilterOperator,
   FilterOperand,
@@ -122,7 +122,7 @@ export type {
   ComponentResult,
   QueryEngineOptions,
   NamedQuery,
-} from './query';
+} from './query/index.js';
 export {
   WorkflowRuntimeModule,
   WorkflowEngine,
@@ -146,7 +146,7 @@ export {
   WorkflowRollbackError,
   WorkflowCheckpointError,
   WORKFLOW_OPTIONS,
-} from './workflow';
+} from './workflow/index.js';
 export type {
   WorkflowStatus,
   StepType,
@@ -166,7 +166,7 @@ export type {
   WorkflowMetrics,
   CheckpointData,
   WorkflowRuntimeOptions,
-} from './workflow';
+} from './workflow/index.js';
 
 export {
   AIRuntimeModule,
@@ -203,7 +203,7 @@ export {
   AIToolError,
   AIRateLimitError,
   AIFallbackExhaustedError,
-} from './ai';
+} from './ai/index.js';
 export type {
   AIProviderName,
   AIMessageRole,
@@ -235,7 +235,7 @@ export type {
   AIGenerateOptions,
   AIStatistics,
   AIProviderStatistics,
-} from './ai';
+} from './ai/index.js';
 
 export {
   PluginRuntimeModule,
@@ -263,7 +263,7 @@ export {
   PluginDependencyError,
   PluginPermissionError,
   PluginConfigurationError,
-} from './plugin';
+} from './plugin/index.js';
 export type {
   PluginId,
   PluginVersion,
@@ -293,4 +293,4 @@ export type {
   PluginStoppedEvent,
   PluginFailedEvent,
   PluginReloadedEvent,
-} from './plugin';
+} from './plugin/index.js';

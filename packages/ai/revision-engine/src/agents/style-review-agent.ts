@@ -1,6 +1,6 @@
-import { RevisionAgent, type RevisionAgentResult } from './revision-agent';
-import type { RevisionPassType } from '../types/revision-context';
-import type { IssueReport } from '../types/revision-report';
+import { RevisionAgent, type RevisionAgentResult } from './revision-agent.js';
+import type { RevisionPassType } from '../types/revision-context.js';
+import type { IssueReport } from '../types/revision-report.js';
 
 const WEAK_ADJECTIVES = /\b(good|bad|nice|great|big|small|pretty|ugly|old|new|happy|sad)\b/gi;
 const OVERUSED_ADVERBS = /\b(very|really|quite|extremely|absolutely|totally|just|literally)\b/gi;

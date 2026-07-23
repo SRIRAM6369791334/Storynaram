@@ -1,5 +1,5 @@
 import { DynamicModule } from '@nestjs/common';
-import { RegistryConfig } from './registry-config';
+import { RegistryConfig } from './registry-config.js';
 
 export class RegistryModule {
   static forRoot(config?: RegistryConfig): DynamicModule {

@@ -1,5 +1,5 @@
-import type { ExecutionContext } from '../execution-context';
-import type { ExecutionMemory } from '../execution-memory';
+import type { ExecutionContext } from '../execution-context.js';
+import type { ExecutionMemory } from '../execution-memory.js';
 
 export interface AgentInput {
   context: ExecutionContext;

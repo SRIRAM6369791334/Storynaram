@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import { ProviderNotFoundError } from './errors';
-import type { IStorageAdapter } from './adapters/storage-adapter.interface';
+import { StorageClient } from './storage-client.js';
+import { ProviderNotFoundError } from './errors.js';
+import type { IStorageAdapter } from './adapters/storage-adapter.interface.js';
 
 @Injectable()
 export class StorageRegistry {

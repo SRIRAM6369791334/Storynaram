@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RelationshipGraph } from './relationship-graph';
+import { RelationshipGraph } from './relationship-graph.js';
 import type {
   RelationshipEdge,
   RelationshipFilter,
   RelationshipQuery,
   RelationshipSearchResult,
-} from './types';
+} from './types.js';
 
 @Injectable()
 export class RelationshipQueryService {

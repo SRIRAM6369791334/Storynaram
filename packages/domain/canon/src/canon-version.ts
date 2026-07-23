@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { CanonFact } from './canon-fact';
+import { CanonFact } from './canon-fact.js';
 
 export class CanonVersion extends ValueObject {
   constructor(

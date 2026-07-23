@@ -1,6 +1,6 @@
 import { BusinessRule, BusinessRuleViolation, Severity } from '@storynaram/domain-kernel';
-import { PlotStructure } from './plot';
-import { ConflictCategory } from './conflict';
+import { PlotStructure } from './plot.js';
+import { ConflictCategory } from './conflict.js';
 
 export class ThreeActStructureRule extends BusinessRule {
   constructor(

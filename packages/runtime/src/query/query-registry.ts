@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { NamedQuery, QueryOptions } from './types';
+import type { NamedQuery, QueryOptions } from './types.js';
 
 @Injectable()
 export class QueryRegistry {

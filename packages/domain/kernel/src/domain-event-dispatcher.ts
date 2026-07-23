@@ -1,4 +1,4 @@
-import { DomainEvent } from './domain-event';
+import { DomainEvent } from './domain-event.js';
 
 export interface IDomainEventHandler {
   handle(event: DomainEvent): Promise<void>;

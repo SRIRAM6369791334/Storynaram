@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { QueryResult, QueryStatistics, QueryEngineOptions } from './types';
+import type { QueryResult, QueryStatistics, QueryEngineOptions } from './types.js';
 
 interface CacheEntry {
   result: QueryResult;

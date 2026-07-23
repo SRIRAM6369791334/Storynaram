@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SearchResult, SearchHit, AggregationResult, AggregationBucket, FacetResult, SuggestResult } from './types';
+import type { SearchResult, SearchHit, AggregationResult, AggregationBucket, FacetResult, SuggestResult } from './types.js';
 
 @Injectable()
 export class SearchResultMapper {

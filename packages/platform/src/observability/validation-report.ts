@@ -1,5 +1,5 @@
-import { ValidationIssue } from '../cross-domain/cross-domain-validator';
-import { ConsistencyCheck } from '../cross-domain/consistency-validator';
+import { ValidationIssue } from '../cross-domain/cross-domain-validator.js';
+import { ConsistencyCheck } from '../cross-domain/consistency-validator.js';
 
 export interface ValidationReportEntry {
   domain: string;

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { SearchClient } from './search-client';
-import { ProviderNotFoundError } from './errors';
+import { SearchClient } from './search-client.js';
+import { ProviderNotFoundError } from './errors.js';
 
 @Injectable()
 export class SearchRegistry {

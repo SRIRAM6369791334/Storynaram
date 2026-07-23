@@ -1,6 +1,6 @@
 import { BusinessRuleViolation } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { ThreeActStructureRule, FiveActStructureRule, ConflictConsistencyRule, ForeshadowPayoffValidationRule, ArcConsistencyRule, CharacterObjectiveConsistencyRule, ThemeConsistencyRule, TimelineConsistencyRule, CanonConsistencyRule, NarrativeConsistencyRule } from './business-rules';
+import { StoryAggregate } from './story-aggregate.js';
+import { ThreeActStructureRule, FiveActStructureRule, ConflictConsistencyRule, ForeshadowPayoffValidationRule, ArcConsistencyRule, CharacterObjectiveConsistencyRule, ThemeConsistencyRule, TimelineConsistencyRule, CanonConsistencyRule, NarrativeConsistencyRule } from './business-rules.js';
 
 export class CompositionValidator {
   validate(story: StoryAggregate): BusinessRuleViolation[] {

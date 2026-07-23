@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { AIStatistics, AIProviderStatistics, AIProviderName } from './types';
+import type { AIStatistics, AIProviderStatistics, AIProviderName } from './types.js';
 
 interface LatencyEntry {
   provider: AIProviderName;

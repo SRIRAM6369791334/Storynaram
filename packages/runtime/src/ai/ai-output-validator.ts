@@ -1,6 +1,6 @@
 import { Injectable, Logger, Optional } from '@nestjs/common';
-import type { AIResponse, AIOutputValidationOptions } from './types';
-import { AIValidationError } from './errors';
+import type { AIResponse, AIOutputValidationOptions } from './types.js';
+import { AIValidationError } from './errors.js';
 import type { ValidationEngineService } from '@storynaram/validation';
 import type { SchemaId } from '@storynaram/schemas';
 

@@ -1,4 +1,4 @@
-import type { SchemaDefinition } from './schema-definition';
+import type { SchemaDefinition } from './schema-definition.js';
 
 export interface SchemaRegistry {
   register(schema: SchemaDefinition): Promise<void>;

@@ -1,4 +1,4 @@
-import { EntityId } from './entity-id';
+import { EntityId } from './entity-id.js';
 
 export abstract class BaseEntity {
   abstract entityId: EntityId;

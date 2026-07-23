@@ -1,4 +1,4 @@
-import { GraphEdge } from './graph-traversal';
+import { GraphEdge } from './graph-traversal.js';
 
 export interface CycleResult {
   hasCycle: boolean;

@@ -1,5 +1,5 @@
-import { Exporter, type ExportResult } from './exporter';
-import type { ExportFormat } from '../types/publishing-context';
+import { Exporter, type ExportResult } from './exporter.js';
+import type { ExportFormat } from '../types/publishing-context.js';
 
 export class PDFExporter extends Exporter {
   readonly format: ExportFormat = 'pdf';

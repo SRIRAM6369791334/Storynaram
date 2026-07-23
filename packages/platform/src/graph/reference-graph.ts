@@ -1,5 +1,5 @@
-import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal';
-import { CycleDetection, CycleResult } from './cycle-detection';
+import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal.js';
+import { CycleDetection, CycleResult } from './cycle-detection.js';
 
 export interface ReferenceGraphEntry {
   sourceId: string;

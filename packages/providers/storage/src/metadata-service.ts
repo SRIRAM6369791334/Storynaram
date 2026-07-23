@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { ObjectMetadata } from './types';
-import { MetadataError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { ObjectMetadata } from './types.js';
+import { MetadataError } from './errors.js';
 
 @Injectable()
 export class MetadataService {

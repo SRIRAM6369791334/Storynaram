@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginId, PluginDescriptor, PluginHealth, PluginHealthEntry, HealthStatus } from './types';
-import type { PluginRegistry } from './plugin-registry';
+import type { PluginId, PluginDescriptor, PluginHealth, PluginHealthEntry, HealthStatus } from './types.js';
+import type { PluginRegistry } from './plugin-registry.js';
 
 @Injectable()
 export class PluginHealthService {

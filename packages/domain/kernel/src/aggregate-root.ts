@@ -1,8 +1,8 @@
-import { Entity } from './entity';
-import { Identity } from './identity';
-import { DomainEvent } from './domain-event';
-import { DomainSnapshot } from './domain-snapshot';
-import { Timestamp } from './timestamp';
+import { Entity } from './entity.js';
+import { Identity } from './identity.js';
+import { DomainEvent } from './domain-event.js';
+import { DomainSnapshot } from './domain-snapshot.js';
+import { Timestamp } from './timestamp.js';
 
 export abstract class AggregateRoot<TIdentity extends Identity = Identity> extends Entity<TIdentity> {
   private readonly _domainEvents: DomainEvent[] = [];

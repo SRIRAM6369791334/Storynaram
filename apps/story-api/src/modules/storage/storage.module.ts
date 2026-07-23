@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
-import { StorageController } from './storage.controller';
-import { StorageService } from './storage.service';
+import { StorageController } from './storage.controller.js';
+import { StorageService } from './storage.service.js';
 
 @Module({
   imports: [

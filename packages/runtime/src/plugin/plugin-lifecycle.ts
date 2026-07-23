@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginStatus, PluginDescriptor } from './types';
-import { PluginError } from './errors';
+import type { PluginStatus, PluginDescriptor } from './types.js';
+import { PluginError } from './errors.js';
 
 const VALID_TRANSITIONS: Record<PluginStatus, PluginStatus[]> = {
   discovered: ['loaded', 'destroyed'],

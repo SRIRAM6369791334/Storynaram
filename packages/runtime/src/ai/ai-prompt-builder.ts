@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { AIMessage, AIMessageRole, AIPromptOptions, AIPromptTemplate } from './types';
-import { AIValidationError } from './errors';
+import type { AIMessage, AIMessageRole, AIPromptOptions, AIPromptTemplate } from './types.js';
+import { AIValidationError } from './errors.js';
 
 @Injectable()
 export class AIPromptBuilder {

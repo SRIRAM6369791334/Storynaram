@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { WorldAggregate } from './world-aggregate';
+import { WorldAggregate } from './world-aggregate.js';
 
 export class FantasySpecification extends Specification<WorldAggregate> {
   isSatisfiedBy(candidate: WorldAggregate): boolean {

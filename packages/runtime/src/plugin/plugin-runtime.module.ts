@@ -1,24 +1,24 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
-import { PLUGIN_RUNTIME_OPTIONS } from './tokens';
-import type { PluginRuntimeOptions } from './types';
-import { PluginRuntimeService } from './plugin-runtime.service';
-import { PluginManager } from './plugin-manager';
-import { PluginRegistry } from './plugin-registry';
-import { PluginLoader } from './plugin-loader';
-import { PluginLifecycle } from './plugin-lifecycle';
-import { PluginDependencyResolver } from './plugin-dependency-resolver';
-import { PluginCapabilityRegistry } from './plugin-capability-registry';
-import { PluginPermissionManager } from './plugin-permission-manager';
-import { PluginConfigurationService } from './plugin-configuration';
-import { PluginHookRegistry } from './plugin-hook-registry';
-import { PluginEventBridge } from './plugin-event-bridge';
-import { PluginContextFactory } from './plugin-context';
-import { PluginSandbox } from './plugin-sandbox';
-import { PluginHealthService } from './plugin-health.service';
-import { PluginMetricsCollector } from './plugin-metrics';
-import { PluginStatisticsService } from './plugin-statistics';
-import { PluginDescriptorFactory } from './plugin-descriptor';
-import { PluginManifestService } from './plugin-manifest';
+import { PLUGIN_RUNTIME_OPTIONS } from './tokens.js';
+import type { PluginRuntimeOptions } from './types.js';
+import { PluginRuntimeService } from './plugin-runtime.service.js';
+import { PluginManager } from './plugin-manager.js';
+import { PluginRegistry } from './plugin-registry.js';
+import { PluginLoader } from './plugin-loader.js';
+import { PluginLifecycle } from './plugin-lifecycle.js';
+import { PluginDependencyResolver } from './plugin-dependency-resolver.js';
+import { PluginCapabilityRegistry } from './plugin-capability-registry.js';
+import { PluginPermissionManager } from './plugin-permission-manager.js';
+import { PluginConfigurationService } from './plugin-configuration.js';
+import { PluginHookRegistry } from './plugin-hook-registry.js';
+import { PluginEventBridge } from './plugin-event-bridge.js';
+import { PluginContextFactory } from './plugin-context.js';
+import { PluginSandbox } from './plugin-sandbox.js';
+import { PluginHealthService } from './plugin-health.service.js';
+import { PluginMetricsCollector } from './plugin-metrics.js';
+import { PluginStatisticsService } from './plugin-statistics.js';
+import { PluginDescriptorFactory } from './plugin-descriptor.js';
+import { PluginManifestService } from './plugin-manifest.js';
 
 const DEFAULT_OPTIONS: PluginRuntimeOptions = {
   autoStart: true,

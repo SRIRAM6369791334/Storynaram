@@ -6,8 +6,8 @@ import type {
   RelationshipType,
   RelationshipDirection,
   GraphStatistics,
-} from './types';
-import { RelationshipNotFoundError, RelationshipConflictError } from './errors';
+} from './types.js';
+import { RelationshipNotFoundError, RelationshipConflictError } from './errors.js';
 
 export class RelationshipGraph {
   private readonly logger = new Logger(RelationshipGraph.name);

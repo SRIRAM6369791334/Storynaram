@@ -1,7 +1,7 @@
 import type { ExecutionResult } from '@storynaram/narrative-execution';
-import type { GenerationContext } from './generation-context';
-import { GenerationMemory } from './generation-memory';
-import { GenerationStatistics } from './generation-statistics';
+import type { GenerationContext } from './generation-context.js';
+import { GenerationMemory } from './generation-memory.js';
+import { GenerationStatistics } from './generation-statistics.js';
 
 export type GenerationStatus = 'created' | 'building-context' | 'assembling-prompts' | 'generating' | 'streaming' | 'assembling' | 'validating' | 'completed' | 'failed' | 'cancelled';
 

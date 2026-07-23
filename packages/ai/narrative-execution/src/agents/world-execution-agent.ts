@@ -1,4 +1,4 @@
-import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent';
+import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent.js';
 
 export class WorldExecutionAgent extends ExecutionAgent {
   readonly id = 'world-execution';

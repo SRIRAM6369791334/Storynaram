@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateStoryDto } from './dto/create-story.dto';
-import { UpdateStoryDto } from './dto/update-story.dto';
-import type { StoryResponseDto } from './dto/story-response.dto';
+import { CreateStoryDto } from './dto/create-story.dto.js';
+import { UpdateStoryDto } from './dto/update-story.dto.js';
+import type { StoryResponseDto } from './dto/story-response.dto.js';
 
 interface StoryRecord {
   id: string;

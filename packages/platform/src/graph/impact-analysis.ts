@@ -1,6 +1,6 @@
-import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal';
-import { ReferenceGraph } from './reference-graph';
-import { DependencyGraph } from './dependency-graph';
+import { GraphTraversal, GraphNode, GraphEdge } from './graph-traversal.js';
+import { ReferenceGraph } from './reference-graph.js';
+import { DependencyGraph } from './dependency-graph.js';
 
 export interface ImpactResult {
   affectedNodeIds: string[];

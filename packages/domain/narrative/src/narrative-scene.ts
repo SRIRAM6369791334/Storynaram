@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { SceneNumber } from './narrative-numbers';
-import { WordCount } from './narrative-metrics';
+import { SceneNumber } from './narrative-numbers.js';
+import { WordCount } from './narrative-metrics.js';
 
 export type SceneType = 'opening' | 'rising' | 'climax' | 'falling' | 'resolution' | 'transition' | 'prologue' | 'epilogue' | 'interlude' | 'flashback' | 'montage';
 

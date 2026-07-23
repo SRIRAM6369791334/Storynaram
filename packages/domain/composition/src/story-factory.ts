@@ -1,12 +1,12 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { StoryIdentity } from './story-identity';
-import { StoryFormat } from './story-profile';
-import { PlotStructure, PlotType, PlotStage } from './plot';
-import { ArcStage } from './story-arc';
-import { ConflictCategory, ConflictSeverity } from './conflict';
-import { ThemeCategory } from './theme';
-import { ForeshadowStrength } from './foreshadow';
+import { StoryAggregate } from './story-aggregate.js';
+import { StoryIdentity } from './story-identity.js';
+import { StoryFormat } from './story-profile.js';
+import { PlotStructure, PlotType, PlotStage } from './plot.js';
+import { ArcStage } from './story-arc.js';
+import { ConflictCategory, ConflictSeverity } from './conflict.js';
+import { ThemeCategory } from './theme.js';
+import { ForeshadowStrength } from './foreshadow.js';
 
 export interface CreatePlotPointInput {
   pointId?: string;

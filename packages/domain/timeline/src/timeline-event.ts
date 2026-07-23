@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { TimelineDate } from './timeline-date';
-import { TimelineDuration } from './timeline-date';
+import { TimelineDate } from './timeline-date.js';
+import { TimelineDuration } from './timeline-date.js';
 
 export type EventType = 'historical' | 'political' | 'character' | 'world' | 'magic' | 'technology' | 'war' | 'discovery' | 'disaster' | 'personal';
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ValidationResult } from './validation-result';
+import { ValidationResult } from './validation-result.js';
 
 @Injectable()
 export abstract class ValidationPort {

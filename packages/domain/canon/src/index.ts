@@ -1,47 +1,47 @@
-export { CanonIdentity } from './canon-identity';
+export { CanonIdentity } from './canon-identity.js';
 
-export { CanonFact } from './canon-fact';
-export type { FactType } from './canon-fact';
+export { CanonFact } from './canon-fact.js';
+export type { FactType } from './canon-fact.js';
 
-export { CanonReference } from './canon-reference';
-export type { DomainType } from './canon-reference';
+export { CanonReference } from './canon-reference.js';
+export type { DomainType } from './canon-reference.js';
 
-export { CanonSource } from './canon-source';
-export type { SourceType } from './canon-source';
+export { CanonSource } from './canon-source.js';
+export type { SourceType } from './canon-source.js';
 
-export { CanonVersion } from './canon-version';
+export { CanonVersion } from './canon-version.js';
 
-export { CanonConflict } from './canon-conflict';
-export type { ConflictStatus } from './canon-conflict';
+export { CanonConflict } from './canon-conflict.js';
+export type { ConflictStatus } from './canon-conflict.js';
 
-export { CanonResolution } from './canon-resolution';
-export type { ResolutionStrategy } from './canon-resolution';
+export { CanonResolution } from './canon-resolution.js';
+export type { ResolutionStrategy } from './canon-resolution.js';
 
-export { CanonEntry } from './canon-entry';
-export type { EntryStatus } from './canon-entry';
+export { CanonEntry } from './canon-entry.js';
+export type { EntryStatus } from './canon-entry.js';
 
-export { CanonRule } from './canon-rule';
-export type { RuleType, RuleSeverity } from './canon-rule';
+export { CanonRule } from './canon-rule.js';
+export type { RuleType, RuleSeverity } from './canon-rule.js';
 
-export { CanonCollection } from './canon-collection';
+export { CanonCollection } from './canon-collection.js';
 
-export { CanonStatistics } from './canon-statistics';
-export type { CanonStatisticsProps } from './canon-statistics';
+export { CanonStatistics } from './canon-statistics.js';
+export type { CanonStatisticsProps } from './canon-statistics.js';
 
-export { CanonAggregate } from './canon-aggregate';
+export { CanonAggregate } from './canon-aggregate.js';
 
 export {
   CanonFactory,
-} from './canon-factory';
+} from './canon-factory.js';
 export type {
   CreateCanonProps,
   CreateCanonEntryInput,
-} from './canon-factory';
+} from './canon-factory.js';
 
-export { CANON_REPOSITORY } from './canon-repository';
-export type { CanonRepositoryContract } from './canon-repository';
+export { CANON_REPOSITORY } from './canon-repository.js';
+export type { CanonRepositoryContract } from './canon-repository.js';
 
-export { CanonDomainService } from './canon-domain-service';
+export { CanonDomainService } from './canon-domain-service.js';
 
 export {
   CanonicalSpec,
@@ -49,7 +49,7 @@ export {
   ConflictedSpec,
   PublishedSpec,
   DraftSpec,
-} from './canon-specifications';
+} from './canon-specifications.js';
 
 export {
   CanonCreatedEvent,
@@ -58,16 +58,16 @@ export {
   ConflictDetectedEvent,
   ConflictResolvedEvent,
   CanonPublishedEvent,
-} from './canon-events';
+} from './canon-events.js';
 
 export {
   SingleCanonTruthRule,
   ConflictDetectionRule,
   ReferenceValidationRule,
   assertNoUnresolvedConflicts,
-} from './business-rules';
+} from './business-rules.js';
 
-export { CanonDomainModule } from './canon.module';
+export { CanonDomainModule } from './canon.module.js';
 
 export {
   indexCanonForSearch,
@@ -75,5 +75,5 @@ export {
   handleCanonCreatedIntegration,
   handleConflictDetectedIntegration,
   handleCanonPublishedIntegration,
-} from './integration';
-export type { CanonRuntimeIntegrations } from './integration';
+} from './integration.js';
+export type { CanonRuntimeIntegrations } from './integration.js';

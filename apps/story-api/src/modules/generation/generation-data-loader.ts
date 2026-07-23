@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { ExecutionResult } from '@storynaram/narrative-execution';
 import type { StoryDraft, ChapterDraft, ExecutionReport, ValidationReport, CharacterProse, WorldProse } from '@storynaram/narrative-execution';
-import { StoryService } from '../story/story.service';
-import { CharacterService } from '../character/character.service';
-import { WorldService } from '../world/world.service';
-import { TimelineService } from '../timeline/timeline.service';
-import { CanonService } from '../canon/canon.service';
-import { NarrativeService } from '../narrative/narrative.service';
-import { CompositionService } from '../composition/composition.service';
-import type { ChapterInputDto } from './dto/generate-story.dto';
+import { StoryService } from '../story/story.service.js';
+import { CharacterService } from '../character/character.service.js';
+import { WorldService } from '../world/world.service.js';
+import { TimelineService } from '../timeline/timeline.service.js';
+import { CanonService } from '../canon/canon.service.js';
+import { NarrativeService } from '../narrative/narrative.service.js';
+import { CompositionService } from '../composition/composition.service.js';
+import type { ChapterInputDto } from './dto/generate-story.dto.js';
 
 @Injectable()
 export class GenerationDataLoader {

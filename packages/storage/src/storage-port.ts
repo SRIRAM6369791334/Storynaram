@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { StorageEntry } from './storage-entry';
+import { StorageEntry } from './storage-entry.js';
 
 @Injectable()
 export abstract class StoragePort {

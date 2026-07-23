@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import type { EntityHooks } from './types';
+import type { EntityHooks } from './types.js';
 
 @Injectable()
 export class EntityLifecycleService {

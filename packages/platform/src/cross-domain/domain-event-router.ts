@@ -1,5 +1,5 @@
 import { DomainEvent } from '@storynaram/domain-kernel';
-import { IntegrationRegistry, DomainType } from '../integration-registry';
+import { IntegrationRegistry, DomainType } from '../integration-registry.js';
 
 export interface DomainEventHandler {
   domain: DomainType;

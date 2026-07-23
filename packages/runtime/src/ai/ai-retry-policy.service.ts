@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AIRetryConfig, AIRequest, AIResponse } from './types';
-import { AIRateLimitError, AITimeoutError, AIProviderError } from './errors';
+import type { AIRetryConfig, AIRequest, AIResponse } from './types.js';
+import { AIRateLimitError, AITimeoutError, AIProviderError } from './errors.js';
 
 export interface RetryHandlerOptions {
   request: AIRequest;

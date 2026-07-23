@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SchemaEntry } from './schema-entry';
+import { SchemaEntry } from './schema-entry.js';
 
 @Injectable()
 export abstract class RegistryPort {

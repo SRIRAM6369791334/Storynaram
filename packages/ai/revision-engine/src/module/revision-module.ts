@@ -1,17 +1,17 @@
 import { Module, Global, type DynamicModule } from '@nestjs/common';
-import { RevisionEngine, type RevisionEngineOptions } from '../engine/revision-engine';
-import { GrammarAgent } from '../agents/grammar-agent';
-import { CharacterReviewAgent } from '../agents/character-review-agent';
-import { WorldReviewAgent } from '../agents/world-review-agent';
-import { TimelineReviewAgent } from '../agents/timeline-review-agent';
-import { CanonReviewAgent } from '../agents/canon-review-agent';
-import { NarrativeReviewAgent } from '../agents/narrative-review-agent';
-import { PlotReviewAgent } from '../agents/plot-review-agent';
-import { StyleReviewAgent } from '../agents/style-review-agent';
-import { QualityReviewAgent } from '../agents/quality-review-agent';
-import { StoryQualityScore } from '../quality/story-quality-score';
-import { IssueDetector } from '../detection/issue-detector';
-import { ImprovementApplier } from '../improvement/improvement-applier';
+import { RevisionEngine, type RevisionEngineOptions } from '../engine/revision-engine.js';
+import { GrammarAgent } from '../agents/grammar-agent.js';
+import { CharacterReviewAgent } from '../agents/character-review-agent.js';
+import { WorldReviewAgent } from '../agents/world-review-agent.js';
+import { TimelineReviewAgent } from '../agents/timeline-review-agent.js';
+import { CanonReviewAgent } from '../agents/canon-review-agent.js';
+import { NarrativeReviewAgent } from '../agents/narrative-review-agent.js';
+import { PlotReviewAgent } from '../agents/plot-review-agent.js';
+import { StyleReviewAgent } from '../agents/style-review-agent.js';
+import { QualityReviewAgent } from '../agents/quality-review-agent.js';
+import { StoryQualityScore } from '../quality/story-quality-score.js';
+import { IssueDetector } from '../detection/issue-detector.js';
+import { ImprovementApplier } from '../improvement/improvement-applier.js';
 
 export interface RevisionModuleOptions {
   engine?: Partial<RevisionEngineOptions>;

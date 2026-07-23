@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { ReviseStoryDto } from './dto/revise-story.dto';
-import type { RevisionResponseDto } from './dto/revision-response.dto';
+import { ReviseStoryDto } from './dto/revise-story.dto.js';
+import type { RevisionResponseDto } from './dto/revision-response.dto.js';
 
 @Injectable()
 export class RevisionService {

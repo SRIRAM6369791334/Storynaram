@@ -1,8 +1,8 @@
 import { PlanningResult } from '@storynaram/narrative-planner';
-import type { ExecutionContext } from './execution-context';
-import { ExecutionMemory } from './execution-memory';
-import type { ExecutionCheckpoint } from './execution-checkpoint';
-import { ExecutionStatistics } from './execution-statistics';
+import type { ExecutionContext } from './execution-context.js';
+import { ExecutionMemory } from './execution-memory.js';
+import type { ExecutionCheckpoint } from './execution-checkpoint.js';
+import { ExecutionStatistics } from './execution-statistics.js';
 
 export type ExecutionStatus =
   | 'created'

@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import type { RepositoryRegistry } from '../repository/repository-registry';
-import { RelationshipGraph } from './relationship-graph';
-import type { RelationshipNode, RelationshipEdge } from './types';
+import type { RepositoryRegistry } from '../repository/repository-registry.js';
+import { RelationshipGraph } from './relationship-graph.js';
+import type { RelationshipNode, RelationshipEdge } from './types.js';
 
 export interface ResolvedRelationship<T extends { entityId: EntityId } = { entityId: EntityId }> {
   edge: RelationshipEdge;

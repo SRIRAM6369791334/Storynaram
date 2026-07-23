@@ -1,4 +1,4 @@
-import type { CoverMetadata } from '../types/publishing-report';
+import type { CoverMetadata } from '../types/publishing-report.js';
 
 export class CoverGenerator {
   generateCoverText(metadata: CoverMetadata): string {

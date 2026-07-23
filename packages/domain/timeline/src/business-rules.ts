@@ -1,7 +1,7 @@
 import { BusinessRule, BusinessRuleViolation, Severity, BusinessRuleError } from '@storynaram/domain-kernel';
-import { TimelineDate } from './timeline-date';
-import { TimelineEvents } from './timeline-event';
-import { TimelineBranch } from './timeline-branch';
+import { TimelineDate } from './timeline-date.js';
+import { TimelineEvents } from './timeline-event.js';
+import { TimelineBranch } from './timeline-branch.js';
 
 export class ChronologicalOrderRule extends BusinessRule {
   constructor(

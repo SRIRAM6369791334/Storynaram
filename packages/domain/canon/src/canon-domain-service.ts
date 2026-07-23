@@ -1,10 +1,10 @@
 import { DomainService, Specification } from '@storynaram/domain-kernel';
-import { CanonAggregate } from './canon-aggregate';
-import { CanonIdentity } from './canon-identity';
-import { CanonEntry } from './canon-entry';
-import { CanonRepositoryContract } from './canon-repository';
-import { FactType } from './canon-fact';
-import { CanonicalSpec, PublishedSpec, ConflictedSpec, DeprecatedSpec, DraftSpec } from './canon-specifications';
+import { CanonAggregate } from './canon-aggregate.js';
+import { CanonIdentity } from './canon-identity.js';
+import { CanonEntry } from './canon-entry.js';
+import { CanonRepositoryContract } from './canon-repository.js';
+import { FactType } from './canon-fact.js';
+import { CanonicalSpec, PublishedSpec, ConflictedSpec, DeprecatedSpec, DraftSpec } from './canon-specifications.js';
 
 export class CanonDomainService extends DomainService {
   constructor(

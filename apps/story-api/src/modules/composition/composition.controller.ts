@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { CompositionService } from './composition.service';
-import { CreateCompositionDto } from './dto/create-composition.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { CompositionService } from './composition.service.js';
+import { CreateCompositionDto } from './dto/create-composition.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Compositions')
 @ApiBearerAuth()

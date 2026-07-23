@@ -1,15 +1,15 @@
 import { Module, forwardRef, Global } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
-import { JobsService } from './jobs.service';
-import { GenerationProducer } from './producers/generation.producer';
-import { RevisionProducer } from './producers/revision.producer';
-import { PublishingProducer } from './producers/publishing.producer';
-import { BulkExportProducer } from './producers/bulk-export.producer';
-import { GenerationConsumer } from './consumers/generation.consumer';
-import { RevisionConsumer } from './consumers/revision.consumer';
-import { PublishingConsumer } from './consumers/publishing.consumer';
-import { BulkExportConsumer } from './consumers/bulk-export.consumer';
-import { GenerationModule } from '../modules/generation/generation.module';
+import { JobsService } from './jobs.service.js';
+import { GenerationProducer } from './producers/generation.producer.js';
+import { RevisionProducer } from './producers/revision.producer.js';
+import { PublishingProducer } from './producers/publishing.producer.js';
+import { BulkExportProducer } from './producers/bulk-export.producer.js';
+import { GenerationConsumer } from './consumers/generation.consumer.js';
+import { RevisionConsumer } from './consumers/revision.consumer.js';
+import { PublishingConsumer } from './consumers/publishing.consumer.js';
+import { BulkExportConsumer } from './consumers/bulk-export.consumer.js';
+import { GenerationModule } from '../modules/generation/generation.module.js';
 
 @Module({
   imports: [

@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
-import { CharacterCreatedEvent, CharacterUpdatedEvent, CharacterDeletedEvent } from './character-events';
+import { CharacterAggregate } from './character-aggregate.js';
+import { CharacterCreatedEvent, CharacterUpdatedEvent, CharacterDeletedEvent } from './character-events.js';
 
 export interface CharacterRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

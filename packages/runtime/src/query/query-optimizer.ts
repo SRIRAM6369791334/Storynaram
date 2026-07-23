@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { QueryPlan, QueryStep, QueryOptions, QueryClause, LogicalGroup, FilterOperand, QueryEngineOptions } from './types';
+import type { QueryPlan, QueryStep, QueryOptions, QueryClause, LogicalGroup, FilterOperand, QueryEngineOptions } from './types.js';
 
 @Injectable()
 export class QueryOptimizer {

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { WorkflowInstance, WorkflowStatus, HistoryEntry, WorkflowEventType } from './types';
+import type { WorkflowInstance, WorkflowStatus, HistoryEntry, WorkflowEventType } from './types.js';
 
 @Injectable()
 export class WorkflowInstanceManager {

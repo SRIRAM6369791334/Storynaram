@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { AITokenUsage, AIProviderName, AIModelPricing } from './types';
+import type { AITokenUsage, AIProviderName, AIModelPricing } from './types.js';
 
 interface CostEntry {
   provider: AIProviderName;

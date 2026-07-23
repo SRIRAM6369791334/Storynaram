@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AIRequest, AIResponse } from './types';
+import type { AIRequest, AIResponse } from './types.js';
 
 interface CacheEntry {
   response: AIResponse;

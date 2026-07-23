@@ -1,7 +1,7 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
-import { DomainEventDispatcher } from './domain-event-dispatcher';
-import { InMemoryDomainEventPublisher } from './domain-event-publisher';
-import type { IDomainEventPublisher } from './domain-event-publisher';
+import { DomainEventDispatcher } from './domain-event-dispatcher.js';
+import { InMemoryDomainEventPublisher } from './domain-event-publisher.js';
+import type { IDomainEventPublisher } from './domain-event-publisher.js';
 
 export const DOMAIN_EVENT_PUBLISHER = Symbol('DOMAIN_EVENT_PUBLISHER');
 export const DOMAIN_KERNEL_OPTIONS = Symbol('DOMAIN_KERNEL_OPTIONS');

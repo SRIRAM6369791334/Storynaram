@@ -1,5 +1,5 @@
-import type { ExecutionStatus } from './execution-session';
-import type { ExecutionMemorySnapshot } from './execution-memory';
+import type { ExecutionStatus } from './execution-session.js';
+import type { ExecutionMemorySnapshot } from './execution-memory.js';
 
 export interface ExecutionCheckpoint {
   sessionId: string;

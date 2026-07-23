@@ -1,6 +1,6 @@
-import { Exporter, type ExportResult } from './exporter';
-import type { ExportFormat } from '../types/publishing-context';
-import type { ExportedFile } from '../types/publishing-result';
+import { Exporter, type ExportResult } from './exporter.js';
+import type { ExportFormat } from '../types/publishing-context.js';
+import type { ExportedFile } from '../types/publishing-result.js';
 
 export class ZIPExporter extends Exporter {
   readonly format: ExportFormat = 'zip';

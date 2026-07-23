@@ -1,5 +1,5 @@
 import { DynamicModule } from '@nestjs/common';
-import { StorageConfig } from './storage-config';
+import { StorageConfig } from './storage-config.js';
 
 export class StorageModule {
   static forRoot(config?: StorageConfig): DynamicModule {

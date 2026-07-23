@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { CheckpointData } from './types';
-import { WorkflowHistoryService } from './workflow-history';
-import { WorkflowContext } from './workflow-context';
-import { WorkflowCheckpointError } from './errors';
+import type { CheckpointData } from './types.js';
+import { WorkflowHistoryService } from './workflow-history.js';
+import { WorkflowContext } from './workflow-context.js';
+import { WorkflowCheckpointError } from './errors.js';
 
 @Injectable()
 export class WorkflowCheckpointService {

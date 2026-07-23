@@ -1,5 +1,5 @@
-import { PlatformMetrics } from './platform-metrics';
-import { IntegrationRegistry, DomainType } from '../integration-registry';
+import { PlatformMetrics } from './platform-metrics.js';
+import { IntegrationRegistry, DomainType } from '../integration-registry.js';
 
 export interface DomainMetricSummary {
   domain: DomainType;

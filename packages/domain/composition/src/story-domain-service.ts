@@ -1,8 +1,8 @@
 import { DomainService, Specification } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { StoryIdentity } from './story-identity';
-import { StoryRepositoryContract } from './story-repository';
-import { PublishedSpec, DraftSpec, CompletedSpec } from './story-specifications';
+import { StoryAggregate } from './story-aggregate.js';
+import { StoryIdentity } from './story-identity.js';
+import { StoryRepositoryContract } from './story-repository.js';
+import { PublishedSpec, DraftSpec, CompletedSpec } from './story-specifications.js';
 
 export class StoryDomainService extends DomainService {
   constructor(

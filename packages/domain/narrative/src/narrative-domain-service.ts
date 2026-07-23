@@ -1,9 +1,9 @@
 import { DomainService, Specification } from '@storynaram/domain-kernel';
-import { NarrativeAggregate } from './narrative-aggregate';
-import { NarrativeIdentity } from './narrative-identity';
-import { NarrativeRepositoryContract } from './narrative-repository';
-import { WordCount, ReadingTime } from './narrative-metrics';
-import { PublishedSpec, DraftSpec, CompletedSpec, NovelSpec, ComicSpec, ScreenplaySpec } from './narrative-specifications';
+import { NarrativeAggregate } from './narrative-aggregate.js';
+import { NarrativeIdentity } from './narrative-identity.js';
+import { NarrativeRepositoryContract } from './narrative-repository.js';
+import { WordCount, ReadingTime } from './narrative-metrics.js';
+import { PublishedSpec, DraftSpec, CompletedSpec, NovelSpec, ComicSpec, ScreenplaySpec } from './narrative-specifications.js';
 
 export class NarrativeDomainService extends DomainService {
   constructor(

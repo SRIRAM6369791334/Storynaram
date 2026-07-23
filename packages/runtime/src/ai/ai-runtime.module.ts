@@ -1,22 +1,22 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
-import { AI_RUNTIME_OPTIONS } from './tokens';
-import type { AIRuntimeOptions } from './types';
-import { AIRuntimeService } from './ai-engine.service';
-import { AIProviderRegistry } from './ai-provider-registry.service';
-import { AIModelRegistry } from './ai-model-registry.service';
-import { AIPromptBuilder } from './ai-prompt-builder';
-import { AIPromptTemplateManager } from './ai-prompt-template';
-import { AISessionManager } from './ai-session.manager';
-import { AIToolRegistry } from './tools/ai-tool-registry';
-import { AIToolExecutor } from './tools/ai-tool-executor';
-import { AIStreamingSession } from './streaming/ai-streaming-session';
-import { AICacheService } from './ai-cache.service';
-import { AICostTracker } from './ai-cost-tracker.service';
-import { AIStatisticsService } from './ai-statistics.service';
-import { AIOutputValidator } from './ai-output-validator';
-import { AIRetryPolicy } from './ai-retry-policy.service';
-import { AIFallbackPolicy } from './ai-fallback-policy.service';
-import { MockProvider } from './providers/mock.provider';
+import { AI_RUNTIME_OPTIONS } from './tokens.js';
+import type { AIRuntimeOptions } from './types.js';
+import { AIRuntimeService } from './ai-engine.service.js';
+import { AIProviderRegistry } from './ai-provider-registry.service.js';
+import { AIModelRegistry } from './ai-model-registry.service.js';
+import { AIPromptBuilder } from './ai-prompt-builder.js';
+import { AIPromptTemplateManager } from './ai-prompt-template.js';
+import { AISessionManager } from './ai-session.manager.js';
+import { AIToolRegistry } from './tools/ai-tool-registry.js';
+import { AIToolExecutor } from './tools/ai-tool-executor.js';
+import { AIStreamingSession } from './streaming/ai-streaming-session.js';
+import { AICacheService } from './ai-cache.service.js';
+import { AICostTracker } from './ai-cost-tracker.service.js';
+import { AIStatisticsService } from './ai-statistics.service.js';
+import { AIOutputValidator } from './ai-output-validator.js';
+import { AIRetryPolicy } from './ai-retry-policy.service.js';
+import { AIFallbackPolicy } from './ai-fallback-policy.service.js';
+import { MockProvider } from './providers/mock.provider.js';
 
 const DEFAULT_OPTIONS: AIRuntimeOptions = {
   defaultProvider: 'mock',

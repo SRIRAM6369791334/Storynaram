@@ -1,8 +1,8 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { DomainEventDispatcher } from '@storynaram/domain-kernel';
-import { CanonFactory } from './canon-factory';
-import { CanonDomainService } from './canon-domain-service';
-import { CANON_REPOSITORY } from './canon-repository';
+import { CanonFactory } from './canon-factory.js';
+import { CanonDomainService } from './canon-domain-service.js';
+import { CANON_REPOSITORY } from './canon-repository.js';
 
 @Global()
 @Module({})

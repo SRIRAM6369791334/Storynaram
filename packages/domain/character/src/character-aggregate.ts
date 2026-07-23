@@ -1,19 +1,19 @@
 import { AggregateRoot, DomainEvent, DomainSnapshot, Timestamp } from '@storynaram/domain-kernel';
-import { CharacterIdentity } from './character-identity';
-import { CharacterProfile } from './character-profile';
-import { CharacterAppearance } from './character-appearance';
-import { CharacterPersonality } from './character-personality';
-import { CharacterBiography } from './character-biography';
-import { CharacterSkills, CharacterSkill } from './character-skills';
-import { CharacterAbilities } from './character-abilities';
-import { CharacterGoals, CharacterGoal, GoalStatus } from './character-goals';
-import { CharacterRelationships, CharacterRelationship, RelationshipType } from './character-relationships';
-import { CharacterInventory, InventoryItem } from './character-inventory';
-import { CharacterKnowledge, KnowledgeEntry } from './character-knowledge';
-import { CharacterMemory, MemoryEntry } from './character-memory';
-import { CharacterEmotion, PrimaryEmotion } from './character-emotion';
-import { CharacterStatus } from './character-status';
-import { CharacterStatistics } from './character-statistics';
+import { CharacterIdentity } from './character-identity.js';
+import { CharacterProfile } from './character-profile.js';
+import { CharacterAppearance } from './character-appearance.js';
+import { CharacterPersonality } from './character-personality.js';
+import { CharacterBiography } from './character-biography.js';
+import { CharacterSkills, CharacterSkill } from './character-skills.js';
+import { CharacterAbilities } from './character-abilities.js';
+import { CharacterGoals, CharacterGoal, GoalStatus } from './character-goals.js';
+import { CharacterRelationships, CharacterRelationship, RelationshipType } from './character-relationships.js';
+import { CharacterInventory, InventoryItem } from './character-inventory.js';
+import { CharacterKnowledge, KnowledgeEntry } from './character-knowledge.js';
+import { CharacterMemory, MemoryEntry } from './character-memory.js';
+import { CharacterEmotion, PrimaryEmotion } from './character-emotion.js';
+import { CharacterStatus } from './character-status.js';
+import { CharacterStatistics } from './character-statistics.js';
 import {
   CharacterCreatedEvent,
   CharacterUpdatedEvent,
@@ -21,7 +21,7 @@ import {
   CharacterRelationshipChangedEvent,
   CharacterSkillLearnedEvent,
   CharacterGoalCompletedEvent,
-} from './character-events';
+} from './character-events.js';
 
 export class CharacterAggregate extends AggregateRoot<CharacterIdentity> {
   private _profile: CharacterProfile;

@@ -1,5 +1,5 @@
-import type { RevisionReport } from './revision-report';
-import type { RevisionStatistics } from './revision-statistics';
+import type { RevisionReport } from './revision-report.js';
+import type { RevisionStatistics } from './revision-statistics.js';
 
 export interface RevisedChapter {
   number: number;

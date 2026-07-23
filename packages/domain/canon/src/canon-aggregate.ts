@@ -1,13 +1,13 @@
 import { AggregateRoot, DomainSnapshot } from '@storynaram/domain-kernel';
-import { CanonIdentity } from './canon-identity';
-import { CanonFact, FactType } from './canon-fact';
-import { CanonReference } from './canon-reference';
-import { CanonEntry } from './canon-entry';
-import { CanonConflict } from './canon-conflict';
-import { CanonResolution, ResolutionStrategy } from './canon-resolution';
-import { CanonRule } from './canon-rule';
-import { CanonCollection } from './canon-collection';
-import { CanonStatistics } from './canon-statistics';
+import { CanonIdentity } from './canon-identity.js';
+import { CanonFact, FactType } from './canon-fact.js';
+import { CanonReference } from './canon-reference.js';
+import { CanonEntry } from './canon-entry.js';
+import { CanonConflict } from './canon-conflict.js';
+import { CanonResolution, ResolutionStrategy } from './canon-resolution.js';
+import { CanonRule } from './canon-rule.js';
+import { CanonCollection } from './canon-collection.js';
+import { CanonStatistics } from './canon-statistics.js';
 import {
   CanonCreatedEvent,
   FactAddedEvent,
@@ -15,13 +15,13 @@ import {
   ConflictDetectedEvent,
   ConflictResolvedEvent,
   CanonPublishedEvent,
-} from './canon-events';
+} from './canon-events.js';
 import {
   SingleCanonTruthRule,
   ConflictDetectionRule,
   ReferenceValidationRule,
   assertNoUnresolvedConflicts,
-} from './business-rules';
+} from './business-rules.js';
 
 export class CanonAggregate extends AggregateRoot<CanonIdentity> {
   private _name: string;

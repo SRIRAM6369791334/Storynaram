@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { WorkflowMetrics, WorkflowStatistics, WorkflowResult } from './types';
+import type { WorkflowMetrics, WorkflowStatistics, WorkflowResult } from './types.js';
 
 interface WorkflowMetricData {
   durations: number[];

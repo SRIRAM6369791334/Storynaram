@@ -1,8 +1,8 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { StoryIdentity } from './story-identity';
-import { StoryFormat } from './story-profile';
-import { StoryPhase } from './story-state';
+import { StoryAggregate } from './story-aggregate.js';
+import { StoryIdentity } from './story-identity.js';
+import { StoryFormat } from './story-profile.js';
+import { StoryPhase } from './story-state.js';
 
 export interface StoryRepositoryContract extends RepositoryContract<StoryAggregate> {
   findByIdentity(identity: StoryIdentity): Promise<StoryAggregate | null>;

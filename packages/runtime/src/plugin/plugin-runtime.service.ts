@@ -1,14 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginManifest, PluginDescriptor, PluginId, PluginContext, PluginStatistics, PluginRuntimeOptions, PluginHookHandler, HookType } from './types';
-import { PluginManager } from './plugin-manager';
-import { PluginHookRegistry } from './plugin-hook-registry';
-import { PluginEventBridge } from './plugin-event-bridge';
-import { PluginCapabilityRegistry } from './plugin-capability-registry';
-import { PluginPermissionManager } from './plugin-permission-manager';
-import { PluginConfigurationService } from './plugin-configuration';
-import { PluginHealthService } from './plugin-health.service';
-import { PluginMetricsCollector } from './plugin-metrics';
-import { PluginRegistry } from './plugin-registry';
+import type { PluginManifest, PluginDescriptor, PluginId, PluginContext, PluginStatistics, PluginRuntimeOptions, PluginHookHandler, HookType } from './types.js';
+import { PluginManager } from './plugin-manager.js';
+import { PluginHookRegistry } from './plugin-hook-registry.js';
+import { PluginEventBridge } from './plugin-event-bridge.js';
+import { PluginCapabilityRegistry } from './plugin-capability-registry.js';
+import { PluginPermissionManager } from './plugin-permission-manager.js';
+import { PluginConfigurationService } from './plugin-configuration.js';
+import { PluginHealthService } from './plugin-health.service.js';
+import { PluginMetricsCollector } from './plugin-metrics.js';
+import { PluginRegistry } from './plugin-registry.js';
 
 @Injectable()
 export class PluginRuntimeService {

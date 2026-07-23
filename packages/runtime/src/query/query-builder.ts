@@ -1,6 +1,6 @@
 import type { EntityId } from '@storynaram/core';
-import { QueryEngineService } from './query-engine.service';
-import { QueryExpression } from './query-expression';
+import { QueryEngineService } from './query-engine.service.js';
+import { QueryExpression } from './query-expression.js';
 import type {
   QueryOptions,
   QueryResult,
@@ -13,7 +13,7 @@ import type {
   IncludeRelation,
   ExpandPath,
   QueryClause,
-} from './types';
+} from './types.js';
 
 export class QueryBuilder<T extends Record<string, unknown> = Record<string, unknown>> {
   private filter?: QueryClause;

@@ -1,6 +1,6 @@
 import type { ExecutionResult } from '@storynaram/narrative-execution';
-import type { StoryGenerationEngine } from './story-generation-engine';
-import type { GenerationOptions } from './generation-context';
+import type { StoryGenerationEngine } from './story-generation-engine.js';
+import type { GenerationOptions } from './generation-context.js';
 
 export function generateStory(
   engine: StoryGenerationEngine,

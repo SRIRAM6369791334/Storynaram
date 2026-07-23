@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateNarrativeDto } from './dto/create-narrative.dto';
-import type { NarrativeResponseDto } from './dto/narrative-response.dto';
+import { CreateNarrativeDto } from './dto/create-narrative.dto.js';
+import type { NarrativeResponseDto } from './dto/narrative-response.dto.js';
 
 interface NarrativeRecord {
   id: string;

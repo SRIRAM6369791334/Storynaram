@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { TimelineAggregate } from './timeline-aggregate';
-import { TimelineCreatedEvent, TimelineEventAddedEvent } from './timeline-events';
+import { TimelineAggregate } from './timeline-aggregate.js';
+import { TimelineCreatedEvent, TimelineEventAddedEvent } from './timeline-events.js';
 
 export interface TimelineRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

@@ -1,5 +1,5 @@
-import type { ExportFormat } from '../types/publishing-context';
-import type { ExportedFile } from '../types/publishing-result';
+import type { ExportFormat } from '../types/publishing-context.js';
+import type { ExportedFile } from '../types/publishing-result.js';
 
 export interface ExportResult {
   format: ExportFormat;

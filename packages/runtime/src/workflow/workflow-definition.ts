@@ -1,5 +1,5 @@
-import type { WorkflowStepConfig, WorkflowOptions, WorkflowDefinitionConfig } from './types';
-import { WorkflowStepBuilder } from './workflow-builder';
+import type { WorkflowStepConfig, WorkflowOptions, WorkflowDefinitionConfig } from './types.js';
+import { WorkflowStepBuilder } from './workflow-builder.js';
 
 export class WorkflowDefinition {
   readonly name: string;

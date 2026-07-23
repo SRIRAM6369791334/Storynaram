@@ -1,7 +1,7 @@
 import { DomainEvent } from '@storynaram/domain-kernel';
-import { PlanningContext } from './planning-context';
-import { PlanningResult } from './planning-result';
-import { PlanningStatistics } from './planning-statistics';
+import { PlanningContext } from './planning-context.js';
+import { PlanningResult } from './planning-result.js';
+import { PlanningStatistics } from './planning-statistics.js';
 import { DomainType } from '@storynaram/platform';
 
 export type SessionStatus = 'idle' | 'running' | 'paused' | 'completed' | 'failed' | 'cancelled';

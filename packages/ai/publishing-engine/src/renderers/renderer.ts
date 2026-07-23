@@ -1,5 +1,5 @@
-import type { RenderedChapter } from '../types/publishing-result';
-import type { RenderFormat } from '../types/publishing-context';
+import type { RenderedChapter } from '../types/publishing-result.js';
+import type { RenderFormat } from '../types/publishing-context.js';
 
 export interface RenderOptions {
   chapterHeadings?: boolean;

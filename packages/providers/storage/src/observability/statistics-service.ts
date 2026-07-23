@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageHealthIndicator } from './health-indicator';
-import { StorageMetricsCollector } from './metrics-collector';
-import { StorageClient } from '../storage-client';
-import type { ProviderStatistics } from '../types';
+import { StorageHealthIndicator } from './health-indicator.js';
+import { StorageMetricsCollector } from './metrics-collector.js';
+import { StorageClient } from '../storage-client.js';
+import type { ProviderStatistics } from '../types.js';
 
 @Injectable()
 export class StorageStatisticsService {

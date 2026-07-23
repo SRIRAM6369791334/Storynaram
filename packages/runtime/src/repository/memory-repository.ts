@@ -1,13 +1,13 @@
 import type { EntityId } from '@storynaram/core';
-import { BaseRepository } from './base-repository';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityEventService } from '../entity-event.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityLifecycleService } from '../entity-lifecycle.service';
-import { RuntimeConfig } from '../runtime-config';
-import { DefaultTransaction } from './repository-transaction';
-import { RepositoryConflictError } from './errors';
-import type { StorageProvider } from './storage-provider';
+import { BaseRepository } from './base-repository.js';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityLifecycleService } from '../entity-lifecycle.service.js';
+import { RuntimeConfig } from '../runtime-config.js';
+import { DefaultTransaction } from './repository-transaction.js';
+import { RepositoryConflictError } from './errors.js';
+import type { StorageProvider } from './storage-provider.js';
 import type {
   Filter,
   PaginationInput,
@@ -15,7 +15,7 @@ import type {
   CursorInput,
   CursorResult,
   RepositoryTransaction,
-} from './types';
+} from './types.js';
 
 class MemoryStorageProvider<T extends { entityId: EntityId }> implements StorageProvider<T> {
   private readonly store = new Map<string, T>();

@@ -1,9 +1,9 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { DomainEventDispatcher } from '@storynaram/domain-kernel';
-import { CharacterFactory } from './character-factory';
-import { CharacterLifecycle } from './character-lifecycle';
-import { CharacterDomainService } from './character-domain-service';
-import { CHARACTER_REPOSITORY } from './character-repository';
+import { CharacterFactory } from './character-factory.js';
+import { CharacterLifecycle } from './character-lifecycle.js';
+import { CharacterDomainService } from './character-domain-service.js';
+import { CHARACTER_REPOSITORY } from './character-repository.js';
 
 @Global()
 @Module({})

@@ -1,7 +1,7 @@
 import { Module, Global, type DynamicModule } from '@nestjs/common';
 import type { AIRuntimeService } from '@storynaram/runtime';
-import { NarrativeExecutionEngine, type EngineOptions } from './narrative-execution-engine';
-import { ExecutionScheduler } from './execution-scheduler';
+import { NarrativeExecutionEngine, type EngineOptions } from './narrative-execution-engine.js';
+import { ExecutionScheduler } from './execution-scheduler.js';
 
 export interface NarrativeExecutionModuleOptions {
   engine?: Partial<EngineOptions>;

@@ -1,5 +1,5 @@
 import type { StoryDraft, ChapterDraft } from '@storynaram/narrative-execution';
-import type { GenerationResult } from './generation-result';
+import type { GenerationResult } from './generation-result.js';
 
 export interface PipelineStage {
   name: string;

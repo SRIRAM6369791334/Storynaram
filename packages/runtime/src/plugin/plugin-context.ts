@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { PluginDescriptor, PluginContext, PluginManifest } from './types';
-import type { PluginConfigurationService } from './plugin-configuration';
-import type { PluginCapabilityRegistry } from './plugin-capability-registry';
-import type { PluginPermissionManager } from './plugin-permission-manager';
-import type { PluginHookRegistry } from './plugin-hook-registry';
-import type { PluginEventBridge } from './plugin-event-bridge';
+import type { PluginDescriptor, PluginContext, PluginManifest } from './types.js';
+import type { PluginConfigurationService } from './plugin-configuration.js';
+import type { PluginCapabilityRegistry } from './plugin-capability-registry.js';
+import type { PluginPermissionManager } from './plugin-permission-manager.js';
+import type { PluginHookRegistry } from './plugin-hook-registry.js';
+import type { PluginEventBridge } from './plugin-event-bridge.js';
 
 @Injectable()
 export class PluginContextFactory {

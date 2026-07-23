@@ -1,8 +1,8 @@
-import { CanonFact, FactType } from './canon-fact';
-import { CanonVersion } from './canon-version';
-import { CanonConflict } from './canon-conflict';
-import { CanonResolution } from './canon-resolution';
-import { CanonReference } from './canon-reference';
+import { CanonFact, FactType } from './canon-fact.js';
+import { CanonVersion } from './canon-version.js';
+import { CanonConflict } from './canon-conflict.js';
+import { CanonResolution } from './canon-resolution.js';
+import { CanonReference } from './canon-reference.js';
 
 export type EntryStatus = 'active' | 'deprecated' | 'conflicted' | 'draft' | 'published';
 

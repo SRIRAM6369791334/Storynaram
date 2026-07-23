@@ -1,4 +1,4 @@
-export { StorageModule } from './storage.module';
-export { StoragePort } from './storage-port';
-export type { StorageEntry } from './storage-entry';
-export { StorageConfig } from './storage-config';
+export { StorageModule } from './storage.module.js';
+export { StoragePort } from './storage-port.js';
+export type { StorageEntry } from './storage-entry.js';
+export { StorageConfig } from './storage-config.js';

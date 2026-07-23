@@ -1,7 +1,7 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { CanonAggregate } from './canon-aggregate';
-import { CanonIdentity } from './canon-identity';
-import { FactType } from './canon-fact';
+import { CanonAggregate } from './canon-aggregate.js';
+import { CanonIdentity } from './canon-identity.js';
+import { FactType } from './canon-fact.js';
 
 export interface CanonRepositoryContract extends RepositoryContract<CanonAggregate> {
   findByIdentity(identity: CanonIdentity): Promise<CanonAggregate | null>;

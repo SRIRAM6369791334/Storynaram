@@ -6,8 +6,8 @@ import type {
   SearchProviderContract,
   StorageProviderContract,
 } from '@storynaram/domain-kernel';
-import { StoryAggregate } from './story-aggregate';
-import { StoryCreatedEvent, StoryPublishedEvent } from './story-events';
+import { StoryAggregate } from './story-aggregate.js';
+import { StoryCreatedEvent, StoryPublishedEvent } from './story-events.js';
 
 export interface StoryRuntimeIntegrations {
   repository?: RepositoryRuntimeContract;

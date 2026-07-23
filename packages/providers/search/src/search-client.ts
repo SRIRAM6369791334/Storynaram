@@ -1,12 +1,12 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { SEARCH_PROVIDER } from './tokens';
-import type { SearchProvider } from './search-provider.interface';
+import { SEARCH_PROVIDER } from './tokens.js';
+import type { SearchProvider } from './search-provider.interface.js';
 import type {
   SearchIndexConfig, IndexTemplate, IndexAlias,
   SearchDocument, BulkOperation, BulkResponse,
   SearchQuery, SearchResult, AutocompleteQuery, FacetResult,
   ClusterHealthResponse, IndexStatsResponse, ReindexOptions,
-} from './types';
+} from './types.js';
 
 @Injectable()
 export class SearchClient {

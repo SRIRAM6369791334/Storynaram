@@ -1,22 +1,22 @@
 import { Module, Global, DynamicModule, Provider, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import { StorageRegistry } from './storage-registry';
-import { BucketManager } from './bucket-manager';
-import { ObjectManager } from './object-manager';
-import { MultipartUploadManager } from './multipart-upload-manager';
-import { SignedUrlService } from './signed-url-service';
-import { MetadataService } from './metadata-service';
-import { LifecycleManager } from './lifecycle-manager';
-import { ReplicationManager } from './replication-manager';
-import { VersionManager } from './version-manager';
-import { StorageHealthIndicator } from './observability/health-indicator';
-import { StorageMetricsCollector } from './observability/metrics-collector';
-import { StorageStatisticsService } from './observability/statistics-service';
-import { S3Adapter } from './adapters/s3.adapter';
-import { MinIOAdapter } from './adapters/minio.adapter';
-import { AzureBlobAdapter } from './adapters/azure-blob.adapter';
-import { LocalFSAdapter } from './adapters/local-fs.adapter';
-import { MemoryAdapter } from './adapters/memory.adapter';
+import { StorageClient } from './storage-client.js';
+import { StorageRegistry } from './storage-registry.js';
+import { BucketManager } from './bucket-manager.js';
+import { ObjectManager } from './object-manager.js';
+import { MultipartUploadManager } from './multipart-upload-manager.js';
+import { SignedUrlService } from './signed-url-service.js';
+import { MetadataService } from './metadata-service.js';
+import { LifecycleManager } from './lifecycle-manager.js';
+import { ReplicationManager } from './replication-manager.js';
+import { VersionManager } from './version-manager.js';
+import { StorageHealthIndicator } from './observability/health-indicator.js';
+import { StorageMetricsCollector } from './observability/metrics-collector.js';
+import { StorageStatisticsService } from './observability/statistics-service.js';
+import { S3Adapter } from './adapters/s3.adapter.js';
+import { MinIOAdapter } from './adapters/minio.adapter.js';
+import { AzureBlobAdapter } from './adapters/azure-blob.adapter.js';
+import { LocalFSAdapter } from './adapters/local-fs.adapter.js';
+import { MemoryAdapter } from './adapters/memory.adapter.js';
 import {
   STORAGE_MODULE_OPTIONS,
   STORAGE_CLIENT,
@@ -34,10 +34,10 @@ import {
   STORAGE_STATISTICS_SERVICE,
   getStorageClientToken,
   getStorageProviderConfigToken,
-} from './tokens';
-import type { StorageModuleOptions, StorageProviderConfig } from './types';
-import type { StorageModuleAsyncOptions } from './tokens';
-import type { IStorageAdapter } from './adapters/storage-adapter.interface';
+} from './tokens.js';
+import type { StorageModuleOptions, StorageProviderConfig } from './types.js';
+import type { StorageModuleAsyncOptions } from './tokens.js';
+import type { IStorageAdapter } from './adapters/storage-adapter.interface.js';
 
 function createAdapter(config: StorageProviderConfig): IStorageAdapter {
   const logger = new Logger('StorageAdapterFactory');

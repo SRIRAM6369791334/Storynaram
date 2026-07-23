@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'fs';
-import type { SchemaCategory } from './types';
+import type { SchemaCategory } from './types.js';
 
 export interface RawSchema {
   $id?: string;

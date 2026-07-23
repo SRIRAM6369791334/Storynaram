@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { TimelineDate } from './timeline-date';
+import { TimelineDate } from './timeline-date.js';
 
 export class TimelineBranch {
   constructor(

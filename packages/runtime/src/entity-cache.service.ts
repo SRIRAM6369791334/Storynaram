@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import type { EntityCacheEntry } from './types';
-import { RuntimeConfig } from './runtime-config';
+import type { EntityCacheEntry } from './types.js';
+import { RuntimeConfig } from './runtime-config.js';
 
 @Injectable()
 export class EntityCacheService {

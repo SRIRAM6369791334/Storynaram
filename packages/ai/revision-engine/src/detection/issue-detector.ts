@@ -1,4 +1,4 @@
-import type { IssueReport } from '../types/revision-report';
+import type { IssueReport } from '../types/revision-report.js';
 
 export interface DetectIssueParams {
   chapterNumber: number;

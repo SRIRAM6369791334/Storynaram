@@ -1,4 +1,4 @@
-import type { ExecutionStats } from './execution-statistics';
+import type { ExecutionStats } from './execution-statistics.js';
 
 export interface StoryDraft {
   title: string;

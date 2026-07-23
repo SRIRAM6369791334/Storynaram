@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RepositoryRegistry } from './repository-registry';
-import type { RepositoryPort } from './repository-port';
-import type { RepositoryTransaction, RepositoryStatistics } from './types';
+import { RepositoryRegistry } from './repository-registry.js';
+import type { RepositoryPort } from './repository-port.js';
+import type { RepositoryTransaction, RepositoryStatistics } from './types.js';
 
 @Injectable()
 export class RepositoryManager {

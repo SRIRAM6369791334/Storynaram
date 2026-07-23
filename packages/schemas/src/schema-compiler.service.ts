@@ -1,7 +1,7 @@
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import type { default as Ajv, ValidateFunction } from 'ajv';
-import { SchemaCacheService } from './schema-cache.service';
-import type { SchemaId, CompilationResult } from './types';
+import { SchemaCacheService } from './schema-cache.service.js';
+import type { SchemaId, CompilationResult } from './types.js';
 
 @Injectable()
 export class SchemaCompilerService implements OnModuleInit {

@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { MonitoringService } from './monitoring.service';
-import { Roles } from '../../common/decorators/roles.decorator';
+import { MonitoringService } from './monitoring.service.js';
+import { Roles } from '../../common/decorators/roles.decorator.js';
 
 @ApiTags('Monitoring')
 @ApiBearerAuth()

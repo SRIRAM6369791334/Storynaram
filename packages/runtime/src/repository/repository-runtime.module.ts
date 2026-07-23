@@ -1,10 +1,10 @@
 import { DynamicModule, Module, Inject } from '@nestjs/common';
-import { RepositoryRegistry } from './repository-registry';
-import { RepositoryFactory } from './repository-factory';
-import { RepositoryManager } from './repository-manager';
-import { RepositoryContext } from './repository-context';
-import type { RepositoryOptions } from './types';
-import { RUNTIME_REPOSITORY_OPTIONS } from './tokens';
+import { RepositoryRegistry } from './repository-registry.js';
+import { RepositoryFactory } from './repository-factory.js';
+import { RepositoryManager } from './repository-manager.js';
+import { RepositoryContext } from './repository-context.js';
+import type { RepositoryOptions } from './types.js';
+import { RUNTIME_REPOSITORY_OPTIONS } from './tokens.js';
 
 @Module({})
 export class RepositoryRuntimeModule {

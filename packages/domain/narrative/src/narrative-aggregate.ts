@@ -1,17 +1,17 @@
 import { AggregateRoot, DomainSnapshot } from '@storynaram/domain-kernel';
-import { NarrativeIdentity } from './narrative-identity';
-import { NarrativeProfile, NarrativeFormat } from './narrative-profile';
-import { NarrativeTitle } from './narrative-title';
-import { NarrativeStatus, NarrativeStatusType } from './narrative-status';
-import { Chapter, ChapterCollection, ChapterStatus } from './narrative-chapter';
-import { Scene, SceneCollection, SceneType } from './narrative-scene';
-import { Beat, BeatCollection, BeatType } from './narrative-beat';
-import { Dialogue, DialogueCollection } from './narrative-dialogue';
-import { ChapterNumber, SceneNumber, BeatNumber, DialogueOrder } from './narrative-numbers';
-import { WordCount, ReadingTime } from './narrative-metrics';
-import { NarrativeMetadata } from './narrative-metadata';
-import { NarrativeStatistics } from './narrative-statistics';
-import { Genre, Audience, Language } from './narrative-genre';
+import { NarrativeIdentity } from './narrative-identity.js';
+import { NarrativeProfile, NarrativeFormat } from './narrative-profile.js';
+import { NarrativeTitle } from './narrative-title.js';
+import { NarrativeStatus, NarrativeStatusType } from './narrative-status.js';
+import { Chapter, ChapterCollection, ChapterStatus } from './narrative-chapter.js';
+import { Scene, SceneCollection, SceneType } from './narrative-scene.js';
+import { Beat, BeatCollection, BeatType } from './narrative-beat.js';
+import { Dialogue, DialogueCollection } from './narrative-dialogue.js';
+import { ChapterNumber, SceneNumber, BeatNumber, DialogueOrder } from './narrative-numbers.js';
+import { WordCount, ReadingTime } from './narrative-metrics.js';
+import { NarrativeMetadata } from './narrative-metadata.js';
+import { NarrativeStatistics } from './narrative-statistics.js';
+import { Genre, Audience, Language } from './narrative-genre.js';
 import {
   NarrativeCreatedEvent,
   ChapterAddedEvent,
@@ -20,12 +20,12 @@ import {
   DialogueAddedEvent,
   NarrativePublishedEvent,
   NarrativeArchivedEvent,
-} from './narrative-events';
+} from './narrative-events.js';
 import {
   SequentialNumberingRule,
   UniqueChapterNumbersRule,
   ChapterOrderingRule,
-} from './business-rules';
+} from './business-rules.js';
 
 export class NarrativeAggregate extends AggregateRoot<NarrativeIdentity> {
   private _profile: NarrativeProfile;

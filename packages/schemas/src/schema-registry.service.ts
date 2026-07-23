@@ -1,14 +1,14 @@
 import { Injectable, Inject, OnModuleInit, OnApplicationShutdown, Logger } from '@nestjs/common';
-import type { SchemaMeta, SchemaId, SchemaCategory, RegistryConfig, DiscoveryResult, CompilationResult, RegistryStats, SchemaSearchQuery, SchemaIndexEntry } from './types';
-import { DuplicateSchemaError } from './errors';
-import { SchemaDiscoveryService } from './schema-discovery.service';
-import { SchemaLoaderService } from './schema-loader.service';
-import { SchemaMetadataService } from './schema-metadata.service';
-import { SchemaCompilerService } from './schema-compiler.service';
-import { SchemaCacheService } from './schema-cache.service';
-import { SchemaResolverService } from './schema-resolver.service';
-import { SchemaDependencyGraphService } from './schema-dependency-graph.service';
-import { SchemaIndexService } from './schema-index.service';
+import type { SchemaMeta, SchemaId, SchemaCategory, RegistryConfig, DiscoveryResult, CompilationResult, RegistryStats, SchemaSearchQuery, SchemaIndexEntry } from './types.js';
+import { DuplicateSchemaError } from './errors.js';
+import { SchemaDiscoveryService } from './schema-discovery.service.js';
+import { SchemaLoaderService } from './schema-loader.service.js';
+import { SchemaMetadataService } from './schema-metadata.service.js';
+import { SchemaCompilerService } from './schema-compiler.service.js';
+import { SchemaCacheService } from './schema-cache.service.js';
+import { SchemaResolverService } from './schema-resolver.service.js';
+import { SchemaDependencyGraphService } from './schema-dependency-graph.service.js';
+import { SchemaIndexService } from './schema-index.service.js';
 
 @Injectable()
 export class SchemaRegistryService implements OnModuleInit, OnApplicationShutdown {

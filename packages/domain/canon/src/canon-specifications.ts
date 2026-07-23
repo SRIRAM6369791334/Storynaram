@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { CanonAggregate } from './canon-aggregate';
+import { CanonAggregate } from './canon-aggregate.js';
 
 export class CanonicalSpec extends Specification<CanonAggregate> {
   isSatisfiedBy(candidate: CanonAggregate): boolean {

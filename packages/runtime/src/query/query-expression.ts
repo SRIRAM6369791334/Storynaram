@@ -1,4 +1,4 @@
-import type { FilterOperand, LogicalGroup, QueryClause, FilterOperator } from './types';
+import type { FilterOperand, LogicalGroup, QueryClause, FilterOperator } from './types.js';
 
 export class QueryExpression {
   constructor(private readonly clause: QueryClause) {}

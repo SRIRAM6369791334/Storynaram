@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { ReplicationConfiguration } from './types';
-import { ReplicationError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { ReplicationConfiguration } from './types.js';
+import { ReplicationError } from './errors.js';
 
 @Injectable()
 export class ReplicationManager {

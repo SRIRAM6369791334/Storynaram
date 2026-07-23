@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SchemaRegistryService } from '@storynaram/schemas';
 import type { SchemaId } from '@storynaram/schemas';
-import { ValidationRunner } from './validation-runner';
-import { ValidationResultFactory } from './validation-result.factory';
-import { ValidationProfileService } from './validation-profile.service';
-import type { ValidationEngineResult, ValidationContextData } from './types';
+import { ValidationRunner } from './validation-runner.js';
+import { ValidationResultFactory } from './validation-result.factory.js';
+import { ValidationProfileService } from './validation-profile.service.js';
+import type { ValidationEngineResult, ValidationContextData } from './types.js';
 
 @Injectable()
 export class ValidationPipeline {

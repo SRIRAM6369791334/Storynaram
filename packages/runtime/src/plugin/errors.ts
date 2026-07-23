@@ -1,4 +1,4 @@
-import { EntityRuntimeError } from '../errors';
+import { EntityRuntimeError } from '../errors.js';
 
 export class PluginError extends EntityRuntimeError {
   constructor(message: string, code?: string) {

@@ -1,5 +1,5 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { Coordinates, Area, Population, Biome, Climate } from './world-geography';
+import { Coordinates, Area, Population, Biome, Climate } from './world-geography.js';
 
 export class Region {
   constructor(

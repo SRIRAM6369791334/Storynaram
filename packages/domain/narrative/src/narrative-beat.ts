@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { BeatNumber } from './narrative-numbers';
-import { WordCount } from './narrative-metrics';
+import { BeatNumber } from './narrative-numbers.js';
+import { WordCount } from './narrative-metrics.js';
 
 export type BeatType = 'setup' | 'conflict' | 'decision' | 'revelation' | 'action' | 'reaction' | 'resolution' | 'transition';
 

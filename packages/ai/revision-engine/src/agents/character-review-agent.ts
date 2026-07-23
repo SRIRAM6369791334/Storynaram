@@ -1,6 +1,6 @@
-import { RevisionAgent, type RevisionAgentResult } from './revision-agent';
-import type { RevisionPassType } from '../types/revision-context';
-import type { IssueReport } from '../types/revision-report';
+import { RevisionAgent, type RevisionAgentResult } from './revision-agent.js';
+import type { RevisionPassType } from '../types/revision-context.js';
+import type { IssueReport } from '../types/revision-report.js';
 
 export class CharacterReviewAgent extends RevisionAgent {
   readonly passType: RevisionPassType = 'character';

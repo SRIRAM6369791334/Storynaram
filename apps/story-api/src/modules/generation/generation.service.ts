@@ -2,9 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
 import { randomUUID } from 'crypto';
-import { GenerateStoryDto } from './dto/generate-story.dto';
-import { GenerationResponseDto } from './dto/generation-response.dto';
-import { JobsService, type StreamEventPayload } from '../../jobs/jobs.service';
+import { GenerateStoryDto } from './dto/generate-story.dto.js';
+import { GenerationResponseDto } from './dto/generation-response.dto.js';
+import { JobsService, type StreamEventPayload } from '../../jobs/jobs.service.js';
 
 type StreamEventCallback = (event: string, data: Record<string, unknown>) => void;
 

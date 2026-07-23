@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
+import { CharacterAggregate } from './character-aggregate.js';
 
 export class AliveSpecification extends Specification<CharacterAggregate> {
   isSatisfiedBy(candidate: CharacterAggregate): boolean {

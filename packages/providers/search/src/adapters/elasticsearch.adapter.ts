@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { SearchProvider, AliasAction } from '../search-provider.interface';
+import type { SearchProvider, AliasAction } from '../search-provider.interface.js';
 import type {
   SearchIndexConfig, IndexTemplate, IndexAlias,
   SearchDocument, BulkOperation, BulkResponse,
   SearchQuery, SearchResult, AutocompleteQuery, FacetResult,
   ClusterHealthResponse, IndexStatsResponse,
   ReindexOptions, QueryClause,
-} from '../types';
-import { ClusterUnavailableError } from '../errors';
+} from '../types.js';
+import { ClusterUnavailableError } from '../errors.js';
 
 @Injectable()
 export class ElasticsearchAdapter implements SearchProvider {

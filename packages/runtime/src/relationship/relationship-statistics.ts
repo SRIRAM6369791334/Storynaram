@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { RelationshipGraph } from './relationship-graph';
-import { RelationshipRegistry } from './relationship-registry';
-import type { GraphStatistics } from './types';
+import { RelationshipGraph } from './relationship-graph.js';
+import { RelationshipRegistry } from './relationship-registry.js';
+import type { GraphStatistics } from './types.js';
 
 @Injectable()
 export class RelationshipStatisticsService {

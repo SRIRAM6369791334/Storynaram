@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { NarrativeAggregate } from './narrative-aggregate';
+import { NarrativeAggregate } from './narrative-aggregate.js';
 
 export class PublishedSpec extends Specification<NarrativeAggregate> {
   isSatisfiedBy(candidate: NarrativeAggregate): boolean {

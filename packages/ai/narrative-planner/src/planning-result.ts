@@ -1,4 +1,4 @@
-import { CharacterPlan, WorldPlan, TimelinePlan, NarrativePlan, CompositionPlan, PromptPackage } from './planning-context';
+import { CharacterPlan, WorldPlan, TimelinePlan, NarrativePlan, CompositionPlan, PromptPackage } from './planning-context.js';
 
 export interface StructuredStoryPlan {
   title: string;

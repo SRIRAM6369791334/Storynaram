@@ -1,12 +1,12 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { NarrativeProfile, NarrativeFormat } from './narrative-profile';
-import { NarrativeStatus, NarrativeStatusType } from './narrative-status';
-import { NarrativeTitle } from './narrative-title';
-import { Subtitle } from './narrative-title';
-import { Synopsis } from './narrative-synopsis';
-import { Summary } from './narrative-synopsis';
-import { Genre, Audience, Language } from './narrative-genre';
-import { WordCount, ReadingTime } from './narrative-metrics';
+import { NarrativeProfile, NarrativeFormat } from './narrative-profile.js';
+import { NarrativeStatus, NarrativeStatusType } from './narrative-status.js';
+import { NarrativeTitle } from './narrative-title.js';
+import { Subtitle } from './narrative-title.js';
+import { Synopsis } from './narrative-synopsis.js';
+import { Summary } from './narrative-synopsis.js';
+import { Genre, Audience, Language } from './narrative-genre.js';
+import { WordCount, ReadingTime } from './narrative-metrics.js';
 
 export interface NarrativeMetadataProps {
   createdAt?: Date;

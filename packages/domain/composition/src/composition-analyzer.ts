@@ -1,4 +1,4 @@
-import { StoryAggregate } from './story-aggregate';
+import { StoryAggregate } from './story-aggregate.js';
 
 export interface AnalysisReport {
   totalPlotPoints: number;

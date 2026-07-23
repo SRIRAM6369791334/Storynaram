@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { HistoryEntry, CheckpointData } from './types';
+import type { HistoryEntry, CheckpointData } from './types.js';
 
 @Injectable()
 export class WorkflowHistoryService {

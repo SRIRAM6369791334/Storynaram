@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RepositoryRegistry } from '../repository/repository-registry';
-import { RelationshipGraph } from '../relationship/relationship-graph';
-import { RelationshipTraversalService } from '../relationship/relationship-traversal.service';
-import { RelationshipQueryService } from '../relationship/relationship-query.service';
-import type { RepositoryPort } from '../repository/repository-port';
-import type { Filter, Sort as RepositorySort } from '../repository/types';
-import { EntityCacheService } from '../entity-cache.service';
-import { QueryCacheService } from './query-cache.service';
+import { RepositoryRegistry } from '../repository/repository-registry.js';
+import { RelationshipGraph } from '../relationship/relationship-graph.js';
+import { RelationshipTraversalService } from '../relationship/relationship-traversal.service.js';
+import { RelationshipQueryService } from '../relationship/relationship-query.service.js';
+import type { RepositoryPort } from '../repository/repository-port.js';
+import type { Filter, Sort as RepositorySort } from '../repository/types.js';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { QueryCacheService } from './query-cache.service.js';
 import type {
   QueryOptions,
   QueryPlan,
@@ -29,9 +29,9 @@ import type {
   ComponentResult,
   QueryStatistics,
   QueryEngineOptions,
-} from './types';
-import { QueryExecutionError, QueryTimeoutError } from './errors';
-import type { AggregationOperation } from './types';
+} from './types.js';
+import { QueryExecutionError, QueryTimeoutError } from './errors.js';
+import type { AggregationOperation } from './types.js';
 
 @Injectable()
 export class QueryExecutor {

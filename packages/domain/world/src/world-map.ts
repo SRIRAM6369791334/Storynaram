@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { Region } from './world-political';
-import { Biome } from './world-geography';
+import { Region } from './world-political.js';
+import { Biome } from './world-geography.js';
 
 export class WorldMap extends ValueObject {
   private readonly items: Map<string, Region>;

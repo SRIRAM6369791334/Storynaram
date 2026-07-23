@@ -1,9 +1,9 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { NarrativeAggregate } from './narrative-aggregate';
-import { NarrativeIdentity } from './narrative-identity';
-import { NarrativeFormat } from './narrative-profile';
-import { BeatType } from './narrative-beat';
-import { SceneType } from './narrative-scene';
+import { NarrativeAggregate } from './narrative-aggregate.js';
+import { NarrativeIdentity } from './narrative-identity.js';
+import { NarrativeFormat } from './narrative-profile.js';
+import { BeatType } from './narrative-beat.js';
+import { SceneType } from './narrative-scene.js';
 
 export interface CreateChapterInput {
   chapterId?: string;

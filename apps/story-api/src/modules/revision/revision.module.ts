@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { RevisionController } from './revision.controller';
-import { RevisionService } from './revision.service';
+import { RevisionController } from './revision.controller.js';
+import { RevisionService } from './revision.service.js';
 
 @Module({
   controllers: [RevisionController],

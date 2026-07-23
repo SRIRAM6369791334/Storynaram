@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityEventService } from '../entity-event.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityLifecycleService } from '../entity-lifecycle.service';
-import { RuntimeConfig } from '../runtime-config';
-import { RepositoryRegistry } from './repository-registry';
-import { MemoryRepository } from './memory-repository';
-import type { RepositoryPort } from './repository-port';
-import type { RepositoryOptions } from './types';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityLifecycleService } from '../entity-lifecycle.service.js';
+import { RuntimeConfig } from '../runtime-config.js';
+import { RepositoryRegistry } from './repository-registry.js';
+import { MemoryRepository } from './memory-repository.js';
+import type { RepositoryPort } from './repository-port.js';
+import type { RepositoryOptions } from './types.js';
 
 @Injectable()
 export class RepositoryFactory {

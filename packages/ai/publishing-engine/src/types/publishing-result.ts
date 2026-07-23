@@ -1,5 +1,5 @@
-import type { PublishingReport } from './publishing-report';
-import type { PublishingStatistics } from './publishing-statistics';
+import type { PublishingReport } from './publishing-report.js';
+import type { PublishingStatistics } from './publishing-statistics.js';
 
 export interface RenderedContent {
   format: string;

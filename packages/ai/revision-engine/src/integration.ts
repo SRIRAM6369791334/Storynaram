@@ -1,7 +1,7 @@
 import type { GenerationResult } from '@storynaram/story-generator';
 import type { ExecutionResult } from '@storynaram/narrative-execution';
-import type { RevisionEngine } from './engine/revision-engine';
-import type { RevisionOptions, RevisionPassType } from './types/revision-context';
+import type { RevisionEngine } from './engine/revision-engine.js';
+import type { RevisionOptions, RevisionPassType } from './types/revision-context.js';
 
 export function reviseStory(
   engine: RevisionEngine,

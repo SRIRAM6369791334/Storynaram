@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
 import type { ValidationEngineService } from '@storynaram/validation';
-import { RepositoryManager } from '../repository/repository-manager';
-import { RelationshipService } from '../relationship/relationship-service';
-import type { StepType, WorkflowStepConfig, StepResult, TransitionType, RetryPolicy } from './types';
-import { WorkflowExecutionError } from './errors';
+import { RepositoryManager } from '../repository/repository-manager.js';
+import { RelationshipService } from '../relationship/relationship-service.js';
+import type { StepType, WorkflowStepConfig, StepResult, TransitionType, RetryPolicy } from './types.js';
+import { WorkflowExecutionError } from './errors.js';
 
 export interface StepHandler {
   type: StepType;

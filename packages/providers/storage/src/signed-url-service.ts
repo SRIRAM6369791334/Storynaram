@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { StorageClient } from './storage-client';
-import type { SignedUrlOptions, SignedUrlOperation } from './types';
-import { SignedUrlError } from './errors';
+import { StorageClient } from './storage-client.js';
+import type { SignedUrlOptions, SignedUrlOperation } from './types.js';
+import { SignedUrlError } from './errors.js';
 
 @Injectable()
 export class SignedUrlService {

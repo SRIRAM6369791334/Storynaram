@@ -13,7 +13,7 @@ import type {
   RelationshipConfig,
   RelationshipValidationResult,
   RelationshipDirection,
-} from './types';
+} from './types.js';
 
 export interface RelationshipPort {
   connect(input: CreateRelationshipInput): Promise<RelationshipEdge>;

@@ -1,5 +1,5 @@
-import { PlanningContext } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { PlanningContext } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export interface AgentResult {
   success: boolean;

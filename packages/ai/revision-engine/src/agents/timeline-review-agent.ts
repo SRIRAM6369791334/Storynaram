@@ -1,7 +1,7 @@
-import { RevisionAgent, type RevisionAgentResult } from './revision-agent';
-import type { RevisionPassType } from '../types/revision-context';
-import { IssueDetector } from '../detection/issue-detector';
-import type { IssueReport } from '../types/revision-report';
+import { RevisionAgent, type RevisionAgentResult } from './revision-agent.js';
+import type { RevisionPassType } from '../types/revision-context.js';
+import { IssueDetector } from '../detection/issue-detector.js';
+import type { IssueReport } from '../types/revision-report.js';
 
 export class TimelineReviewAgent extends RevisionAgent {
   readonly passType: RevisionPassType = 'timeline';

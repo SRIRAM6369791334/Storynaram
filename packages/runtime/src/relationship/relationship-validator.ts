@@ -1,15 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
 import type { ValidationEngineService } from '@storynaram/validation';
-import { RelationshipGraph } from './relationship-graph';
+import { RelationshipGraph } from './relationship-graph.js';
 import type {
   RelationshipEdge,
   RelationshipConfig,
   RelationshipValidationResult,
   CreateRelationshipInput,
   RelationshipType,
-} from './types';
-import { RelationshipValidationError } from './errors';
+} from './types.js';
+import { RelationshipValidationError } from './errors.js';
 
 @Injectable()
 export class RelationshipValidator {

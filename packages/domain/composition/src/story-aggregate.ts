@@ -1,24 +1,24 @@
 import { AggregateRoot, DomainSnapshot } from '@storynaram/domain-kernel';
-import { StoryIdentity } from './story-identity';
-import { StoryProfile, StoryFormat, StoryStatus } from './story-profile';
-import { StoryMetadata } from './story-metadata';
-import { StoryStatistics } from './story-statistics';
-import { StoryState, StoryPhase } from './story-state';
-import { Plot, PlotStructure, PlotType, PlotPoint, PlotPointCollection, PlotStage } from './plot';
-import { StoryArc, ArcCollection, ArcStage, ArcGoal, ArcResolution, ArcTransition } from './story-arc';
-import { CharacterArc, CharacterArcCollection, CharacterGoal, CharacterGrowth, CharacterTransformation, CharacterResolution } from './character-arc';
-import { Conflict, ConflictCollection, ConflictCategory, ConflictSeverity, ConflictState, ConflictResolution } from './conflict';
-import { Theme, ThemeCollection, ThemeCategory, ThemeProgress, ThemeEvidence, ThemeResolution } from './theme';
-import { Foreshadow, ForeshadowCollection, ForeshadowStrength, ForeshadowReference, ForeshadowPayoff } from './foreshadow';
-import { Payoff, PayoffCollection, Resolution, Reward, Consequence } from './payoff';
-import { ObjectiveCollection, StoryObjective, SceneObjective, CharacterObjective, WorldObjective, ObjectiveStatus, ObjectivePriority } from './objectives';
+import { StoryIdentity } from './story-identity.js';
+import { StoryProfile, StoryFormat, StoryStatus } from './story-profile.js';
+import { StoryMetadata } from './story-metadata.js';
+import { StoryStatistics } from './story-statistics.js';
+import { StoryState, StoryPhase } from './story-state.js';
+import { Plot, PlotStructure, PlotType, PlotPoint, PlotPointCollection, PlotStage } from './plot.js';
+import { StoryArc, ArcCollection, ArcStage, ArcGoal, ArcResolution, ArcTransition } from './story-arc.js';
+import { CharacterArc, CharacterArcCollection, CharacterGoal, CharacterGrowth, CharacterTransformation, CharacterResolution } from './character-arc.js';
+import { Conflict, ConflictCollection, ConflictCategory, ConflictSeverity, ConflictState, ConflictResolution } from './conflict.js';
+import { Theme, ThemeCollection, ThemeCategory, ThemeProgress, ThemeEvidence, ThemeResolution } from './theme.js';
+import { Foreshadow, ForeshadowCollection, ForeshadowStrength, ForeshadowReference, ForeshadowPayoff } from './foreshadow.js';
+import { Payoff, PayoffCollection, Resolution, Reward, Consequence } from './payoff.js';
+import { ObjectiveCollection, StoryObjective, SceneObjective, CharacterObjective, WorldObjective, ObjectiveStatus, ObjectivePriority } from './objectives.js';
 import {
   StoryCreatedEvent, PlotCreatedEvent, PlotPointAddedEvent,
   ArcCreatedEvent, CharacterArcCreatedEvent,
   ConflictAddedEvent, ConflictResolvedEvent,
   ThemeAddedEvent, ForeshadowAddedEvent, PayoffResolvedEvent,
   StoryCompletedEvent, StoryPublishedEvent,
-} from './story-events';
+} from './story-events.js';
 
 export class StoryAggregate extends AggregateRoot<StoryIdentity> {
   private _profile: StoryProfile;

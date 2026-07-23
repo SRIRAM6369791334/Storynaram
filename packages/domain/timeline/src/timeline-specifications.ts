@@ -1,5 +1,5 @@
 import { Specification } from '@storynaram/domain-kernel';
-import { TimelineAggregate } from './timeline-aggregate';
+import { TimelineAggregate } from './timeline-aggregate.js';
 
 export class MainTimelineSpec extends Specification<TimelineAggregate> {
   isSatisfiedBy(candidate: TimelineAggregate): boolean {

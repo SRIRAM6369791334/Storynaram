@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, Query, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
-import { CharacterService } from './character.service';
-import { CreateCharacterDto } from './dto/create-character.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { CharacterService } from './character.service.js';
+import { CreateCharacterDto } from './dto/create-character.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Characters')
 @ApiBearerAuth()

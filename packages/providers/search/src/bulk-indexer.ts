@@ -1,8 +1,8 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { SEARCH_PROVIDER } from './tokens';
-import type { SearchProvider } from './search-provider.interface';
-import type { BulkOperation, BulkResponse, BulkResponseItem } from './types';
-import { BulkOperationError } from './errors';
+import { SEARCH_PROVIDER } from './tokens.js';
+import type { SearchProvider } from './search-provider.interface.js';
+import type { BulkOperation, BulkResponse, BulkResponseItem } from './types.js';
+import { BulkOperationError } from './errors.js';
 
 @Injectable()
 export class BulkIndexer {

@@ -1,21 +1,21 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RepositoryRegistry } from '../repository/repository-registry';
-import { RelationshipGraph } from '../relationship/relationship-graph';
-import { RelationshipTraversalService } from '../relationship/relationship-traversal.service';
-import { RelationshipQueryService } from '../relationship/relationship-query.service';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityEventService } from '../entity-event.service';
-import { QueryCacheService } from './query-cache.service';
-import { QueryStatisticsService } from './query-statistics.service';
-import { QueryPlanner } from './query-planner';
-import { QueryOptimizer } from './query-optimizer';
-import { QueryExecutor } from './query-executor';
-import { QueryBuilder } from './query-builder';
-import { QueryContext } from './query-context';
-import { QueryRegistry } from './query-registry';
-import { QueryExpression } from './query-expression';
+import { RepositoryRegistry } from '../repository/repository-registry.js';
+import { RelationshipGraph } from '../relationship/relationship-graph.js';
+import { RelationshipTraversalService } from '../relationship/relationship-traversal.service.js';
+import { RelationshipQueryService } from '../relationship/relationship-query.service.js';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { QueryCacheService } from './query-cache.service.js';
+import { QueryStatisticsService } from './query-statistics.service.js';
+import { QueryPlanner } from './query-planner.js';
+import { QueryOptimizer } from './query-optimizer.js';
+import { QueryExecutor } from './query-executor.js';
+import { QueryBuilder } from './query-builder.js';
+import { QueryContext } from './query-context.js';
+import { QueryRegistry } from './query-registry.js';
+import { QueryExpression } from './query-expression.js';
 import type {
   QueryOptions,
   QueryResult,
@@ -27,8 +27,8 @@ import type {
   SubgraphResult,
   ComponentResult,
   QueryEngineOptions,
-} from './types';
-import type { PathResult, CycleResult } from '../relationship/types';
+} from './types.js';
+import type { PathResult, CycleResult } from '../relationship/types.js';
 
 @Injectable()
 export class QueryEngineService {

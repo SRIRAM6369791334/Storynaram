@@ -1,10 +1,10 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { SEARCH_PROVIDER } from './tokens';
-import type { SearchProvider } from './search-provider.interface';
+import { SEARCH_PROVIDER } from './tokens.js';
+import type { SearchProvider } from './search-provider.interface.js';
 import type {
   SearchIndexConfig, IndexTemplate, IndexAlias,
   IndexStatsResponse, ClusterHealthResponse,
-} from './types';
+} from './types.js';
 
 @Injectable()
 export class SearchIndexManager {

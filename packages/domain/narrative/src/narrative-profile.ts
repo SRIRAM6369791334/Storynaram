@@ -1,9 +1,9 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { NarrativeTitle, Subtitle } from './narrative-title';
-import { Synopsis, Summary } from './narrative-synopsis';
-import { Genre, Audience, Language } from './narrative-genre';
-import { NarrativeStatus } from './narrative-status';
-import { WordCount, ReadingTime } from './narrative-metrics';
+import { NarrativeTitle, Subtitle } from './narrative-title.js';
+import { Synopsis, Summary } from './narrative-synopsis.js';
+import { Genre, Audience, Language } from './narrative-genre.js';
+import { NarrativeStatus } from './narrative-status.js';
+import { WordCount, ReadingTime } from './narrative-metrics.js';
 
 export type NarrativeFormat = 'novel' | 'lightNovel' | 'comic' | 'manga' | 'screenplay' | 'tvSeries' | 'visualNovel' | 'interactiveFiction' | 'rpgCampaign' | 'other';
 

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { CreateCharacterDto } from './dto/create-character.dto';
-import type { CharacterResponseDto } from './dto/character-response.dto';
+import { CreateCharacterDto } from './dto/create-character.dto.js';
+import type { CharacterResponseDto } from './dto/character-response.dto.js';
 
 interface CharacterRecord {
   id: string;

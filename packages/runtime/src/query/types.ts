@@ -1,5 +1,5 @@
 import type { EntityId } from '@storynaram/core';
-import type { Filter } from '../repository/types';
+import type { Filter } from '../repository/types.js';
 
 export type FilterOperator =
   | 'eq'

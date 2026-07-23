@@ -1,5 +1,5 @@
 import { DynamicModule } from '@nestjs/common';
-import { CoreConfig } from './core-config';
+import { CoreConfig } from './core-config.js';
 
 export class CoreModule {
   static forRoot(config?: CoreConfig): DynamicModule {

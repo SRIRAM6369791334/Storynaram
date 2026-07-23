@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CompositionController } from './composition.controller';
-import { CompositionService } from './composition.service';
+import { CompositionController } from './composition.controller.js';
+import { CompositionService } from './composition.service.js';
 
 @Module({
   controllers: [CompositionController],

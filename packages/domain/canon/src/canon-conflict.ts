@@ -1,4 +1,4 @@
-import { CanonResolution } from './canon-resolution';
+import { CanonResolution } from './canon-resolution.js';
 
 export type ConflictStatus = 'open' | 'resolved';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { PlanStoryDto } from './dto/plan-story.dto';
-import type { PlanResponseDto } from './dto/plan-response.dto';
+import { PlanStoryDto } from './dto/plan-story.dto.js';
+import type { PlanResponseDto } from './dto/plan-response.dto.js';
 
 @Injectable()
 export class PlannerService {

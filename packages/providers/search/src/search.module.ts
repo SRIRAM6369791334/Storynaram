@@ -4,21 +4,21 @@ import {
   SEARCH_INDEX_MANAGER, SEARCH_DOCUMENT_MAPPER, SEARCH_BULK_INDEXER,
   SEARCH_QUERY_COMPILER, SEARCH_RESULT_MAPPER,
   SEARCH_HEALTH_INDICATOR, SEARCH_METRICS_COLLECTOR, SEARCH_STATISTICS_SERVICE,
-} from './tokens';
-import { SearchClient } from './search-client';
-import { SearchRegistry } from './search-registry';
-import { SearchIndexManager } from './search-index-manager';
-import { DocumentMapper } from './document-mapper';
-import { BulkIndexer } from './bulk-indexer';
-import { SearchQueryCompiler } from './search-query-compiler';
-import { SearchResultMapper } from './search-result-mapper';
-import { SearchMetricsCollector } from './observability/search-metrics';
-import { SearchStatisticsService } from './observability/search-statistics';
-import { SearchHealthIndicator } from './observability/search-health-indicator';
-import { InMemorySearchAdapter } from './adapters/in-memory-search.adapter';
+} from './tokens.js';
+import { SearchClient } from './search-client.js';
+import { SearchRegistry } from './search-registry.js';
+import { SearchIndexManager } from './search-index-manager.js';
+import { DocumentMapper } from './document-mapper.js';
+import { BulkIndexer } from './bulk-indexer.js';
+import { SearchQueryCompiler } from './search-query-compiler.js';
+import { SearchResultMapper } from './search-result-mapper.js';
+import { SearchMetricsCollector } from './observability/search-metrics.js';
+import { SearchStatisticsService } from './observability/search-statistics.js';
+import { SearchHealthIndicator } from './observability/search-health-indicator.js';
+import { InMemorySearchAdapter } from './adapters/in-memory-search.adapter.js';
 import type { InjectionToken } from '@nestjs/common';
-import type { SearchProvider } from './search-provider.interface';
-import type { SearchModuleOptions, SearchProviderConfig } from './types';
+import type { SearchProvider } from './search-provider.interface.js';
+import type { SearchModuleOptions, SearchProviderConfig } from './types.js';
 
 @Global()
 @Module({})

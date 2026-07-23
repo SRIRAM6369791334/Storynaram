@@ -5,8 +5,8 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
 import type { Response } from 'express';
-import { StorageService } from './storage.service';
-import { Roles } from '../../common/decorators/roles.decorator';
+import { StorageService } from './storage.service.js';
+import { Roles } from '../../common/decorators/roles.decorator.js';
 
 @ApiTags('Storage')
 @ApiBearerAuth()

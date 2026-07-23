@@ -1,7 +1,7 @@
-import { RevisionAgent, type RevisionAgentResult } from './revision-agent';
-import type { RevisionPassType } from '../types/revision-context';
-import { IssueDetector } from '../detection/issue-detector';
-import { ImprovementApplier } from '../improvement/improvement-applier';
+import { RevisionAgent, type RevisionAgentResult } from './revision-agent.js';
+import type { RevisionPassType } from '../types/revision-context.js';
+import { IssueDetector } from '../detection/issue-detector.js';
+import { ImprovementApplier } from '../improvement/improvement-applier.js';
 
 export class GrammarAgent extends RevisionAgent {
   readonly passType: RevisionPassType = 'grammar';

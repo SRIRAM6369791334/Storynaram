@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { WorkflowDefinition } from './workflow-definition';
-import type { WorkflowStatistics } from './types';
+import { WorkflowDefinition } from './workflow-definition.js';
+import type { WorkflowStatistics } from './types.js';
 
 @Injectable()
 export class WorkflowRegistry {

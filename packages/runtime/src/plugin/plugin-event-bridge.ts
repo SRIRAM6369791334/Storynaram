@@ -1,6 +1,6 @@
 import { Injectable, Logger, Optional } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import type { PluginId } from './types';
+import type { PluginId } from './types.js';
 import type { EventBusPort } from '@storynaram/events';
 
 type EventHandler = (payload: Record<string, unknown>) => void;

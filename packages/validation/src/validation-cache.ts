@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { ValidationEngineResult } from './types';
+import type { ValidationEngineResult } from './types.js';
 
 interface CacheEntry {
   result: ValidationEngineResult;

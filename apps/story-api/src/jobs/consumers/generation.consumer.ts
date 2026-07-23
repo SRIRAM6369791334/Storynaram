@@ -2,8 +2,8 @@ import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Logger, Inject } from '@nestjs/common';
 import { StoryGenerationEngine, GenerationStreamEvent } from '@storynaram/story-generator';
-import { GenerationDataLoader } from '../../modules/generation/generation-data-loader';
-import { JobsService } from '../jobs.service';
+import { GenerationDataLoader } from '../../modules/generation/generation-data-loader.js';
+import { JobsService } from '../jobs.service.js';
 
 interface GenerationJobData {
   generationId: string;

@@ -1,6 +1,6 @@
-import { BasePlannerAgent, AgentResult } from './agent-base';
-import { PlanningContext, CharacterPlan } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { BasePlannerAgent, AgentResult } from './agent-base.js';
+import { PlanningContext, CharacterPlan } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export class CharacterAgent extends BasePlannerAgent {
   public readonly name = 'CharacterAgent';

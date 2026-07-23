@@ -1,5 +1,5 @@
 import { DomainEvent } from '@storynaram/domain-kernel';
-import { PlanningResult } from './planning-result';
+import { PlanningResult } from './planning-result.js';
 
 export class NarrativePlanGeneratedEvent extends DomainEvent {
   constructor(aggregateId: string, payload: { planId: string; result: PlanningResult }) {

@@ -1,4 +1,4 @@
-import type { ExecutionAgent } from './agents/execution-agent';
+import type { ExecutionAgent } from './agents/execution-agent.js';
 
 export type TaskStatus = 'pending' | 'ready' | 'running' | 'completed' | 'failed' | 'skipped' | 'cancelled';
 

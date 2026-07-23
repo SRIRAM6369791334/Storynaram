@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { TimelineService } from './timeline.service';
-import { CreateTimelineDto } from './dto/create-timeline.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { TimelineService } from './timeline.service.js';
+import { CreateTimelineDto } from './dto/create-timeline.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Timelines')
 @ApiBearerAuth()

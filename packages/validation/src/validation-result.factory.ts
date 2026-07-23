@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import type { ValidationIssue } from './validation-result';
-import { ValidationSeverity } from './validation-severity';
-import type { ValidationEngineResult, ValidationContextData, ValidationProfileConfig } from './types';
+import type { ValidationIssue } from './validation-result.js';
+import { ValidationSeverity } from './validation-severity.js';
+import type { ValidationEngineResult, ValidationContextData, ValidationProfileConfig } from './types.js';
 import type { SchemaMeta } from '@storynaram/schemas';
 
 @Injectable()

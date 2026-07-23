@@ -1,6 +1,6 @@
-import { BasePlannerAgent, AgentResult } from './agent-base';
-import { PlanningContext, CanonEntry } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { BasePlannerAgent, AgentResult } from './agent-base.js';
+import { PlanningContext, CanonEntry } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export class CanonAgent extends BasePlannerAgent {
   public readonly name = 'CanonAgent';

@@ -1,5 +1,5 @@
 import type { EntityId } from '@storynaram/core';
-import type { Specification } from './specification';
+import type { Specification } from './specification.js';
 import type {
   Filter,
   PaginationInput,
@@ -12,7 +12,7 @@ import type {
   Sort,
   UpsertOptions,
   BulkOperationResult,
-} from './types';
+} from './types.js';
 
 export interface RepositoryPort<T extends { entityId: EntityId }> {
   readonly entityType: string;

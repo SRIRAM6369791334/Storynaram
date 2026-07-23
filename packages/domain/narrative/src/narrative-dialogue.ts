@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { DialogueOrder } from './narrative-numbers';
-import { WordCount } from './narrative-metrics';
+import { DialogueOrder } from './narrative-numbers.js';
+import { WordCount } from './narrative-metrics.js';
 
 export class Dialogue {
   constructor(

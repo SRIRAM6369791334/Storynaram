@@ -1,6 +1,6 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { WorldAggregate } from './world-aggregate';
-import { WorldIdentity } from './world-identity';
+import { WorldAggregate } from './world-aggregate.js';
+import { WorldIdentity } from './world-identity.js';
 
 export interface WorldRepositoryContract extends RepositoryContract<WorldAggregate> {
   findByIdentity(identity: WorldIdentity): Promise<WorldAggregate | null>;

@@ -1,4 +1,4 @@
-import type { ExportedFile } from '../types/publishing-result';
+import type { ExportedFile } from '../types/publishing-result.js';
 
 export interface AssetManifest {
   images: AssetEntry[];

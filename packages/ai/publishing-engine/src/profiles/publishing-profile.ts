@@ -1,4 +1,4 @@
-import type { PublishingProfile, PublishingOptions } from '../types/publishing-context';
+import type { PublishingProfile, PublishingOptions } from '../types/publishing-context.js';
 
 export interface ProfileDefinition {
   name: PublishingProfile;

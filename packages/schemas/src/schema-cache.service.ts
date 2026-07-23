@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SchemaMeta, SchemaId } from './types';
+import type { SchemaMeta, SchemaId } from './types.js';
 
 interface CacheEntry<T> {
   value: T;

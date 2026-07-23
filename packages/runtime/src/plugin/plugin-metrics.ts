@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { PluginId, PluginMetricsData, PluginDescriptor } from './types';
+import type { PluginId, PluginMetricsData, PluginDescriptor } from './types.js';
 
 @Injectable()
 export class PluginMetricsCollector {

@@ -1,6 +1,6 @@
-import { BasePlannerAgent, AgentResult } from './agent-base';
-import { PlanningContext } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { BasePlannerAgent, AgentResult } from './agent-base.js';
+import { PlanningContext } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export interface IdeaAnalysis {
   suggestedCharacters: Array<{ name: string; role: string; archetype: string }>;

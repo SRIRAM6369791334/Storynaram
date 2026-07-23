@@ -1,7 +1,7 @@
-import { BasePlannerAgent, AgentResult } from '../agents/agent-base';
-import { PlanningContext } from '../planning-context';
-import { PlanningSession, SessionStatus } from '../planning-session';
-import { PlanningGraph, PlanningStage } from '../planning-graph';
+import { BasePlannerAgent, AgentResult } from '../agents/agent-base.js';
+import { PlanningContext } from '../planning-context.js';
+import { PlanningSession, SessionStatus } from '../planning-session.js';
+import { PlanningGraph, PlanningStage } from '../planning-graph.js';
 
 export type PipelineMode = 'sequential' | 'parallel';
 

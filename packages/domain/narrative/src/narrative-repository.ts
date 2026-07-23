@@ -1,8 +1,8 @@
 import { RepositoryContract } from '@storynaram/domain-kernel';
-import { NarrativeAggregate } from './narrative-aggregate';
-import { NarrativeIdentity } from './narrative-identity';
-import { NarrativeFormat } from './narrative-profile';
-import { NarrativeStatusType } from './narrative-status';
+import { NarrativeAggregate } from './narrative-aggregate.js';
+import { NarrativeIdentity } from './narrative-identity.js';
+import { NarrativeFormat } from './narrative-profile.js';
+import { NarrativeStatusType } from './narrative-status.js';
 
 export interface NarrativeRepositoryContract extends RepositoryContract<NarrativeAggregate> {
   findByIdentity(identity: NarrativeIdentity): Promise<NarrativeAggregate | null>;

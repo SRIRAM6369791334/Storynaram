@@ -1,15 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { AIProvider } from './providers/ai-provider.interface';
-import { MockProvider } from './providers/mock.provider';
-import { OpenAIProvider } from './providers/openai.provider';
-import { AnthropicProvider } from './providers/anthropic.provider';
-import { GeminiProvider } from './providers/gemini.provider';
-import { OllamaProvider } from './providers/ollama.provider';
-import { OpenRouterProvider } from './providers/openrouter.provider';
-import { AzureProvider } from './providers/azure.provider';
-import { CustomProvider } from './providers/custom.provider';
-import type { AIProviderName, AIProviderConfig, AIProviderCapabilities, AIProviderHealth } from './types';
-import { AIProviderError } from './errors';
+import { AIProvider } from './providers/ai-provider.interface.js';
+import { MockProvider } from './providers/mock.provider.js';
+import { OpenAIProvider } from './providers/openai.provider.js';
+import { AnthropicProvider } from './providers/anthropic.provider.js';
+import { GeminiProvider } from './providers/gemini.provider.js';
+import { OllamaProvider } from './providers/ollama.provider.js';
+import { OpenRouterProvider } from './providers/openrouter.provider.js';
+import { AzureProvider } from './providers/azure.provider.js';
+import { CustomProvider } from './providers/custom.provider.js';
+import type { AIProviderName, AIProviderConfig, AIProviderCapabilities, AIProviderHealth } from './types.js';
+import { AIProviderError } from './errors.js';
 
 @Injectable()
 export class AIProviderRegistry {

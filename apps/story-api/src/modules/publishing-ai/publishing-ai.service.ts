@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { AiPublishDto } from './dto/ai-publish.dto';
-import type { AiPublishResponseDto } from './dto/ai-publish-response.dto';
+import { AiPublishDto } from './dto/ai-publish.dto.js';
+import type { AiPublishResponseDto } from './dto/ai-publish-response.dto.js';
 
 @Injectable()
 export class PublishingAiService {

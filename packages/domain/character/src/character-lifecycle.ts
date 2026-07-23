@@ -1,7 +1,7 @@
-import { CharacterAggregate } from './character-aggregate';
-import { CharacterStatus, LifeStage, Consciousness } from './character-status';
-import { CharacterStatistics } from './character-statistics';
-import { CharacterUpdatedEvent } from './character-events';
+import { CharacterAggregate } from './character-aggregate.js';
+import { CharacterStatus, LifeStage, Consciousness } from './character-status.js';
+import { CharacterStatistics } from './character-statistics.js';
+import { CharacterUpdatedEvent } from './character-events.js';
 
 export class CharacterLifecycle {
   initialize(character: CharacterAggregate): void {

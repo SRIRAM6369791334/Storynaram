@@ -1,23 +1,23 @@
-export { StorageModule } from './storage.module';
-export { StorageClient } from './storage-client';
-export { StorageRegistry } from './storage-registry';
-export { BucketManager } from './bucket-manager';
-export { ObjectManager } from './object-manager';
-export { MultipartUploadManager } from './multipart-upload-manager';
-export { SignedUrlService } from './signed-url-service';
-export { MetadataService } from './metadata-service';
-export { LifecycleManager } from './lifecycle-manager';
-export { ReplicationManager } from './replication-manager';
-export { VersionManager } from './version-manager';
-export { StorageHealthIndicator } from './observability/health-indicator';
-export { StorageMetricsCollector } from './observability/metrics-collector';
-export { StorageStatisticsService } from './observability/statistics-service';
-export { S3Adapter } from './adapters/s3.adapter';
-export { MinIOAdapter } from './adapters/minio.adapter';
-export { AzureBlobAdapter } from './adapters/azure-blob.adapter';
-export { LocalFSAdapter } from './adapters/local-fs.adapter';
-export { MemoryAdapter } from './adapters/memory.adapter';
-export type { IStorageAdapter } from './adapters/storage-adapter.interface';
+export { StorageModule } from './storage.module.js';
+export { StorageClient } from './storage-client.js';
+export { StorageRegistry } from './storage-registry.js';
+export { BucketManager } from './bucket-manager.js';
+export { ObjectManager } from './object-manager.js';
+export { MultipartUploadManager } from './multipart-upload-manager.js';
+export { SignedUrlService } from './signed-url-service.js';
+export { MetadataService } from './metadata-service.js';
+export { LifecycleManager } from './lifecycle-manager.js';
+export { ReplicationManager } from './replication-manager.js';
+export { VersionManager } from './version-manager.js';
+export { StorageHealthIndicator } from './observability/health-indicator.js';
+export { StorageMetricsCollector } from './observability/metrics-collector.js';
+export { StorageStatisticsService } from './observability/statistics-service.js';
+export { S3Adapter } from './adapters/s3.adapter.js';
+export { MinIOAdapter } from './adapters/minio.adapter.js';
+export { AzureBlobAdapter } from './adapters/azure-blob.adapter.js';
+export { LocalFSAdapter } from './adapters/local-fs.adapter.js';
+export { MemoryAdapter } from './adapters/memory.adapter.js';
+export type { IStorageAdapter } from './adapters/storage-adapter.interface.js';
 
 export {
   StorageProviderError,
@@ -36,7 +36,7 @@ export {
   ConfigurationError,
   ProviderNotFoundError,
   ChecksumMismatchError,
-} from './errors';
+} from './errors.js';
 
 export {
   STORAGE_MODULE_OPTIONS,
@@ -55,7 +55,7 @@ export {
   STORAGE_STATISTICS_SERVICE,
   getStorageClientToken,
   getStorageProviderConfigToken,
-} from './tokens';
+} from './tokens.js';
 
 export type {
   StorageModuleOptions,
@@ -91,5 +91,5 @@ export type {
   TimeoutOptions,
   CompressionOptions,
   TLSOptions,
-} from './types';
-export type { StorageModuleAsyncOptions } from './tokens';
+} from './types.js';
+export type { StorageModuleAsyncOptions } from './tokens.js';

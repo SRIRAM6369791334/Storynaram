@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import type { SchemaMeta, SchemaId } from './types';
-import { InvalidSchemaError } from './errors';
-import { SchemaLoaderService } from './schema-loader.service';
+import type { SchemaMeta, SchemaId } from './types.js';
+import { InvalidSchemaError } from './errors.js';
+import { SchemaLoaderService } from './schema-loader.service.js';
 
 @Injectable()
 export class SchemaMetadataService {

@@ -1,4 +1,4 @@
-import { Timestamp } from './timestamp';
+import { Timestamp } from './timestamp.js';
 
 export interface DomainSnapshotProps {
   aggregateId: unknown;

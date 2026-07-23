@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { ValidationMetrics } from './types';
+import type { ValidationMetrics } from './types.js';
 
 @Injectable()
 export class ValidationStatisticsService {

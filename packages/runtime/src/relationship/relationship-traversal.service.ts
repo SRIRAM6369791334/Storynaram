@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RelationshipGraph } from './relationship-graph';
-import type { RelationshipEdge, PathResult, CycleResult, RelationshipDirection } from './types';
+import { RelationshipGraph } from './relationship-graph.js';
+import type { RelationshipEdge, PathResult, CycleResult, RelationshipDirection } from './types.js';
 
 @Injectable()
 export class RelationshipTraversalService {

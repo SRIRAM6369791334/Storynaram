@@ -1,5 +1,5 @@
-import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent';
-import type { ValidationResult } from '../execution-result';
+import { ExecutionAgent, callAI, type AgentOutput, type AgentInput } from './execution-agent.js';
+import type { ValidationResult } from '../execution-result.js';
 
 export interface ValidationAgentOutput extends AgentOutput {
   metadata: {

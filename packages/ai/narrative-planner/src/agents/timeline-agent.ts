@@ -1,6 +1,6 @@
-import { BasePlannerAgent, AgentResult } from './agent-base';
-import { PlanningContext, TimelinePlan } from '../planning-context';
-import { PlanningSession } from '../planning-session';
+import { BasePlannerAgent, AgentResult } from './agent-base.js';
+import { PlanningContext, TimelinePlan } from '../planning-context.js';
+import { PlanningSession } from '../planning-session.js';
 
 export class TimelineAgent extends BasePlannerAgent {
   public readonly name = 'TimelineAgent';

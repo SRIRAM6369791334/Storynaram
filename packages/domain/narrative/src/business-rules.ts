@@ -1,6 +1,6 @@
 import { BusinessRule, BusinessRuleViolation, Severity } from '@storynaram/domain-kernel';
-import { ChapterNumber } from './narrative-numbers';
-import { ChapterCollection } from './narrative-chapter';
+import { ChapterNumber } from './narrative-numbers.js';
+import { ChapterCollection } from './narrative-chapter.js';
 
 export class SequentialNumberingRule extends BusinessRule {
   constructor(

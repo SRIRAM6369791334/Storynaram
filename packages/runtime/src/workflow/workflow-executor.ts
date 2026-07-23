@@ -1,15 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
-import { WorkflowDefinition } from './workflow-definition';
-import { WorkflowStateMachine } from './workflow-state-machine';
-import { WorkflowStepExecutor } from './workflow-step';
-import { WorkflowInstanceManager } from './workflow-instance';
-import { WorkflowContext } from './workflow-context';
-import { WorkflowHistoryService } from './workflow-history';
-import { WorkflowCheckpointService } from './workflow-checkpoint';
-import { WorkflowScheduler } from './workflow-scheduler';
-import type { WorkflowInstance, WorkflowStatus, StepResult, WorkflowResult, HistoryEntry, WorkflowEventType } from './types';
-import { WorkflowExecutionError } from './errors';
+import { WorkflowDefinition } from './workflow-definition.js';
+import { WorkflowStateMachine } from './workflow-state-machine.js';
+import { WorkflowStepExecutor } from './workflow-step.js';
+import { WorkflowInstanceManager } from './workflow-instance.js';
+import { WorkflowContext } from './workflow-context.js';
+import { WorkflowHistoryService } from './workflow-history.js';
+import { WorkflowCheckpointService } from './workflow-checkpoint.js';
+import { WorkflowScheduler } from './workflow-scheduler.js';
+import type { WorkflowInstance, WorkflowStatus, StepResult, WorkflowResult, HistoryEntry, WorkflowEventType } from './types.js';
+import { WorkflowExecutionError } from './errors.js';
 
 @Injectable()
 export class WorkflowExecutor {

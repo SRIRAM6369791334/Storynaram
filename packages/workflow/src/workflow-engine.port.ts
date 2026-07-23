@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { WorkflowDefinition } from './workflow-definition.type';
-import { WorkflowStatus } from './workflow-status.enum';
+import type { WorkflowDefinition } from './workflow-definition.type.js';
+import { WorkflowStatus } from './workflow-status.enum.js';
 
 @Injectable()
 export abstract class WorkflowEnginePort {

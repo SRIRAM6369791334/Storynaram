@@ -18,7 +18,7 @@ import type {
   ReplicationConfiguration,
   HealthCheckResult,
   StorageCapacityInfo,
-} from '../types';
+} from '../types.js';
 
 export interface IStorageAdapter {
   readonly providerName: string;

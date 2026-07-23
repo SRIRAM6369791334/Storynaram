@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import type { ExecutionResult, StoryDraft, ChapterDraft } from '@storynaram/narrative-execution';
 import { AIRuntimeService } from '@storynaram/runtime';
-import { GenerationSession, type GenerationStatus } from './generation-session';
-import type { GenerationOptions } from './generation-context';
-import { GenerationPipeline } from './generation-pipeline';
-import { GenerationResult, type GeneratedChapter, type QualityCheck, type GenerationMetrics } from './generation-result';
-import { PromptAssembler } from './prompt/prompt-assembler';
-import { PromptOptimizer } from './prompt/prompt-optimizer';
-import { ContextBuilder } from './prompt/context-builder';
-import { OutputAssembler } from './output/output-assembler';
-import { StreamingCoordinator } from './output/streaming-coordinator';
-import { TokenBudgetManager } from './selection/token-budget-manager';
-import { ModelSelector } from './selection/model-selector';
-import { ProviderSelector } from './selection/provider-selector';
+import { GenerationSession, type GenerationStatus } from './generation-session.js';
+import type { GenerationOptions } from './generation-context.js';
+import { GenerationPipeline } from './generation-pipeline.js';
+import { GenerationResult, type GeneratedChapter, type QualityCheck, type GenerationMetrics } from './generation-result.js';
+import { PromptAssembler } from './prompt/prompt-assembler.js';
+import { PromptOptimizer } from './prompt/prompt-optimizer.js';
+import { ContextBuilder } from './prompt/context-builder.js';
+import { OutputAssembler } from './output/output-assembler.js';
+import { StreamingCoordinator } from './output/streaming-coordinator.js';
+import { TokenBudgetManager } from './selection/token-budget-manager.js';
+import { ModelSelector } from './selection/model-selector.js';
+import { ProviderSelector } from './selection/provider-selector.js';
 
 export interface EngineHealth {
   status: 'healthy' | 'degraded' | 'unhealthy';

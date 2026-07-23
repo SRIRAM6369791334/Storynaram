@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { AIFallbackConfig, AIRequest, AIResponse, AIProviderName } from './types';
-import { AIFallbackExhaustedError } from './errors';
-import type { AIProvider } from './providers/ai-provider.interface';
-import { AIProviderRegistry } from './ai-provider-registry.service';
+import type { AIFallbackConfig, AIRequest, AIResponse, AIProviderName } from './types.js';
+import { AIFallbackExhaustedError } from './errors.js';
+import type { AIProvider } from './providers/ai-provider.interface.js';
+import { AIProviderRegistry } from './ai-provider-registry.service.js';
 
 export interface FallbackResult {
   response: AIResponse;

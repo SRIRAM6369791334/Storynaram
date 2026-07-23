@@ -1,6 +1,6 @@
 import type { PlanningResult } from '@storynaram/narrative-planner';
-import type { NarrativeExecutionEngine } from './narrative-execution-engine';
-import type { ExecutionOptions } from './execution-context';
+import type { NarrativeExecutionEngine } from './narrative-execution-engine.js';
+import type { ExecutionOptions } from './execution-context.js';
 
 export function executeNarrativePlan(
   engine: NarrativeExecutionEngine,

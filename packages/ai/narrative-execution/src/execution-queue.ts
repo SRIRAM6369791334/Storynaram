@@ -1,4 +1,4 @@
-import type { ExecutionTask } from './execution-graph';
+import type { ExecutionTask } from './execution-graph.js';
 
 export class ExecutionQueue {
   private tasks: ExecutionTask[] = [];

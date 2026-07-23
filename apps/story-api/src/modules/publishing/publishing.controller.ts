@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Param, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { PublishingService } from './publishing.service';
-import { CreatePublishingDto } from './dto/create-publishing.dto';
-import { Public } from '../../common/decorators/public.decorator';
+import { PublishingService } from './publishing.service.js';
+import { CreatePublishingDto } from './dto/create-publishing.dto.js';
+import { Public } from '../../common/decorators/public.decorator.js';
 
 @ApiTags('Publishing')
 @ApiBearerAuth()

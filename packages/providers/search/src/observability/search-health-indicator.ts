@@ -1,6 +1,6 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { SEARCH_PROVIDER } from '../tokens';
-import type { SearchProvider } from '../search-provider.interface';
+import { SEARCH_PROVIDER } from '../tokens.js';
+import type { SearchProvider } from '../search-provider.interface.js';
 
 export interface SearchHealthResult {
   status: 'healthy' | 'degraded' | 'unhealthy';

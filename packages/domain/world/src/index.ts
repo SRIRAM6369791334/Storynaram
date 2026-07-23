@@ -1,11 +1,11 @@
-export { WorldIdentity } from './world-identity';
+export { WorldIdentity } from './world-identity.js';
 
 export {
   WorldProfile,
   WorldName,
   WorldDescription,
-} from './world-profile';
-export type { WorldProfileProps } from './world-profile';
+} from './world-profile.js';
+export type { WorldProfileProps } from './world-profile.js';
 
 export {
   Coordinates,
@@ -16,25 +16,25 @@ export {
   Biome,
   Climate,
   WorldGeography,
-} from './world-geography';
-export type { WorldGeographyProps } from './world-geography';
+} from './world-geography.js';
+export type { WorldGeographyProps } from './world-geography.js';
 
 export {
   City,
   Village,
   Landmark,
   WorldSettlements,
-} from './world-settlements';
+} from './world-settlements.js';
 
 export {
   Region,
   PoliticalSystem,
   Kingdom,
   Nation,
-} from './world-political';
+} from './world-political.js';
 
-export { Faction, WorldFactions } from './world-faction';
-export type { FactionType } from './world-faction';
+export { Faction, WorldFactions } from './world-faction.js';
+export type { FactionType } from './world-faction.js';
 
 export {
   LanguageCode,
@@ -44,51 +44,51 @@ export {
   Religion,
   Culture,
   WorldCultures,
-} from './world-culture';
+} from './world-culture.js';
 
-export { MagicSystem } from './world-magic-system';
-export type { MagicType } from './world-magic-system';
+export { MagicSystem } from './world-magic-system.js';
+export type { MagicType } from './world-magic-system.js';
 
-export { TechnologyLevel } from './world-technology-level';
-export type { TechEra } from './world-technology-level';
+export { TechnologyLevel } from './world-technology-level.js';
+export type { TechEra } from './world-technology-level.js';
 
-export { Calendar, TimeSystem } from './world-calendar';
-export type { CalendarDate, MonthDefinition } from './world-calendar';
+export { Calendar, TimeSystem } from './world-calendar.js';
+export type { CalendarDate, MonthDefinition } from './world-calendar.js';
 
 export {
   EconomicSystem,
   NaturalResource,
   WorldNaturalResources,
-} from './world-economy';
-export type { EconomicSystemType, ResourceType, ResourceAbundance } from './world-economy';
+} from './world-economy.js';
+export type { EconomicSystemType, ResourceType, ResourceAbundance } from './world-economy.js';
 
-export { WorldRule, WorldRules } from './world-rule';
-export type { RuleCategory } from './world-rule';
+export { WorldRule, WorldRules } from './world-rule.js';
+export type { RuleCategory } from './world-rule.js';
 
-export { WorldEvent, WorldHistory } from './world-history';
+export { WorldEvent, WorldHistory } from './world-history.js';
 
-export { WorldStatistics } from './world-statistics';
-export type { WorldStatisticsProps } from './world-statistics';
+export { WorldStatistics } from './world-statistics.js';
+export type { WorldStatisticsProps } from './world-statistics.js';
 
-export { WorldMap } from './world-map';
+export { WorldMap } from './world-map.js';
 
-export { WorldAggregate } from './world-aggregate';
+export { WorldAggregate } from './world-aggregate.js';
 
 export {
   WorldFactory,
-} from './world-factory';
+} from './world-factory.js';
 export type {
   CreateWorldProps,
   CreateWorldProfileInput,
   CreateWorldGeographyInput,
   CreateWorldCalendarInput,
   CreateWorldTimeInput,
-} from './world-factory';
+} from './world-factory.js';
 
-export { WORLD_REPOSITORY } from './world-repository';
-export type { WorldRepositoryContract } from './world-repository';
+export { WORLD_REPOSITORY } from './world-repository.js';
+export type { WorldRepositoryContract } from './world-repository.js';
 
-export { WorldDomainService } from './world-domain-service';
+export { WorldDomainService } from './world-domain-service.js';
 
 export {
   FantasySpecification,
@@ -98,7 +98,7 @@ export {
   PostApocalypticSpecification,
   OpenWorldSpecification,
   SandboxSpecification,
-} from './world-specifications';
+} from './world-specifications.js';
 
 export {
   WorldCreatedEvent,
@@ -108,7 +108,7 @@ export {
   CultureUpdatedEvent,
   HistoryRecordedEvent,
   WorldDeletedEvent,
-} from './world-events';
+} from './world-events.js';
 
 export {
   UniqueWorldNameRule,
@@ -117,14 +117,14 @@ export {
   ClimateConstraintRule,
   CalendarConsistencyRule,
   assertUniqueWorldName,
-} from './business-rules';
+} from './business-rules.js';
 
-export { WorldDomainModule } from './world.module';
+export { WorldDomainModule } from './world.module.js';
 
 export {
   indexWorldForSearch,
   triggerWorldWorkflow,
   handleWorldCreatedIntegration,
   handleRegionAddedIntegration,
-} from './integration';
-export type { WorldRuntimeIntegrations } from './integration';
+} from './integration.js';
+export type { WorldRuntimeIntegrations } from './integration.js';

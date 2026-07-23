@@ -1,7 +1,7 @@
 import type { RevisionResult } from '@storynaram/revision-engine';
-import type { PublishingContext } from './publishing-context';
-import { PublishingMemory } from './publishing-memory';
-import { PublishingStatistics } from './publishing-statistics';
+import type { PublishingContext } from './publishing-context.js';
+import { PublishingMemory } from './publishing-memory.js';
+import { PublishingStatistics } from './publishing-statistics.js';
 
 export type PublishingStatus = 'created' | 'loading' | 'selecting-profile' | 'rendering' | 'generating-toc' | 'generating-metadata' | 'packaging-assets' | 'exporting' | 'validating' | 'generating-reports' | 'completed' | 'failed' | 'cancelled';
 

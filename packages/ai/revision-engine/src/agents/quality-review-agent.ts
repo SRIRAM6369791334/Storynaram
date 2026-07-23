@@ -1,7 +1,7 @@
-import { RevisionAgent, type RevisionAgentResult } from './revision-agent';
-import type { RevisionPassType } from '../types/revision-context';
-import type { IssueReport } from '../types/revision-report';
-import { StoryQualityScore, type StoryQualityScoreParams } from '../quality/story-quality-score';
+import { RevisionAgent, type RevisionAgentResult } from './revision-agent.js';
+import type { RevisionPassType } from '../types/revision-context.js';
+import type { IssueReport } from '../types/revision-report.js';
+import { StoryQualityScore, type StoryQualityScoreParams } from '../quality/story-quality-score.js';
 
 export class QualityReviewAgent extends RevisionAgent {
   readonly passType: RevisionPassType = 'quality';

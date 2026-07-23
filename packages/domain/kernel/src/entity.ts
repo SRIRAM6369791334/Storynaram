@@ -1,7 +1,7 @@
-import { Identity } from './identity';
-import { Timestamp } from './timestamp';
-import { DomainVersion } from './domain-version';
-import { SoftDelete } from './soft-delete';
+import { Identity } from './identity.js';
+import { Timestamp } from './timestamp.js';
+import { DomainVersion } from './domain-version.js';
+import { SoftDelete } from './soft-delete.js';
 
 export abstract class Entity<TIdentity extends Identity = Identity> implements SoftDelete {
   public readonly identity: TIdentity;

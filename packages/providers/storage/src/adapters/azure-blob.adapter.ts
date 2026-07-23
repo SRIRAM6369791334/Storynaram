@@ -5,7 +5,7 @@ import {
   BlobClient,
   BlockBlobClient,
 } from '@azure/storage-blob';
-import type { IStorageAdapter } from './storage-adapter.interface';
+import type { IStorageAdapter } from './storage-adapter.interface.js';
 import type {
   BucketOptions,
   UploadOptions,
@@ -25,12 +25,12 @@ import type {
   LifecycleRule,
   ReplicationConfiguration,
   StorageCapacityInfo,
-} from '../types';
+} from '../types.js';
 import {
   ConnectionError,
   ObjectNotFoundError,
   BucketNotFoundError,
-} from '../errors';
+} from '../errors.js';
 
 @Injectable()
 export class AzureBlobAdapter implements IStorageAdapter {

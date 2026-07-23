@@ -5,18 +5,18 @@ import {
   SchemaNotFoundError,
 } from '@storynaram/schemas';
 import type { EntityId } from '@storynaram/core';
-import { ValidationPort } from './validation-port';
-import type { ValidationResult } from './validation-result';
-import { ValidationPipeline } from './validation-pipeline';
-import { ValidationProfileService } from './validation-profile.service';
-import { ValidationStatisticsService } from './validation-statistics.service';
-import { ValidationCache } from './validation-cache';
+import { ValidationPort } from './validation-port.js';
+import type { ValidationResult } from './validation-result.js';
+import { ValidationPipeline } from './validation-pipeline.js';
+import { ValidationProfileService } from './validation-profile.service.js';
+import { ValidationStatisticsService } from './validation-statistics.service.js';
+import { ValidationCache } from './validation-cache.js';
 import type {
   ValidationEngineResult,
   ValidationBatchResult,
   ValidationMetrics,
-} from './types';
-import { ValidationExecutionError } from './errors';
+} from './types.js';
+import { ValidationExecutionError } from './errors.js';
 
 @Injectable()
 export class ValidationEngineService extends ValidationPort {

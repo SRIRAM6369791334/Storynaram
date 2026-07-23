@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import type { SchemaMeta, SchemaId, SchemaCategory, SchemaIndexEntry, SchemaSearchQuery } from './types';
-import { SchemaCacheService } from './schema-cache.service';
+import type { SchemaMeta, SchemaId, SchemaCategory, SchemaIndexEntry, SchemaSearchQuery } from './types.js';
+import { SchemaCacheService } from './schema-cache.service.js';
 
 @Injectable()
 export class SchemaIndexService {

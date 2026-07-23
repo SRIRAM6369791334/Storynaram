@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import type { EntityId } from '@storynaram/core';
-import { RepositoryRegistry } from '../repository/repository-registry';
-import type { RepositoryPort } from '../repository/repository-port';
-import { RelationshipGraph } from '../relationship/relationship-graph';
-import { RelationshipTraversalService } from '../relationship/relationship-traversal.service';
-import { RelationshipQueryService } from '../relationship/relationship-query.service';
-import { EntityCacheService } from '../entity-cache.service';
-import { EntityValidationService } from '../entity-validation.service';
-import { EntityEventService } from '../entity-event.service';
-import { QueryCacheService } from './query-cache.service';
-import { QueryStatisticsService } from './query-statistics.service';
-import type { QueryEngineOptions } from './types';
+import { RepositoryRegistry } from '../repository/repository-registry.js';
+import type { RepositoryPort } from '../repository/repository-port.js';
+import { RelationshipGraph } from '../relationship/relationship-graph.js';
+import { RelationshipTraversalService } from '../relationship/relationship-traversal.service.js';
+import { RelationshipQueryService } from '../relationship/relationship-query.service.js';
+import { EntityCacheService } from '../entity-cache.service.js';
+import { EntityValidationService } from '../entity-validation.service.js';
+import { EntityEventService } from '../entity-event.service.js';
+import { QueryCacheService } from './query-cache.service.js';
+import { QueryStatisticsService } from './query-statistics.service.js';
+import type { QueryEngineOptions } from './types.js';
 
 @Injectable()
 export class QueryContext {

@@ -1,17 +1,17 @@
 import { DynamicModule, Module, Global } from '@nestjs/common';
-import { WorkflowEngine } from './workflow-engine';
-import { WorkflowExecutor } from './workflow-executor';
-import { WorkflowStepExecutor } from './workflow-step';
-import { WorkflowStateMachine } from './workflow-state-machine';
-import { WorkflowInstanceManager } from './workflow-instance';
-import { WorkflowContext } from './workflow-context';
-import { WorkflowHistoryService } from './workflow-history';
-import { WorkflowCheckpointService } from './workflow-checkpoint';
-import { WorkflowMetricsService } from './workflow-metrics';
-import { WorkflowRegistry } from './workflow-registry';
-import { WorkflowScheduler } from './workflow-scheduler';
-import type { WorkflowRuntimeOptions } from './types';
-import { WORKFLOW_OPTIONS } from './tokens';
+import { WorkflowEngine } from './workflow-engine.js';
+import { WorkflowExecutor } from './workflow-executor.js';
+import { WorkflowStepExecutor } from './workflow-step.js';
+import { WorkflowStateMachine } from './workflow-state-machine.js';
+import { WorkflowInstanceManager } from './workflow-instance.js';
+import { WorkflowContext } from './workflow-context.js';
+import { WorkflowHistoryService } from './workflow-history.js';
+import { WorkflowCheckpointService } from './workflow-checkpoint.js';
+import { WorkflowMetricsService } from './workflow-metrics.js';
+import { WorkflowRegistry } from './workflow-registry.js';
+import { WorkflowScheduler } from './workflow-scheduler.js';
+import type { WorkflowRuntimeOptions } from './types.js';
+import { WORKFLOW_OPTIONS } from './tokens.js';
 
 const DEFAULT_OPTIONS: WorkflowRuntimeOptions = {
   enableCheckpoints: true,

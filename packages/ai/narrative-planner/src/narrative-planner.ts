@@ -1,20 +1,20 @@
 import { DomainEvent, DomainContext } from '@storynaram/domain-kernel';
-import { PlanningSession, SessionStatus } from './planning-session';
-import { PlanningContext, StoryIdea } from './planning-context';
-import { PlanningResult, StructuredStoryPlan } from './planning-result';
-import { PlanningMemory } from './planning-memory';
-import { PlanningStatistics, PlanningStats } from './planning-statistics';
-import { PlanningGraph, PlanningStage } from './planning-graph';
-import { PlanningPipeline, PipelineOptions, StageResult } from './pipeline/planning-pipeline';
-import { BasePlannerAgent } from './agents/agent-base';
-import { IdeaAgent } from './agents/idea-agent';
-import { CharacterAgent } from './agents/character-agent';
-import { WorldAgent } from './agents/world-agent';
-import { TimelineAgent } from './agents/timeline-agent';
-import { CanonAgent } from './agents/canon-agent';
-import { NarrativeAgent } from './agents/narrative-agent';
-import { CompositionAgent } from './agents/composition-agent';
-import { ValidationAgent } from './agents/validation-agent';
+import { PlanningSession, SessionStatus } from './planning-session.js';
+import { PlanningContext, StoryIdea } from './planning-context.js';
+import { PlanningResult, StructuredStoryPlan } from './planning-result.js';
+import { PlanningMemory } from './planning-memory.js';
+import { PlanningStatistics, PlanningStats } from './planning-statistics.js';
+import { PlanningGraph, PlanningStage } from './planning-graph.js';
+import { PlanningPipeline, PipelineOptions, StageResult } from './pipeline/planning-pipeline.js';
+import { BasePlannerAgent } from './agents/agent-base.js';
+import { IdeaAgent } from './agents/idea-agent.js';
+import { CharacterAgent } from './agents/character-agent.js';
+import { WorldAgent } from './agents/world-agent.js';
+import { TimelineAgent } from './agents/timeline-agent.js';
+import { CanonAgent } from './agents/canon-agent.js';
+import { NarrativeAgent } from './agents/narrative-agent.js';
+import { CompositionAgent } from './agents/composition-agent.js';
+import { ValidationAgent } from './agents/validation-agent.js';
 
 export interface PlannerOptions {
   maxRetries: number;

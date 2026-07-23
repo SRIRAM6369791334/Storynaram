@@ -1,6 +1,6 @@
 import { ValueObject } from '@storynaram/domain-kernel';
-import { ChapterNumber } from './narrative-numbers';
-import { WordCount } from './narrative-metrics';
+import { ChapterNumber } from './narrative-numbers.js';
+import { WordCount } from './narrative-metrics.js';
 
 export type ChapterStatus = 'draft' | 'revised' | 'final';
 

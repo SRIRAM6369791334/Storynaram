@@ -1,6 +1,6 @@
 import { Factory, FactoryError } from '@storynaram/domain-kernel';
-import { CharacterAggregate } from './character-aggregate';
-import { CharacterIdentity } from './character-identity';
+import { CharacterAggregate } from './character-aggregate.js';
+import { CharacterIdentity } from './character-identity.js';
 import {
   CharacterProfile,
   CharacterName,
@@ -11,14 +11,14 @@ import {
   CharacterRole,
   CharacterOccupation,
   CharacterTitle,
-} from './character-profile';
-import { CharacterAppearance } from './character-appearance';
-import { CharacterPersonality, CharacterTraits, CharacterAlignment } from './character-personality';
-import { CharacterAbilities } from './character-abilities';
-import { CharacterStatus, LifeStage, Consciousness } from './character-status';
-import { CharacterStatistics } from './character-statistics';
-import { CharacterBiography } from './character-biography';
-import { assertAgeValid } from './business-rules';
+} from './character-profile.js';
+import { CharacterAppearance } from './character-appearance.js';
+import { CharacterPersonality, CharacterTraits, CharacterAlignment } from './character-personality.js';
+import { CharacterAbilities } from './character-abilities.js';
+import { CharacterStatus, LifeStage, Consciousness } from './character-status.js';
+import { CharacterStatistics } from './character-statistics.js';
+import { CharacterBiography } from './character-biography.js';
+import { assertAgeValid } from './business-rules.js';
 
 export interface CreateCharacterProfileInput {
   firstName: string;
